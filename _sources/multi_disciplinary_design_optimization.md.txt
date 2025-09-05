@@ -1,0 +1,38 @@
+# Multi-Disciplinary Design Optimization (MDO)
+
+This section explains about multi-disciplinary design optimization(CADE-MDO) module inside CADE platform.
+
+## What is Multi-Disciplinary Design Optimization
+
+- blah-blah
+
+
+## Installation and Setup
+
+- blah-blah
+  
+
+## Program Structure
+
+- blah-blah
+
+
+## Input Files
+
+- Command Input File
+- Aircraft Input File
+
+
+## Available Optimization Algorithms and Problems
+
+- blah-blah
+
+
+## Manuals
+
+- blah-blah
+
+
+## First Run and Example Runcase
+
+- blah-blah

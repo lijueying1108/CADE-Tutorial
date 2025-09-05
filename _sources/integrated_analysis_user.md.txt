@@ -1,0 +1,310 @@
+# Integrated Analysis User Manual
+
+This is a user manual for integrated analysis of modules inside CADE-MDA.
+
+<br>
+
+To run the integrated analysis, two main input files are necessary. Detailed descriptions, formatting guidelines, and an example file for these input files can be found in here : (1) Command Input File, [here](cmd_input.rst) and (2) Aircraft Input File, [here](config_input.rst).
+
+Get initial (minimum) aircraft data (configuration, weight and propulsion component data) from main ***'Aircraft Input File***. 
+
+After defining the aircraft's basic data in the ***'Aircraft Input File'***, the integrated analysis settings are specified in the ***'Command Input File'***.
+
+<br>
+
+## Aircraft Setting
+This 'AIRCRAFT' section setups the aircraft to be analyzed.<br>
+<span style="color:rgb(21, 184, 0);">AIRCRAFT: object </span><br>
+    > File name of ***Aircraft Input File*** for analysis. <br>
+
+    AIRCRAFT : KP2A-UAM-VP
+
+## Discipline and Methodology Setting
+This 'METHODOLOGY' section defines and initializes the analysis methodology to be executed. <br>
+    > Below **'METHODOLOGY** list of all the **'DISCIPLINE'** to be analyzed.
+
+    METHODOLOGY
+
+### <span style="color:rgb(24, 80, 145);">Discipline-wise Methodology Setting</span>
+This 'DISCIPLINE' section setups the analysis methodology for each discipline to be executed. <br>
+<span style="color:rgb(21, 184, 0);">configuration/weight-and-balance/aerodynamics/propulsion : object </span><br>
+    > Analysis discipline to be analyzed. <br>
+    >> To run the 'Configuration Analysis', the **'DISCIPLINE'** must be set to include the `configuration` <br>
+    >> To run the 'Weight and Balance Analysis', the **'DISCIPLINE'** must be set to include the `weight-and-balance` <br>
+    >> To run the 'Aerodynamics and Stability & Control Analysis', the **'DISCIPLINE'** must be set to include the `aerodynamics` <br>
+    >> To run the 'Electric Propulison Analysis', the **'DISCIPLINE'** must be set to include the `propulsion` <br>
+
+    DISCIPLINE : configuration
+    DISCIPLINE : weight-and-balance
+    DISCIPLINE : aerodynamics
+    DISCIPLINE : propulsion
+
+<br>
+
+### `weight-and-balance`
+Weight and Balance module requires methodology settings for 1 type of analyses :
+
+- ***(1) Weight Estimation Methodology Setting***
+    - 5 different types of aircraft weight estimation methods are provided
+
+    <br>
+
+        analysis method : Raymer/Torenbeek/USAF/AFDD/Wetted_Area_Structural
+
+- ***(2) Wetted Area Structural Method Setting***
+    - If **Wetted_Area_Structural** method is selected, the following inputs are required: 
+     
+    <br>
+    
+        avg_material_density_fuselage : Average fuselage skin material density [kg/m^2]
+        avg_material_density_wing : Average wing skin material density [kg/m^2]
+        avg_material_density_tail : Average empennage skin material density [kg/m^2]
+        avg_skin_thickness_fuselage : Average fuselage skin thickness [m]
+        avg_skin_thickness_wing : Average wing skin thickness [m]
+        avg_skin_thickness_tail : Average empennage skin thickness [m]
+
+
+
+- ***(3) Default Parameter Setting***
+    - The following fields are auto‐populated with default values for the four supported methods (Raymer, Torenbeek, USAF, AFDD) but can be edited if you need to override them:
+    *For detailed definitions and recommended values, refer to [Weight and Balance Theory Manual](weight_and_balance_theory.md)
+
+    - Fuel Mass
+        - Fuel mass in kilograms.  
+        - For electric aircraft, set this to `0`.
+
+    <br>
+
+        mass-fuel: Fuel Weight (kg)  
+
+    - Raymer/Torenbeek/USAF Fudge Factors
+  
+        - These correction factors adjust baseline component weights to account for advanced materials, and manufacturing allowances.
+        
+    <br>
+
+        corr_factor_raymer_material_wing: 0.85  
+        corr_factor_raymer_material_tail: 0.83  
+        corr_factor_raymer_material_fuselage: 0.90  
+
+    - AFDD Technology Factors
+        - These correction factors reflect advanced materials and technology maturity.
+         
+    <br>
+
+        corr_factor_afdd_technology_wing: 0.73  
+        corr_factor_afdd_technology_horizontal_tail: 0.65  
+        corr_factor_afdd_technology_vertical_tail: 0.79  
+        corr_factor_afdd_technology_V_tail: 0.65  
+        corr_factor_afdd_technology_fuselage: 0.89  
+
+    <br>
+
+
+
+\* Each methodologies' theoretical explainations can be checked in [Weight and Balance Theory Manual](weight_and_balance_theory.md)
+
+---
+<br>
+
+### `aerodynamics`
+Aerodynamics and Stability & Control module requires methodology settings for 5 types of analyses.
+
+- ***(1) Drag Analysis Methodology Setting***
+    - Only 1 drag analysis method is provided
+        - Uses the `friction2k6` program to calculate the parasite drag coefficent used for VLM analysis from <U>*(3) Aerodynamic Analysis Methodology Setting*</U>
+
+    <br>
+
+        drag-analysis : friction
+
+- ***(2) Airfoil Analysis Methodology Setting***
+    - 2 different types of airfoil aerodynamic analysis methods are provided
+    - Provides aerodynamic coefficient data of the airfoil to <U> `wingstrip` and `lift curve` analysis in *(3) Aerodynamic Analysis Methodology Setting*</U> or <U> `Viterna` analysis *(4) High-AOA Analysis Methodology Setting*</U>
+    - <span style="color:rgb(21, 184, 0);">*[Default Setting]</span> javafoil*
+
+    <br>
+
+        airfoil-analysis : xfoil/javafoil
+
+- ***(3) Aerodynamic Analysis Methodology Setting***
+    - 2 different types of aircraft aerodynamic analysis methods are provided
+    - <span style="color:rgb(21, 184, 0);">*[Default Setting]</span> AVL*
+
+    <br>
+
+        aircraft-analysis : AVL/HETLAS
+
+- ***(4) High-AOA Analysis Methodology Setting***
+    - 2 different types of high angle-of-attack (AOA) or high angle-of-sideslip (AOS) aerodynamic analysis methods are provided
+    - <span style="color:rgb(21, 184, 0);">*[Default Setting]</span> flatplate*
+
+    <br>
+
+        high-angle-analysis : flatplate/Viterna
+
+- ***(5) $C_{L_{Max}}$ Analysis Methodology Setting***
+    - Only 1 maximum lift coefficient analysis method is provided
+    - Used when calculating the $C_{L_{Max}}$, $\alpha_{Stall}$, etc.
+
+    <br>
+
+        CL_max_calculation : DATCOM
+
+\* Each methodologies' theoretical explainations can be checked in [Aerodynamics and SnC Theory Manual](aerodynamics_theory.md)
+
+---
+<br>
+
+### `propulsion`
+Electric Propulsion module requires methodology settings for 4 types of analyses.
+
+- ***(1) System Analysis Methodology Setting***
+    - Only 1 drag analysis method is provided
+
+    <br>
+
+        system analysis : analysis
+
+- ***(2) Battery Methodology Setting***
+    - Only 1 drag analysis method is provided
+
+    <br>
+
+        battery analysis : LUT/Thevenin
+
+- ***(3) Motor Methodology Setting***
+    - Only 1 drag analysis method is provided
+
+    <br>
+
+        motor analysis : 1st order
+
+- ***(4) Propeller Methodology Setting***
+    - Only 1 drag analysis method is provided
+
+    <br>
+
+        propeller analysis : BEMT
+
+
+\* Each methodologies' theoretical explainations can be checked in [Propulsion Theory Manual](electric_propulsion_theory.md)
+
+<br>
+
+## Run Analysis
+This 'ANALYSIS' section defines the actual runcases to be executed. <br>
+    > Below **'ANALYSIS**, list of all the **'RUN'** CASE to be analyzed.
+
+    ANALYSIS
+
+### <span style="color:rgb(24, 80, 145);">Discipline-wise Runcase Setting</span>
+This 'RUN' section setups the runcase and specifies the analysis conditions for each runcases. <br>
+    > Analysis runcases to be executed.
+
+<br>
+
+### `configuration`
+To run the 'Configuration Analysis', the **'RUN'** must be set to **'configuration'**
+
+    RUN : configuration
+
+### `weight-and-balance`
+To run the 'Weight and Balance Analysis', the **'RUN'** must be set to **'weight-table'**
+
+    RUN : weight-table
+
+### `aerodynamics`
+To run the 'Aerodynamics and Stability & Control Analysis', the **'RUN'** must be set to **'VLM-trim-analysis'** or **'VLM-aero-analysis'** or **'wingstrip-aero-analysis'** or **'viterna-analysis'** or **'flat-plate-analysis'** or **'lift-coefficient-graph'**
+
+*\* Here, () means optional setting inputs*
+
+- ***(1) VLM Trim Analysis Runcase Setting***
+
+        RUN : VLM-trim-analysis
+        altitude : Set the altitude []
+        velocity : Set the velocity [m/s]
+        (aileron) : Set the deflection angle for trim analysis [deg]
+        (loadfactor) : Set the load factor for trim analysis [default=1]
+        (cg-location) : Set the CG location [default=aft]
+
+- ***(2) VLM Aero Analysis Runcase Setting***
+
+        RUN : VLM-aero-analysis
+        altitude : Set the altitude []
+        velocity : Set the velocity [m/s]
+        (aileron) : Set the deflection angle [deg]
+        (elevator) : Set the deflection angle [deg]
+        (rudder) : Set the deflection angle [deg]
+        (ruddervator) : Set the deflection angle [deg]
+        (elevon) : Set the deflection angle [deg]
+        (flap) : Set the flap deflection angle [deg]
+        (loadfactor) : Set the load factor [default=1]
+        (cg-location) : Set the CG location [default=aft]
+        AOA_first : Set the starting AOA for analysis range [deg]
+        AOA_end : Set the ending AOA for analysis range [deg]
+        AOA_step : Set the step size of analysis range [deg]
+        AOS_first : Set the starting AOS for analysis range [deg]
+        AOS_end : Set the ending AOS for analysis range [deg]
+        AOS_step : Set the step size of analysis range [deg]
+        * For a single AOA analysis, input the same value for AOA_first and AOA_end. Set the AOA_step as 0. Same for single AOS analysis *
+
+- ***(3) Wingstrip Aero Analysis Runcase Setting***
+
+        RUN : wingstrip-aero-analysis
+        altitude : Set the altitude []
+        velocity : Set the velocity [m/s]
+        (aileron) : Set the deflection angle [deg]
+        (elevator) : Set the deflection angle [deg]
+        (rudder) : Set the deflection angle [deg]
+        (ruddervator) : Set the deflection angle [deg]
+        (elevon) : Set the deflection angle [deg]
+        (dynamic angular velocity) : Set the dynamic angular velocity [default=0]
+        AOA_first : Set the starting AOA for analysis range [deg]
+        AOA_end : Set the ending AOA for analysis range [deg]
+        AOA_step : Set the step size of analysis range [deg]
+        AOS_first : Set the starting AOS for analysis range [deg]
+        AOS_end : Set the ending AOS for analysis range [deg]
+        AOS_step : Set the step size of analysis range [deg]
+        * For a single AOA analysis, input the same value for AOA_first and AOA_end. Set the AOA_step as 0. Same for single AOS analysis *
+
+- ***(4) Viterna Analysis Runcase Setting***
+
+        RUN : viterna-analysis
+        altitude : Set the altitude []
+        velocity : Set the velocity [m/s]
+        AOA_first : Set the starting AOA for analysis range [deg]
+        AOA_end : Set the ending AOA for analysis range [deg]
+        AOA_step : Set the step size of analysis range [deg]
+        AOS_first : Set the starting AOS for analysis range [deg]
+        AOS_end : Set the ending AOS for analysis range [deg]
+        AOS_step : Set the step size of analysis range [deg]
+        * For a single AOA analysis, input the same value for AOA_first and AOA_end. Set the AOA_step as 0. Same for single AOS analysis *
+
+- ***(5) Flatplate Analysis Runcase Setting***
+
+        RUN : flat-plate-analysis
+        altitude : Set the altitude []
+        velocity : Set the velocity [m/s]
+        AOA_first : Set the starting AOA for analysis range [deg]
+        AOA_end : Set the ending AOA for analysis range [deg]
+        AOA_step : Set the step size of analysis range [deg]
+        AOS_first : Set the starting AOS for analysis range [deg]
+        AOS_end : Set the ending AOS for analysis range [deg]
+        AOS_step : Set the step size of analysis range [deg]
+        * For a single AOA analysis, input the same value for AOA_first and AOA_end. Set the AOA_step as 0. Same for single AOS analysis *
+
+- ***(6) Lift Coefficient Graph Plotting Runcase Setting***
+
+        RUN : lift-coefficient-graph
+        altitude : Set the altitude []
+        velocity : Set the velocity [m/s]
+        (loadfactor) : Set the load factor for trim analysis [default=1]
+        (cg-location) : Set the CG location [default=aft]
+
+### `propulsion`
+To run the 'Electric Propulsion', the **'RUN'** must be set to **'weight-table'**
+
+    RUN : weight-table
+
+<br>

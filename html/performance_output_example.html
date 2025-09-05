@@ -1,0 +1,1362 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example for Performance Analysis Output &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Example for Performance Analysis Output</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/performance_output_example.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="example-for-performance-analysis-output">
+<h1>Example for Performance Analysis Output<a class="headerlink" href="#example-for-performance-analysis-output" title="Link to this heading"></a></h1>
+<section id="performance-analysis-data">
+<h2>Performance Analysis Data<a class="headerlink" href="#performance-analysis-data" title="Link to this heading"></a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="mission-fuel-calculation">
+<h1>Mission Fuel Calculation<a class="headerlink" href="#mission-fuel-calculation" title="Link to this heading"></a></h1>
+<p>Mission fuel calculation for given mission profile</p>
+<p>Input mission profile:  mission_KP2A1</p>
+<section id="mission-analysis">
+<h2>Mission Analysis<a class="headerlink" href="#mission-analysis" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Segments</p></th>
+<th class="head"><p>Range$<span class="math notranslate nohighlight">\((m)\)</span>$</p></th>
+<th class="head"><p>Time$<span class="math notranslate nohighlight">\((mins)\)</span>$</p></th>
+<th class="head"><p>Energy$<span class="math notranslate nohighlight">\((Wh)\)</span>$</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AXIAL_CLIMB_AT_ALTITUDE_AND_SPEED</p></td>
+<td><p>91.4400</p></td>
+<td><p>0.9223</p></td>
+<td><p>14811.9754</p></td>
+</tr>
+<tr class="row-odd"><td><p>HOVER_AT_ALTITUDE_AND_TIME</p></td>
+<td><p>0.0000</p></td>
+<td><p>1.0000</p></td>
+<td><p>16265.9573</p></td>
+</tr>
+<tr class="row-even"><td><p>CLIMB_AT_ALTITUDE_AND_CLIMB_RATE</p></td>
+<td><p>5043.2497</p></td>
+<td><p>1.4197</p></td>
+<td><p>3644.3162</p></td>
+</tr>
+<tr class="row-odd"><td><p>CRUISE_AT_SPEED_AND_DISTANCE</p></td>
+<td><p>60000.0000</p></td>
+<td><p>14.9526</p></td>
+<td><p>30015.7046</p></td>
+</tr>
+<tr class="row-even"><td><p>DESCENT_AT_ALTITUDE_AND_DESCENT_RATE</p></td>
+<td><p>5043.2497</p></td>
+<td><p>1.4197</p></td>
+<td><p>3644.3146</p></td>
+</tr>
+<tr class="row-odd"><td><p>HOVER_AT_ALTITUDE_AND_TIME</p></td>
+<td><p>0.0000</p></td>
+<td><p>1.0000</p></td>
+<td><p>16265.9388</p></td>
+</tr>
+<tr class="row-even"><td><p>AXIAL_DESCENT_AT_ALTITUDE_AND_SPEED</p></td>
+<td><p>91.4400</p></td>
+<td><p>0.8762</p></td>
+<td><p>13926.3916</p></td>
+</tr>
+<tr class="row-odd"><td><p>\newpage</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Mission Analysis Results Plot</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Mission Analysis Results Plot" src="../_images/Figure_8.png" /></p>
+<section id="point-performance-parameters">
+<h3>Point Performance Parameters<a class="headerlink" href="#point-performance-parameters" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbols</p></th>
+<th class="head"><p>Parameters</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(V_{max}\)</span></p></td>
+<td><p>Max Airspeed</p></td>
+<td><p>118.0072</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(V_{R_{max}}\)</span></p></td>
+<td><p>Max Range Speed</p></td>
+<td><p>50.2841</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(V_{E_{max}}\)</span></p></td>
+<td><p>Max Endruance Speed</p></td>
+<td><p>46.2144</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(R_{max}\)</span></p></td>
+<td><p>Max Range</p></td>
+<td><p>358.2229</p></td>
+<td><p>km</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(E_{max}\)</span></p></td>
+<td><p>Max Endurance</p></td>
+<td><p>120.3833</p></td>
+<td><p>mins</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(V_{stall}\)</span></p></td>
+<td><p>Stall Speed</p></td>
+<td><p>33.6646</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(ROC_{max}\)</span></p></td>
+<td><p>Max Climb Rate</p></td>
+<td><p>34.5292</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\theta_{max}\)</span></p></td>
+<td><p>Max Climb Angle</p></td>
+<td><p>40.0322</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(ROC_{eco}\)</span></p></td>
+<td><p>Eco Climb Rate</p></td>
+<td><p>33.8928</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(ROD_{min}\)</span></p></td>
+<td><p>Min Sink Rate</p></td>
+<td><p>-5.7519</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\gamma_{min}\)</span></p></td>
+<td><p>Min Glide Angle</p></td>
+<td><p>-4.2954</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(ROC_{VTOL_{max}}\)</span></p></td>
+<td><p>Max VTOL Climb Rate</p></td>
+<td><p>19.5388</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(ROC_{VTOL_{OEI}}\)</span></p></td>
+<td><p>Max VTOL Climb Rate OEI</p></td>
+<td><p>4.7171</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(h_{service}\)</span></p></td>
+<td><p>Service Ceiling</p></td>
+<td><p>15597.9718</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(h_{absolute}\)</span></p></td>
+<td><p>Absolute Ceiling</p></td>
+<td><p>15762.6601</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(h_{OGE}\)</span></p></td>
+<td><p>OGE Ceiling</p></td>
+<td><p>3172.7546</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>\newpage</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="performance-details-data">
+<h2>Performance Details Data<a class="headerlink" href="#performance-details-data" title="Link to this heading"></a></h2>
+<section id="steady-level-flight-performance">
+<h3>Steady level flight performance<a class="headerlink" href="#steady-level-flight-performance" title="Link to this heading"></a></h3>
+<p>Steady-level-flight performance results at different flight conditions at an altitude</p>
+<p>Altitude:    = 304.8000  m</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(V\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(T_{req}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(T_{avl}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(P_{req}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(P_{avl}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(L/D\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(SAR\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(SE\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(P_{s}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>50.0000</p></td>
+<td><p>1738.9416</p></td>
+<td><p>17332.7077</p></td>
+<td><p>82938.9428</p></td>
+<td><p>938356.9428</p></td>
+<td><p>14.1764</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0000</p></td>
+<td><p>34.7618</p></td>
+</tr>
+<tr class="row-odd"><td><p>52.0000</p></td>
+<td><p>1700.5243</p></td>
+<td><p>17035.2019</p></td>
+<td><p>87469.3752</p></td>
+<td><p>942558.6743</p></td>
+<td><p>14.4860</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0000</p></td>
+<td><p>34.7485</p></td>
+</tr>
+<tr class="row-even"><td><p>54.0000</p></td>
+<td><p>1672.6253</p></td>
+<td><p>16717.6702</p></td>
+<td><p>94123.5296</p></td>
+<td><p>945384.2439</p></td>
+<td><p>14.7205</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0000</p></td>
+<td><p>34.5929</p></td>
+</tr>
+<tr class="row-odd"><td><p>56.0000</p></td>
+<td><p>1654.1607</p></td>
+<td><p>16383.3059</p></td>
+<td><p>100663.0019</p></td>
+<td><p>946856.2134</p></td>
+<td><p>14.8804</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0000</p></td>
+<td><p>34.3869</p></td>
+</tr>
+<tr class="row-even"><td><p>58.0000</p></td>
+<td><p>1644.1953</p></td>
+<td><p>16034.6398</p></td>
+<td><p>105256.1438</p></td>
+<td><p>946984.9515</p></td>
+<td><p>14.9679</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0000</p></td>
+<td><p>34.2055</p></td>
+</tr>
+<tr class="row-odd"><td><p>60.0000</p></td>
+<td><p>1641.9247</p></td>
+<td><p>15673.7433</p></td>
+<td><p>107661.9438</p></td>
+<td><p>945779.7601</p></td>
+<td><p>14.9873</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0000</p></td>
+<td><p>34.0588</p></td>
+</tr>
+<tr class="row-even"><td><p>62.0000</p></td>
+<td><p>1646.6546</p></td>
+<td><p>15302.9550</p></td>
+<td><p>109024.7890</p></td>
+<td><p>943294.5064</p></td>
+<td><p>14.9442</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0000</p></td>
+<td><p>33.9024</p></td>
+</tr>
+<tr class="row-odd"><td><p>64.0000</p></td>
+<td><p>1657.7866</p></td>
+<td><p>14925.2289</p></td>
+<td><p>111393.2655</p></td>
+<td><p>939644.3300</p></td>
+<td><p>14.8448</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0000</p></td>
+<td><p>33.6578</p></td>
+</tr>
+<tr class="row-even"><td><p>66.0000</p></td>
+<td><p>1674.8027</p></td>
+<td><p>14543.5235</p></td>
+<td><p>116938.0236</p></td>
+<td><p>934954.5223</p></td>
+<td><p>14.6950</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0000</p></td>
+<td><p>33.2419</p></td>
+</tr>
+<tr class="row-odd"><td><p>68.0000</p></td>
+<td><p>1697.2541</p></td>
+<td><p>14159.7518</p></td>
+<td><p>126403.3530</p></td>
+<td><p>929282.0848</p></td>
+<td><p>14.5023</p></td>
+<td><p>0.0005</p></td>
+<td><p>0.0000</p></td>
+<td><p>32.6268</p></td>
+</tr>
+<tr class="row-even"><td><p>70.0000</p></td>
+<td><p>1724.7503</p></td>
+<td><p>13774.2283</p></td>
+<td><p>138284.3609</p></td>
+<td><p>922578.6826</p></td>
+<td><p>14.2731</p></td>
+<td><p>0.0005</p></td>
+<td><p>0.0000</p></td>
+<td><p>31.8715</p></td>
+</tr>
+<tr class="row-odd"><td><p>72.0000</p></td>
+<td><p>1756.9513</p></td>
+<td><p>13385.9153</p></td>
+<td><p>150314.5273</p></td>
+<td><p>914713.9366</p></td>
+<td><p>14.0137</p></td>
+<td><p>0.0005</p></td>
+<td><p>0.0000</p></td>
+<td><p>31.0631</p></td>
+</tr>
+<tr class="row-even"><td><p>74.0000</p></td>
+<td><p>1793.5600</p></td>
+<td><p>12993.0596</p></td>
+<td><p>160440.5913</p></td>
+<td><p>905523.0840</p></td>
+<td><p>13.7299</p></td>
+<td><p>0.0005</p></td>
+<td><p>0.0000</p></td>
+<td><p>30.2781</p></td>
+</tr>
+<tr class="row-odd"><td><p>76.0000</p></td>
+<td><p>1834.3157</p></td>
+<td><p>12593.8564</p></td>
+<td><p>167283.3840</p></td>
+<td><p>894849.2767</p></td>
+<td><p>13.4271</p></td>
+<td><p>0.0005</p></td>
+<td><p>0.0000</p></td>
+<td><p>29.5663</p></td>
+</tr>
+<tr class="row-even"><td><p>78.0000</p></td>
+<td><p>1878.9896</p></td>
+<td><p>12187.2124</p></td>
+<td><p>171507.8760</p></td>
+<td><p>882590.3376</p></td>
+<td><p>13.1098</p></td>
+<td><p>0.0005</p></td>
+<td><p>0.0000</p></td>
+<td><p>28.8964</p></td>
+</tr>
+<tr class="row-odd"><td><p>80.0000</p></td>
+<td><p>1927.3799</p></td>
+<td><p>11773.4663</p></td>
+<td><p>177636.7813</p></td>
+<td><p>868744.0064</p></td>
+<td><p>12.7827</p></td>
+<td><p>0.0005</p></td>
+<td><p>0.0000</p></td>
+<td><p>28.0847</p></td>
+</tr>
+<tr class="row-even"><td><p>82.0000</p></td>
+<td><p>1979.3084</p></td>
+<td><p>11354.2001</p></td>
+<td><p>191520.9641</p></td>
+<td><p>853386.5689</p></td>
+<td><p>12.4494</p></td>
+<td><p>0.0004</p></td>
+<td><p>0.0000</p></td>
+<td><p>26.8964</p></td>
+</tr>
+<tr class="row-odd"><td><p>84.0000</p></td>
+<td><p>2034.6167</p></td>
+<td><p>10930.7966</p></td>
+<td><p>208673.3953</p></td>
+<td><p>836558.0342</p></td>
+<td><p>12.1131</p></td>
+<td><p>0.0004</p></td>
+<td><p>0.0000</p></td>
+<td><p>25.5155</p></td>
+</tr>
+<tr class="row-even"><td><p>86.0000</p></td>
+<td><p>2093.1650</p></td>
+<td><p>10503.1849</p></td>
+<td><p>224746.6475</p></td>
+<td><p>818166.6400</p></td>
+<td><p>11.7761</p></td>
+<td><p>0.0004</p></td>
+<td><p>0.0000</p></td>
+<td><p>24.1149</p></td>
+</tr>
+<tr class="row-odd"><td><p>88.0000</p></td>
+<td><p>2154.8282</p></td>
+<td><p>10069.8168</p></td>
+<td><p>237662.9180</p></td>
+<td><p>797995.7447</p></td>
+<td><p>11.4407</p></td>
+<td><p>0.0004</p></td>
+<td><p>0.0000</p></td>
+<td><p>22.7704</p></td>
+</tr>
+<tr class="row-even"><td><p>90.0000</p></td>
+<td><p>2219.4948</p></td>
+<td><p>9628.0789</p></td>
+<td><p>246809.4323</p></td>
+<td><p>775761.1000</p></td>
+<td><p>11.1092</p></td>
+<td><p>0.0004</p></td>
+<td><p>0.0000</p></td>
+<td><p>21.4951</p></td>
+</tr>
+<tr class="row-odd"><td><p>92.0000</p></td>
+<td><p>2287.0649</p></td>
+<td><p>9175.3385</p></td>
+<td><p>255469.3170</p></td>
+<td><p>751243.5604</p></td>
+<td><p>10.7827</p></td>
+<td><p>0.0004</p></td>
+<td><p>0.0000</p></td>
+<td><p>20.1469</p></td>
+</tr>
+<tr class="row-even"><td><p>94.0000</p></td>
+<td><p>2357.4492</p></td>
+<td><p>8710.9668</p></td>
+<td><p>266516.9692</p></td>
+<td><p>724499.9406</p></td>
+<td><p>10.4619</p></td>
+<td><p>0.0004</p></td>
+<td><p>0.0000</p></td>
+<td><p>18.6112</p></td>
+</tr>
+<tr class="row-odd"><td><p>96.0000</p></td>
+<td><p>2430.5673</p></td>
+<td><p>8237.5800</p></td>
+<td><p>280220.2311</p></td>
+<td><p>695971.3802</p></td>
+<td><p>10.1485</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>16.8950</p></td>
+</tr>
+<tr class="row-even"><td><p>98.0000</p></td>
+<td><p>2506.3464</p></td>
+<td><p>7760.3569</p></td>
+<td><p>296407.1413</p></td>
+<td><p>666396.0367</p></td>
+<td><p>9.8429</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>15.0353</p></td>
+</tr>
+<tr class="row-odd"><td><p>100.0000</p></td>
+<td><p>2584.7218</p></td>
+<td><p>7285.3634</p></td>
+<td><p>315087.5709</p></td>
+<td><p>636631.7340</p></td>
+<td><p>9.5459</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>13.0667</p></td>
+</tr>
+<tr class="row-even"><td><p>102.0000</p></td>
+<td><p>2665.6340</p></td>
+<td><p>6818.0558</p></td>
+<td><p>336384.7613</p></td>
+<td><p>607507.7275</p></td>
+<td><p>9.2574</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>11.0177</p></td>
+</tr>
+<tr class="row-odd"><td><p>104.0000</p></td>
+<td><p>2749.0297</p></td>
+<td><p>6362.3410</p></td>
+<td><p>359992.7056</p></td>
+<td><p>579742.3059</p></td>
+<td><p>8.9776</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>8.9300</p></td>
+</tr>
+<tr class="row-even"><td><p>106.0000</p></td>
+<td><p>2834.8601</p></td>
+<td><p>5920.0831</p></td>
+<td><p>384316.1661</p></td>
+<td><p>553913.1397</p></td>
+<td><p>8.7065</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>6.8920</p></td>
+</tr>
+<tr class="row-odd"><td><p>108.0000</p></td>
+<td><p>2923.0814</p></td>
+<td><p>5490.8653</p></td>
+<td><p>406289.8828</p></td>
+<td><p>530458.1317</p></td>
+<td><p>8.4449</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>5.0459</p></td>
+</tr>
+<tr class="row-even"><td><p>110.0000</p></td>
+<td><p>3013.6530</p></td>
+<td><p>5071.9080</p></td>
+<td><p>423045.9320</p></td>
+<td><p>509689.7497</p></td>
+<td><p>8.1916</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>3.5210</p></td>
+</tr>
+<tr class="row-odd"><td><p>112.0000</p></td>
+<td><p>3106.5385</p></td>
+<td><p>4658.1707</p></td>
+<td><p>434080.9354</p></td>
+<td><p>491811.4155</p></td>
+<td><p>7.9477</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>2.3460</p></td>
+</tr>
+<tr class="row-even"><td><p>114.0000</p></td>
+<td><p>3201.7041</p></td>
+<td><p>4242.8102</p></td>
+<td><p>441587.6472</p></td>
+<td><p>476927.1802</p></td>
+<td><p>7.7123</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>1.4361</p></td>
+</tr>
+<tr class="row-odd"><td><p>116.0000</p></td>
+<td><p>3299.1196</p></td>
+<td><p>3818.3110</p></td>
+<td><p>449588.5923</p></td>
+<td><p>465036.6428</p></td>
+<td><p>7.4850</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.6278</p></td>
+</tr>
+<tr class="row-even"><td><p>118.0000</p></td>
+<td><p>3398.7564</p></td>
+<td><p>3378.6162</p></td>
+<td><p>456009.2206</p></td>
+<td><p>456009.2206</p></td>
+<td><p>7.2666</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>120.0000</p></td>
+<td><p>3500.5888</p></td>
+<td><p>2922.2000</p></td>
+<td><p>449540.4047</p></td>
+<td><p>449540.4047</p></td>
+<td><p>7.0557</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>122.0000</p></td>
+<td><p>3604.5932</p></td>
+<td><p>2455.0477</p></td>
+<td><p>445108.9634</p></td>
+<td><p>445108.9634</p></td>
+<td><p>6.8523</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>124.0000</p></td>
+<td><p>3710.7479</p></td>
+<td><p>1991.6708</p></td>
+<td><p>441967.3190</p></td>
+<td><p>441967.3190</p></td>
+<td><p>6.6570</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>126.0000</p></td>
+<td><p>3819.0322</p></td>
+<td><p>1552.9242</p></td>
+<td><p>439190.5013</p></td>
+<td><p>439190.5013</p></td>
+<td><p>6.4686</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>128.0000</p></td>
+<td><p>3929.4283</p></td>
+<td><p>1161.2305</p></td>
+<td><p>435785.1909</p></td>
+<td><p>435785.1909</p></td>
+<td><p>6.2875</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>130.0000</p></td>
+<td><p>4041.9188</p></td>
+<td><p>834.9387</p></td>
+<td><p>430835.7733</p></td>
+<td><p>430835.7733</p></td>
+<td><p>6.1129</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>\newpage</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Steady-level-flight performance results at different flight conditions at an altitude</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Altitude:    = 304.8000  m</p>
+<p><img alt="steady-level-flight" src="../_images/Figure_9.png" /></p>
+<p>\newpage</p>
+</section>
+<section id="steady-climb-descent-performance">
+<h3>Steady climb-descent performance<a class="headerlink" href="#steady-climb-descent-performance" title="Link to this heading"></a></h3>
+<p>Steady-climb-descent performance results at different flight conditions at an altitude</p>
+<p>Altitude:    = 304.8000  m</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(V\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(D\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(L/D\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(P_{s}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(ROC\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\theta\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(ROD\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\gamma\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>50.0000</p></td>
+<td><p>1756.0143</p></td>
+<td><p>14.0135</p></td>
+<td><p>31.6497</p></td>
+<td><p>31.6497</p></td>
+<td><p>39.2713</p></td>
+<td><p>-3.5660</p></td>
+<td><p>-4.0898</p></td>
+</tr>
+<tr class="row-odd"><td><p>52.0000</p></td>
+<td><p>1712.7256</p></td>
+<td><p>14.3677</p></td>
+<td><p>32.3785</p></td>
+<td><p>32.3785</p></td>
+<td><p>38.5109</p></td>
+<td><p>-3.6186</p></td>
+<td><p>-3.9904</p></td>
+</tr>
+<tr class="row-even"><td><p>54.0000</p></td>
+<td><p>1681.0278</p></td>
+<td><p>14.6387</p></td>
+<td><p>32.9966</p></td>
+<td><p>32.9966</p></td>
+<td><p>37.6653</p></td>
+<td><p>-3.6879</p></td>
+<td><p>-3.9160</p></td>
+</tr>
+<tr class="row-odd"><td><p>56.0000</p></td>
+<td><p>1659.5500</p></td>
+<td><p>14.8281</p></td>
+<td><p>33.5066</p></td>
+<td><p>33.5066</p></td>
+<td><p>36.7506</p></td>
+<td><p>-3.7755</p></td>
+<td><p>-3.8658</p></td>
+</tr>
+<tr class="row-even"><td><p>58.0000</p></td>
+<td><p>1647.1535</p></td>
+<td><p>14.9397</p></td>
+<td><p>33.9107</p></td>
+<td><p>33.9107</p></td>
+<td><p>35.7795</p></td>
+<td><p>-3.8817</p></td>
+<td><p>-3.8374</p></td>
+</tr>
+<tr class="row-odd"><td><p>60.0000</p></td>
+<td><p>1642.8861</p></td>
+<td><p>14.9785</p></td>
+<td><p>34.2105</p></td>
+<td><p>34.2105</p></td>
+<td><p>34.7624</p></td>
+<td><p>-4.0062</p></td>
+<td><p>-3.8285</p></td>
+</tr>
+<tr class="row-even"><td><p>62.0000</p></td>
+<td><p>1645.9466</p></td>
+<td><p>14.9507</p></td>
+<td><p>34.4089</p></td>
+<td><p>34.4089</p></td>
+<td><p>33.7095</p></td>
+<td><p>-4.1492</p></td>
+<td><p>-3.8373</p></td>
+</tr>
+<tr class="row-odd"><td><p>64.0000</p></td>
+<td><p>1655.6571</p></td>
+<td><p>14.8630</p></td>
+<td><p>34.5113</p></td>
+<td><p>34.5113</p></td>
+<td><p>32.6318</p></td>
+<td><p>-4.3095</p></td>
+<td><p>-3.8610</p></td>
+</tr>
+<tr class="row-even"><td><p>66.0000</p></td>
+<td><p>1671.4409</p></td>
+<td><p>14.7226</p></td>
+<td><p>34.5237</p></td>
+<td><p>34.5237</p></td>
+<td><p>31.5395</p></td>
+<td><p>-4.4862</p></td>
+<td><p>-3.8975</p></td>
+</tr>
+<tr class="row-odd"><td><p>68.0000</p></td>
+<td><p>1692.8046</p></td>
+<td><p>14.5368</p></td>
+<td><p>34.4503</p></td>
+<td><p>34.4503</p></td>
+<td><p>30.4391</p></td>
+<td><p>-4.6796</p></td>
+<td><p>-3.9461</p></td>
+</tr>
+<tr class="row-even"><td><p>70.0000</p></td>
+<td><p>1719.3245</p></td>
+<td><p>14.3126</p></td>
+<td><p>34.2914</p></td>
+<td><p>34.2914</p></td>
+<td><p>29.3326</p></td>
+<td><p>-4.8910</p></td>
+<td><p>-4.0066</p></td>
+</tr>
+<tr class="row-odd"><td><p>72.0000</p></td>
+<td><p>1750.6348</p></td>
+<td><p>14.0566</p></td>
+<td><p>34.0434</p></td>
+<td><p>34.0434</p></td>
+<td><p>28.2179</p></td>
+<td><p>-5.1215</p></td>
+<td><p>-4.0790</p></td>
+</tr>
+<tr class="row-even"><td><p>74.0000</p></td>
+<td><p>1786.4185</p></td>
+<td><p>13.7750</p></td>
+<td><p>33.7001</p></td>
+<td><p>33.7001</p></td>
+<td><p>27.0911</p></td>
+<td><p>-5.3711</p></td>
+<td><p>-4.1624</p></td>
+</tr>
+<tr class="row-odd"><td><p>76.0000</p></td>
+<td><p>1826.3997</p></td>
+<td><p>13.4735</p></td>
+<td><p>33.2545</p></td>
+<td><p>33.2545</p></td>
+<td><p>25.9483</p></td>
+<td><p>-5.6398</p></td>
+<td><p>-4.2557</p></td>
+</tr>
+<tr class="row-even"><td><p>78.0000</p></td>
+<td><p>1870.3374</p></td>
+<td><p>13.1570</p></td>
+<td><p>32.7014</p></td>
+<td><p>32.7014</p></td>
+<td><p>24.7872</p></td>
+<td><p>-5.9276</p></td>
+<td><p>-4.3584</p></td>
+</tr>
+<tr class="row-odd"><td><p>80.0000</p></td>
+<td><p>1918.0205</p></td>
+<td><p>12.8299</p></td>
+<td><p>32.0398</p></td>
+<td><p>32.0398</p></td>
+<td><p>23.6093</p></td>
+<td><p>-6.2350</p></td>
+<td><p>-4.4700</p></td>
+</tr>
+<tr class="row-even"><td><p>82.0000</p></td>
+<td><p>1969.2632</p></td>
+<td><p>12.4960</p></td>
+<td><p>31.2730</p></td>
+<td><p>31.2730</p></td>
+<td><p>22.4191</p></td>
+<td><p>-6.5617</p></td>
+<td><p>-4.5898</p></td>
+</tr>
+<tr class="row-odd"><td><p>84.0000</p></td>
+<td><p>2023.9015</p></td>
+<td><p>12.1587</p></td>
+<td><p>30.4039</p></td>
+<td><p>30.4039</p></td>
+<td><p>21.2201</p></td>
+<td><p>-6.9083</p></td>
+<td><p>-4.7175</p></td>
+</tr>
+<tr class="row-even"><td><p>86.0000</p></td>
+<td><p>2081.7904</p></td>
+<td><p>11.8206</p></td>
+<td><p>29.4311</p></td>
+<td><p>29.4311</p></td>
+<td><p>20.0123</p></td>
+<td><p>-7.2753</p></td>
+<td><p>-4.8528</p></td>
+</tr>
+<tr class="row-odd"><td><p>88.0000</p></td>
+<td><p>2142.8010</p></td>
+<td><p>11.4840</p></td>
+<td><p>28.3476</p></td>
+<td><p>28.3476</p></td>
+<td><p>18.7919</p></td>
+<td><p>-7.6627</p></td>
+<td><p>-4.9954</p></td>
+</tr>
+<tr class="row-even"><td><p>90.0000</p></td>
+<td><p>2206.8187</p></td>
+<td><p>11.1509</p></td>
+<td><p>27.1421</p></td>
+<td><p>27.1421</p></td>
+<td><p>17.5525</p></td>
+<td><p>-8.0711</p></td>
+<td><p>-5.1451</p></td>
+</tr>
+<tr class="row-odd"><td><p>92.0000</p></td>
+<td><p>2273.7412</p></td>
+<td><p>10.8227</p></td>
+<td><p>25.8025</p></td>
+<td><p>25.8025</p></td>
+<td><p>16.2878</p></td>
+<td><p>-8.5007</p></td>
+<td><p>-5.3016</p></td>
+</tr>
+<tr class="row-even"><td><p>94.0000</p></td>
+<td><p>2343.4770</p></td>
+<td><p>10.5006</p></td>
+<td><p>24.3232</p></td>
+<td><p>24.3232</p></td>
+<td><p>14.9963</p></td>
+<td><p>-8.9517</p></td>
+<td><p>-5.4646</p></td>
+</tr>
+<tr class="row-odd"><td><p>96.0000</p></td>
+<td><p>2415.9439</p></td>
+<td><p>10.1857</p></td>
+<td><p>22.7112</p></td>
+<td><p>22.7112</p></td>
+<td><p>13.6845</p></td>
+<td><p>-9.4244</p></td>
+<td><p>-5.6338</p></td>
+</tr>
+<tr class="row-even"><td><p>98.0000</p></td>
+<td><p>2491.0681</p></td>
+<td><p>9.8785</p></td>
+<td><p>20.9847</p></td>
+<td><p>20.9847</p></td>
+<td><p>12.3644</p></td>
+<td><p>-9.9191</p></td>
+<td><p>-5.8092</p></td>
+</tr>
+<tr class="row-odd"><td><p>100.0000</p></td>
+<td><p>2568.7830</p></td>
+<td><p>9.5796</p></td>
+<td><p>19.1669</p></td>
+<td><p>19.1669</p></td>
+<td><p>11.0502</p></td>
+<td><p>-10.4366</p></td>
+<td><p>-5.9906</p></td>
+</tr>
+<tr class="row-even"><td><p>102.0000</p></td>
+<td><p>2649.0288</p></td>
+<td><p>9.2894</p></td>
+<td><p>17.2806</p></td>
+<td><p>17.2806</p></td>
+<td><p>9.7540</p></td>
+<td><p>-10.9772</p></td>
+<td><p>-6.1781</p></td>
+</tr>
+<tr class="row-odd"><td><p>104.0000</p></td>
+<td><p>2731.7509</p></td>
+<td><p>9.0081</p></td>
+<td><p>15.3439</p></td>
+<td><p>15.3439</p></td>
+<td><p>8.4842</p></td>
+<td><p>-11.5415</p></td>
+<td><p>-6.3716</p></td>
+</tr>
+<tr class="row-even"><td><p>106.0000</p></td>
+<td><p>2816.9001</p></td>
+<td><p>8.7358</p></td>
+<td><p>13.3671</p></td>
+<td><p>13.3671</p></td>
+<td><p>7.2446</p></td>
+<td><p>-12.1300</p></td>
+<td><p>-6.5710</p></td>
+</tr>
+<tr class="row-odd"><td><p>108.0000</p></td>
+<td><p>2904.4317</p></td>
+<td><p>8.4726</p></td>
+<td><p>11.3514</p></td>
+<td><p>11.3514</p></td>
+<td><p>6.0332</p></td>
+<td><p>-12.7432</p></td>
+<td><p>-6.7763</p></td>
+</tr>
+<tr class="row-even"><td><p>110.0000</p></td>
+<td><p>2994.3050</p></td>
+<td><p>8.2183</p></td>
+<td><p>9.2871</p></td>
+<td><p>9.2871</p></td>
+<td><p>4.8431</p></td>
+<td><p>-13.3814</p></td>
+<td><p>-6.9873</p></td>
+</tr>
+<tr class="row-odd"><td><p>112.0000</p></td>
+<td><p>3086.4829</p></td>
+<td><p>7.9728</p></td>
+<td><p>7.1533</p></td>
+<td><p>7.1533</p></td>
+<td><p>3.6619</p></td>
+<td><p>-14.0449</p></td>
+<td><p>-7.2039</p></td>
+</tr>
+<tr class="row-even"><td><p>114.0000</p></td>
+<td><p>3180.9314</p></td>
+<td><p>7.7361</p></td>
+<td><p>4.9193</p></td>
+<td><p>4.9193</p></td>
+<td><p>2.4732</p></td>
+<td><p>-14.7341</p></td>
+<td><p>-7.4260</p></td>
+</tr>
+<tr class="row-odd"><td><p>116.0000</p></td>
+<td><p>3277.6196</p></td>
+<td><p>7.5079</p></td>
+<td><p>2.5488</p></td>
+<td><p>2.5488</p></td>
+<td><p>1.2590</p></td>
+<td><p>-15.4492</p></td>
+<td><p>-7.6535</p></td>
+</tr>
+<tr class="row-even"><td><p>118.0000</p></td>
+<td><p>3376.5192</p></td>
+<td><p>7.2880</p></td>
+<td><p>0.0101</p></td>
+<td><p>0.0101</p></td>
+<td><p>0.0049</p></td>
+<td><p>-16.1905</p></td>
+<td><p>-7.8863</p></td>
+</tr>
+<tr class="row-odd"><td><p>120.0000</p></td>
+<td><p>3477.6040</p></td>
+<td><p>7.0761</p></td>
+<td><p>-2.7084</p></td>
+<td><p>-2.7084</p></td>
+<td><p>-1.2933</p></td>
+<td><p>-16.9584</p></td>
+<td><p>-8.1242</p></td>
+</tr>
+<tr class="row-even"><td><p>122.0000</p></td>
+<td><p>3580.8501</p></td>
+<td><p>6.8721</p></td>
+<td><p>-5.5814</p></td>
+<td><p>-5.5814</p></td>
+<td><p>-2.6222</p></td>
+<td><p>-17.7532</p></td>
+<td><p>-8.3673</p></td>
+</tr>
+<tr class="row-odd"><td><p>124.0000</p></td>
+<td><p>3686.2356</p></td>
+<td><p>6.6756</p></td>
+<td><p>-8.5389</p></td>
+<td><p>-8.5389</p></td>
+<td><p>-3.9487</p></td>
+<td><p>-18.5754</p></td>
+<td><p>-8.6154</p></td>
+</tr>
+<tr class="row-even"><td><p>126.0000</p></td>
+<td><p>3793.7401</p></td>
+<td><p>6.4865</p></td>
+<td><p>-11.4736</p></td>
+<td><p>-11.4736</p></td>
+<td><p>-5.2246</p></td>
+<td><p>-19.4254</p></td>
+<td><p>-8.8686</p></td>
+</tr>
+<tr class="row-odd"><td><p>128.0000</p></td>
+<td><p>3903.3450</p></td>
+<td><p>6.3043</p></td>
+<td><p>-14.2633</p></td>
+<td><p>-14.2633</p></td>
+<td><p>-6.3979</p></td>
+<td><p>-20.3037</p></td>
+<td><p>-9.1269</p></td>
+</tr>
+<tr class="row-even"><td><p>130.0000</p></td>
+<td><p>4015.0329</p></td>
+<td><p>6.1290</p></td>
+<td><p>-16.7999</p></td>
+<td><p>-16.7999</p></td>
+<td><p>-7.4251</p></td>
+<td><p>-21.2108</p></td>
+<td><p>-9.3903</p></td>
+</tr>
+<tr class="row-odd"><td><p>\newpage</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Steady-climb performance results at different flight conditions at an altitude</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Altitude:    = 304.8000  m</p>
+<p><img alt="steady-climb-descent-flight" src="../_images/Figure_10.png" /></p>
+<p>\newpage</p>
+</section>
+</section>
+<section id="id1">
+<h2>Performance Details Data<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<section id="axial-flight-performance">
+<h3>Axial flight performance<a class="headerlink" href="#axial-flight-performance" title="Link to this heading"></a></h3>
+<p>Axial-flight performance results at different flight conditions at an altitude</p>
+<p>Altitude:    = 0.0000    m</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(V\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(D\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(T_{req}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(T_{avl}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(P_{req}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(P_{avl}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(P_{s}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.0000</p></td>
+<td><p>26.6207</p></td>
+<td><p>24636.9541</p></td>
+<td><p>29234.5822</p></td>
+<td><p>964962.1096</p></td>
+<td><p>1317301.4021</p></td>
+<td><p>14.3167</p></td>
+</tr>
+<tr class="row-odd"><td><p>2.0000</p></td>
+<td><p>106.4829</p></td>
+<td><p>24716.8163</p></td>
+<td><p>29671.5084</p></td>
+<td><p>961277.8534</p></td>
+<td><p>1335190.8235</p></td>
+<td><p>15.1933</p></td>
+</tr>
+<tr class="row-even"><td><p>3.0000</p></td>
+<td><p>239.5865</p></td>
+<td><p>24849.9200</p></td>
+<td><p>30073.4036</p></td>
+<td><p>961076.3712</p></td>
+<td><p>1351169.7658</p></td>
+<td><p>15.8508</p></td>
+</tr>
+<tr class="row-odd"><td><p>4.0000</p></td>
+<td><p>425.9316</p></td>
+<td><p>25036.2650</p></td>
+<td><p>30442.7429</p></td>
+<td><p>964258.0125</p></td>
+<td><p>1365389.2033</p></td>
+<td><p>16.2993</p></td>
+</tr>
+<tr class="row-even"><td><p>5.0000</p></td>
+<td><p>665.5181</p></td>
+<td><p>25275.8516</p></td>
+<td><p>30782.9365</p></td>
+<td><p>970732.6809</p></td>
+<td><p>1378053.6145</p></td>
+<td><p>16.5508</p></td>
+</tr>
+<tr class="row-odd"><td><p>6.0000</p></td>
+<td><p>958.3461</p></td>
+<td><p>25568.6795</p></td>
+<td><p>31098.0447</p></td>
+<td><p>980427.7130</p></td>
+<td><p>1389405.0173</p></td>
+<td><p>16.6181</p></td>
+</tr>
+<tr class="row-even"><td><p>7.0000</p></td>
+<td><p>1304.4155</p></td>
+<td><p>25914.7490</p></td>
+<td><p>31392.4734</p></td>
+<td><p>993295.3765</p></td>
+<td><p>1399705.7686</p></td>
+<td><p>16.5138</p></td>
+</tr>
+<tr class="row-odd"><td><p>8.0000</p></td>
+<td><p>1703.7264</p></td>
+<td><p>26314.0598</p></td>
+<td><p>31670.6898</p></td>
+<td><p>1009317.5823</p></td>
+<td><p>1409222.4997</p></td>
+<td><p>16.2495</p></td>
+</tr>
+<tr class="row-even"><td><p>9.0000</p></td>
+<td><p>2156.2787</p></td>
+<td><p>26766.6122</p></td>
+<td><p>31936.9855</p></td>
+<td><p>1028506.1086</p></td>
+<td><p>1418212.6277</p></td>
+<td><p>15.8351</p></td>
+</tr>
+<tr class="row-odd"><td><p>10.0000</p></td>
+<td><p>2662.0725</p></td>
+<td><p>27272.4059</p></td>
+<td><p>32195.2921</p></td>
+<td><p>1050897.3964</p></td>
+<td><p>1426913.9449</p></td>
+<td><p>15.2788</p></td>
+</tr>
+<tr class="row-even"><td><p>11.0000</p></td>
+<td><p>3221.1077</p></td>
+<td><p>27831.4412</p></td>
+<td><p>32449.0453</p></td>
+<td><p>1076544.9735</p></td>
+<td><p>1435537.1322</p></td>
+<td><p>14.5870</p></td>
+</tr>
+<tr class="row-odd"><td><p>12.0000</p></td>
+<td><p>3833.3844</p></td>
+<td><p>28443.7178</p></td>
+<td><p>32701.0889</p></td>
+<td><p>1105523.1371</p></td>
+<td><p>1444260.7637</p></td>
+<td><p>13.7640</p></td>
+</tr>
+<tr class="row-even"><td><p>13.0000</p></td>
+<td><p>4498.9025</p></td>
+<td><p>29109.2360</p></td>
+<td><p>32953.6098</p></td>
+<td><p>1137922.5319</p></td>
+<td><p>1453228.4025</p></td>
+<td><p>12.8119</p></td>
+</tr>
+<tr class="row-odd"><td><p>14.0000</p></td>
+<td><p>5217.6621</p></td>
+<td><p>29827.9955</p></td>
+<td><p>33208.1014</p></td>
+<td><p>1173835.1575</p></td>
+<td><p>1462547.5856</p></td>
+<td><p>11.7313</p></td>
+</tr>
+<tr class="row-even"><td><p>15.0000</p></td>
+<td><p>5989.6632</p></td>
+<td><p>30599.9966</p></td>
+<td><p>33465.3587</p></td>
+<td><p>1213349.3414</p></td>
+<td><p>1472290.6929</p></td>
+<td><p>10.5217</p></td>
+</tr>
+<tr class="row-odd"><td><p>16.0000</p></td>
+<td><p>6814.9056</p></td>
+<td><p>31425.2391</p></td>
+<td><p>33725.5068</p></td>
+<td><p>1256555.3513</p></td>
+<td><p>1482497.7542</p></td>
+<td><p>9.1808</p></td>
+</tr>
+<tr class="row-even"><td><p>17.0000</p></td>
+<td><p>7693.3896</p></td>
+<td><p>32303.7230</p></td>
+<td><p>33988.0662</p></td>
+<td><p>1303569.5854</p></td>
+<td><p>1493181.1425</p></td>
+<td><p>7.7046</p></td>
+</tr>
+<tr class="row-odd"><td><p>18.0000</p></td>
+<td><p>8625.1149</p></td>
+<td><p>33235.4484</p></td>
+<td><p>34252.0497</p></td>
+<td><p>1354591.8154</p></td>
+<td><p>1504331.8235</p></td>
+<td><p>6.0844</p></td>
+</tr>
+<tr class="row-even"><td><p>19.0000</p></td>
+<td><p>9610.0818</p></td>
+<td><p>34220.4152</p></td>
+<td><p>34516.0807</p></td>
+<td><p>1410036.4427</p></td>
+<td><p>1515926.4551</p></td>
+<td><p>4.3027</p></td>
+</tr>
+<tr class="row-odd"><td><p>20.0000</p></td>
+<td><p>10648.2900</p></td>
+<td><p>35258.6235</p></td>
+<td><p>34778.5135</p></td>
+<td><p>1527934.2726</p></td>
+<td><p>1527934.2726</p></td>
+<td><p>0.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>\newpage</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Axial climb performance results at different flight conditions at an altitude</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Altitude:    = 0.0000    m</p>
+<p><img alt="steady-axial-climb" src="../_images/Figure_11.png" /></p>
+<p>\newpage
+Altitude vs Roc</p>
+<p><img alt="Altitude vs ROC" src="../_images/Figure_12.png" /></p>
+<p>\newpage
+Operational Flight Envelope</p>
+<p><img alt="Operational Flight envelope" src="../_images/Figure_13.png" /></p>
+<p>\newpage
+Hover Ceiling (OGE)</p>
+<p><img alt="Hover Ceiling (OGE)" src="../_images/Figure_14.png" /></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+# Multi-Disciplinary Analysis (MDA)
+
+This section explains about aircraft multi-disciplinary analysis (CADE-MDA) module inside CADE platform.
+
+<br>
+
+## What is Multi-Disciplinary Analysis
+
+**Multi-Disciplinary Analysis (MDA)** of an aircraft is an engineering approach that integrates various fields-such as aircraft configuration, weight and balance, aerodynamics, stability and control, and propulsion-into unified design framework. By coupling different modules, MDA supports system-level optmization and rapid design iteration in complex aircraft development.
+
+<br>
+
+## Installation and Setup
+
+- [Installation and Setup for CADE-MDA](installation_and_setup.md)
+
+<br>
+
+## Available Vehicles
+
+Vehicle types available for CADE Multi-Disciplinary Analysis are listed below :
+
+- UAV (Unmanned Aerial Vehicle)
+    - Fixed Wing UAV
+    - eVTOL UAV
+- AAM (Advanced Air Mobility)
+    - UAM (Urban Air Mobility)
+    - RAM (Regional Air Mobility)
+
+<<<<<<< HEAD
+## Vehicles
+
+- fixed wing UAV
+- eVTOL UAV
+- eVTOL UAM
+=======
+- TBD
+    - Electric Multi-Copter
+>>>>>>> 047-user-manual-upd
+  
+<br>
+
+## Program Structure
+
+CADE-MDA is available of both <span style="color:rgb(24, 80, 145);">'Integrated Analysis'</span> and <span style="color:rgb(24, 80, 145);">'Standalone Analysis' of each discipline. 
+
+You can find program structure at the link below :
+
+- [Program Structure of CADE-Sizing](program_structure.md)
+
+<br>
+
+## Input Files
+
+There are two main input files to run CADE Multi-Disciplinary Analysis.
+
+### > Command Input
+
+The first one is **'Command Input File'**, which controls the whole analysis :
+
+- Which <span style="color:rgb(24, 80, 145);">'AIRCRAFT'</span> will be analyzed ?
+- Which engineering <span style="color:rgb(24, 80, 145);">'DISCIPLINE'</span> is considered in the multi-disciplinary analysis ?
+- Which type of <span style="color:rgb(24, 80, 145);">'ANALYSIS'</span> is performed within each discipline ?
+- How are the analysis <span style="color:rgb(24, 80, 145);">'CONDITIONS'</span> defined ?
+
+You can find more detailed explanations and examples of the command input file at the link below :
+
+- [Command Input File to Run CADE-MDA](cmd_input.rst)
+
+### > Aircraft Input
+
+Another input file required for the analysis is the **'Aircraft Input File'**, which contains detailed information and data about the target aircraft to be analyzed.
+
+This file contains information on the aircraft's <span style="color:rgb(24, 80, 145);">geometry, internal components, and propulsion system.</span>
+
+You can find more detailed explanations and examples of the aircraft input file at the link below :
+
+- [Aircraft Input File to Run CADE-MDA](config_input.rst)
+
+<br>
+
+## Databases
+
+You can check more detailed explanations and examples about the databases stored inside CADE at the link below :
+
+- [Database Stored inside CADE-MDA](component_databases.md)
+
+<br>
+
+## Available Analysis Runcases
+
+- [Available Runcases in CADE-MDA](available_analysis.rst)
+
+<br>
+
+## Integrated Analysis and Disciplinary Modules
+
+You can check more detailed explanations about the theoretical backgrounds (Theory Manual) and how to run the analysis (User Manual) of CADE integrated analysis and each standalone analyses at the link below :
+
+- [User Manual for Integrated Analysis](integrated_analysis_user.md)
+
+### <span style="color:rgb(24, 80, 145);"> Configuration </span>
+
+- [Configuration Theory Manual](configuration_theory.md)
+
+- [Configuration User Manual](configuration_user.md)
+
+- [Output Example of Configuration Analysis](configuration_output_example.md)
+
+### <span style="color:rgb(24, 80, 145);"> Weight and Balance </span>
+
+- [Weight and Balance Theory Manual](weight_and_balance_theory.md)
+
+- [Weight and Balance User Manual](weight_and_balance_user.md)
+
+- [Output Example of Weight and Balance Analysis](weight_and_balance_output_example.md)
+
+### <span style="color:rgb(24, 80, 145);"> Aerodynamics and SnC </span>
+
+- [Aerodynamics and SnC Theory Manual](aerodynamics_theory.md)
+
+- [Aerodynamics and SnC User Manual](aerodynamics_user.md)
+
+- [Output Example of Aerodynamic and Stability & Control Analysis](aerodynamics_output_example.md)
+
+### <span style="color:rgb(24, 80, 145);"> Electric Propulsion </span>
+
+- [Propulsion Theory Manual](electric_propulsion_theory.md)
+
+- [Propulsion User Manual](propulsion_user.md)
+
+- [Output Example of Electric Propulsion Analysis](propulsion_output_example.md)

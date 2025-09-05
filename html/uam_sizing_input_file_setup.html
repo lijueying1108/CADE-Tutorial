@@ -1,0 +1,1761 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UAM Command input file &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">UAM Command input file</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/uam_sizing_input_file_setup.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="uam-command-input-file">
+<h1>UAM Command input file<a class="headerlink" href="#uam-command-input-file" title="Link to this heading"></a></h1>
+<p>There is a single CSV input file that controls the whole analysis.
+Command input files by default are located in <code class="docutils literal notranslate"><span class="pre">input</span></code> directory.</p>
+<p>The file is divided into three main sections and subsections.
+eASP performs search by the section header, so it is important to write
+them correctly.</p>
+<p>This example input file is for Tilting UAM.</p>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Example of sizing input file</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>SIZING INPUT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Degree</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mission_profile</p></td>
+<td><p>sample_uam_full_mission</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONFIGURATION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>aircraft_type</p></td>
+<td><p>CONVENTIONAL</p></td>
+<td></td>
+<td></td>
+<td><p>Middle</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>flight_type</p></td>
+<td><p>TILTING</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>flap_position</p></td>
+<td><p>WING</p></td>
+<td></td>
+<td></td>
+<td><p>Low</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>height_to_span_ratio</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td><p>Low</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>aspect_ratio_wing</p></td>
+<td><p>12.13</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>num_of_rotor_tilt</p></td>
+<td><p>8</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>num_of_rotor_blades</p></td>
+<td><p>4</p></td>
+<td></td>
+<td></td>
+<td><p>Middle</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>solidity_ratio</p></td>
+<td><p>0.31</p></td>
+<td></td>
+<td></td>
+<td><p>Middle</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>k_p</p></td>
+<td><p>1.74721</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>k_fuselage</p></td>
+<td><p>0.12</p></td>
+<td></td>
+<td></td>
+<td><p>Middle</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>k_clearance</p></td>
+<td><p>1.1</p></td>
+<td></td>
+<td></td>
+<td><p>Middle</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>k_diameter</p></td>
+<td><p>1</p></td>
+<td></td>
+<td></td>
+<td><p>Middle</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>k_wet</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>num_rotor_spanwise</p></td>
+<td><p>4</p></td>
+<td></td>
+<td></td>
+<td><p>Low</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>AERODYNAMICS</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Cd_blade</p></td>
+<td><p>0.015</p></td>
+<td></td>
+<td></td>
+<td><p>Low</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>C_D_p</p></td>
+<td><p>1.45</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>V_tip</p></td>
+<td><p>198.12</p></td>
+<td><p>m/s</p></td>
+<td></td>
+<td><p>Middle</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>oswald_effy</p></td>
+<td><p>0.91735</p></td>
+<td><p>simple eq</p></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CD_0</p></td>
+<td><p>0.02681</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CL_max_clean</p></td>
+<td><p>1.5</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>k_i</p></td>
+<td><p>1.08</p></td>
+<td><p>FoM 0.79</p></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>PROPULSION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>motor_sizing_method</p></td>
+<td><p>POWER-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_density_motor</p></td>
+<td><p>9280.74245</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_motor_tilt</p></td>
+<td><p>9280.74245</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_motor</p></td>
+<td><p>0.95</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_motor_tilt</p></td>
+<td><p>0.95</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>controller_sizing_method</p></td>
+<td><p>POWER-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_controller_tilt</p></td>
+<td><p>12000</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_controller_tilt</p></td>
+<td><p>0.98</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_propeller_cruise</p></td>
+<td><p>0.8</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_propeller_climb</p></td>
+<td><p>0.5</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_rotor_climb_vertical</p></td>
+<td><p>0.8</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_rotor_hover</p></td>
+<td><p>0.9</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>descent_power_setting</p></td>
+<td><p>0.4</p></td>
+<td></td>
+<td></td>
+<td><p>Low</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>coef_propulsion_install</p></td>
+<td><p>1.2</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>vtol_motor_control_power_margin</p></td>
+<td><p>1.5</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ENERGY-SYSTEM</p></td>
+<td><p>BATTERY/HYDROGEN-FUEL-CELL/HYBRID</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>energy_source</p></td>
+<td><p>HYBRID</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>BATTERY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>battery_sizing_method</p></td>
+<td><p>ENERGY-DENSITY</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>coef_batt_usable_energy</p></td>
+<td><p>0.8</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>spec_energy_batt_wh_per_kg</p></td>
+<td><p>550</p></td>
+<td><p>Wh/kg</p></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_batt</p></td>
+<td><p>0.93</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_batt</p></td>
+<td><p>2300</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>volumetric_energy_density_batt</p></td>
+<td><p>1</p></td>
+<td><p>Wh/L</p></td>
+<td></td>
+<td><p>Low</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>HYDROGEN-FUEL-CELL</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tank_sizing_method</p></td>
+<td><p>GRAVIMETRIC-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>hydrogen_type</p></td>
+<td><p>LIQUID</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_density_fuel_cell</p></td>
+<td><p>1500</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>volumetric_power_density_fuel_cell</p></td>
+<td><p>800</p></td>
+<td><p>W/L</p></td>
+<td></td>
+<td><p>Low</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_fuel_cell</p></td>
+<td><p>0.5</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>tank_GI</p></td>
+<td><p>0.4</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>temperature_tank</p></td>
+<td><p>288.15</p></td>
+<td><p>K</p></td>
+<td></td>
+<td><p>Low</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>pressure_tank</p></td>
+<td><p>35000000</p></td>
+<td><p>Pa</p></td>
+<td></td>
+<td><p>Low</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>THERMAL-MANAGEMENT-SYSTEM</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_thermal_management_sys</p></td>
+<td><p>680</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td><p>Middle</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>MASS</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_frac_subsys</p></td>
+<td><p>0.047</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_frac_avionics</p></td>
+<td><p>0.019</p></td>
+<td></td>
+<td></td>
+<td><p>Middle</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_frac_struct</p></td>
+<td><p>0.314</p></td>
+<td></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_payload</p></td>
+<td><p>444.5</p></td>
+<td><p>kg</p></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>INITIAL-DESIGN-POINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing_loading</p></td>
+<td><p>700</p></td>
+<td><p>N/m^2</p></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_loading</p></td>
+<td><p>60</p></td>
+<td><p>W/N</p></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>disk_loading</p></td>
+<td><p>478.802</p></td>
+<td><p>N/m^2</p></td>
+<td></td>
+<td><p>High</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_takeoff_maximum</p></td>
+<td><p>4000</p></td>
+<td><p>kg</p></td>
+<td></td>
+<td><p>Middle</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_convergence_method</p></td>
+<td><p>FIXED-POINT-ITERATION</p></td>
+<td></td>
+<td></td>
+<td><p>low</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>DESIGN VARIABLE</p></td>
+<td><p>x0</p></td>
+<td><p>lb</p></td>
+<td><p>ub</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading</p></td>
+<td><p>36</p></td>
+<td><p>30</p></td>
+<td><p>50</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing_loading</p></td>
+<td><p>800</p></td>
+<td><p>500</p></td>
+<td><p>1200</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>disk_loading</p></td>
+<td><p>500</p></td>
+<td><p>200</p></td>
+<td><p>1200</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>OBJECTIVE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_takeoff_maximum</p></td>
+<td><p>min</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>speed_stall</p></td>
+<td><p>leq</p></td>
+<td><p>speed_stall_req</p></td>
+<td><p>33.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_stall</p></td>
+<td><p>0</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>speed_cruise_max</p></td>
+<td><p>geq</p></td>
+<td><p>speed_cruise_req</p></td>
+<td><p>67</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_cruise</p></td>
+<td><p>1219.2</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>rate_of_climb_best</p></td>
+<td><p>geq</p></td>
+<td><p>rate_of_climb_req</p></td>
+<td><p>2.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_climb_best</p></td>
+<td><p>1219.2</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>rate_of_climb_best_OEI</p></td>
+<td><p>geq</p></td>
+<td><p>rate_of_climb_OEI_req</p></td>
+<td><p>2.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_climb_best_OEI</p></td>
+<td><p>1219.2</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>service_ceiling</p></td>
+<td><p>geq</p></td>
+<td><p>service_ceiling_req</p></td>
+<td><p>7620</p></td>
+<td><p>m</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>vertical_rate_of_climb_max</p></td>
+<td><p>geq</p></td>
+<td><p>vertical_rate_of_climb_req</p></td>
+<td><p>2.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_climb_vertical_best</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_loading_hover</p></td>
+<td><p>leq</p></td>
+<td><p>power_loading_hover_req</p></td>
+<td><p>power_loading</p></td>
+<td><p>W/N</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_hover</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading_hover_OEI</p></td>
+<td><p>leq</p></td>
+<td><p>power_loading_hover_OEI_req</p></td>
+<td><p>power_loading</p></td>
+<td><p>W/N</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_hover_OEI</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>vertical_rate_of_climb_max_OEI</p></td>
+<td><p>geq</p></td>
+<td><p>vertical_rate_of_climb_OEI_req</p></td>
+<td><p>2.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_climb_vertical_best_OEI</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>disk_loading</p></td>
+<td><p>geq</p></td>
+<td><p>disk_loading_span_limit_req</p></td>
+<td><p>disk_loading_span_limit</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>vertical_service_ceiling</p></td>
+<td><p>geq</p></td>
+<td><p>vertical_service_ceiling_req</p></td>
+<td><p>2895</p></td>
+<td><p>m</p></td>
+<td><p>X-57</p></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading_hover_control_margin</p></td>
+<td><p>leq</p></td>
+<td><p>power_loading_control_margin_req</p></td>
+<td><p>power_loading</p></td>
+<td><p>W/N</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_hover</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ONE-DIMENSION-TRADEOFF</p></td>
+<td><p>Parameters</p></td>
+<td><p>Start</p></td>
+<td><p>End</p></td>
+<td><p>Num</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>input-1</p></td>
+<td><p>FoM</p></td>
+<td><p>0.5</p></td>
+<td><p>0.8</p></td>
+<td><p>5</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>output</p></td>
+<td><p>k_i</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>END</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The first row of the table is for the parameters naming and the second row should be provied the value and variables.</p>
+<section id="sizing-input-mandatory">
+<h2>SIZING INPUT (mandatory)<a class="headerlink" href="#sizing-input-mandatory" title="Link to this heading"></a></h2>
+<p>The first line always contains the <code class="docutils literal notranslate"><span class="pre">SIZING</span> <span class="pre">INPUT</span></code> keyword and the input file
+will be read if not defined. There will be some error. It should follows the <code class="docutils literal notranslate"><span class="pre">mission_profile</span></code>
+keyword to defind the mission profile name. Mission profile input making is shown in <a class="reference internal" href="sizing_mission_profile.html"><span class="doc">Sizing mission profile</span></a>.</p>
+</section>
+<section id="configuration-mandatory">
+<h2>CONFIGURATION (mandatory)<a class="headerlink" href="#configuration-mandatory" title="Link to this heading"></a></h2>
+<p>The configuration <code class="docutils literal notranslate"><span class="pre">CONFIGURATION</span></code> keyword needs to define for based on the aircraft type.</p>
+<p>Currently, <code class="docutils literal notranslate"><span class="pre">aircraft_type</span></code> can only be selected as <code class="docutils literal notranslate"><span class="pre">CONVENTIONAL</span></code>, <code class="docutils literal notranslate"><span class="pre">TANDEM-WING</span></code>, <code class="docutils literal notranslate"><span class="pre">BLENDED-BODY-TANDEM-WING</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">aspect_ratio_wing</span></code> paraemter need to specify based on the design aircraft. If there is no design aircraft,
+Here are some of the parameters that you can you depending on the aircraft category is shown in
+<span class="xref std std-doc">sizing_input_parameters_guide</span>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">flap_position</span></code> flap position need to specify for <code class="docutils literal notranslate"><span class="pre">TANDEM-WING</span></code> and <code class="docutils literal notranslate"><span class="pre">BLENDED-BODY-TANDEM-WING</span></code> configuration,
+the key words can be defined as <code class="docutils literal notranslate"><span class="pre">BOTH-WING</span></code>, <code class="docutils literal notranslate"><span class="pre">FRONT-WING</span></code>, and <code class="docutils literal notranslate"><span class="pre">REAR-WING</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">height_to_span_ratio</span></code> paraemter needs to provide for <code class="docutils literal notranslate"><span class="pre">TANDEM-WING</span></code> and <code class="docutils literal notranslate"><span class="pre">BLENDED-BODY-TANDEM-WING</span></code> for aerodynamcis
+oswald efficiency correction.</p>
+<p><code class="docutils literal notranslate"><span class="pre">area_ratio_wing</span></code> parameter needs to provide for <code class="docutils literal notranslate"><span class="pre">TANDEM-WING</span></code> configuration for separating front wing, and rea wing area
+calculation.
+In case of <code class="docutils literal notranslate"><span class="pre">BLENDED-BODY-TANDEM-WING</span></code> configraiont, area ration of 0.3 for front and rear wing and 0.4 for body area ration is hard-coded.</p>
+<p><code class="docutils literal notranslate"><span class="pre">num_of_propellers_ctol</span></code> parameter needs to provide for sizing the propeller model.</p>
+<p><code class="docutils literal notranslate"><span class="pre">num_of_rotor_vtol</span></code> parameter need to separate rotors which is used only for vertical(VTOL) direction.</p>
+<p><code class="docutils literal notranslate"><span class="pre">num_of_rotor_tilt</span></code> parameter need to separate rotors which is used for both vertical(VTOL) and horizontal(CTOL) direction.</p>
+<p><code class="docutils literal notranslate"><span class="pre">num_of_propellers_blades</span></code> parameter also need to provide depending on the design of based line aircraft.</p>
+<p><code class="docutils literal notranslate"><span class="pre">num_of_rotor_blades</span></code> parameter also need to provide depending on the design of based line aircraft.</p>
+<p><code class="docutils literal notranslate"><span class="pre">k_p</span></code> parameter need to calculate vertical direction drag. <code class="docutils literal notranslate"><span class="pre">k_p</span></code> is defined as (S_proj_total_ac/S_proj_wing) and used to convert the drag coefficient
+, calculated based on the Projected Area of the whole aircraft, to the drag coefficient calculated for the wing area. Recommended value is proper sketch’s value or similar aircraft’s.
+If there is no data  the parameters that you can you depending on the aircraft category is shown in <span class="xref std std-doc">sizing_input_parameters_guide</span></p>
+<p><code class="docutils literal notranslate"><span class="pre">k_fuselage</span></code> parameter need to calculate maximum rotor radius. It means the ratio, fuselage width to wing span.</p>
+<p><code class="docutils literal notranslate"><span class="pre">k_clearance</span></code> parameter need to calculate maximum rotor radius. It means the marginal gap of rotor radius and is defined to the ratio.</p>
+<p><code class="docutils literal notranslate"><span class="pre">k_diameter</span></code> parameter need to calculate maximum rotor radius. It means how much length can be useful added to span.
+If VTOL rotor is attatched on wing tip(like Osprey), each end extends out by a 1 radius, for a total extension of 1 diameter beyond the Wing Tip.
+If you want to design it so that it extends 1 diameter less than the Wing Tip, you should enter -1. Other constants can also be entered.</p>
+<p><code class="docutils literal notranslate"><span class="pre">num_rotor_span_wise</span></code> parameter need to calculate maximum rotor radius. It means how many rotors exist along to wing span.</p>
+<p><code class="docutils literal notranslate"><span class="pre">k_fuselage</span></code>, <code class="docutils literal notranslate"><span class="pre">k_clearance</span></code>, <code class="docutils literal notranslate"><span class="pre">k_diameter</span></code>, <code class="docutils literal notranslate"><span class="pre">num_rotor_span_wise</span></code> are totally dependent on aircraft concept. There is no guide value.</p>
+</section>
+<section id="aerodynamics-mandatory">
+<h2>AERODYNAMICS (mandatory)<a class="headerlink" href="#aerodynamics-mandatory" title="Link to this heading"></a></h2>
+<p>The aerodynmaics <code class="docutils literal notranslate"><span class="pre">AERODYNAMICS</span></code> keyword needs to define for based on the aircraft type or design paraemter.
+For the aerodynamics the required paraemters for performance and mission analysis need to be provided.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Cd_blade</span></code> is rotor blade’s drag coefficient to calculate rotor profile drag. Typically use 0.01.</p>
+<p><code class="docutils literal notranslate"><span class="pre">C_D_p</span></code> is aircraft’s vertical direction drag coefficient, and it’s reference area is total aircraft’s projected area.</p>
+<p><code class="docutils literal notranslate"><span class="pre">V_tip</span></code> is rotor tip speed when aircraft hover. It should be reasonable value consider drag divergence mach for rotor tip, rotor tip stall, etc.</p>
+<p><code class="docutils literal notranslate"><span class="pre">oswald_effy</span></code> is the oswald efficiey of aircraft.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CD_0</span></code> is the friction drag coefficient which need to defined.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CL_max_clean</span></code> is the maximum lift coefficeint for clean configuration.</p>
+<p><code class="docutils literal notranslate"><span class="pre">k_i</span></code> is induced power correction factor for calculate FoM and induced power during hovering, vertical climb.
+Typical average value of <code class="docutils literal notranslate"><span class="pre">k_i</span></code> in hovering is 1.15~. However, recommended way is that ‘fit <code class="docutils literal notranslate"><span class="pre">k_i</span></code> to FoM’.
+In this program, FoM is is output.</p>
+<p><code class="docutils literal notranslate"><span class="pre">k_wet</span></code> parameter used to predict the rotor thrust loss caused by objects below the rotor.
+<code class="docutils literal notranslate"><span class="pre">k_wet</span></code> is the expected ratio of the wing,fuselage area wetted by the rotor’s downwash to the total wing area in the rotorcraft flight mode.
+The parameter depends on the selected aircraft configuration and can be estimated based on data for similar aircraft.
+How to be used in code or equation is explained in theory manual.</p>
+<p>Above aerodynmaics assumption parameters are also provided in <span class="xref std std-doc">sizing_input_parameters_guide</span>.</p>
+</section>
+<section id="propulsion-mandatory">
+<h2>PROPULSION (mandatory)<a class="headerlink" href="#propulsion-mandatory" title="Link to this heading"></a></h2>
+<p>The propulsion <code class="docutils literal notranslate"><span class="pre">PROPULSION</span></code> keyword needs to define for the propulsive efficiency of each electric components.
+As well as the installation factor of the propulsion need to be provided for calculaing the mass of total
+propulsion system.</p>
+<p>The efficiency of propeller may varies depending on the propeller type while electrical efficiency can be keep as a constant value.
+Above efficiency assumption parameters are also provided in <span class="xref std std-doc">sizing_input_parameters_guide</span>.</p>
+<p>Propulsion system for <code class="docutils literal notranslate"><span class="pre">motor_sizing_method</span></code> and <code class="docutils literal notranslate"><span class="pre">controller_sizing_method</span></code> sizing method
+need to defined as <code class="docutils literal notranslate"><span class="pre">POWER-DENSITY</span></code> or <code class="docutils literal notranslate"><span class="pre">REGRESSION</span></code> for the mass calculation of motor and controller.
+If <code class="docutils literal notranslate"><span class="pre">POWEWR-DENSITY</span></code> method is used, related power density value need to provide.
+If <code class="docutils literal notranslate"><span class="pre">REGRESSiON</span></code> method is used, power density value doesn’t need to provide.</p>
+<p><code class="docutils literal notranslate"><span class="pre">power_density_motor</span></code>, <code class="docutils literal notranslate"><span class="pre">power_density_motor_vtol</span></code>, <code class="docutils literal notranslate"><span class="pre">power_density_motor_tilt</span></code>, these three are for seperation of motor in various cases.</p>
+<p><code class="docutils literal notranslate"><span class="pre">power_density_motor</span></code> is power density of motor only horizontal motor both in RAM and UAM, except for tilt.</p>
+<p><code class="docutils literal notranslate"><span class="pre">power_density_motor_vtol</span></code> is power density of motor only vertical motor in UAM, except for tilt.</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a>power_density_motor_tilt``is power density of motor only can being tilt, except for only CTOL or VTOL.</p>
+<p><code class="docutils literal notranslate"><span class="pre">power_density_controller</span></code>, <code class="docutils literal notranslate"><span class="pre">power_density_controller_vtol</span></code>, <code class="docutils literal notranslate"><span class="pre">power_density_controller_tilt</span></code>, these three are for seperation of controller in various cases.</p>
+<p><code class="docutils literal notranslate"><span class="pre">power_density_controller</span></code> is power density of controller attached to only horizontal motor both in RAM and UAM, except for tilt.</p>
+<p><code class="docutils literal notranslate"><span class="pre">power_density_controller_vtol</span></code> is power density of controller attached to only vertical motor in UAM, except for tilt.</p>
+<p><a href="#id3"><span class="problematic" id="id4">``</span></a>power_density_controller_tilt``is power density of controller attached to only can being tilt motor, except for only CTOL or VTOL.</p>
+<p><code class="docutils literal notranslate"><span class="pre">descent_power_setting</span></code> is for power estimation of CTOL mode descent flight. In many cases, power of descent is estimated as the ratio of cruise flight.
+For example, If <code class="docutils literal notranslate"><span class="pre">descent_power_setting</span></code> is 0.4, the power of descent flight is 40% of cruise flight required power.</p>
+<p><code class="docutils literal notranslate"><span class="pre">vtol_motor_control_power_margin</span></code> is constant, for control margin of vtol at the hovering condition.</p>
+</section>
+<section id="energy-system-mandatory">
+<h2>ENERGY-SYSTEM (mandatory)<a class="headerlink" href="#energy-system-mandatory" title="Link to this heading"></a></h2>
+<p>The energy system <code class="docutils literal notranslate"><span class="pre">ENERGY-SYSTEM</span></code> keywords define the type of energy system.</p>
+<p>If the aircraft is fully electric, <code class="docutils literal notranslate"><span class="pre">energy_source</span></code> must be defined as <code class="docutils literal notranslate"><span class="pre">BATTERY</span></code>.</p>
+<p>And the required battery parameters need to defined in <code class="docutils literal notranslate"><span class="pre">BATTERY</span></code> keywords. In that case,
+<code class="docutils literal notranslate"><span class="pre">HYDROGEN-FUEL-CELL</span></code> parameters doesn’t need to defined.</p>
+<p><code class="docutils literal notranslate"><span class="pre">battery_sizing_method</span></code> keyword also need to defined which has three options. They are</p>
+<p><code class="docutils literal notranslate"><span class="pre">ENERGY-DENSITY</span></code>, <code class="docutils literal notranslate"><span class="pre">POWER-DENSITY</span></code> and <code class="docutils literal notranslate"><span class="pre">MAX-MASS</span></code> methods.</p>
+<p>If the aircraft is fully hydrogen fuel cell, <code class="docutils literal notranslate"><span class="pre">energy_source</span></code> must be defined as <code class="docutils literal notranslate"><span class="pre">HYDROGEN-FUEL-CELL</span></code>.</p>
+<p>And the required fuel cell parameters need to defined in <code class="docutils literal notranslate"><span class="pre">HYDROGEN-FUEL-CELL</span></code> keywords.
+<code class="docutils literal notranslate"><span class="pre">tank_sizing_method</span></code> is currenlty only one option later, there will be another option. It can be keep as,
+<code class="docutils literal notranslate"><span class="pre">GRAVIMETRIC-DENSITY</span></code> for sizing tank mass.</p>
+<p><code class="docutils literal notranslate"><span class="pre">hydrogen_type</span></code> also selected for <code class="docutils literal notranslate"><span class="pre">LIQUID</span></code> or <code class="docutils literal notranslate"><span class="pre">GAS</span></code>.</p>
+<p>If the aircrft used both energy source, <code class="docutils literal notranslate"><span class="pre">energy_source</span></code> must be defined as <code class="docutils literal notranslate"><span class="pre">HYBRID</span></code>. Both battery and hydrogen fuel cell
+parameter need to defiend.</p>
+<p><code class="docutils literal notranslate"><span class="pre">power_density_batt</span></code> is the power density of battey in W/kg.</p>
+<p><code class="docutils literal notranslate"><span class="pre">spec_energy_batt_wh_per_kg</span></code> is specific energy density of battery in Wh/kg.</p>
+<p><code class="docutils literal notranslate"><span class="pre">volumetric_energy_density_batt</span></code> is the volumetric density of battery in Wh/L</p>
+<p><code class="docutils literal notranslate"><span class="pre">effy_batt</span></code> is the battery efficiency.</p>
+<p><code class="docutils literal notranslate"><span class="pre">power_density_fuel_cell</span></code> is the fuel cell power density in W/kg.</p>
+<p><code class="docutils literal notranslate"><span class="pre">volumetric_power_density_fuel_cell</span></code> is the fuel cell volumetric density in W/L</p>
+<p><code class="docutils literal notranslate"><span class="pre">effy_fuel_cell</span></code> is the hydrogen fuel cell efficiency.</p>
+<p><code class="docutils literal notranslate"><span class="pre">tank_GI</span></code> is gravimetric tank index for tank sizing.</p>
+<p><code class="docutils literal notranslate"><span class="pre">temperature_tank</span></code> is the design hydrogne tank temperature and it is only effective for <code class="docutils literal notranslate"><span class="pre">GAS</span></code> hydrogen.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pressure_tank</span></code> is the hydrogen design pressure for <code class="docutils literal notranslate"><span class="pre">GAS</span></code> usually 350 bar to 700 bar.</p>
+<p>Assumption parameters for both <code class="docutils literal notranslate"><span class="pre">BATTERY</span></code> and <code class="docutils literal notranslate"><span class="pre">HYDROGEN-FUEL-CELL</span></code> are provide in <span class="xref std std-doc">sizing_input_parameters_guide</span>.</p>
+</section>
+<section id="thermal-management-system-mandatory">
+<h2>THERMAL-MANAGEMENT-SYSTEM (mandatory)<a class="headerlink" href="#thermal-management-system-mandatory" title="Link to this heading"></a></h2>
+<p>The energy system <code class="docutils literal notranslate"><span class="pre">THERMAL-MANAGEMENT-SYSTEM</span></code> keywords define the type of thermal management system.</p>
+<p><code class="docutils literal notranslate"><span class="pre">power_density_thermal_management_sys</span></code> is the power density of the thermal management system for mass calcualtion</p>
+</section>
+<section id="mass-mandatory">
+<h2>MASS (mandatory)<a class="headerlink" href="#mass-mandatory" title="Link to this heading"></a></h2>
+<p>The mass <code class="docutils literal notranslate"><span class="pre">MASS</span></code> keyword need to be defind for mass fraction input to estimated the maximum takeoff mass.</p>
+<p><code class="docutils literal notranslate"><span class="pre">mass_frac_subsys</span></code> is the subsystem mass fraction, which includes APU, flight control, hydraulics, electrical, instrument, oxygen, furnshing, miscellaneous and contigency mass.</p>
+<p><code class="docutils literal notranslate"><span class="pre">mass_frac_avionics</span></code> is the avionics mass fraction.</p>
+<p><code class="docutils literal notranslate"><span class="pre">mass_frac_struct</span></code> is the structural mass fraction, which includes fuselage, wing, tail, undercarriage and naccele mass.</p>
+<p>Assumption parameters <code class="docutils literal notranslate"><span class="pre">mass_frac</span></code> values are provided in <span class="xref std std-doc">sizing_input_parameters_guide</span>.</p>
+</section>
+<section id="initial-design-point-optional">
+<h2>INITIAL-DESIGN-POINT (optional)<a class="headerlink" href="#initial-design-point-optional" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">INITIAL-DESIGN-POINT</span></code> keyword is only need to specify when the optimization is not required.
+By setting this section, user can check the feasible region without running the optimization.</p>
+<p><code class="docutils literal notranslate"><span class="pre">power_loading</span></code> is the power loading of the design aircraft in W/N.
+In UAM, it means the power loading of CTOL only motor’s power loading.</p>
+<p><code class="docutils literal notranslate"><span class="pre">power_loading_vtol_tilt</span></code> is used in partial tilting case.
+In the code, power_loading_vtol_tilt is calculated to fit each mode.</p>
+<p><code class="docutils literal notranslate"><span class="pre">power_loading_vtol</span></code> is used in Lift+Cruise case and it means power loading of only VTOL mode.</p>
+<p><code class="docutils literal notranslate"><span class="pre">wing_loading</span></code> is the wing loading of the design aircraft in N/m^2, numerically means W/S.
+W is total weight of aircraft. S is wing area</p>
+<p><code class="docutils literal notranslate"><span class="pre">disk_loading</span></code> is the disk loading of the design aircraft in N/m^2, numerically means W/A.
+W is total weight of aircraft. A is total disk area</p>
+<p><code class="docutils literal notranslate"><span class="pre">maximum_takeoff_mass</span></code> is the maximum takeoff mass of the design aircraft.</p>
+<p>Above paraemter can be selected depending on the reference aircraft or design aircraft.</p>
+</section>
+<section id="design-variables-mandatory">
+<h2>DESIGN VARIABLES (mandatory)<a class="headerlink" href="#design-variables-mandatory" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">DESIGN</span> <span class="pre">VARIABLES</span></code> keyword need to defined whether, the user want to optimize or not. That’s is a mandatory keyword
+for reading the files. In this keyword, the first row includes, parameters, <code class="docutils literal notranslate"><span class="pre">DEISGN</span> <span class="pre">VARIABLES</span></code>, intial design point, <code class="docutils literal notranslate"><span class="pre">x0</span></code>,
+lowe bound <code class="docutils literal notranslate"><span class="pre">lb</span></code>, upper bound <code class="docutils literal notranslate"><span class="pre">ub</span></code> need to define for optimizing the sizing program.</p>
+<p>User can add any design variables from the input parameters of above keywords list to minimize or maximize the
+the objective function. The unit of the design variable need to match with the input parameters unit.</p>
+<p>A sample of design variables making is shown in below.</p>
+<p>Design variables for Lift_cruise type UAM,</p>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">Example of design varaibles section</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>DESIGN VARIABLE</p></td>
+<td><p>x0</p></td>
+<td><p>lb</p></td>
+<td><p>ub</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading</p></td>
+<td><p>35</p></td>
+<td><p>10</p></td>
+<td><p>50</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing_loading</p></td>
+<td><p>720</p></td>
+<td><p>500</p></td>
+<td><p>1500</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>disk_loading</p></td>
+<td><p>1000</p></td>
+<td><p>150</p></td>
+<td><p>2000</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_loading_vtol</p></td>
+<td><p>40</p></td>
+<td><p>10</p></td>
+<td><p>60</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Design variables for tilting type UAM,</p>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-text">Example of design varaibles section</span><a class="headerlink" href="#id7" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>DESIGN VARIABLE</p></td>
+<td><p>x0</p></td>
+<td><p>lb</p></td>
+<td><p>ub</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading</p></td>
+<td><p>35</p></td>
+<td><p>10</p></td>
+<td><p>50</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing_loading</p></td>
+<td><p>720</p></td>
+<td><p>500</p></td>
+<td><p>1500</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>disk_loading</p></td>
+<td><p>1000</p></td>
+<td><p>150</p></td>
+<td><p>2000</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Design variables for partial tilting type UAM,</p>
+<table class="docutils align-default" id="id8">
+<caption><span class="caption-text">Example of design varaibles section</span><a class="headerlink" href="#id8" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>DESIGN VARIABLE</p></td>
+<td><p>x0</p></td>
+<td><p>lb</p></td>
+<td><p>ub</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing_loading</p></td>
+<td><p>800</p></td>
+<td><p>500</p></td>
+<td><p>1500</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>disk_loading</p></td>
+<td><p>700</p></td>
+<td><p>400</p></td>
+<td><p>1500</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading_vtol_tilt</p></td>
+<td><p>45</p></td>
+<td><p>10</p></td>
+<td><p>50</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="objective-mandatory">
+<h2>OBJECTIVE (mandatory)<a class="headerlink" href="#objective-mandatory" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">OBJECTIVE</span></code> keyword is also mandatory for reading the input file, wherether, the user want to optimize or not.
+Objective section include parameters and target method.</p>
+<p><code class="docutils literal notranslate"><span class="pre">min</span></code> for the minimization of objective function.</p>
+<p><code class="docutils literal notranslate"><span class="pre">max</span></code> for maximization of objective function.</p>
+<p>A sample of design objective are shown in below.</p>
+<table class="docutils align-default" id="id9">
+<caption><span class="caption-text">Example of objective section</span><a class="headerlink" href="#id9" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>OBJECTIVE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>maximum_takeoff_mass</p></td>
+<td><p>min</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>OBJECTIVE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>cost_dev_total</p></td>
+<td><p>min</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>OBJECTIVE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_batt_max</p></td>
+<td><p>max</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The objective parameter can be selected for any output parameters list in the directory <code class="docutils literal notranslate"><span class="pre">data\combus\uam-parameters.csv</span></code>,
+<code class="docutils literal notranslate"><span class="pre">data\combus\uam-tilt-parameters.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">data\combus\uam-partial-tilt-parameters.csv</span></code>.</p>
+</section>
+<section id="constraint-mandatory">
+<h2>CONSTRAINT (mandatory)<a class="headerlink" href="#constraint-mandatory" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">CONSTRAINT</span></code> keyword is also mandatory for reading the input file, the constraint parameters are also used to plot
+the sizing matrix of the deisgn mass and cost for the visualization of the constraints.
+The constraint section must be defined in the order of</p>
+<p>constraint parameters, leq or geq, constraint parameters req and value of the required parameter.</p>
+<p><code class="docutils literal notranslate"><span class="pre">leq</span></code> is used for less than or equal sign for constraint.</p>
+<p><code class="docutils literal notranslate"><span class="pre">geq</span></code> is used for greather than or equal sign for constraint.</p>
+<p>List of design requirements are also specifiy also in here. User defined required constraint can also be added.</p>
+<p>A sample of constraint section.</p>
+<table class="docutils align-default" id="id10">
+<caption><span class="caption-text">Example of constraint section</span><a class="headerlink" href="#id10" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>speed_stall</p></td>
+<td><p>leq</p></td>
+<td><p>speed_stall_req</p></td>
+<td><p>33.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_stall</p></td>
+<td><p>0</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>speed_cruise_max</p></td>
+<td><p>geq</p></td>
+<td><p>speed_cruise_req</p></td>
+<td><p>67</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_cruise</p></td>
+<td><p>1219.2</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>rate_of_climb_best</p></td>
+<td><p>geq</p></td>
+<td><p>rate_of_climb_req</p></td>
+<td><p>2.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_climb_best</p></td>
+<td><p>1219.2</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>rate_of_climb_best_OEI</p></td>
+<td><p>geq</p></td>
+<td><p>rate_of_climb_OEI_req</p></td>
+<td><p>2.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_climb_best_OEI</p></td>
+<td><p>1219.2</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>service_ceiling</p></td>
+<td><p>geq</p></td>
+<td><p>service_ceiling_req</p></td>
+<td><p>7620</p></td>
+<td><p>m</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>vertical_rate_of_climb_max</p></td>
+<td><p>geq</p></td>
+<td><p>vertical_rate_of_climb_req</p></td>
+<td><p>2.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_climb_vertical_best</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_loading_hover</p></td>
+<td><p>leq</p></td>
+<td><p>power_loading_hover_req</p></td>
+<td><p>power_loading</p></td>
+<td><p>W/N</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_hover</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading_hover_OEI</p></td>
+<td><p>leq</p></td>
+<td><p>power_loading_hover_OEI_req</p></td>
+<td><p>power_loading</p></td>
+<td><p>W/N</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_hover_OEI</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>vertical_rate_of_climb_max_OEI</p></td>
+<td><p>geq</p></td>
+<td><p>vertical_rate_of_climb_OEI_req</p></td>
+<td><p>2.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_climb_vertical_best_OEI</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>disk_loading</p></td>
+<td><p>geq</p></td>
+<td><p>disk_loading_span_limit_req</p></td>
+<td><p>disk_loading_span_limit</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>vertical_service_ceiling</p></td>
+<td><p>geq</p></td>
+<td><p>vertical_service_ceiling_req</p></td>
+<td><p>2895</p></td>
+<td><p>m</p></td>
+<td><p>X-57</p></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading_hover_control_margin</p></td>
+<td><p>leq</p></td>
+<td><p>power_loading_control_margin_req</p></td>
+<td><p>power_loading</p></td>
+<td><p>W/N</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_hover</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The constraint parameters can be selected for any output parameters list in the directory <code class="docutils literal notranslate"><span class="pre">data\combus\uam-parameters.csv</span></code>,
+<code class="docutils literal notranslate"><span class="pre">data\combus\uam-tilt-parameters.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">data\combus\uam-partial-tilt-parameters.csv</span></code>.</p>
+<p>If there no tradeoff want to perform, the user can be stop by adding
+<code class="docutils literal notranslate"><span class="pre">END</span></code> keyword at the end of the input file.</p>
+</section>
+<section id="one-dimension-tradeoff-optional">
+<h2>ONE-DIMENSION-TRADEOFF (optional)<a class="headerlink" href="#one-dimension-tradeoff-optional" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ONE-DIMENSION-TRADEOFF</span></code> keyword is optional for tradeoff study depending on the user selected varaibles and output parameters.
+To use this keyword, input parameters, start value, end value and number of sample need to proved for the tradeoff.</p>
+<p>The tradeoff input and output parameters can be selected paraemters list in the directory <code class="docutils literal notranslate"><span class="pre">data\combus\uam-parameters.csv</span></code>,
+<code class="docutils literal notranslate"><span class="pre">data\combus\uam-tilt-parameters.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">data\combus\uam-partial-tilt-parameters.csv</span></code>.</p>
+<p>A sample of one dimensional tradeoff section.</p>
+<table class="docutils align-default" id="id11">
+<caption><span class="caption-text">Example of one dimensional tradeoff section</span><a class="headerlink" href="#id11" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>ONE-DIMENSION-TRADEOFF</p></td>
+<td><p>parameter</p></td>
+<td><p>Start</p></td>
+<td><p>End</p></td>
+<td><p>Num</p></td>
+</tr>
+<tr class="row-even"><td><p>Input</p></td>
+<td><p>tank_GI</p></td>
+<td><p>0.1</p></td>
+<td><p>0.8</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>output</p></td>
+<td><p>tank_mass</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ONE-DIMENSION-TRADEOFF</p></td>
+<td><p>parameter</p></td>
+<td><p>Start</p></td>
+<td><p>End</p></td>
+<td><p>Num</p></td>
+</tr>
+<tr class="row-odd"><td><p>Input</p></td>
+<td><p>power_density_fuel_cell</p></td>
+<td><p>1000</p></td>
+<td><p>2000</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>output</p></td>
+<td><p>maximum_takeoff_mass</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>ONE-DIMENSION-TRADEOFF</p></td>
+<td><p>parameter</p></td>
+<td><p>Start</p></td>
+<td><p>End</p></td>
+<td><p>Num</p></td>
+</tr>
+<tr class="row-even"><td><p>Input</p></td>
+<td><p>spec_energy_batt_wh_per_kg</p></td>
+<td><p>300</p></td>
+<td><p>800</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>output</p></td>
+<td><p>mass_battery</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="two-dimension-tradeoff-optional">
+<h2>TWO-DIMENSION-TRADEOFF (optional)<a class="headerlink" href="#two-dimension-tradeoff-optional" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">TWO-DIMENSION-TRADEOFF</span></code> keyword is optional for tradeoff study depending on the user selected varaibles and output parameters.
+To use this keyword, input parameters, start value, end value and number of sample need to proved for the tradeoff.</p>
+<p>The tradeoff input and output parameters can be selected paraemters list in the directory <code class="docutils literal notranslate"><span class="pre">data\combus\ram-parameters.csv</span></code>.</p>
+<p>A sample of two dimensional tradeoff section.</p>
+<table class="docutils align-default" id="id12">
+<caption><span class="caption-text">Example of two dimensional tradeoff section</span><a class="headerlink" href="#id12" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>TWO-DIMENSION-TRADEOFF</p></td>
+<td><p>Parameters</p></td>
+<td><p>Start</p></td>
+<td><p>End</p></td>
+<td><p>Num</p></td>
+</tr>
+<tr class="row-even"><td><p>Input-1</p></td>
+<td><p>power_density_fuel_cell</p></td>
+<td><p>1000</p></td>
+<td><p>2000</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>input-2</p></td>
+<td><p>spec_energy_batt_wh_per_kg</p></td>
+<td><p>300</p></td>
+<td><p>800</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>output</p></td>
+<td><p>mass_energy_system</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>TWO-DIMENSION-TRADEOFF</p></td>
+<td><p>Parameters</p></td>
+<td><p>Start</p></td>
+<td><p>End</p></td>
+<td><p>Num</p></td>
+</tr>
+<tr class="row-even"><td><p>Input-1</p></td>
+<td><p>tank_GI</p></td>
+<td><p>0.1</p></td>
+<td><p>0.8</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>input-2</p></td>
+<td><p>spec_energy_batt_wh_per_kg</p></td>
+<td><p>300</p></td>
+<td><p>800</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>output</p></td>
+<td><p>mass_tank</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>TWO-DIMENSION-TRADEOFF</p></td>
+<td><p>Parameters</p></td>
+<td><p>Start</p></td>
+<td><p>End</p></td>
+<td><p>Num</p></td>
+</tr>
+<tr class="row-even"><td><p>Input-1</p></td>
+<td><p>num_of_propellers_ctol</p></td>
+<td><p>2</p></td>
+<td><p>6</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>input-2</p></td>
+<td><p>aspect_ratio_wing</p></td>
+<td><p>6</p></td>
+<td><p>12</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>output</p></td>
+<td><p>mass_empty</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>END</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<section id="note1">
+<h3>NOTE1<a class="headerlink" href="#note1" title="Link to this heading"></a></h3>
+<p>For running hybridization optimization, a specific design optimization need to be formulated,
+An Example formulation in this sizing program can be make as below,</p>
+<table class="docutils align-default" id="id13">
+<caption><span class="caption-text">Hybridization optimization formulation</span><a class="headerlink" href="#id13" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>DESIGN VARIABLE</p></td>
+<td><p>x0</p></td>
+<td><p>lb</p></td>
+<td><p>ub</p></td>
+</tr>
+<tr class="row-even"><td><p>Hp_takeoff</p></td>
+<td><p>0.8</p></td>
+<td><p>0.3</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hp_climb</p></td>
+<td><p>0.8</p></td>
+<td><p>0.3</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Hp_cruise</p></td>
+<td><p>0.1</p></td>
+<td><p>0.01</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hp_landing</p></td>
+<td><p>0.1</p></td>
+<td><p>0.01</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>OBJECTIVE</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_maximum_takeoff</p></td>
+<td><p>min</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>C_rate_max</p></td>
+<td><p>leq</p></td>
+<td><p>C_rate_max_req</p></td>
+<td><p>C_rate_max_input</p></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Hp_takeoff</p></td>
+<td><p>geq</p></td>
+<td><p>Hp_takeoff_req</p></td>
+<td><p>Hp_climb</p></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Hp_climb</p></td>
+<td><p>geq</p></td>
+<td><p>Hp_climb_req</p></td>
+<td><p>Hp_cruise</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="note2">
+<h3>NOTE2<a class="headerlink" href="#note2" title="Link to this heading"></a></h3>
+<p>There is some <code class="docutils literal notranslate"><span class="pre">bug</span></code> in the tradeoff.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">ONE-DIMENSION-TRADEOFF</span></code> is specify, then <code class="docutils literal notranslate"><span class="pre">TWO-DIMENSION-TRADEOFF</span></code> cannot be run.
+Consequently, if <code class="docutils literal notranslate"><span class="pre">TWO-DIMENSION-TRADEOFF</span></code> is specify, then <code class="docutils literal notranslate"><span class="pre">ONE-DIMENSION-TRADEOFF</span></code> cannot be run.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

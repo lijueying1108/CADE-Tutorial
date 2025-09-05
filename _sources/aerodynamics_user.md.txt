@@ -1,0 +1,93 @@
+# Aerodynamics, Stability and Control User Manual
+
+To perform aerodynamic and SnC analysis, the analysis method and conditions need to be set through the command line (CMD) used for analysis.
+
+## **Methodology Settings**
+- DISCIPLINE : aerodynamics
+- drag-analysis : friction
+  - Uses the friction program to calculate the parasite drag coefficient
+  - This calculation is performed during VLM analysis
+  - Currently, only the friction method is available
+- airfoil-analysis: xfoil / javafoil
+  - Provides aerodynamic coefficient data of the airfoil, required for wingstrip analysis, lift curve plot analysis, and Viterna analysis
+  - Two methods, XFOIL and JavaFoil, are provided
+  - By default, JavaFoil analysis is used
+- aircraft-analysis: AVL / HETLAS
+  - Used when performing aerodynamic analysis in other modules
+  - Determines which method to use when aerodynamic coefficient data is required in other analyses
+  - By default, AVL analysis is used
+- high-angle-analysis: flatplate / Viterna
+  - Used when performing aerodynamic analysis in high angle of attack or high sideslip angle regions in other modules
+  - Determines which method to use when aerodynamic coefficient data is required in high angle of attack/sideslip regions in other analyses
+  - By default, the flatplate method is used
+- CL_max_calculation: DATCOM
+  - Used when calculating the maximum lift coefficient, stall angle of attack, etc., in other modules.
+  - Determines which method to use for these calculations in other analyses.
+  - Currently, only DATCOM is provided.
+
+## **Analysis Settings**
+
+1. RUN: VLM-trim-analysis
+
+- altitude: Set the altitude for the analysis
+- velocity: Set the velocity for the analysis
+- aileron: Set the aileron deflection angle (optional)
+- loadfactor: Set the load factor (optional, default = 1)
+- cg-location: Set the center of gravity location (optional, default = aft)
+
+2. RUN: VLM-aero-analysis
+   
+- altitude: Set the altitude for the analysis.
+- velocity: Set the velocity for the analysis.
+- aileron/elevator/rudder/ruddervator/elevon: Set the deflection angle (optional)
+- flap: Set the flap deflection angle (optional)
+- loadfactor: Set the load factor (optional, default = 1)
+- cg-location: Set the center of gravity location (optional, default = aft)
+- AOA_first: Set the first angle of attack for the analysis
+- AOA_end: Set the final angle of attack for the analysis
+- AOA_step: Set the angle of attack step (to perform the analysis for a single angle of attack, input the same value for AOA_first and AOA_end, and set AOA_step to 0)
+- AOS_first: Set the first angle of sideslip for the analysis
+- AOS_end: Set the final angle of sideslip for the analysis
+- AOS_step: Set the angle of sideslip step (to perform the analysis for a single angle of sideslip, input the same value for AOS_first and AOS_end, and set AOS_step to 0)
+
+3. RUN: wingstrip-aero-analysis
+   
+- altitude: Set the altitude for the analysis.
+- velocity: Set the velocity for the analysis.
+- aileron/elevator/rudder/ruddervator/elevon: Set the deflection angle (optional)
+- dynamic angular velocity: Set the dynamic angular velocity value (optional, default = 0)
+- AOA_first: Set the first angle of attack for the analysis
+- AOA_end: Set the final angle of attack for the analysis
+- AOA_step: Set the angle of attack step (to perform the analysis for a single angle of attack, input the same value for AOA_first and AOA_end, and set AOA_step to 0)
+- AOS_first: Set the first angle of sideslip for the analysis
+- AOS_end: Set the final angle of sideslip for the analysis
+- AOS_step: Set the angle of sideslip step (to perform the analysis for a single angle of sideslip, input the same value for AOS_first and AOS_end, and set AOS_step to 0)
+
+4. RUN: viterna-analysis
+   
+- altitude: Set the altitude for the analysis.
+- velocity: Set the velocity for the analysis.
+- AOA_first: Set the first angle of attack for the analysis
+- AOA_end: Set the final angle of attack for the analysis
+- AOA_step: Set the angle of attack step (to perform the analysis for a single angle of attack, input the same value for AOA_first and AOA_end, and set AOA_step to 0)
+- AOS_first: Set the first angle of sideslip for the analysis
+- AOS_end: Set the final angle of sideslip for the analysis
+- AOS_step: Set the angle of sideslip step (to perform the analysis for a single angle of sideslip, input the same value for AOS_first and AOS_end, and set AOS_step to 0)
+
+5. RUN: flat-plate-analysis
+
+- altitude: Set the altitude for the analysis.
+- velocity: Set the velocity for the analysis.
+- AOA_first: Set the first angle of attack for the analysis
+- AOA_end: Set the final angle of attack for the analysis
+- AOA_step: Set the angle of attack step (to perform the analysis for a single angle of attack, input the same value for AOA_first and AOA_end, and set AOA_step to 0)
+- AOS_first: Set the first angle of sideslip for the analysis
+- AOS_end: Set the final angle of sideslip for the analysis
+- AOS_step: Set the angle of sideslip step (to perform the analysis for a single angle of sideslip, input the same value for AOS_first and AOS_end, and set AOS_step to 0)
+
+6. RUN: lift-coefficient-graph
+
+- altitude: Set the altitude for the analysis.
+- velocity: Set the velocity for the analysis.
+- loadfactor: Set the load factor (optional, default = 1)
+- cg-location: Set the center of gravity location (optional, default = aft)

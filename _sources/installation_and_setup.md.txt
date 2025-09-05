@@ -1,0 +1,90 @@
+# Installation and Setup
+
+We assume that user's is familiar with running a Python script.
+
+initial release will probably be as zip archive.
+
+All the test analysis cases are stored in *tests* directory. The code 
+below performs analysis using input parameters from 
+*eurostar-input-cmd.csv*. Runcase input file by default is located in 
+*data* directory.
+
+Before running the CADE, make sure the CADE folder is included into 
+pythonpath. This can be made [permanently](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho)
+ or temporarily by adding the following code.
+
+
+```python
+import os
+import sys
+
+analysisPath = os.getcwd()
+
+if not analysisPath in sys.path:
+    sys.path.insert(0, analysisPath)
+
+import cade
+
+```
+
+## Python
+
+install the python
+
+## IDE
+
+Highly recommended using VSCode
+
+### VSCode Setup (for first run)
+
+install VSCode or Spider 
+
+[VSCode download](https://code.visualstudio.com/)
+
+### Environment
+
+setup python environment (Anaconda, or virtual environment)
+
+#### Ananconda Environment
+If you want to make ananconda, please download here
+
+[Anaconda download](https://www.anaconda.com/download)
+
+#### Virtual Environment
+If you  want to make virtual envoronmnet, please follow the instruction here.
+
+[Virtual Environment](https://code.visualstudio.com/docs/python/environments)
+
+
+### Install Required Packages
+
+#### 1. Install Pandoc
+
+Download and install Pandoc for PDF generation:
+
+[Pandoc Installation Guide](https://pandoc.org/installing.html)
+
+> **Note:** Use the `.msi` installer for Windows.
+
+---
+
+#### 2. Install MiKTeX
+
+Download and install MiKTeX:
+
+[MiKTeX Download Page](https://miktex.org/download)
+
+During installation, make sure to:
+
+- Select the option **"Install missing packages on-the-fly"**
+- Choose **Yes** when prompted
+
+---
+
+#### 3. Install Python Dependencies
+
+Use the `requirements.txt` file to install all necessary Python packages:
+
+```bash
+pip install -r requirements.txt
+```

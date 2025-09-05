@@ -1,0 +1,174 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting started &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
+<p>ADSP is written in Python 3. Currently ADSP is working without
+installation. The code is provided as a folder (archive).</p>
+<p>Full installation setup is planned for future versions.</p>
+<section id="directory-structure">
+<h2>Directory structure<a class="headerlink" href="#directory-structure" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">adsp</span>
+<span class="o">|</span>   <span class="o">.</span><span class="n">gitignore</span>
+<span class="o">|</span>   <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">|</span>   <span class="n">README</span><span class="o">.</span><span class="n">md</span>
+<span class="o">+---</span><span class="n">adsp</span>
+<span class="o">|</span>   <span class="o">|</span>   <span class="n">analysis_source_codes</span>
+<span class="o">+---</span><span class="nb">bin</span>
+<span class="o">+---</span><span class="n">data</span>
+<span class="o">|</span>   <span class="o">|</span>   <span class="n">csv</span> <span class="n">databases</span>
+<span class="o">+---</span><span class="n">doc</span>
+<span class="o">|</span>   <span class="o">|</span>   <span class="n">user</span><span class="s1">&#39;s manual</span>
+<span class="o">|</span>   <span class="o">|</span>   <span class="n">theory</span> <span class="n">manual</span>
+<span class="o">+---</span><span class="n">output</span>
+<span class="o">|</span>   <span class="o">|</span>   <span class="n">results</span> <span class="n">of</span> <span class="n">analysis</span>
+<span class="o">+---</span><span class="n">temp</span>
+<span class="o">+---</span><span class="n">tests</span>
+<span class="o">|</span>   <span class="o">|</span>   <span class="n">test</span> <span class="n">runcases</span>
+</pre></div>
+</div>
+<p>The code execution is fully controlled from a single csv (spreadsheet)
+file. <em>data</em> folder contains several examples. Complete structure of
+the <em>Command input file</em> is shown in sections below.</p>
+</section>
+<section id="running-the-code">
+<h2>Running the code<a class="headerlink" href="#running-the-code" title="Link to this heading"></a></h2>
+<p>The easiest way to run the ADSP is shown below</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">run a script</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">adsp</span>
+
+<span class="c1"># read file from data/sample-cmd.csv</span>
+<span class="n">cmd_input</span> <span class="o">=</span> <span class="n">adsp</span><span class="o">.</span><span class="n">ControlInputFile</span><span class="p">(</span><span class="s1">&#39;sample-cmd.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># initialize the analysis</span>
+<span class="n">analysis</span> <span class="o">=</span> <span class="n">adsp</span><span class="o">.</span><span class="n">IntegratedAnalysis</span><span class="p">()</span>
+
+<span class="c1"># set inputs</span>
+<span class="n">analysis</span><span class="o">.</span><span class="n">set_aircraft</span><span class="p">(</span><span class="n">cmd_input</span><span class="o">.</span><span class="n">aircraft</span><span class="p">)</span>
+<span class="n">analysis</span><span class="o">.</span><span class="n">set_methodology</span><span class="p">(</span><span class="n">cmd_input</span><span class="o">.</span><span class="n">methodology</span><span class="p">)</span>
+
+<span class="c1"># run the analysis</span>
+<span class="n">analysis</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cmd_input</span><span class="o">.</span><span class="n">runcases</span><span class="p">)</span>
+
+<span class="c1"># display the results</span>
+<span class="n">analysis</span><span class="o">.</span><span class="n">display_report</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>The code will perform full analysis according to inputs in the
+<em>sample-cmd.csv</em>, display the results and save markdown and pdf
+reports in the <em>output</em> folder</p>
+<p>More test cases are located in <em>tests</em> folder</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

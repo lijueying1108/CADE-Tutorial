@@ -1,0 +1,334 @@
+# Performance Code Manual
+To run the Propulsion, all propulsions components must be initialzed.
+
+## Initialize Parameter
+    This section is the initialization of Component's Performance&Specifications Parameters 
+### System
+    * Number of System 
+### Power Source
+    * Battery Specification Specification & Performance
+
+    * Fuel Cell Specification & Performance
+
+    * Fuel Tank Specification & Performance
+
+### Motor
+    * BLDC Motor Specification & Performance
+
+ ### ESC
+    * ESC Specification & Performance
+
+ ### Propeller
+    * Propeller Specification & Performance
+ ### Fuel Cell
+    * PEMFC Specification & Performance
+
+
+## Create Propeller
+
+    Run propeller analysis based on the Blade Element Momentum Theory (BEMT).
+    Load PropellerAnalysis class for the analysis.
+    Save propeller performance data as a csv file to the dedicated directory.
+    The save file format is as below: example of running this class
+#### Input Parameters
+
+propName : Propeller Name\
+diameter  : Propeller Diameter\
+pitch : Propeller pitch angle\
+nblade : blade number\
+rpm : rpm range\
+
+    propName = ~
+    pitch = ~
+    nblade = ~
+    rpm = ~
+    
+run=CreatePropeller()
+run.create_input(propName,diameter,pitch,nblade)
+run.run_analysis_BEMT(propName, rpm)
+
+
+### create  input
+This function is for when user has no certain propeller geometry file.\
+If user have specific defined propeller geometry file, \
+no need to run this function.\
+
+    Several Assumptions:\
+            airfoil: clark-y\
+            twist angle: APC propeller\
+            thickness ratio: APC propeller
+    
+#### Input Parameters
+propName : str name of the propeller & save file\
+diameter : float propeller diameter (unit: inch)\
+pitch : float propeller geometry pitch. (unit: inch)\
+numBlades : int number of blades (unit: non dim)
+
+    propName : ~
+    diameter : ~
+    pitch : ~
+    numBlades : ~
+
+#### Output Parameters 
+Excel File will be generated (.xlsx)\
+Propeller geometry file for the BEMT input.
+
+### create bemt propeller
+#### Input Parameters
+inputFile : str The propeller geometry file\
+rpmInput : list User desired range of RPM, ex) [1000,9000]\
+
+    inputFile : ~\
+    rpmInput : ~
+#### Output Parameters
+
+        Propeller analysis file
+
+## Propeller
+### read_csv
+Reads in excel propeller database. Two database files are needed: 
+propeller, airfoil.
+        
+#### Input Parameters
+propName : str propeller name\
+dbPath : path path of the propeller database. Default db will be used if not specified.\
+afDbPath : path path of the airfoil database. Default db will be used if not specified.\
+
+        propName : ~
+        dbPath : ~
+        afDbPath : ~
+### create splines
+        Make Propeller geometry based on interpolation
+### analyze geometry
+        Geometry Analyze
+### get solidity ratio
+        Get solidity ratio from created Propeller
+
+### analyze prop bemt
+        Performs propeller analysis by using BEMT. In case of poor convergence 
+        (required J cannot be achieved at given rpm and airspeed) 
+        function returns advance ratio and CP=None, CT=None, effy=None.
+        Method returns thrust, power required, propeller advance ratio *J*, 
+        thrust coefficient *CT*, power coefficient *CP* and efficiency *effy* 
+        at given pitch angle, rpm, velocity and density
+        
+#### Input Parameters
+N : float propeller rotation speed (unit: RPM)
+V : float true airspeed of aircraft (unit: m/s)
+rho : float air density (unit: kg/m^3)
+        
+        N : ~
+        V : ~
+        rho : ~
+
+#### Output Parameters
+J : float advance ratio
+CT : float thrust coefficient
+CP : float power coefficient
+effy : float propeller efficiency
+
+    J : ~
+    CT :~
+    CP : ~
+    effy : ~
+
+### generate approx models
+Approximation Model of Geometry
+
+### analyze prop
+Read specific propeller database file and by interpolation,
+calculate propeller performance.
+This analysis does not use BEMT.
+
+### get init rpm
+initialize RPM
+
+### match rpm reqT
+Run propeller analysis matching with Required Thrust
+#### Input Parameters
+velocity : float input aircraft operating velocity (unit: m/s)
+reqPwer : float input required power (unit: W)
+
+    velocity : ~
+    reqPwer : ~
+            
+#### Output Parameters 
+RPM : float RPM value to satisfy the required power at the velocity
+    RPM : ~
+
+## Motor 
+### calc_reqMotCurrent
+Calculate Motor Current
+#### Input Parameters
+Torque : float Input Motor Torque(Nm)
+
+    Torque : ~ 
+#### Output Parameters 
+Current : float Required Motor Current (A)
+
+    Current : ~
+### calc motRPM
+Calculate Motor RPM
+#### Input Parameters
+Voltage : Motor Voltage(V)
+Current : Motor Current(A)
+
+    Voltage : ~
+    Current : ~
+#### Output Parameters 
+RPM : Motor rotation RPM
+
+    RPM : ~
+
+## ESC
+Derive ESC output voltage and current based on input throttle, battery
+voltage & current.
+
+### get current voltage
+#### Input Parameter
+voltage : float Input battery voltage (unit: V)
+current : float Input motor required current (unit: A)
+throttle : float Input specific throttle value (unit: %/100)
+
+    voltage : ~
+    current : ~
+    throttle : ~
+#### Output Parameter
+voltage_esc : float esc output voltage (unit: V)
+current_esc : float esc output current (unit: A)
+    voltage_esc : ~
+    current_esc : ~
+
+## Battery
+Derive battery output voltage, current and state of charge
+
+### cell analysis
+Define user desired type of battery cell
+such as Li-Po, Hydrogen Fuel cell,...
+    
+#### Input Parameters
+name : str name of the battery cell type
+
+        name : ~  
+#### Output Parameters
+Initial parameter values depending on the battery type
+
+### get batt voltage
+Derive battery output voltage
+two functions
+1) get_voltage_cell1: theoritical
+2) get_voltage_cell2:
+<ref> : A new approach to calculating endurance in electric flight and
+        comparing fuel cells and batteries p.812
+
+#### Input Parameters
+current : float Input battery current (unit: A)
+
+        current : ~
+#### Output Parameters
+voltage_batt : float battery output voltage (unit: V)
+
+        voltage_batt : ~
+### get batt params
+Calculate Battery EMF, Resistance, Cell EMF
+
+### get battV_I_coeff
+Get battery coefficienct from cell analysis
+
+### drain
+    Derive drain of the battery based on the input current and duration
+    
+#### Input Parameters
+current : float Input battery current (unit: A)
+duration : float Input user desired duration time (unit: s)
+
+    current :~
+    duration : ~
+#### Output Parameters
+soc : float State of charge of the battery (unit : %)
+
+    soc : ~
+
+## FuelCell
+    Derive Fuel Cell Voltage, current and Hydrogen Use
+
+### gen OCV
+    Calculate Fuel Cell EMF from thermaldynamics
+#### Input Parameters
+Oper_temp: float Define for calculating EMF as unit fuel cell from chemical theory
+
+    Oper_temp: ~
+#### Output Parameters
+EMF : EMF of unit fuel Cell
+
+    EMF : ~
+### gen volloss
+    
+#### Input Parameters
+current_density : float Define for calculating several kinds of voltage losses(resistance)
+
+    current_density : ~
+#### Output Parameteres
+vol_loss : voltage losses from cell when current flows through cell
+
+    vol_loss : ~
+### pemfc analysis
+#### Input Parameters
+Required Power of Fuel Cell : float Define Fuel Cell Required Power
+Cell Voltage of Fuel Cell : float Define Fuel Cell Voltage
+Hydrognen Mass flow : float Define for calculating hydrogen fuel use
+
+    Required Power of Fuel Cell : ~
+    Cell Voltage of Fuel Cell : ~
+    Hydrognen Mass flow : ~
+#### Output Parameteres
+Hydrognen Mass flow : float Hydrogen Usage
+
+    Hydrognen Mass flow : ~
+
+## System Analysis
+Analyze the user input propulsion set.
+Load each necessary class of each components.
+Input components are battery, ESC, motor, and propeller
+
+### run analysis
+#### Input Parameters
+velocity : float input aircraft operating velocity (unit: m/s)
+throttle : float input aircraft operating throttle (unit: %/100)
+altitude : float input operating altitude for density calculation (unit: m)
+    
+    velocity : ~
+    throttle : ~
+    altitude : ~
+#### Output Parameteres
+Analysis results as defined in PropulsionData class
+   
+### match thrust
+#### Input Parameters
+velocity : float input aircraft operating velocity (unit: m/s)
+reqThrust : float input required thrust (unit: N)
+
+        velocity : ~
+        reqThrust : ~
+#### Output Parameteres
+throttle : float Throttle value to satisfy the required thrust at the velocity
+
+    throttle : ~
+### load wt results
+#### Input Parameters
+name : str input name of Wind Tunnel test result file format: .csv
+
+        name : ~
+        
+#### Output Parameteres
+Arrays of: Propulsion System Parameters
+
+        Arrays of:
+        torque (Nm), thrust (kgf), batt_voltage (V),
+        esc_current (A),rpm (rpm), electrical_powe (W),
+        mechanical_power (W), throttle (%/100)
+
+
+
+### Propulsion Output Example 
+Propulsion output example for above run cases can be found in [here](propulsion_output_example.md).

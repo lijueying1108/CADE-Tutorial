@@ -1,0 +1,18 @@
+# Units and Reference Frames
+
+## Units
+
+By default SI units are used throughout the code unless specified
+separately.
+
+## Reference Frames
+
+- show origin and orientation for all the systems used in the code
+  - configuration
+  - weight and balance
+  - aerodynamics
+  - propulsion
+  - stability and control
+  - performance
+  - mission
+- always name the reference frame in the theory manual

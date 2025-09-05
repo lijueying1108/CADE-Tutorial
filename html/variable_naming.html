@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Variable Names &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Development History" href="development_history.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Variable Names</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-convention">General convention</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prefixes-and-aggregations">Prefixes and aggregations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#units">Units</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#number-of-items">Number of items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#total">Total</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#variable-and-function">Variable and Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-abbreviations">Common abbreviations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Variable Names</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/variable_naming.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="variable-names">
+<h1>Variable Names<a class="headerlink" href="#variable-names" title="Link to this heading"></a></h1>
+<p>All variable names are words <code class="docutils literal notranslate"><span class="pre">separated_with_underscores</span></code>.
+For example <code class="docutils literal notranslate"><span class="pre">motor_power</span></code></p>
+<p>Constants should be in CAPS separated with underscores
+<code class="docutils literal notranslate"><span class="pre">GRAVITY_ACCELERATION</span></code>.</p>
+<section id="general-convention">
+<h2>General convention<a class="headerlink" href="#general-convention" title="Link to this heading"></a></h2>
+<p>The following variable naming convention should be used:</p>
+<ol class="arabic simple">
+<li><p>Parameter name (mass, power, thrust, etc.)</p></li>
+<li><p>Parameter descriptor (motor, propeller, baggage, etc.)</p></li>
+<li><p>Prefix (min, max, avg, total)</p></li>
+<li><p>Unit, if not SI</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mass_propulsion_total</span>
+<span class="n">thrust_total_lbf</span>
+<span class="n">thrust_avg</span>
+</pre></div>
+</div>
+<section id="prefixes-and-aggregations">
+<h3>Prefixes and aggregations<a class="headerlink" href="#prefixes-and-aggregations" title="Link to this heading"></a></h3>
+<p>Use only approved aggregations listed in this document</p>
+<ul class="simple">
+<li><p>maximum <code class="docutils literal notranslate"><span class="pre">max</span></code></p></li>
+<li><p>minimum <code class="docutils literal notranslate"><span class="pre">min</span></code></p></li>
+<li><p>average <code class="docutils literal notranslate"><span class="pre">avg</span></code></p></li>
+<li><p>index <code class="docutils literal notranslate"><span class="pre">idx</span></code></p></li>
+<li><p>input <code class="docutils literal notranslate"><span class="pre">inp</span></code></p></li>
+<li><p>output <code class="docutils literal notranslate"><span class="pre">out</span></code></p></li>
+<li><p>required <code class="docutils literal notranslate"><span class="pre">req</span></code></p></li>
+<li><p>installation <code class="docutils literal notranslate"><span class="pre">install</span></code></p></li>
+<li><p>horizontal stabilizer (tail) <code class="docutils literal notranslate"><span class="pre">hstab</span></code></p></li>
+<li><p>vertical stabilizer <code class="docutils literal notranslate"><span class="pre">vstab</span></code></p></li>
+<li><p>location <code class="docutils literal notranslate"><span class="pre">loc</span></code></p></li>
+<li><p>dynamic <code class="docutils literal notranslate"><span class="pre">dyn</span></code></p></li>
+<li><p>geometrical coordinates</p>
+<ul>
+<li><p>fuselage station <code class="docutils literal notranslate"><span class="pre">FS</span></code></p></li>
+<li><p>water line <code class="docutils literal notranslate"><span class="pre">WL</span></code></p></li>
+<li><p>butt line <code class="docutils literal notranslate"><span class="pre">BL</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>Put the abbreviations at the end of the variable name
+<code class="docutils literal notranslate"><span class="pre">velocity_avg</span></code></p>
+</section>
+<section id="units">
+<h3>Units<a class="headerlink" href="#units" title="Link to this heading"></a></h3>
+<p>By default keep all the units in SI system! If variable is not in SI
+add the unit at the end of the variable name</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">velocity_avg_kts</span></code></p>
+</section>
+<section id="number-of-items">
+<h3>Number of items<a class="headerlink" href="#number-of-items" title="Link to this heading"></a></h3>
+<p>Use words <strong>number of</strong> for total number of items and <strong>index</strong> to
+refer to a specific item. Avoid use of word <strong>total</strong> in this context.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">num_of_motors</span></code> - total number of motors</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">idx_motor</span></code> - specific index of the motor (1st or 5th)</p></li>
+</ul>
+</section>
+<section id="total">
+<h3>Total<a class="headerlink" href="#total" title="Link to this heading"></a></h3>
+<p>Use word <strong>total</strong> for uncountable nouns. Like <code class="docutils literal notranslate"><span class="pre">mass_total</span></code></p>
+</section>
+</section>
+<section id="variable-and-function">
+<h2>Variable and Function<a class="headerlink" href="#variable-and-function" title="Link to this heading"></a></h2>
+<p>Variables are nouns <code class="docutils literal notranslate"><span class="pre">mass,</span> <span class="pre">lift,</span> <span class="pre">aircraft</span></code></p>
+<p>Functions are verbs <code class="docutils literal notranslate"><span class="pre">calculate,</span> <span class="pre">set,</span> <span class="pre">plot,</span> <span class="pre">save</span></code></p>
+</section>
+<section id="common-abbreviations">
+<h2>Common abbreviations<a class="headerlink" href="#common-abbreviations" title="Link to this heading"></a></h2>
+<p>List all the abbreviations used in the code here</p>
+<ul class="simple">
+<li><p>battery <code class="docutils literal notranslate"><span class="pre">batt</span></code></p></li>
+<li><p>system <code class="docutils literal notranslate"><span class="pre">sys</span></code></p></li>
+<li><p>efficiency <code class="docutils literal notranslate"><span class="pre">effy</span></code></p></li>
+<li><p>coefficient <code class="docutils literal notranslate"><span class="pre">coef</span></code></p></li>
+<li><p>distance <code class="docutils literal notranslate"><span class="pre">dist</span></code></p></li>
+<li><p>length <code class="docutils literal notranslate"><span class="pre">len</span></code></p></li>
+<li><p>diameter <code class="docutils literal notranslate"><span class="pre">diam</span></code></p></li>
+<li><p>fuselage <code class="docutils literal notranslate"><span class="pre">fus</span></code></p></li>
+<li><p>fraction <code class="docutils literal notranslate"><span class="pre">frac</span></code></p></li>
+<li><p>structure <code class="docutils literal notranslate"><span class="pre">struct</span></code></p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://builtin.com/data-science/variable-names">ref</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="development_history.html" class="btn btn-neutral float-left" title="Development History" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

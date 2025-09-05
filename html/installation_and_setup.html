@@ -1,0 +1,195 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation and Setup &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation and Setup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/installation_and_setup.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="installation-and-setup">
+<h1>Installation and Setup<a class="headerlink" href="#installation-and-setup" title="Link to this heading"></a></h1>
+<p>We assume that user’s is familiar with running a Python script.</p>
+<p>initial release will probably be as zip archive.</p>
+<p>All the test analysis cases are stored in <em>tests</em> directory. The code
+below performs analysis using input parameters from
+<em>eurostar-input-cmd.csv</em>. Runcase input file by default is located in
+<em>data</em> directory.</p>
+<p>Before running the CADE, make sure the CADE folder is included into
+pythonpath. This can be made <a class="reference external" href="https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho">permanently</a>
+or temporarily by adding the following code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="n">analysisPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">analysisPath</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">analysisPath</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cade</span>
+
+</pre></div>
+</div>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Link to this heading"></a></h2>
+<p>install the python</p>
+</section>
+<section id="ide">
+<h2>IDE<a class="headerlink" href="#ide" title="Link to this heading"></a></h2>
+<p>Highly recommended using VSCode</p>
+<section id="vscode-setup-for-first-run">
+<h3>VSCode Setup (for first run)<a class="headerlink" href="#vscode-setup-for-first-run" title="Link to this heading"></a></h3>
+<p>install VSCode or Spider</p>
+<p><a class="reference external" href="https://code.visualstudio.com/">VSCode download</a></p>
+</section>
+<section id="environment">
+<h3>Environment<a class="headerlink" href="#environment" title="Link to this heading"></a></h3>
+<p>setup python environment (Anaconda, or virtual environment)</p>
+<section id="ananconda-environment">
+<h4>Ananconda Environment<a class="headerlink" href="#ananconda-environment" title="Link to this heading"></a></h4>
+<p>If you want to make ananconda, please download here</p>
+<p><a class="reference external" href="https://www.anaconda.com/download">Anaconda download</a></p>
+</section>
+<section id="virtual-environment">
+<h4>Virtual Environment<a class="headerlink" href="#virtual-environment" title="Link to this heading"></a></h4>
+<p>If you  want to make virtual envoronmnet, please follow the instruction here.</p>
+<p><a class="reference external" href="https://code.visualstudio.com/docs/python/environments">Virtual Environment</a></p>
+</section>
+</section>
+<section id="install-required-packages">
+<h3>Install Required Packages<a class="headerlink" href="#install-required-packages" title="Link to this heading"></a></h3>
+<section id="install-pandoc">
+<h4>1. Install Pandoc<a class="headerlink" href="#install-pandoc" title="Link to this heading"></a></h4>
+<p>Download and install Pandoc for PDF generation:</p>
+<p><a class="reference external" href="https://pandoc.org/installing.html">Pandoc Installation Guide</a></p>
+<blockquote>
+<div><p><strong>Note:</strong> Use the <code class="docutils literal notranslate"><span class="pre">.msi</span></code> installer for Windows.</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="install-miktex">
+<h4>2. Install MiKTeX<a class="headerlink" href="#install-miktex" title="Link to this heading"></a></h4>
+<p>Download and install MiKTeX:</p>
+<p><a class="reference external" href="https://miktex.org/download">MiKTeX Download Page</a></p>
+<p>During installation, make sure to:</p>
+<ul class="simple">
+<li><p>Select the option <strong>“Install missing packages on-the-fly”</strong></p></li>
+<li><p>Choose <strong>Yes</strong> when prompted</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="install-python-dependencies">
+<h4>3. Install Python Dependencies<a class="headerlink" href="#install-python-dependencies" title="Link to this heading"></a></h4>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file to install all necessary Python packages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

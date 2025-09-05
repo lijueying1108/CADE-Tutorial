@@ -1,0 +1,23 @@
+# First Run
+
+This file should contain description of the first run. It should give
+an example of full capability of ADSP.
+
+There are many types of input files in ADSP. Majority of configuration 
+files are in *.csv format and can be edited using notepad, excel or 
+any other spreadsheet editors. At least two files are required to run 
+the code:
+
+## run the test file
+
+the main test file ```integrated_analysis_test.py```
+
+## check the report
+
+## modifying input parameters
+
+in this section show only simple example
+
+- where is the input file(s) for given example
+- guide a user on which parameters to modify
+- run the code again

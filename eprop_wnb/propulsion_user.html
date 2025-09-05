@@ -1,0 +1,639 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Battery &mdash; ADSP 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ADSP
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../vehicles.html">Vehicles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development_history.html">Development History</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation_and_setup.html">Installation and Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first_run.html">First Run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units_and_reference_frames.html">Units and Reference Frames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../program_structure.html">Program structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cmd_input.html">Command input file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config_input.html">Aircraft Configuration Input File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_databases.html">Component Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../available_analysis.html">Available Analysis Runcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_theory.html">Configuration Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../weight_and_balance_theory.html">Weight and Balance Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../propulsion_theory.html">Propulsion Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance_theory.html"><strong>Performance and Mission Analysis Theory Manual</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance_theory.html#performance-analysis-module-flight-segment-analysis-and-point-performance-optimization"><strong>Performance Analysis Module/Flight Segment Analysis and Point Performance Optimization</strong></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ADSP</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Battery</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/eprop_wnb/propulsion_user.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="battery">
+<h1>Battery<a class="headerlink" href="#battery" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>This manual provides detailed instructions for setting up and running a battery model test and analysis. The code integrates battery parameters from a database (DB), processes them using a battery model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.</p>
+<section id="components">
+<h3>Components<a class="headerlink" href="#components" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Database (DB)</strong>: Contains battery parameters.</p></li>
+<li><p><strong>Battery Model</strong>: Selects and analyzes the battery model based on provided parameters.</p></li>
+<li><p><strong>Test Case</strong>: Defines test conditions and input parameters.</p></li>
+<li><p><strong>Data Saved in PCB</strong>: Stores the test results.</p></li>
+</ol>
+</section>
+</section>
+<section id="files-and-scripts">
+<h2>Files and Scripts<a class="headerlink" href="#files-and-scripts" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Battery Parameters CSV File</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;data&gt;battery&gt;test_battery01.csv</span></code></p></li>
+<li><p><strong>Battery Model Script</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;propulsion&gt;energy&gt;battery.py</span></code></p></li>
+<li><p><strong>Test Script</strong>: <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">demo&gt;propulsion&gt;01_test_battery.py</span></code></p></li>
+</ol>
+</section>
+<section id="battery-parameters-csv">
+<h2>Battery Parameters CSV<a class="headerlink" href="#battery-parameters-csv" title="Link to this heading"></a></h2>
+<p>The CSV file contains key parameters for the battery model. Below is an example of the battery parameters used:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>source_type,battery
+type,Li-Po
+current_filtered,2.5
+capacity_nominal,20.0
+voltage_fullcharged,4.3
+voltage_out_nominal,3.61
+voltage_constant,3.2
+capacity_exponential,5.0
+capacity_max,26.136
+energy,96.0
+resistance_internal,0.006
+</pre></div>
+</div>
+<p>Description of Parameters</p>
+<ul class="simple">
+<li><p>type: The type of battery, in this case, Li-Po (Lithium Polymer).</p></li>
+<li><p>current_filtered: The filtered current value, which is 2.5A.</p></li>
+<li><p>capacity_nominal: The nominal capacity of the battery, which is 20.0Ah.</p></li>
+<li><p>voltage_fullcharged: The voltage when the battery is fully charged, which is 4.3V.</p></li>
+<li><p>voltage_out_nominal: The nominal output voltage of the battery, which is 3.61V.</p></li>
+<li><p>voltage_constant: The constant voltage level, which is 3.2V.</p></li>
+<li><p>capacity_exponential: The capacity in the exponential zone, which is 5.0Ah.</p></li>
+<li><p>capacity_max: The maximum capacity of the battery, which is 26.136Ah.</p></li>
+<li><p>energy: The total energy stored in the battery, which is 96.0Wh.</p></li>
+<li><p>resistance_internal: The internal resistance of the battery, which is 0.006 ohms.</p></li>
+</ul>
+</section>
+<section id="main-battery-model-script-battery-py">
+<h2>Main Battery Model Script (<code class="docutils literal notranslate"><span class="pre">battery.py</span></code>)<a class="headerlink" href="#main-battery-model-script-battery-py" title="Link to this heading"></a></h2>
+<p>The file is located in <code class="docutils literal notranslate"><span class="pre">propulsion-&gt;energy-&gt;battery.py</span></code>. This script contains <code class="docutils literal notranslate"><span class="pre">get_battery</span></code>, <code class="docutils literal notranslate"><span class="pre">Battery</span></code> and <code class="docutils literal notranslate"><span class="pre">BatteryModel</span></code> class. They are responsible for loading battery parameters and performing the model analysis.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_battery</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get_energy_csv_path</span><span class="p">(</span><span class="n">name_battery</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+        <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+        <span class="nb">next</span><span class="p">(</span><span class="n">csv_reader</span><span class="p">)</span>
+        <span class="n">cell_type</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">csv_reader</span><span class="p">)</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">cell_type</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;Li-Po&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">BatteryModel</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">BatteryModel</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">BatteryModel</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Battery</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span> <span class="o">=</span> <span class="n">pcb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_battery</span> <span class="o">=</span> <span class="n">pcb</span><span class="o">.</span><span class="n">data_battery</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name_battery</span> <span class="o">=</span> <span class="n">name_battery</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">paths</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get_energy_csv_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name_battery</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name_battery</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_battery</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_battery</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_battery</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BatteryModel</span><span class="p">(</span><span class="n">Battery</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="test-code">
+<h3>Test Code<a class="headerlink" href="#test-code" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.energy.battery</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_battery</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.print.align</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_aligned_data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">pcb</span> <span class="o">=</span> <span class="n">PCB</span><span class="p">()</span>
+    <span class="n">name_battery</span> <span class="o">=</span> <span class="s2">&quot;test_battery01&quot;</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="mi">300</span>
+    <span class="n">duration_passed</span> <span class="o">=</span> <span class="mi">3600</span>
+
+    <span class="n">battery</span> <span class="o">=</span> <span class="n">get_battery</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">)</span>
+    <span class="n">battery</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+    <span class="n">battery</span><span class="o">.</span><span class="n">run_model</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">duration_passed</span><span class="p">)</span>
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_battery</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="running-the-test">
+<h3>Running the Test<a class="headerlink" href="#running-the-test" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Prepare the CSV File: Ensure test_battery01.csv is in the ADSP&gt;data&gt;battery directory.</p></li>
+<li><p>Update Parameters: Modify battery parameters in the CSV as needed.</p></li>
+<li><p>Execute the Test Script:
+Open a terminal or command prompt.
+Navigate to the directory containing 01_test_battery.py.</p></li>
+</ul>
+<p>Run the script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="mi">01</span><span class="n">_test_battery</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Output
+The results of the battery model analysis are saved in the pcb.data_battery object and printed using print_aligned_data. The output includes detailed information about the battery performance based on the test conditions.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="controller">
+<h1>Controller<a class="headerlink" href="#controller" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>Overview<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>This manual provides detailed instructions for setting up and running a controller model test and analysis. The code integrates controller parameters from a database (DB), processes them using a controller model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.</p>
+<section id="id2">
+<h3>Components<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Database (DB)</strong>: Contains controller parameters.</p></li>
+<li><p><strong>Controller Model</strong>: Selects and analyzes the controller model based on provided parameters.</p></li>
+<li><p><strong>Test Case</strong>: Defines test conditions and input parameters.</p></li>
+<li><p><strong>Data Saved in PCB</strong>: Stores the test results.</p></li>
+</ol>
+</section>
+</section>
+<section id="id3">
+<h2>Files and Scripts<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Controller Parameters CSV File</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;data&gt;controller&gt;KP21INV.csv</span></code></p></li>
+<li><p><strong>Controller Model Script</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;propulsion&gt;electrical&gt;controller.py</span></code></p></li>
+<li><p><strong>Test Script</strong>: <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">demo&gt;propulsion&gt;04_test_controller.py</span></code></p></li>
+</ol>
+</section>
+<section id="controller-parameters-csv-kp21inv-csv">
+<h2>Controller Parameters CSV (<code class="docutils literal notranslate"><span class="pre">KP21INV.csv</span></code>)<a class="headerlink" href="#controller-parameters-csv-kp21inv-csv" title="Link to this heading"></a></h2>
+<p>The CSV file contains key parameters for the controller model. Below is an example of the controller parameters used:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>Controller,KP21INV
+type,unknown
+current_max,2000
+current_cont,400
+voltage_max,1500
+voltage_min,20
+mass,0.35
+length,0.02
+width,0.15
+height,0.63
+shape,rectangular
+resistance,0
+</pre></div>
+</div>
+<section id="description-of-parameters">
+<h3>Description of Parameters<a class="headerlink" href="#description-of-parameters" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>type: The type of controller, in this case, unknown.</p></li>
+<li><p>current_max: The maximum current the controller can handle, which is 2000A.</p></li>
+<li><p>current_cont: The continuous current rating, which is 400A.</p></li>
+<li><p>voltage_max: The maximum voltage rating, which is 1500V.</p></li>
+<li><p>voltage_min: The minimum voltage rating, which is 20V.</p></li>
+<li><p>mass: The mass of the controller, which is 0.35kg.</p></li>
+<li><p>length: The length of the controller, which is 0.02m.</p></li>
+<li><p>width: The width of the controller, which is 0.15m.</p></li>
+<li><p>height: The height of the controller, which is 0.63m.</p></li>
+<li><p>shape: The shape of the controller, which is rectangular.</p></li>
+<li><p>resistance: The internal resistance of the controller, which is 0 ohms.</p></li>
+<li><p>Controller Model Script (controller.py)</p></li>
+<li><p>This script defines the ControllerModel class, which is responsible for loading controller parameters and performing the model analysis.</p></li>
+</ul>
+<div class="highlight-Code notranslate"><div class="highlight"><pre><span></span>Imports```
+python
+Copy code
+from adsp.paths import get_controller_csv_path
+from adsp.utils.csv_reader import csv_reader
+ControllerModel Class
+python
+Copy code
+class ControllerModel:
+    def __init__(self, pcb, name_controller):
+        self.pcb = pcb
+        self.name_controller = name_controller
+
+    def load_data(self):
+        file = paths.db.get_controller_csv_path(self.name_controller)
+        data = csv_reader(file)
+        for parameter, value in data.items():
+            setattr(self.pcb.data_controller, parameter, value)
+
+    def run_model(self, throttle):
+        # Perform analysis here, for example:
+        voltage_out = self.pcb.data_controller.voltage_max * throttle
+        self.pcb.data_controller.voltage_out = voltage_out
+        # Additional analysis and model computation
+</pre></div>
+</div>
+</section>
+<section id="test-script-04-test-controller-py">
+<h3>Test Script (<code class="docutils literal notranslate"><span class="pre">04_test_controller.py</span></code>)<a class="headerlink" href="#test-script-04-test-controller-py" title="Link to this heading"></a></h3>
+<p>This script runs the controller model using predefined test conditions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.electrical.controller</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_controller</span><span class="p">,</span>
+    <span class="n">ControllerModel</span><span class="p">,</span>
+    <span class="n">Controller</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.pcb</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.utils.print_align</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_aligned_data</span>
+
+<span class="n">pcb</span> <span class="o">=</span> <span class="n">PCB</span><span class="p">()</span>
+<span class="n">Main</span> <span class="n">Function</span>
+<span class="n">python</span>
+<span class="n">Copy</span> <span class="n">code</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">name_controller</span> <span class="o">=</span> <span class="s2">&quot;KP21INV&quot;</span>
+    <span class="n">throttle</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+    <span class="n">power_peak</span> <span class="o">=</span> <span class="mi">230000</span>
+    <span class="n">current_peak</span> <span class="o">=</span> <span class="mi">570</span>
+    
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_controller</span><span class="o">.</span><span class="n">power_peak</span> <span class="o">=</span> <span class="n">power_peak</span>
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_controller</span><span class="o">.</span><span class="n">current_peak</span> <span class="o">=</span> <span class="n">current_peak</span>
+    <span class="n">controller</span> <span class="o">=</span> <span class="n">get_controller</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_controller</span><span class="p">)</span>
+    <span class="n">controller</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+    <span class="n">controller</span><span class="o">.</span><span class="n">run_model</span><span class="p">(</span><span class="n">throttle</span><span class="p">)</span>
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_controller</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>Running the Test<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Prepare the CSV File: Ensure KP21INV.csv is in the ADSP&gt;data&gt;controller directory.</p></li>
+<li><p>Update Parameters: Modify controller parameters in the CSV as needed.</p></li>
+<li><p>Execute the Test Script:</p></li>
+<li><p>Open a terminal or command prompt.</p></li>
+<li><p>Navigate to the directory containing 04_test_controller.py.</p></li>
+<li><p>Run the script:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>04_test_controller.py
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="converter">
+<h1>Converter<a class="headerlink" href="#converter" title="Link to this heading"></a></h1>
+<section id="id5">
+<h2>Overview<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>This manual provides detailed instructions for setting up and running a converter model test and analysis. The code integrates converter parameters from a database (DB), processes them using a converter model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.</p>
+</section>
+<section id="id6">
+<h2>Components<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Database (DB)</strong>: Contains converter parameters.</p></li>
+<li><p><strong>Converter Model</strong>: Selects and analyzes the converter model based on provided parameters.</p></li>
+<li><p><strong>Test Case</strong>: Defines test conditions and input parameters.</p></li>
+<li><p><strong>Data Saved in PCB</strong>: Stores the test results.</p></li>
+</ol>
+</section>
+<section id="id7">
+<h2>Files and Scripts<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Converter Parameters CSV File</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;data&gt;converter&gt;converter.csv</span></code></p></li>
+<li><p><strong>Converter Model Script</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;propulsion&gt;electrical&gt;converter.py</span></code></p></li>
+<li><p><strong>Test Script</strong>: <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">demo&gt;propulsion&gt;05_test_converter.py</span></code></p></li>
+</ol>
+<section id="converter-parameters-csv-converter-csv">
+<h3>Converter Parameters CSV (<code class="docutils literal notranslate"><span class="pre">converter.csv</span></code>)<a class="headerlink" href="#converter-parameters-csv-converter-csv" title="Link to this heading"></a></h3>
+<p>The CSV file contains key parameters for the converter model. Below is an example of the converter parameters used:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>Converter,Unknown
+type,unknown
+resistance_mosfet,0.08
+resistance_diode,0.02
+inductance,0.07
+voltage_drop_diode,0.57
+</pre></div>
+</div>
+<section id="id8">
+<h4>Description of Parameters<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>type: The type of converter, in this case, unknown.</p></li>
+<li><p>resistance_mosfet: The resistance of the MOSFET, which is 0.08 ohms.</p></li>
+<li><p>resistance_diode: The resistance of the diode, which is 0.02 ohms.</p></li>
+<li><p>inductance: The inductance value, which is 0.07 H.</p></li>
+<li><p>voltage_drop_diode: The voltage drop across the diode, which is 0.57V.</p></li>
+<li></li>
+</ul>
+</section>
+<section id="converter-model-script-converter-py">
+<h4>Converter Model Script (converter.py)<a class="headerlink" href="#converter-model-script-converter-py" title="Link to this heading"></a></h4>
+<p>This script defines the ConverterModel class, which is responsible for loading converter parameters and performing the model analysis.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ConverterModel</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pcb</span><span class="p">,</span> <span class="n">name_converter</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span> <span class="o">=</span> <span class="n">pcb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name_converter</span> <span class="o">=</span> <span class="n">name_converter</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">paths</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get_converter_csv_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name_converter</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">csv_reader</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="p">):</span>
+        <span class="c1"># Perform analysis here, for example:</span>
+        <span class="n">voltage_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="o">.</span><span class="n">voltage_inp</span> <span class="o">*</span> <span class="n">duty_cycle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="o">.</span><span class="n">voltage_out</span> <span class="o">=</span> <span class="n">voltage_out</span>
+        <span class="c1"># Additional analysis and model computation</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="test-script-05-test-converter-py">
+<h3>Test Script (05_test_converter.py)<a class="headerlink" href="#test-script-05-test-converter-py" title="Link to this heading"></a></h3>
+<p>This script runs the converter model using predefined test conditions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.electrical.converter</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_converter</span><span class="p">,</span>
+    <span class="n">ConverterModel</span><span class="p">,</span>
+    <span class="n">Converter</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.pcb</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.utils.print_align</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_aligned_data</span>
+
+<span class="n">pcb</span> <span class="o">=</span> <span class="n">PCB</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">name_converter</span> <span class="o">=</span> <span class="s2">&quot;converter&quot;</span>
+    <span class="n">duty_cycle</span> <span class="o">=</span> <span class="mf">0.90</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="mi">216</span>
+    <span class="n">voltage</span> <span class="o">=</span> <span class="mi">500</span>
+
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="o">.</span><span class="n">current_out</span> <span class="o">=</span> <span class="n">current</span>
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="o">.</span><span class="n">voltage_out</span> <span class="o">=</span> <span class="n">voltage</span>
+    <span class="n">converter</span> <span class="o">=</span> <span class="n">get_converter</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_converter</span><span class="p">)</span>
+    <span class="n">converter</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+    <span class="n">converter</span><span class="o">.</span><span class="n">run_model</span><span class="p">(</span><span class="n">duty_cycle</span><span class="p">)</span>
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="id9">
+<h4>Running the Test<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<ul>
+<li><p>Prepare the CSV File: Ensure converter.csv is in the ADSP&gt;data&gt;converter directory.</p></li>
+<li><p>Update Parameters: Modify converter parameters in the CSV as needed.</p></li>
+<li><p>Execute the Test Script:</p></li>
+<li><p>Open a terminal or command prompt.</p></li>
+<li><p>Navigate to the directory containing 05_test_converter.py.</p></li>
+<li><p>Run the script:</p></li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>05_test_converter.py
+</pre></div>
+</div>
+</section>
+<section id="output">
+<h4>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h4>
+<p>The results of the converter model analysis are saved in the pcb.data_converter object and printed using print_aligned_data. The output includes detailed information about the converter performance based on the test conditions.</p>
+</section>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="inverter">
+<h1>Inverter<a class="headerlink" href="#inverter" title="Link to this heading"></a></h1>
+<section id="id10">
+<h2>Overview<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<p>This manual provides detailed instructions for setting up and running an inverter model test and analysis. The code integrates inverter parameters from a database (DB), processes them using an inverter model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.</p>
+<section id="id11">
+<h3>Components<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Database (DB)</strong>: Contains inverter parameters.</p></li>
+<li><p><strong>Inverter Model</strong>: Selects and analyzes the inverter model based on provided parameters.</p></li>
+<li><p><strong>Test Case</strong>: Defines test conditions and input parameters.</p></li>
+<li><p><strong>Data Saved in PCB</strong>: Stores the test results.</p></li>
+</ol>
+</section>
+</section>
+<section id="id12">
+<h2>Files and Scripts<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Inverter Parameters CSV File</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;data&gt;inverter&gt;GaN-NTP8G206N.csv</span></code></p></li>
+<li><p><strong>Inverter Model Script</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;propulsion&gt;electrical&gt;inverter.py</span></code></p></li>
+<li><p><strong>Test Script</strong>: <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">demo&gt;propulsion&gt;06_test_inverter.py</span></code></p></li>
+</ol>
+</section>
+<section id="inverter-parameters-csv-gan-ntp8g206n-csv">
+<h2>Inverter Parameters CSV (<code class="docutils literal notranslate"><span class="pre">GaN-NTP8G206N.csv</span></code>)<a class="headerlink" href="#inverter-parameters-csv-gan-ntp8g206n-csv" title="Link to this heading"></a></h2>
+<p>The CSV file contains key parameters for the inverter model. Below is an example of the inverter parameters used:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>Inverter,GaN-NTP8G206N
+type,unknown
+resistance_mosfet,0.29
+resistance_diode,0.14
+inductance,0.07
+power_factor,0.97
+voltage_drop_diode,2.2
+</pre></div>
+</div>
+<section id="id13">
+<h3>Description of Parameters<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>type: The type of inverter, in this case, unknown.</p></li>
+<li><p>resistance_mosfet: The resistance of the MOSFET, which is 0.29 ohms.</p></li>
+<li><p>resistance_diode: The resistance of the diode, which is 0.14 ohms.</p></li>
+<li><p>inductance: The inductance value, which is 0.07 H.</p></li>
+<li><p>power_factor: The power factor, which is 0.97.</p></li>
+<li><p>voltage_drop_diode: The voltage drop across the diode, which is 2.2V.</p></li>
+</ul>
+</section>
+<section id="inverter-model-script-inverter-py">
+<h3>Inverter Model Script (inverter.py)<a class="headerlink" href="#inverter-model-script-inverter-py" title="Link to this heading"></a></h3>
+<p>This script defines the InverterModel class, which is responsible for loading inverter parameters and performing the model analysis.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">InverterModel</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pcb</span><span class="p">,</span> <span class="n">name_inverter</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span> <span class="o">=</span> <span class="n">pcb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name_inverter</span> <span class="o">=</span> <span class="n">name_inverter</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">paths</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get_inverter_csv_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name_inverter</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">csv_reader</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_inverter</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modulation_ratio</span><span class="p">):</span>
+        <span class="c1"># Perform analysis here, for example:</span>
+        <span class="n">voltage_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_inverter</span><span class="o">.</span><span class="n">voltage_inp</span> <span class="o">*</span> <span class="n">modulation_ratio</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_inverter</span><span class="o">.</span><span class="n">voltage_out</span> <span class="o">=</span> <span class="n">voltage_out</span>
+        <span class="c1"># Additional analysis and model computation</span>
+</pre></div>
+</div>
+</section>
+<section id="test-script-06-test-inverter-py">
+<h3>Test Script (<code class="docutils literal notranslate"><span class="pre">06_test_inverter.py</span></code>)<a class="headerlink" href="#test-script-06-test-inverter-py" title="Link to this heading"></a></h3>
+<p>This script runs the inverter model using predefined test conditions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.electrical.inverter</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_inverter</span><span class="p">,</span> <span class="n">InverterModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.pcb</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.utils.print_align</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_aligned_data</span>
+
+<span class="n">pcb</span> <span class="o">=</span> <span class="n">PCB</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">name_inverter</span> <span class="o">=</span> <span class="s2">&quot;GaN-NTP8G206N&quot;</span>
+    <span class="n">modulation_ratio</span> <span class="o">=</span> <span class="mf">0.90</span>
+    <span class="n">current_out</span> <span class="o">=</span> <span class="mi">216</span>
+    <span class="n">voltage_out</span> <span class="o">=</span> <span class="mi">500</span>
+
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_inverter</span><span class="o">.</span><span class="n">current_out</span> <span class="o">=</span> <span class="n">current_out</span>
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_inverter</span><span class="o">.</span><span class="n">voltage_out</span> <span class="o">=</span> <span class="n">voltage_out</span>
+    <span class="n">inverter</span> <span class="o">=</span> <span class="n">get_inverter</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_inverter</span><span class="p">)</span>
+    <span class="n">inverter</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+    <span class="n">inverter</span><span class="o">.</span><span class="n">run_model</span><span class="p">(</span><span class="n">modulation_ratio</span><span class="p">)</span>
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_inverter</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h3>Running the Test<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Prepare the CSV File: Ensure GaN-NTP8G206N.csv is in the ADSP&gt;data&gt;inverter directory.</p></li>
+<li><p>Update Parameters: Modify inverter parameters in the CSV as needed.</p></li>
+<li><p>Execute the Test Script:</p></li>
+<li><p>Open a terminal or command prompt.</p></li>
+<li><p>Navigate to the directory containing 06_test_inverter.py.</p></li>
+</ul>
+</section>
+<section id="run-the-script">
+<h3>Run the script:<a class="headerlink" href="#run-the-script" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>06_test_inverter.py
+</pre></div>
+</div>
+</section>
+<section id="id15">
+<h3>Output<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<p>The results of the inverter model analysis are saved in the pcb.data_inverter object and printed using print_aligned_data. The output includes detailed information about the inverter performance based on the test conditions.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

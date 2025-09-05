@@ -1,0 +1,101 @@
+# Example for Aerodynamics Analysis Output
+
+## Aerodynamic Analysis Data
+
+### Aerodynamic Trim Analysis
+
+|Parameters |Value |Unit |
+|---|---|---|
+Altitude |300.0000 |m |
+Velocity |20.0000 |m/s |
+Alpha |4.3473 |deg |
+Beta |0.0000 |deg |
+elevator |-7.9004 |deg |
+CL |0.8950 |- |
+CD |0.0436 |- |
+Cl |0.0000 |- |
+Cm |0.0000 |- |
+Cn |0.0000 |- |
+Lift |211.9990 |N |
+Drag |10.3376 |N |
+CLmax |1.2835 |- |
+xNP |2.4346 |m |
+
+### Aerodynamic Singlepoint Analysis
+
+|Parameters |Value |Unit |
+|---|---|---|
+Altitude |300.0000 |m |
+Velocity |20.0000 |m/s |
+Alpha |5.0000 |deg |
+Beta |0.0000 |deg |
+CL |1.0968 |- |
+CD |0.0567 |- |
+Cl |0.0000 |- |
+Cm |-0.4303 |- |
+Cn |0.0000 |- |
+Lift |259.8139 |N |
+Drag |13.4408 |N |
+CLmax |1.2839 |- |
+xNP |2.4407 |m |
+
+![CL Curve](fig/CLcurve.png)
+
+## Stability and Control Analysis Data
+
+### SnC Trim Analysis
+
+|Parameters |Value |Unit |
+|---|---|---|
+Altitude |300.0000 |m |
+Velocity |20.0000 |m/s |
+Alpha |4.3473 |deg |
+Beta |0.0000 |deg |
+elevator |-7.9004 |deg |
+xNP |2.4346 |m |
+SM |0.1174 |- |
+Cma |-0.7039 |/rad |
+Clb |-0.0253 |/rad |
+Cnb |0.0429 |/rad |
+
+### SnC Single-point Analysis
+
+|Parameters |Value |Unit |
+|---|---|---|
+Altitude |300.0000 |m |
+Velocity |20.0000 |m/s |
+Alpha |5.0000 |deg |
+Beta |0.0000 |deg |
+elevator |0.0000 |deg |
+aileron |0.0000 |deg |
+rudder |0.0000 |deg |
+xNP |2.4392 |m |
+SM |0.1323 |- |
+Cma |-0.7896 |/rad |
+Clb |-0.0239 |/rad |
+Cnb |0.0418 |/rad |
+
+## SnC - Dynamic stability
+
+|Parameters |Value |Unit |
+|---|---|---|
+ShortDampingRatio |0.5571 |- |
+ShortNaturalFrequency |3.5818 |rad/sec |
+ShortPeriod  |1.7542 |sec |
+ShortTimeToDouble |0.2885 |sec |
+PhugoidDampingRatio |1.0000 |- |
+PhugoidNaturalFrequency |0.0000 |rad/sec |
+PhugoidPeriod |inf |sec |
+PhugoidTimeToDouble |0.9840 |sec |
+SpiralDampingRatio |1.0000 |- |
+SpiralNaturalFrequency |0.0000 |rad/sec |
+SpiralPeriod |inf |sec |
+SpiralTimeToDouble |0.0417 |sec |
+DutchDampingRatio |0.2550 |- |
+DutchNaturalFrequency |2.4765 |rad/sec |
+DutchPeriod |2.5372 |sec |
+DutchTimeToDouble |1.0613 |sec |
+RollDampingRatio |-1.0000 |- |
+RollNaturalFrequency |0.0000 |rad/sec |
+RollPeriod |inf |sec |
+RollTimeToDouble |6.1368 |sec |

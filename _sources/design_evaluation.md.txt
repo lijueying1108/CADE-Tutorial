@@ -1,0 +1,95 @@
+# Design Evaluation
+
+This section explains about aircraft design evaluation module inside CADE platform.
+
+<br>
+
+## What is Design Evaluation
+
+
+
+<br>
+
+## Installation and Setup
+
+- [Installation and Setup](installation_and_setup.md)
+
+
+## Units and Reference Frames
+
+- [Units and Reference Frames Used in CADE](units_and_reference_frames.md)
+
+
+## Available Vehicles
+
+Vehicle types available for CADE Design Evaluation are listed below :
+
+- UAV (Unmanned Aerial Vehicle)
+    - Fixed Wing UAV
+    - eVTOL UAV
+- AAM (Advanced Air Mobility)
+    - UAM (Urban Air Mobility)
+    - RAM (Regional Air Mobility)
+
+- TBD
+    - Electric Multi-Copter
+
+<br>
+ 
+## Program Structure
+
+You can find program structure at the link below :
+
+- [Program Structure of CADE-MDA](program_structure.md)
+
+<br>
+
+## Input Files
+
+There are two main input files to run CADE Design Evaluation, same as CADE-MDA.
+
+### Command Input
+
+The first one is **'Command Input File'**, which controls the whole analysis :
+
+- Which <span style="color:rgb(24, 80, 145);">'AIRCRAFT'</span> will be analyzed ?
+- Which engineering <span style="color:rgb(24, 80, 145);">'DISCIPLINE'</span> is considered in the multi-disciplinary analysis ?
+- Which type of <span style="color:rgb(24, 80, 145);">'ANALYSIS'</span> is performed within each discipline ?
+- How are the analysis <span style="color:rgb(24, 80, 145);">'CONDITIONS'</span> defined ?
+
+You can find more detailed explanations and examples of the command input file at the link below :
+
+- [Command Input File to Run CADE-MDA](cmd_input.rst)
+
+### Aircraft Input
+
+Another input file required for the analysis is the **'Aircraft Input File'**, which contains detailed information and data about the target aircraft to be analyzed.
+
+This file contains information on the aircraft's <span style="color:rgb(24, 80, 145);">geometry, internal components, and propulsion system.</span>
+
+You can find more detailed explanations and examples of the aircraft input file at the link below :
+
+- [Aircraft Input File to Run CADE-MDA](config_input.rst)
+
+<br>
+
+## Databases
+
+- [Database Stored inside CADE](component_databases.md)
+- [Mission Profile example stepup and file location](mission_profile.rst)
+
+<br>
+
+## Available Evaluation Runcases
+
+- [Available Runcases in CADE-DE](available_analysis.rst)
+
+<br>
+
+## Modules
+
+- [Aircraft Performance Analysis Theory Manual](performance_theory.md)
+
+- [CADE Performance Analysis User Manual](performance_user.md)
+
+- [Output Example of Design Evaluation](performance_output_example.md)

@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Disciplinary Analysis (MDA) &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Design Evaluation" href="design_evaluation.html" />
+    <link rel="prev" title="Sizing" href="sizing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Multi-Disciplinary Analysis (MDA)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-multi-disciplinary-analysis">What is Multi-Disciplinary Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#available-vehicles">Available Vehicles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vehicles">Vehicles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#program-structure">Program Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-files">Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#command-input">&gt; Command Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aircraft-input">&gt; Aircraft Input</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#databases">Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#available-analysis-runcases">Available Analysis Runcases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integrated-analysis-and-disciplinary-modules">Integrated Analysis and Disciplinary Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration"><span style="color:rgb(24, 80, 145);"> Configuration </span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weight-and-balance"><span style="color:rgb(24, 80, 145);"> Weight and Balance </span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aerodynamics-and-snc"><span style="color:rgb(24, 80, 145);"> Aerodynamics and SnC </span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electric-propulsion"><span style="color:rgb(24, 80, 145);"> Electric Propulsion </span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Multi-Disciplinary Analysis (MDA)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/multi_disciplinary_analysis.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="multi-disciplinary-analysis-mda">
+<h1>Multi-Disciplinary Analysis (MDA)<a class="headerlink" href="#multi-disciplinary-analysis-mda" title="Link to this heading"></a></h1>
+<p>This section explains about aircraft multi-disciplinary analysis (CADE-MDA) module inside CADE platform.</p>
+<br>
+<section id="what-is-multi-disciplinary-analysis">
+<h2>What is Multi-Disciplinary Analysis<a class="headerlink" href="#what-is-multi-disciplinary-analysis" title="Link to this heading"></a></h2>
+<p><strong>Multi-Disciplinary Analysis (MDA)</strong> of an aircraft is an engineering approach that integrates various fields-such as aircraft configuration, weight and balance, aerodynamics, stability and control, and propulsion-into unified design framework. By coupling different modules, MDA supports system-level optmization and rapid design iteration in complex aircraft development.</p>
+<br>
+</section>
+<section id="installation-and-setup">
+<h2>Installation and Setup<a class="headerlink" href="#installation-and-setup" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="installation_and_setup.html"><span class="std std-doc">Installation and Setup for CADE-MDA</span></a></p></li>
+</ul>
+<br>
+</section>
+<section id="available-vehicles">
+<h2>Available Vehicles<a class="headerlink" href="#available-vehicles" title="Link to this heading"></a></h2>
+<p>Vehicle types available for CADE Multi-Disciplinary Analysis are listed below :</p>
+<ul class="simple">
+<li><p>UAV (Unmanned Aerial Vehicle)</p>
+<ul>
+<li><p>Fixed Wing UAV</p></li>
+<li><p>eVTOL UAV</p></li>
+</ul>
+</li>
+<li><p>AAM (Advanced Air Mobility)</p>
+<ul>
+<li><p>UAM (Urban Air Mobility)</p></li>
+<li><p>RAM (Regional Air Mobility)</p></li>
+</ul>
+</li>
+</ul>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+</section>
+<section id="vehicles">
+<h2>Vehicles<a class="headerlink" href="#vehicles" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>fixed wing UAV</p></li>
+<li><p>eVTOL UAV</p></li>
+<li><p>eVTOL UAM
+=======</p></li>
+<li><p>TBD</p>
+<ul>
+<li><p>Electric Multi-Copter</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>047-user-manual-upd</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<br>
+</section>
+<section id="program-structure">
+<h2>Program Structure<a class="headerlink" href="#program-structure" title="Link to this heading"></a></h2>
+<p>CADE-MDA is available of both <span style="color:rgb(24, 80, 145);">’Integrated Analysis’</span> and <span style="color:rgb(24, 80, 145);">’Standalone Analysis’ of each discipline.</p>
+<p>You can find program structure at the link below :</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="program_structure.html"><span class="std std-doc">Program Structure of CADE-Sizing</span></a></p></li>
+</ul>
+<br>
+</section>
+<section id="input-files">
+<h2>Input Files<a class="headerlink" href="#input-files" title="Link to this heading"></a></h2>
+<p>There are two main input files to run CADE Multi-Disciplinary Analysis.</p>
+<section id="command-input">
+<h3>&gt; Command Input<a class="headerlink" href="#command-input" title="Link to this heading"></a></h3>
+<p>The first one is <strong>‘Command Input File’</strong>, which controls the whole analysis :</p>
+<ul class="simple">
+<li><p>Which <span style="color:rgb(24, 80, 145);">’AIRCRAFT’</span> will be analyzed ?</p></li>
+<li><p>Which engineering <span style="color:rgb(24, 80, 145);">’DISCIPLINE’</span> is considered in the multi-disciplinary analysis ?</p></li>
+<li><p>Which type of <span style="color:rgb(24, 80, 145);">’ANALYSIS’</span> is performed within each discipline ?</p></li>
+<li><p>How are the analysis <span style="color:rgb(24, 80, 145);">’CONDITIONS’</span> defined ?</p></li>
+</ul>
+<p>You can find more detailed explanations and examples of the command input file at the link below :</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="cmd_input.html"><span class="std std-doc">Command Input File to Run CADE-MDA</span></a></p></li>
+</ul>
+</section>
+<section id="aircraft-input">
+<h3>&gt; Aircraft Input<a class="headerlink" href="#aircraft-input" title="Link to this heading"></a></h3>
+<p>Another input file required for the analysis is the <strong>‘Aircraft Input File’</strong>, which contains detailed information and data about the target aircraft to be analyzed.</p>
+<p>This file contains information on the aircraft’s <span style="color:rgb(24, 80, 145);">geometry, internal components, and propulsion system.</span></p>
+<p>You can find more detailed explanations and examples of the aircraft input file at the link below :</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="config_input.html"><span class="std std-doc">Aircraft Input File to Run CADE-MDA</span></a></p></li>
+</ul>
+<br>
+</section>
+</section>
+<section id="databases">
+<h2>Databases<a class="headerlink" href="#databases" title="Link to this heading"></a></h2>
+<p>You can check more detailed explanations and examples about the databases stored inside CADE at the link below :</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="component_databases.html"><span class="std std-doc">Database Stored inside CADE-MDA</span></a></p></li>
+</ul>
+<br>
+</section>
+<section id="available-analysis-runcases">
+<h2>Available Analysis Runcases<a class="headerlink" href="#available-analysis-runcases" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="available_analysis.html"><span class="std std-doc">Available Runcases in CADE-MDA</span></a></p></li>
+</ul>
+<br>
+</section>
+<section id="integrated-analysis-and-disciplinary-modules">
+<h2>Integrated Analysis and Disciplinary Modules<a class="headerlink" href="#integrated-analysis-and-disciplinary-modules" title="Link to this heading"></a></h2>
+<p>You can check more detailed explanations about the theoretical backgrounds (Theory Manual) and how to run the analysis (User Manual) of CADE integrated analysis and each standalone analyses at the link below :</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="integrated_analysis_user.html"><span class="std std-doc">User Manual for Integrated Analysis</span></a></p></li>
+</ul>
+<section id="configuration">
+<h3><span style="color:rgb(24, 80, 145);"> Configuration </span><a class="headerlink" href="#configuration" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="configuration_theory.html"><span class="std std-doc">Configuration Theory Manual</span></a></p></li>
+<li><p><a class="reference internal" href="configuration_user.html"><span class="std std-doc">Configuration User Manual</span></a></p></li>
+<li><p><a class="reference internal" href="configuration_output_example.html"><span class="std std-doc">Output Example of Configuration Analysis</span></a></p></li>
+</ul>
+</section>
+<section id="weight-and-balance">
+<h3><span style="color:rgb(24, 80, 145);"> Weight and Balance </span><a class="headerlink" href="#weight-and-balance" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="weight_and_balance_theory.html"><span class="std std-doc">Weight and Balance Theory Manual</span></a></p></li>
+<li><p><a class="reference internal" href="weight_and_balance_user.html"><span class="std std-doc">Weight and Balance User Manual</span></a></p></li>
+<li><p><a class="reference internal" href="weight_and_balance_output_example.html"><span class="std std-doc">Output Example of Weight and Balance Analysis</span></a></p></li>
+</ul>
+</section>
+<section id="aerodynamics-and-snc">
+<h3><span style="color:rgb(24, 80, 145);"> Aerodynamics and SnC </span><a class="headerlink" href="#aerodynamics-and-snc" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="aerodynamics_theory.html"><span class="std std-doc">Aerodynamics and SnC Theory Manual</span></a></p></li>
+<li><p><a class="reference internal" href="aerodynamics_user.html"><span class="std std-doc">Aerodynamics and SnC User Manual</span></a></p></li>
+<li><p><a class="reference internal" href="aerodynamics_output_example.html"><span class="std std-doc">Output Example of Aerodynamic and Stability &amp; Control Analysis</span></a></p></li>
+</ul>
+</section>
+<section id="electric-propulsion">
+<h3><span style="color:rgb(24, 80, 145);"> Electric Propulsion </span><a class="headerlink" href="#electric-propulsion" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="electric_propulsion_theory.html"><span class="std std-doc">Propulsion Theory Manual</span></a></p></li>
+<li><p><a class="reference internal" href="propulsion_user.html"><span class="std std-doc">Propulsion User Manual</span></a></p></li>
+<li><p><a class="reference internal" href="propulsion_output_example.html"><span class="std std-doc">Output Example of Electric Propulsion Analysis</span></a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sizing.html" class="btn btn-neutral float-left" title="Sizing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="design_evaluation.html" class="btn btn-neutral float-right" title="Design Evaluation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

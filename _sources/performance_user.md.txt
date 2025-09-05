@@ -1,0 +1,318 @@
+# performance user manual
+
+To run the performance, the disciplines and theirs methods are required to initialized.
+Different run cases input condition needs to be specified.
+
+## aircraft
+
+aircraft: object
+    Type of aircraft for analysis.
+    Aircraft object that contains all the parameters for analyzing other disciplines
+
+    AIRCRAFT : eurostar\RTVT-1300-panel
+
+## Initialization of Methodology
+
+This section is the initialization of performance modules
+
+    METHODOLOGY
+
+### configuration
+
+configuration : object
+    analyze configuration disciplines of input aircraft
+
+    DISCIPLINE : configuration
+
+### weight-and-balance
+
+weight&balance: object
+    analyze weight&balance disciplines of input aircraft
+
+    DISCIPLINE :weight-and-balance
+    analysis method :Gudmundsson
+
+### aerodynamics
+
+aerodynamics : object
+    analyze aerodynamic disciplines based on aircraft input configuration & weight analysis.
+
+    DISCIPLINE : aerodynamics
+    lift-analysis :AVL
+    drag-analysis :friction
+    CL_curve_plot :Raymer
+
+### stability-and-control
+
+stability-and-control : object
+    analyze stability and contorl disciplines based on aircraft input configuration & weight analysis.
+
+    DISCIPLINE :stability-and-control
+    lift-analysis :AVL
+    drag-analysis :friction
+
+#### propulsion
+
+propulsion : object
+    analyze propulsion disciplines based on aircraft input power train system data of input aircraft
+
+    DISCIPLINE :propulsion
+    propeller analysis :BEMT\windTunnel\
+    battery analysis :LUT\windTunnel\
+    hfc EMF : 
+
+### performance
+
+performance : object
+    Analyze for point performance and mission performance for given aircraft input configuration
+
+    DISCIPLINE : performance
+    drag-model : simplify-drag-model\trim-drag-model
+    propulsion-analysis-model: physics-model\surrogate-model
+
+## run cases inputs
+
+This section is related to the run cases which is control by control input files.
+Analysis code can be found in [here](performance_code.rst).
+Details theory are shown in [here](performance_theory.md)
+These run cases can also be found in [here](runcases.md) for integrated analysis and each disciplines analysis.
+
+### point-performance
+
+Runs performance modules and calculate all the point performance paramters.
+
+    RUN : point-performance
+
+#### Input parameters
+
+altitude : altitude for point performance analysis\
+throttle-max : maximum throttle for maximum speed calculation\
+V-lower : velocity lower bound for optimize search region (to remove in next version)\
+V-upper : velocity upper bound for optimize search region (to remove in next version)
+
+    altitude : ~
+    throttle-max : ~
+    V-lower : ~
+    V-upper : ~
+
+#### Output parameters
+
+$V_{max}$ : maximum speed at given altitude and given throttle-max condition\
+$V_{R_{max}}$ : maximum range speed at given altitude\
+$V_{E_{max}}$ : maximum endurance speed at given altitude\
+$V_{stall}$ : stall speed at given altitude\
+$ROC_{max}$ : maximum climb rate at given altitude and throttle-max condition\
+$\theta_{max}$ : maximum climb angle ate given altitude and throttle-max condition\
+$ROD_{min}$ : minimum sink rate at given altitude \
+$\gamma_{min}$ : minimum glide angle at given altitude \
+$h_{service}$ : service ceiling at given throttle-max condition \
+$h_{absolute}$ : absolute ceiling at given throttle-max condition
+
+### mission-analyze
+
+Analyze the aircraft mission of given input mission profile. Calculate mission fuel, mission SOC, mission Energy, mission range, mission time.
+
+    RUN : mission-analyze
+
+#### Input paramters
+
+input-mission: input mission profle of analyze aircraft (simple_mission_eurostar, simple_mission_rtvt, maximum_range_mission, maximum_endurance_mission).
+Mission profile can be set up based on availabe mission segements. 
+Available mission segments and setting up mission prifle is given [here](mission_profile.rst).
+Input mission profile consists of mission flight segemnts and it's flight condition.
+
+    input-mission : simple_mission_eurostar\simple_mission_rtvt
+
+
+#### Output paramters
+
+segments: mission segments name of given mission profile\
+mission-range: total distance of given mission profile\
+mission-endurance: total time of given mission profile\
+mission-SOC : total SOC consumption at diffent mission flight segments\
+mission-energy: total energy consumption at different mission flight segments\
+figure: mission energy plot
+
+### mission-cruise-maximum-range-endurance
+
+Analyze for cruise maximum range and endurance at available SOC amount
+
+    RUN : mission-cruise-maximum-range-endurance
+
+#### Input parameter
+
+altitude : cruise altitude to calculate maximum range and endurance\
+SOC-start : SOC start limit (default SOC = 1)\
+SOC-end : SOC end condition to stop the calculaiton (default SOC = 0.2)\
+nSeg : Discrete segments to calculate the range and endurance between SOC-start and SOC-end
+
+    altitude : ~
+    SOC-start : ~
+    SOC-end : ~
+    nSeg : ~
+
+#### Output parameters
+
+$R_{max}$ : maximum range at given altitude and SOC limit \
+$E_{max}$ : maximum endurance at given altitude and SOC limit
+
+
+### performance-steady-level-velocity-sweep
+
+Analyze for steady level flight for different velocity at given altitude, this function is especially for plotting and checking details results
+
+    RUN : performance-steady-level-velocity-sweep
+
+#### Input parameters
+
+altitude : altitude for analyzing steady level flight condition \
+throttle-max : maximum throttle for calculating maximum power, thrust available \
+velocity-min : minimum velocity limit for analysis\
+velocity-max : maximum velocity limit for analysis\
+velocity-step : step of the velocity from minimum to maximum velocity
+
+    altitude : ~
+    throttle-max : ~
+    velocity-min : ~
+    velocity-max : ~
+    velocity-step : ~
+
+#### Output parameters
+
+$V$ : velocity for each velocity-step
+$T_{req}$ : required thrust for each velocity step\
+$T_{avl}$ : thrust available for each velocity step and throttle-max condition\
+$P_{req}$ : power required for each velocity step\
+$P_{avl}$ : power available for each velocity step and throttle-max condition\
+$\frac{L}{D}$ : lift-to-drag ration for each velocity step \
+$SAR$ : specific air range at each velocity step\
+$SE$ : specific endurance at each velocity step\
+$P_{s}$ : specific excess power at each velocity step\
+figures: plot all of above parameters with velocity limit
+
+
+### performance-climb-descent-rate-velocity-sweep
+
+Analyze for climb and descent for different velocity at given altitude, this function is especially for plotting and checking details results
+
+    RUN : performance-climb-descent-rate-velocity-sweep
+
+#### Input parameters
+
+altitude : altitude for analyzing steady level flight condition \
+throttle-max : maximum throttle for calculating maximum power, thrust available \
+velocity-min : minimum velocity limit for analysis\
+velocity-max : maximum velocity limit for analysis\
+velocity-step : step of the velocity from minimum to maximum velocity
+
+    altitude : ~
+    throttle-max : ~
+    velocity-min : 
+    velocity-max : ~
+    velocity-step : ~
+
+#### Output parameters
+
+$V$ : velocity for each velocity-step\
+$D$ : drag for each velocity step\
+$P_{s}$ : specific excess power at each velocity step\
+$\frac{L}{D}$ : lift-to-drag ration for each velocity step \
+$ROC$ : rate of climb at each velocity step\
+$\theta$ :climb angle at each velocity step\
+$ROD$ : descent rate at each velocity step\
+$\gamma$ : descent angle ate each velociyt step\
+figures: plot all of above parameters with velocity limit
+
+### performance-axial-flight-velocity-sweep
+
+Analyze for axial climb and descent for different velocity at given altitude, this function is especially for plotting and checking detaitls results
+
+    RUN: performance-axial-flight-velocity-sweep
+
+#### Input parameters
+
+altitude : altitude for analyzing axial flight condition \
+throttle-max : maximum throttle for calculaing maximum power, thrust available \ 
+velocity-min : minimum velocity limit for analysis \
+velocity-max : maximum velocity limit for analysis \ 
+velocity-step : step of velocity from minimum to maximum velocity
+
+    altitude : ~
+    throttle-max : ~
+    velocity-min : ~
+    velocity-max : ~
+    velocity-step : ~
+
+#### Output parameters
+
+$V$ : velocity for each velocity-step \
+$D$ : drag for each velocity-step \
+$T_{req}$ : thrust required for each velocity step \
+$T_{avl}$ : thrust available for each velocity step \
+$P_{avl}$ : power available for each velocity step \
+$P_{req}$ : power required for each velocity step \
+$P_{s}$ : specific excess power at each velocity step \
+$\gamma$ : descent angle ate each velociyt step \
+figures: plot all of above parameters with velocity limit
+
+
+### flight-envelope
+
+Runs performance modules and calculate stall speed and maximum speed at different altitude.
+
+    RUN : flight-envelope
+
+#### Input parameter
+
+throttle-max : maximum throttle to calculate maximum speed \
+altitude-max : maximum altitude to search the flight envelope \
+altitude-min : minimum altitude of flight envelope, default is zero \
+altitude-step : step of the altitude from minimum to maximum altitude \
+V-lower : velocity lower bound for optimize search region (to remove in next version)\
+V-upper : velocity upper bound for optimize search region (to remove in next version)
+
+    throttle-max : ~
+    altitude-max : ~
+    altitude-min : ~
+    altitude-step : ~
+    V-lower : ~
+    V-upper : ~
+
+#### Output parameter
+
+$V_{max}$ : maximum speed at different altitude for given altitude-max and altitude-min with the altitude-step\
+$V_{stall}$ : stall speed at different altitude for given altitude-max and altitude-min with altitude-step \
+altitude : altitude for given altitude-max and altitude-min with altitude-step\
+figure : flight envelope plot
+
+
+### Hover ceiling
+
+Ceiling for out of ground effect (OGE) and in ground effect (IGE) can be visuzlized using this function.
+
+    RUN : hover-ceiling
+
+#### Input parameter
+
+altitude-max : maximum altitude to find the ceiling \
+altitude-min : minimum altitude of flight envelope, default is zero \
+altitude-step : step of the altitude from minimum to maximum altitude \
+
+    throttle-max : ~
+    altitude-max : ~
+    altitude-min : ~
+    altitude-step : ~
+
+#### Output parameter
+
+$h_{OGE}$ : Out of ground effect ceiling altitude \
+$h_{IGE}$ : In ground effect ceiling altitude \
+altitude : altitude for given altitude-max and altitude-min with altitude-step \
+$P_{avl}$ : power available for different altitude at axial climb \
+$P_{req}$ : power required for different altitude at axial climb \
+figure : flight envelope plot
+
+
+### Performance Output Example
+
+Performance output example for above run cases can be found in [here](performance_output_example.md)

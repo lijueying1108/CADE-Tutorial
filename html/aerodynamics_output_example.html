@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example for Aerodynamics Analysis Output &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Example for Aerodynamics Analysis Output</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/aerodynamics_output_example.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="example-for-aerodynamics-analysis-output">
+<h1>Example for Aerodynamics Analysis Output<a class="headerlink" href="#example-for-aerodynamics-analysis-output" title="Link to this heading"></a></h1>
+<section id="aerodynamic-analysis-data">
+<h2>Aerodynamic Analysis Data<a class="headerlink" href="#aerodynamic-analysis-data" title="Link to this heading"></a></h2>
+<section id="aerodynamic-trim-analysis">
+<h3>Aerodynamic Trim Analysis<a class="headerlink" href="#aerodynamic-trim-analysis" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameters</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Altitude</p></td>
+<td><p>300.0000</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>Velocity</p></td>
+<td><p>20.0000</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p>Alpha</p></td>
+<td><p>4.3473</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>Beta</p></td>
+<td><p>0.0000</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-even"><td><p>elevator</p></td>
+<td><p>-7.9004</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>CL</p></td>
+<td><p>0.8950</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>CD</p></td>
+<td><p>0.0436</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cl</p></td>
+<td><p>0.0000</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>Cm</p></td>
+<td><p>0.0000</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cn</p></td>
+<td><p>0.0000</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>Lift</p></td>
+<td><p>211.9990</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>Drag</p></td>
+<td><p>10.3376</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-even"><td><p>CLmax</p></td>
+<td><p>1.2835</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>xNP</p></td>
+<td><p>2.4346</p></td>
+<td><p>m</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="aerodynamic-singlepoint-analysis">
+<h3>Aerodynamic Singlepoint Analysis<a class="headerlink" href="#aerodynamic-singlepoint-analysis" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameters</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Altitude</p></td>
+<td><p>300.0000</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>Velocity</p></td>
+<td><p>20.0000</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p>Alpha</p></td>
+<td><p>5.0000</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>Beta</p></td>
+<td><p>0.0000</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-even"><td><p>CL</p></td>
+<td><p>1.0968</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>CD</p></td>
+<td><p>0.0567</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>Cl</p></td>
+<td><p>0.0000</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cm</p></td>
+<td><p>-0.4303</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>Cn</p></td>
+<td><p>0.0000</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lift</p></td>
+<td><p>259.8139</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-even"><td><p>Drag</p></td>
+<td><p>13.4408</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>CLmax</p></td>
+<td><p>1.2839</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>xNP</p></td>
+<td><p>2.4407</p></td>
+<td><p>m</p></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="CL Curve" src="../_images/CLcurve.png" /></p>
+</section>
+</section>
+<section id="stability-and-control-analysis-data">
+<h2>Stability and Control Analysis Data<a class="headerlink" href="#stability-and-control-analysis-data" title="Link to this heading"></a></h2>
+<section id="snc-trim-analysis">
+<h3>SnC Trim Analysis<a class="headerlink" href="#snc-trim-analysis" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameters</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Altitude</p></td>
+<td><p>300.0000</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>Velocity</p></td>
+<td><p>20.0000</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p>Alpha</p></td>
+<td><p>4.3473</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>Beta</p></td>
+<td><p>0.0000</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-even"><td><p>elevator</p></td>
+<td><p>-7.9004</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>xNP</p></td>
+<td><p>2.4346</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>SM</p></td>
+<td><p>0.1174</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cma</p></td>
+<td><p>-0.7039</p></td>
+<td><p>/rad</p></td>
+</tr>
+<tr class="row-even"><td><p>Clb</p></td>
+<td><p>-0.0253</p></td>
+<td><p>/rad</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cnb</p></td>
+<td><p>0.0429</p></td>
+<td><p>/rad</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="snc-single-point-analysis">
+<h3>SnC Single-point Analysis<a class="headerlink" href="#snc-single-point-analysis" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameters</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Altitude</p></td>
+<td><p>300.0000</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>Velocity</p></td>
+<td><p>20.0000</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p>Alpha</p></td>
+<td><p>5.0000</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>Beta</p></td>
+<td><p>0.0000</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-even"><td><p>elevator</p></td>
+<td><p>0.0000</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>aileron</p></td>
+<td><p>0.0000</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-even"><td><p>rudder</p></td>
+<td><p>0.0000</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>xNP</p></td>
+<td><p>2.4392</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>SM</p></td>
+<td><p>0.1323</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cma</p></td>
+<td><p>-0.7896</p></td>
+<td><p>/rad</p></td>
+</tr>
+<tr class="row-even"><td><p>Clb</p></td>
+<td><p>-0.0239</p></td>
+<td><p>/rad</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cnb</p></td>
+<td><p>0.0418</p></td>
+<td><p>/rad</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="snc-dynamic-stability">
+<h2>SnC - Dynamic stability<a class="headerlink" href="#snc-dynamic-stability" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameters</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ShortDampingRatio</p></td>
+<td><p>0.5571</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>ShortNaturalFrequency</p></td>
+<td><p>3.5818</p></td>
+<td><p>rad/sec</p></td>
+</tr>
+<tr class="row-even"><td><p>ShortPeriod</p></td>
+<td><p>1.7542</p></td>
+<td><p>sec</p></td>
+</tr>
+<tr class="row-odd"><td><p>ShortTimeToDouble</p></td>
+<td><p>0.2885</p></td>
+<td><p>sec</p></td>
+</tr>
+<tr class="row-even"><td><p>PhugoidDampingRatio</p></td>
+<td><p>1.0000</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>PhugoidNaturalFrequency</p></td>
+<td><p>0.0000</p></td>
+<td><p>rad/sec</p></td>
+</tr>
+<tr class="row-even"><td><p>PhugoidPeriod</p></td>
+<td><p>inf</p></td>
+<td><p>sec</p></td>
+</tr>
+<tr class="row-odd"><td><p>PhugoidTimeToDouble</p></td>
+<td><p>0.9840</p></td>
+<td><p>sec</p></td>
+</tr>
+<tr class="row-even"><td><p>SpiralDampingRatio</p></td>
+<td><p>1.0000</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>SpiralNaturalFrequency</p></td>
+<td><p>0.0000</p></td>
+<td><p>rad/sec</p></td>
+</tr>
+<tr class="row-even"><td><p>SpiralPeriod</p></td>
+<td><p>inf</p></td>
+<td><p>sec</p></td>
+</tr>
+<tr class="row-odd"><td><p>SpiralTimeToDouble</p></td>
+<td><p>0.0417</p></td>
+<td><p>sec</p></td>
+</tr>
+<tr class="row-even"><td><p>DutchDampingRatio</p></td>
+<td><p>0.2550</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>DutchNaturalFrequency</p></td>
+<td><p>2.4765</p></td>
+<td><p>rad/sec</p></td>
+</tr>
+<tr class="row-even"><td><p>DutchPeriod</p></td>
+<td><p>2.5372</p></td>
+<td><p>sec</p></td>
+</tr>
+<tr class="row-odd"><td><p>DutchTimeToDouble</p></td>
+<td><p>1.0613</p></td>
+<td><p>sec</p></td>
+</tr>
+<tr class="row-even"><td><p>RollDampingRatio</p></td>
+<td><p>-1.0000</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>RollNaturalFrequency</p></td>
+<td><p>0.0000</p></td>
+<td><p>rad/sec</p></td>
+</tr>
+<tr class="row-even"><td><p>RollPeriod</p></td>
+<td><p>inf</p></td>
+<td><p>sec</p></td>
+</tr>
+<tr class="row-odd"><td><p>RollTimeToDouble</p></td>
+<td><p>6.1368</p></td>
+<td><p>sec</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

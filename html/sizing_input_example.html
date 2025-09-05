@@ -1,0 +1,3745 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UAM Command input file &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">UAM Command input file</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sizing_input_example.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="uam-command-input-file">
+<h1>UAM Command input file<a class="headerlink" href="#uam-command-input-file" title="Link to this heading"></a></h1>
+<section id="example-of-ram">
+<h2>Example of RAM<a class="headerlink" href="#example-of-ram" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Example of sizing input file</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>SIZING INPUT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mission_profile</p></td>
+<td><p>master_input_mission</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONFIGURATION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>aircraft_type</p></td>
+<td><p>TANDEM</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>flap_position</p></td>
+<td><p>WING</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>height_to_span_ratio</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>area_ratio_wing</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>aspect_ratio_wing</p></td>
+<td><p>9.7</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>num_of_propellers_ctol</p></td>
+<td><p>6</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>num_of_propeller_blades</p></td>
+<td><p>2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>AERODYNAMICS</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>oswald_effy</p></td>
+<td><p>0.65</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CD_0</p></td>
+<td><p>0.028</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CL_max_clean</p></td>
+<td><p>1.8</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>delta_CD_0_TO</p></td>
+<td><p>0.02</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>delta_CL_Flap_TO_Land</p></td>
+<td><p>0.4</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>ground_friction_coef</p></td>
+<td><p>0.02</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ground_friction_coef_breaking</p></td>
+<td><p>0.4</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>PROPULSION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>motor_sizing_method</p></td>
+<td><p>POWER-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_motor</p></td>
+<td><p>13500</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_motor</p></td>
+<td><p>0.95</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>controller_sizing_method</p></td>
+<td><p>POWER-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_density_controller</p></td>
+<td><p>63000</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_controller</p></td>
+<td><p>0.98</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_propeller_cruise</p></td>
+<td><p>0.8</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_propeller_climb</p></td>
+<td><p>0.8</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_propeller_takeoff</p></td>
+<td><p>0.4</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>coef_propulsion_install</p></td>
+<td><p>1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ENERGY-SYSTEM</p></td>
+<td><p>BATTERY/HYDROGEN-FUEL-CELL/HYBRID</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>energy_source</p></td>
+<td><p>HYBRID</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>BATTERY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>battery_sizing_method</p></td>
+<td><p>MAX-MASS</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_density_batt</p></td>
+<td><p>975</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>coef_batt_usable_energy</p></td>
+<td><p>0.8</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>spec_energy_batt_wh_per_kg</p></td>
+<td><p>650</p></td>
+<td><p>Wh/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>volumetric_energy_density_batt</p></td>
+<td><p>1050</p></td>
+<td><p>Wh/L</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_batt</p></td>
+<td><p>0.9</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>HYDROGEN-FUEL-CELL</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tank_sizing_method</p></td>
+<td><p>GRAVIMETRIC-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>hydrogen_type</p></td>
+<td><p>LIQUID</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_density_fuel_cell</p></td>
+<td><p>1500</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>volumetric_power_density_fuel_cell</p></td>
+<td><p>800</p></td>
+<td><p>W/L</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_fuel_cell</p></td>
+<td><p>0.5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>tank_GI</p></td>
+<td><p>0.4</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>temperature_tank</p></td>
+<td><p>288.15</p></td>
+<td><p>K</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>pressure_tank</p></td>
+<td><p>35000000</p></td>
+<td><p>Pa</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>THERMAL-MANAGEMENT-SYSTEM</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_thermal_management_sys</p></td>
+<td><p>1000</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>MASS</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_frac_subsys</p></td>
+<td><p>0.06</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_frac_avionics</p></td>
+<td><p>0.002</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_frac_struct</p></td>
+<td><p>0.465</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_payload</p></td>
+<td><p>1154</p></td>
+<td><p>kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>INITIAL-DESIGN-POINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing_loading</p></td>
+<td><p>1200</p></td>
+<td><p>N/m^2</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_loading</p></td>
+<td><p>20</p></td>
+<td><p>Watt/N</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_takeoff_maximum</p></td>
+<td><p>7000</p></td>
+<td><p>kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_convergence_method</p></td>
+<td><p>FIXED-POINT-ITERATION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>DESIGN VARIABLE</p></td>
+<td><p>x0</p></td>
+<td><p>lb</p></td>
+<td><p>ub</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing_loading</p></td>
+<td><p>1200</p></td>
+<td><p>800</p></td>
+<td><p>4000</p></td>
+<td><p>N/m^2</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading</p></td>
+<td><p>20</p></td>
+<td><p>8</p></td>
+<td><p>30</p></td>
+<td><p>W/N</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>OBJECTIVE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_takeoff_maximum</p></td>
+<td><p>min</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>speed_stall</p></td>
+<td><p>leq</p></td>
+<td><p>speed_stall_req</p></td>
+<td><p>30.611</p></td>
+<td><p>m/2</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_stall</p></td>
+<td><p>0</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>speed_cruise_max</p></td>
+<td><p>geq</p></td>
+<td><p>speed_cruise_req</p></td>
+<td><p>83</p></td>
+<td><p>m/2</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_cruise</p></td>
+<td><p>3080</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>rate_of_climb_best</p></td>
+<td><p>geq</p></td>
+<td><p>rate_of_climb_req</p></td>
+<td><p>6.27</p></td>
+<td><p>m/2</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_climb_best</p></td>
+<td><p>3080</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>distance_takeoff</p></td>
+<td><p>leq</p></td>
+<td><p>distance_takeoff_req</p></td>
+<td><p>1000</p></td>
+<td><p>m</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>service_ceiling</p></td>
+<td><p>geq</p></td>
+<td><p>service_ceiling_req</p></td>
+<td><p>7620</p></td>
+<td><p>m</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>climb_gradient_second_seg</p></td>
+<td><p>geq</p></td>
+<td><p>climb_gradient_second_seg_req</p></td>
+<td><p>0.05</p></td>
+<td></td>
+<td><p>5%</p></td>
+</tr>
+<tr class="row-even"><td><p>altitude_climb_gradient</p></td>
+<td><p>200</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>rate_of_climb_best_OEI</p></td>
+<td><p>geq</p></td>
+<td><p>rate_of_climb_OEI_req</p></td>
+<td><p>2</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_climb_best_OEI</p></td>
+<td><p>3080</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ONE-DIMENSION-TRADEOFF</p></td>
+<td><p>Parameters</p></td>
+<td><p>Start</p></td>
+<td><p>End</p></td>
+<td><p>Num</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>input-1</p></td>
+<td><p>spec_energy_batt_wh_per_kg</p></td>
+<td><p>500</p></td>
+<td><p>800</p></td>
+<td><p>5</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>output</p></td>
+<td><p>mass_maximum_takeoff</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>END</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-of-lift-cruise">
+<h2>Example of Lift + Cruise<a class="headerlink" href="#example-of-lift-cruise" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Example of sizing input file</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>SIZING INPUT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mission_profile</p></td>
+<td><p>0_validation_yee_paper_mission</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONFIGURATION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>aircraft_type</p></td>
+<td><p>CONVENTIONAL</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>flight_type</p></td>
+<td><p>LIFT+CRUISE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>flap_position</p></td>
+<td><p>NON</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>height_to_span_ratio</p></td>
+<td><p>0.000</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>aspect_ratio_wing</p></td>
+<td><p>11.400</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>num_of_propellers_ctol</p></td>
+<td><p>1.000</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>num_of_propeller_blades</p></td>
+<td><p>3.000</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>num_of_rotor_vtol</p></td>
+<td><p>12.000</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>num_of_rotor_blades</p></td>
+<td><p>2.000</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>solidity_ratio</p></td>
+<td><p>0.200</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>k_p</p></td>
+<td><p>1.752</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>k_fuselage</p></td>
+<td><p>0.130</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>k_clearance</p></td>
+<td><p>1.000</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>k_diameter</p></td>
+<td><p>0.000</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>num_rotor_spanwise</p></td>
+<td><p>6.000</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>AERODYNAMICS</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Cd_blade</p></td>
+<td><p>0.010</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>C_D_p</p></td>
+<td><p>1.45</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>V_tip</p></td>
+<td><p>143.256</p></td>
+<td><p>m/s</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>oswald_effy</p></td>
+<td><p>0.721</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CD_0</p></td>
+<td><p>0.045</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CL_max_clean</p></td>
+<td><p>1.8</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>k_i</p></td>
+<td><p>1.55</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>k_wet</p></td>
+<td><p>0.1</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>PROPULSION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>motor_sizing_method</p></td>
+<td><p>POWER-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_density_motor</p></td>
+<td><p>6,000.000</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_motor_vtol</p></td>
+<td><p>6,000.000</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_motor</p></td>
+<td><p>0.950</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_motor_vtol</p></td>
+<td><p>0.880</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>controller_sizing_method</p></td>
+<td><p>POWER-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_controller</p></td>
+<td><p>12,000.000</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_density_controller_vtol</p></td>
+<td><p>12,000.000</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_controller</p></td>
+<td><p>0.980</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_controller_vtol</p></td>
+<td><p>0.980</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_propeller_cruise</p></td>
+<td><p>0.800</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_propeller_climb</p></td>
+<td><p>0.500</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_rotor_climb_vertical</p></td>
+<td><p>0.800</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_rotor_hover</p></td>
+<td><p>0.900</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>descent_power_setting</p></td>
+<td><p>0.400</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>coef_propulsion_install</p></td>
+<td><p>1.000</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>vtol_motor_control_power_margin</p></td>
+<td><p>1.000</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ENERGY-SYSTEM</p></td>
+<td><p>BATTERY/HYDROGEN-FUEL-CELL/HYBRID</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>energy_source</p></td>
+<td><p>HYBRID</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>BATTERY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>battery_sizing_method</p></td>
+<td><p>ENERGY-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>coef_batt_usable_energy</p></td>
+<td><p>0.800</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>spec_energy_batt_wh_per_kg</p></td>
+<td><p>300.000</p></td>
+<td><p>Wh/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_batt</p></td>
+<td><p>0.930</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_batt</p></td>
+<td><p>1600</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>volumetric_energy_density_batt</p></td>
+<td><p>1</p></td>
+<td><p>Wh/L</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>HYDROGEN-FUEL-CELL</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>hydrogen_type</p></td>
+<td><p>LIQUID</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_fuel_cell</p></td>
+<td><p>1500</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>volumetric_power_density_fuel_cell</p></td>
+<td><p>800</p></td>
+<td><p>W/L</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_fuel_cell</p></td>
+<td><p>0.5</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tank_GI</p></td>
+<td><p>0.4</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>temperature_tank</p></td>
+<td><p>288.15</p></td>
+<td><p>K</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>pressure_tank</p></td>
+<td><p>35000000</p></td>
+<td><p>Pa</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>THERMAL-MANAGEMENT-SYSTEM</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_density_thermal_management_sys</p></td>
+<td><p>680.000</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>MASS</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_frac_subsys</p></td>
+<td><p>0.118</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_frac_avionics</p></td>
+<td><p>0.000</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_frac_struct</p></td>
+<td><p>0.194</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_payload</p></td>
+<td><p>182.000</p></td>
+<td><p>kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>INITIAL-DESIGN-POINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing_loading</p></td>
+<td><p>874.3959437</p></td>
+<td><p>N/m2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading</p></td>
+<td><p>32.1144111</p></td>
+<td><p>W/N</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>disk_loading</p></td>
+<td><p>660.4963737</p></td>
+<td><p>N/m2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading_vtol</p></td>
+<td><p>32.1144111</p></td>
+<td><p>W/N</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_takeoff_maximum</p></td>
+<td><p>950</p></td>
+<td><p>kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_convergence_method</p></td>
+<td><p>FIXED-POINT-ITERATION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>DESIGN VARIABLE</p></td>
+<td><p>x0</p></td>
+<td><p>lb</p></td>
+<td><p>ub</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading</p></td>
+<td><p>35</p></td>
+<td><p>12</p></td>
+<td><p>50</p></td>
+<td><p>W/N</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing_loading</p></td>
+<td><p>950</p></td>
+<td><p>600</p></td>
+<td><p>1,500</p></td>
+<td><p>N/m^2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>disk_loading</p></td>
+<td><p>800</p></td>
+<td><p>150</p></td>
+<td><p>2,000</p></td>
+<td><p>N/m^2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_loading_vtol</p></td>
+<td><p>55</p></td>
+<td><p>10</p></td>
+<td><p>60</p></td>
+<td><p>W/N</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>OBJECTIVE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_takeoff_maximum</p></td>
+<td><p>min</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>speed_stall</p></td>
+<td><p>leq</p></td>
+<td><p>speed_stall_req</p></td>
+<td><p>28.16</p></td>
+<td><p>m/s</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_stall</p></td>
+<td><p>0</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>speed_cruise_max</p></td>
+<td><p>geq</p></td>
+<td><p>speed_cruise_req</p></td>
+<td><p>92.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_cruise</p></td>
+<td><p>0</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>rate_of_climb_best</p></td>
+<td><p>geq</p></td>
+<td><p>rate_of_climb_req</p></td>
+<td><p>13.39</p></td>
+<td><p>m/s</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_climb_best</p></td>
+<td><p>0</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>service_ceiling</p></td>
+<td><p>geq</p></td>
+<td><p>service_ceiling_req</p></td>
+<td><p>7,620.00</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>vertical_rate_of_climb_max</p></td>
+<td><p>geq</p></td>
+<td><p>vertical_rate_of_climb_req</p></td>
+<td><p>2.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_climb_vertical_best</p></td>
+<td><p>90</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>vertical_rate_of_climb_max_OEI</p></td>
+<td><p>geq</p></td>
+<td><p>vertical_rate_of_climb_OEI_req</p></td>
+<td><p>0.10</p></td>
+<td><p>m/s</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_climb_vertical_best_OEI</p></td>
+<td><p>0</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading_vtol</p></td>
+<td><p>geq</p></td>
+<td><p>power_loading_hover_req</p></td>
+<td><p>power_loading_hover</p></td>
+<td><p>W/N</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_hover</p></td>
+<td><p>0</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_loading_vtol</p></td>
+<td><p>geq</p></td>
+<td><p>power_loading_hover_OEI_req</p></td>
+<td><p>power_loading_hover_OEI</p></td>
+<td><p>W/N</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_hover_OEI</p></td>
+<td><p>0</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>disk_loading</p></td>
+<td><p>geq</p></td>
+<td><p>disk_loading_span_limit_req</p></td>
+<td><p>disk_loading_span_limit</p></td>
+<td><p>N/m^2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>ONE-DIMENSION-TRADEOFF</p></td>
+<td><p>Parameters</p></td>
+<td><p>Start</p></td>
+<td><p>End</p></td>
+<td><p>Num</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>input-1</p></td>
+<td><p>FoM</p></td>
+<td><p>0.5</p></td>
+<td><p>0.8000</p></td>
+<td><p>5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>output</p></td>
+<td><p>k_i</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>END</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-of-multicopter">
+<h2>Example of Multicopter<a class="headerlink" href="#example-of-multicopter" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Example of sizing input file</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>SIZING INPUT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mission_profile</p></td>
+<td><p>0_NASA_multicopter_mission</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONFIGURATION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>aircraft_type</p></td>
+<td><p>MULTICOPTER</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>flight_type</p></td>
+<td><p>MULTICOPTER</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>flap_position</p></td>
+<td><p>NONE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>num_of_rotor_multicopter</p></td>
+<td><p>4</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>num_of_rotor_blades</p></td>
+<td><p>3</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>solidity_ratio</p></td>
+<td><p>0.055</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>cruise_alpha</p></td>
+<td><p>-5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>S_fus</p></td>
+<td><p>9,5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>k_p</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>k_fuselage</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>k_clearance</p></td>
+<td><p>1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>k_diameter</p></td>
+<td><p>1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>AERODYNAMICS</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Cd_blade</p></td>
+<td><p>0.01</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>C_D_p</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>V_tip</p></td>
+<td><p>167.64</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CD_0</p></td>
+<td><p>0.0089</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>k_i</p></td>
+<td><p>1.03</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>PROPULSION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>motor_sizing_method</p></td>
+<td><p>REGRESSION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_density_motor_multicopter</p></td>
+<td><p>2782.769497</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_motor_multicopter</p></td>
+<td><p>0.95</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>controller_sizing_method</p></td>
+<td><p>POWER-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_controller_multicopter</p></td>
+<td><p>12000</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_controller_multicopter</p></td>
+<td><p>0.98</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_propeller_cruise</p></td>
+<td><p>0.85</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_propeller_climb</p></td>
+<td><p>0.85</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_rotor_climb_vertical</p></td>
+<td><p>0.85</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_rotor_hover</p></td>
+<td><p>0.85</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>descent_power_setting</p></td>
+<td><p>0.4</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>coef_propulsion_install</p></td>
+<td><p>1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>vtol_motor_control_power_margin</p></td>
+<td><p>1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ENERGY-SYSTEM</p></td>
+<td><p>BATTERY/HYDROGEN-FUEL-CELL/HYBRID</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>energy_source</p></td>
+<td><p>HYBRID</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>BATTERY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>battery_sizing_method</p></td>
+<td><p>ENERGY-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>coef_batt_usable_energy</p></td>
+<td><p>1</p></td>
+<td></td>
+<td><p>already considered in E*</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>spec_energy_batt_wh_per_kg</p></td>
+<td><p>400</p></td>
+<td><p>Wh/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_batt</p></td>
+<td><p>0.93</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_batt</p></td>
+<td><p>2300</p></td>
+<td><p>W/kg</p></td>
+<td><p>C = 1.1,0.8(hover,cruise)</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>volumetric_energy_density_batt</p></td>
+<td><p>1</p></td>
+<td><p>Wh/L</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>HYDROGEN-FUEL-CELL</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tank_sizing_method</p></td>
+<td><p>GRAVIMETRIC-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>hydrogen_type</p></td>
+<td><p>LIQUID</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_density_fuel_cell</p></td>
+<td><p>1500</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>volumetric_power_density_fuel_cell</p></td>
+<td><p>800</p></td>
+<td><p>W/L</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_fuel_cell</p></td>
+<td><p>0.5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>tank_GI</p></td>
+<td><p>0.4</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>temperature_tank</p></td>
+<td><p>288.15</p></td>
+<td><p>K</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>pressure_tank</p></td>
+<td><p>35000000</p></td>
+<td><p>Pa</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>THERMAL-MANAGEMENT-SYSTEM</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_thermal_management_sys</p></td>
+<td><p>1E+17</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>MASS</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_frac_subsys</p></td>
+<td><p>0.082716049</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_frac_avionics</p></td>
+<td><p>0</p></td>
+<td></td>
+<td><p>Systems in ref</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_frac_struct</p></td>
+<td><p>0.253240741</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_payload</p></td>
+<td><p>544.3108</p></td>
+<td><p>kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>INITIAL-DESIGN-POINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading</p></td>
+<td><p>17.37893866</p></td>
+<td><p>W/N</p></td>
+<td></td>
+<td><p>672</p></td>
+<td><p>501110</p></td>
+</tr>
+<tr class="row-odd"><td><p>disk_loading</p></td>
+<td><p>143.4101772</p></td>
+<td><p>N/m^2</p></td>
+<td></td>
+<td><p>143.4101772</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_takeoff_maximum</p></td>
+<td><p>2939.279</p></td>
+<td><p>kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_convergence_method</p></td>
+<td><p>FIXED-POINT-ITERATION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>DESIGN VARIABLE</p></td>
+<td><p>x0</p></td>
+<td><p>lb</p></td>
+<td><p>ub</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_loading</p></td>
+<td><p>17</p></td>
+<td><p>5</p></td>
+<td><p>20</p></td>
+<td><p>W/N</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>OBJECTIVE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_takeoff_maximum</p></td>
+<td><p>min</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>vertical_rate_of_climb_max</p></td>
+<td><p>geq</p></td>
+<td><p>vertical_rate_of_climb_req</p></td>
+<td><p>0.508</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_climb_vertical_best</p></td>
+<td><p>15.24</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading_hover</p></td>
+<td><p>leq</p></td>
+<td><p>power_loading_hover_req</p></td>
+<td><p>power_loading</p></td>
+<td><p>W/N</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_hover</p></td>
+<td><p>15.24</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_loading_hover_control_margin</p></td>
+<td><p>leq</p></td>
+<td><p>power_loading_control_margin_req</p></td>
+<td><p>power_loading</p></td>
+<td><p>m/s</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_hover</p></td>
+<td><p>15.24</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>END</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-of-tilting">
+<h2>Example of Tilting<a class="headerlink" href="#example-of-tilting" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Example of sizing input file</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>SIZING INPUT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mission_profile</p></td>
+<td><p>UAM_sizing_mission_batt</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONFIGURATION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>aircraft_type</p></td>
+<td><p>CONVENTIONAL</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>flight_type</p></td>
+<td><p>TILTING</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>flap_position</p></td>
+<td><p>WING</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>height_to_span_ratio</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>aspect_ratio_wing</p></td>
+<td><p>12.13</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>num_of_rotor_tilt</p></td>
+<td><p>8</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>num_of_rotor_blades</p></td>
+<td><p>4</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>solidity_ratio</p></td>
+<td><p>0.31</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>k_p</p></td>
+<td><p>1.74721</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>k_fuselage</p></td>
+<td><p>0.12</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>k_clearance</p></td>
+<td><p>1.1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>k_diameter</p></td>
+<td><p>1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>num_rotor_spanwise</p></td>
+<td><p>4.000</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>AERODYNAMICS</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Cd_blade</p></td>
+<td><p>0.015</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>C_D_p</p></td>
+<td><p>1.45</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>V_tip</p></td>
+<td><p>198.12</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>oswald_effy</p></td>
+<td><p>0.91735</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CD_0</p></td>
+<td><p>0.02681</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CL_max_clean</p></td>
+<td><p>1.5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>k_i</p></td>
+<td><p>1.08</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>k_wet</p></td>
+<td><p>0.500</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>PROPULSION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>motor_sizing_method</p></td>
+<td><p>POWER-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_density_motor_tilt</p></td>
+<td><p>9280.74245</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_motor_tilt</p></td>
+<td><p>0.950</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>controller_sizing_method</p></td>
+<td><p>POWER-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_controller_tilt</p></td>
+<td><p>12,000.000</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_controller_tilt</p></td>
+<td><p>0.980</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_propeller_cruise</p></td>
+<td><p>0.800</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_propeller_climb</p></td>
+<td><p>0.500</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>effy_rotor_climb_vertical</p></td>
+<td><p>0.800</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_rotor_hover</p></td>
+<td><p>0.900</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>descent_power_setting</p></td>
+<td><p>0.400</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>coef_propulsion_install</p></td>
+<td><p>1.020</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>vtol_motor_control_power_margin</p></td>
+<td><p>1.500</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ENERGY-SYSTEM</p></td>
+<td><p>BATTERY/HYDROGEN-FUEL-CELL/HYBRID</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>energy_source</p></td>
+<td><p>HYBRID</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>BATTERY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>battery_sizing_method</p></td>
+<td><p>ENERGY-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>coef_batt_usable_energy</p></td>
+<td><p>0.8</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>spec_energy_batt_wh_per_kg</p></td>
+<td><p>550</p></td>
+<td><p>Wh/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_batt</p></td>
+<td><p>0.93</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_batt</p></td>
+<td><p>2300</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>volumetric_energy_density_batt</p></td>
+<td><p>1</p></td>
+<td><p>Wh/L</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>HYDROGEN-FUEL-CELL</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tank_sizing_method</p></td>
+<td><p>GRAVIMETRIC-DENSITY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>hydrogen_type</p></td>
+<td><p>LIQUID</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_density_fuel_cell</p></td>
+<td><p>1500</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>volumetric_power_density_fuel_cell</p></td>
+<td><p>800</p></td>
+<td><p>W/L</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>effy_fuel_cell</p></td>
+<td><p>0.5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>tank_GI</p></td>
+<td><p>0.4</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>temperature_tank</p></td>
+<td><p>288.15</p></td>
+<td><p>K</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>pressure_tank</p></td>
+<td><p>35000000</p></td>
+<td><p>Pa</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>THERMAL-MANAGEMENT-SYSTEM</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_density_thermal_management_sys</p></td>
+<td><p>680</p></td>
+<td><p>W/kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>MASS</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_frac_subsys</p></td>
+<td><p>0.047</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_frac_avionics</p></td>
+<td><p>0.019</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_frac_struct</p></td>
+<td><p>0.314</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_payload</p></td>
+<td><p>742.984</p></td>
+<td><p>kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>INITIAL-DESIGN-POINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing_loading</p></td>
+<td><p>700</p></td>
+<td><p>N/m^2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_loading</p></td>
+<td><p>60</p></td>
+<td><p>W/N</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>disk_loading</p></td>
+<td><p>478.802</p></td>
+<td><p>N/m^2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mass_takeoff_maximum</p></td>
+<td><p>4000</p></td>
+<td><p>kg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_convergence_method</p></td>
+<td><p>FIXED-POINT-ITERATION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>DESIGN VARIABLE</p></td>
+<td><p>x0</p></td>
+<td><p>lb</p></td>
+<td><p>ub</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading</p></td>
+<td><p>36</p></td>
+<td><p>30</p></td>
+<td><p>50</p></td>
+<td><p>W/N</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing_loading</p></td>
+<td><p>800</p></td>
+<td><p>500</p></td>
+<td><p>1200</p></td>
+<td><p>N/m^2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>disk_loading</p></td>
+<td><p>500</p></td>
+<td><p>200</p></td>
+<td><p>1200</p></td>
+<td><p>N/m^2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>OBJECTIVE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mass_takeoff_maximum</p></td>
+<td><p>min</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>speed_stall</p></td>
+<td><p>leq</p></td>
+<td><p>speed_stall_req</p></td>
+<td><p>33.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_stall</p></td>
+<td><p>0</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>speed_cruise_max</p></td>
+<td><p>geq</p></td>
+<td><p>speed_cruise_req</p></td>
+<td><p>67</p></td>
+<td><p>m/s</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_cruise</p></td>
+<td><p>1219.2</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>rate_of_climb_best</p></td>
+<td><p>geq</p></td>
+<td><p>rate_of_climb_req</p></td>
+<td><p>2.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_climb_best</p></td>
+<td><p>1219.2</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>service_ceiling</p></td>
+<td><p>geq</p></td>
+<td><p>service_ceiling_req</p></td>
+<td><p>7620</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>vertical_rate_of_climb_max</p></td>
+<td><p>geq</p></td>
+<td><p>vertical_rate_of_climb_req</p></td>
+<td><p>2.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_climb_vertical_best</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>power_loading_hover</p></td>
+<td><p>leq</p></td>
+<td><p>power_loading_hover_req</p></td>
+<td><p>power_loading</p></td>
+<td><p>W/N</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_hover</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_loading_hover_OEI</p></td>
+<td><p>leq</p></td>
+<td><p>power_loading_hover_OEI_req</p></td>
+<td><p>power_loading</p></td>
+<td><p>W/N</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_hover_OEI</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>vertical_rate_of_climb_max_OEI</p></td>
+<td><p>geq</p></td>
+<td><p>vertical_rate_of_climb_OEI_req</p></td>
+<td><p>2.5</p></td>
+<td><p>m/s</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>altitude_climb_vertical_best_OEI</p></td>
+<td><p>1219.2</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>power_loading_hover_control_margin</p></td>
+<td><p>leq</p></td>
+<td><p>power_loading_control_margin_req</p></td>
+<td><p>power_loading</p></td>
+<td><p>m/s</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>altitude_hover</p></td>
+<td><p>15.4</p></td>
+<td><p>m</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CONSTRAINT</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>disk_loading</p></td>
+<td><p>geq</p></td>
+<td><p>disk_loading_span_limit_req</p></td>
+<td><p>disk_loading_span_limit</p></td>
+<td><p>N/m^2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>ONE-DIMENSION-TRADEOFF</p></td>
+<td><p>Parameters</p></td>
+<td><p>Start</p></td>
+<td><p>End</p></td>
+<td><p>Num</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>input-1</p></td>
+<td><p>FoM</p></td>
+<td><p>0.5</p></td>
+<td><p>0.8000</p></td>
+<td><p>5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>output</p></td>
+<td><p>k_i</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>END</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

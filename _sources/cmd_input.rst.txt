@@ -1,0 +1,141 @@
+Command Input File
+==================
+
+This page describes the command input file required to perform the Multi-Disciplinary 
+Analysis (MDA) and Design Evaluation modules inside CADE.
+
+Command input file is a single CSV file that controls the whole analysis. 
+Command input files by default are located in ``cade/input/analysis`` directory.
+
+The file is divided into three main sections and subsections. 
+CADE performs search by the section header, so it is important to write 
+them correctly.
+
+Example of the command input file is shown below:
+
+.. csv-table:: Example of command input file
+   :file: cmd-input-example.csv
+   :widths: 30, 70
+   :header-rows: 0
+
+---------------------
+
+AIRCRAFT
+--------------------
+
+The first line always contains the ``AIRCRAFT`` keyword and the file name 
+of the aircraft to be analyzed.
+
+.. code::
+
+   AIRCRAFT : KP2A-UAM-VP
+
+---------------------
+
+METHODOLOGY
+----------------------
+
+One of the key priorities of CADE is to keep zero control parameters 
+hidden inside the source code. User should be able to control everything 
+without code modification.
+
+CADE uses ``data/defaults.csv`` file to store all the analysis settings. 
+The file contains names of analysis methods, assumptions, and 
+other required parameters. 
+
+``METHODOLOGY`` section of the command input file can overwrite any 
+parameters from the defaults. This section also definds and initializes
+the analysis methodology to be executed.
+
+.. code::
+
+   METHODOLOGY
+
+Below ``METHODOLOGY`` list all the ``DISCIPLINE`` to be analyzed.
+
+DISCIPLINE
+^^^^^^^^
+
+``DISCIPLINE`` section of the command input file defines the analysis
+
+``DISCIPLINE`` keyword is followed by a name of discipline. This section
+setups the analysis methodology of each discipline to be executed. For 
+example ``aerodynamics`` or ``weight-and-balance``. The following 
+lines contain parameter to be overwritten.
+
+.. code::
+
+   DISCIPLINE : configuration
+   DISCIPLINE : weight-and-balance
+   DISCIPLINE : aerodynamics
+   DISCIPLINE : propulsion
+
+Simple low-fidelity analysis is used by default. However if user has 
+a more accurate look-up-table (LUT) data, it can be used instead for 
+selected types of analyses, for example propeller.
+
+* To run the 'Configuration Analysis', the ``DISCIPLINE`` must be set to include the ``configuration``
+
+* To run the 'Weight and Balance Analysis', the ``DISCIPLINE`` must be set to include the ``weight-and-balance``
+
+* To run the 'Aerodynamics and Stability & Control Analysis', the ``DISCIPLINE`` must be set to include the ``aerodynamics``
+
+* To run the 'Electric Propulsion Analysis', the ``DISCIPLINE`` must be set to include the ``propulsion``
+
+You can find more information about the analysis methodology in :doc:`available_analysis``.
+
+---------------------
+
+ANALYSIS
+--------------------
+
+``ANALYSIS`` section of the command input file defines the actual runcases to
+executed.
+
+.. code::
+
+   ANALYSIS
+
+Below ``ANALYSIS`` list all the RUNCASE (``RUN``)to be analyzed.
+
+RUN
+^^^
+
+``RUN`` keyword is followed by a name of runcases of each discipline.
+This section of the input file specifies analysis runcase to be executed and 
+its parameters. Each runcase starts with the ``RUN`` keyword followed 
+by name of a runcase. For example: ``configuration``, ``weight-table``, 
+``performance-service-ceiling``. Complete list of available runcases 
+and parameters is available in :doc:`available_analysis`.
+
+.. code::
+
+   RUN : configuration
+   RUN : weight-table
+   RUN : VLM-trim-analysis
+
+Each runcase is independent and does not use any data from the 
+previously executed case. Results of analysis are saved to the 
+``output`` directory. 
+
+Some runcases does not require additional parameters. For example 
+specifying ``RUN, configuration`` the CADE will perform detailed 
+analysis of configuration and save it to the report.
+
+Other runcases may require many parameters. These parameters are 
+listed between multiple ``RUN`` rows. For example, ``trim`` analysis 
+requires flight speed, altitude, load factor, and location of CG. Below is an example of 
+``VLM-trim-analysis`` runcase.
+
+.. code::
+
+   RUN : VLM-trim-analysis
+   altitude : 600
+   velocity : 66.6
+   (aileron) : 10
+   (loadfactor) : 1.5
+   (cg-location) : aft
+
+* Here, () means optional setting inputs
+
+You can find more information about the analysis runcases in :doc:`available_analysis`.

@@ -1,0 +1,1039 @@
+# Import & Export
+
+## Data Objects Import and Export
+In this program, we import the propulsion system components database in `.csv` format by default. The propulsion system component data is located in the `adsp>data` folder, and each component is defined under the same name as the component within this folder.
+
+## Data Structure
+For analysis, the `propulsion_set` is entered from the cmd file lodated in the `adsp>input` folder. This `propulsion_set` is located in the `adsp>data>propulsion` folder, and it represents the highest scale file used to configrate each component set. All data from `energy_source_set` to `propeller_set` is individually store in the `adsp>data>propulsion` folder, allowing users to easily modify the desired data at any time.
+
+```plaintext
+name_propulsion,    propulsion_set03
+propulsion_type,    test01
+energy_source_set,  energy_set01
+converter_set,  converter_set01
+inverter_set,   inverter_set01
+controller_set, controller_set01
+motor_set,  motor_set01
+propeller_set,  propeller_set03
+```
+
+# Integrated & Individual Analysis
+This program consists of individually configured modules for analyzing each component, allowing users to conduct separate tests or perform an integrated analysis of all modules.
+For individual tests, each component can be manually analyzed in the `adsp>test_demo>propulsion` folder. Integrated analysis can be performed by executing `adsp>test_demo`, and the input for this process can be configured in the `adsp>input` file with appropriate execution commands.
+
+**Constant-Pitch-Mode**
+- Velocity Sweep
+- Throttle Sweep
+
+**Variable-Pitch-Mode**
+- Fix Throttle - Velocity Sweep
+- Fix Velocity - Throttle Sweep
+- Fix Thrust - Velocity Sweep
+- Fix Throttle & RPM - Velocity Sweep
+
+**FORMAT**
+
+```plaintext
+RUN, "Mode_Name"
+System, "CTOL or VTOL"
+[Constraints]
+(Velocity,RPM,Throttle ...)
+[Sweep Steps]
+Altitude
+```
+
+# Energy Source
+
+## Input File
+For the Energy Source, the input file is set as `energy_set0x.csv` located in `adsp>data>propulsion`, and the configuration is as follows:
+
+```plaintext
+source-type | power-source-name | power-source-loc-x | power-source-loc-y | power-source-loc-z | mass | connection-type
+battery         battery01               2.855                   0                   0.39         150         Series
+battery         battery01               1.855                   0                   0.41         150         Series
+```
+
+In source_type, specify the type of energy source to be used (e.g., Battery, Fuel Cell), and in **power_source_name**, enter the name of the source to be analyzed.
+
+### Battery
+
+This manual provides detailed instructions for setting up and running a battery model test and analysis. The code integrates battery parameters from a database (DB), processes them using a battery model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.
+
+#### Components
+
+1. **Database (DB)**: Contains battery parameters.
+2. **Battery Model**: Selects and analyzes the battery model based on provided parameters.
+3. **Test Case**: Defines test conditions and input parameters.
+4. **Data Saved in PCB**: Stores the test results.
+
+#### Files and Scripts
+
+1. **Battery Parameters CSV File**: `ADSP>data>energy>battery01.csv`
+2. **Battery Model Script**: `adsp>adsp>propulsion>energy>battery.py`
+3. **Test Script**: `adsp>test demo>propulsion>01_test_battery.py`
+
+#### Battery Parameters CSV
+
+The CSV file contains key parameters for the battery model. Below is an example of the battery parameters used:
+
+```plaintext
+source_type,battery
+type,Li-Po
+current_filtered,2.5
+capacity_nominal,20.0
+voltage_fullcharged,4.3
+voltage_out_nominal,3.61
+voltage_constant,3.2
+capacity_exponential,5.0
+capacity_max,26.136
+energy,96.0
+resistance_internal,0.006
+```
+
+Description of Parameters
+- type: The type of battery, in this case, Li-Po (Lithium Polymer).
+- current_filtered: The filtered current value, which is 2.5A.
+- capacity_nominal: The nominal capacity of the battery, which is 20.0Ah.
+- voltage_fullcharged: The voltage when the battery is fully charged, which is 4.3V.
+- voltage_out_nominal: The nominal output voltage of the battery, which is 3.61V.
+- voltage_constant: The constant voltage level, which is 3.2V.
+- capacity_exponential: The capacity in the exponential zone, which is 5.0Ah.
+- capacity_max: The maximum capacity of the battery, which is 26.136Ah.
+- energy: The total energy stored in the battery, which is 96.0Wh.
+- resistance_internal: The internal resistance of the battery, which is 0.006 ohms.
+  
+#### Main Battery Model Script (`battery.py`)
+
+The file is located in `propulsion>energy>battery.py`. This script contains `get_battery`, `Battery` and `BatteryModel` class. They are responsible for loading battery parameters and performing the model analysis.
+
+```python
+def get_battery(pcb, name_battery):
+    with open(paths.db.get_energy_csv_path(name_battery), "r") as csv_file:
+        csv_reader = csv.reader(csv_file)
+        next(csv_reader)
+        cell_type = next(csv_reader)
+    type = cell_type[1]
+
+    if type == "Li-Po":
+        return BatteryModel(pcb, name_battery)
+    elif type == "":
+        return BatteryModel(pcb, name_battery)
+    else:
+        return BatteryModel(pcb, name_battery)
+
+
+class Battery:
+    def __init__(self, pcb, name_battery):
+        self.pcb = pcb
+        self.data_battery = pcb.data_battery
+        self.name_battery = name_battery
+
+    def load_data(
+        self,
+    ):
+        file = paths.db.get_energy_csv_path(self.name_battery)
+        data = pd.read_csv(file)
+        self.name_battery = np.array(data)
+        for parameter, value in self.name_battery:
+            try:
+                value = float(value)
+            except ValueError:
+                value = str(value)
+            setattr(self.data_battery, parameter, value)
+            setattr(self, parameter, value)
+
+        return self.data_battery
+
+
+class BatteryModel(Battery):
+    def __init__(self, pcb, name_battery):
+        super().__init__(pcb, name_battery)
+```
+
+#### Test Code
+
+```python
+from adsp.propulsion.energy.battery import get_battery
+from adsp.print.align import print_aligned_data
+
+
+def main() -> None:
+    pcb = PCB()
+    name_battery = "test_battery01"
+    current = 300
+    duration_passed = 3600
+
+    battery = get_battery(pcb, name_battery)
+    battery.load_data()
+    battery.run_model(current, duration_passed)
+    print_aligned_data(pcb.data_battery)
+
+if __name__ == "__main__":
+    main()
+```
+
+#### Running the Test
+
+- Prepare the CSV File: Ensure test_battery01.csv is in the ADSP>data>battery directory.
+- Update Parameters: Modify battery parameters in the CSV as needed.
+- Execute the Test Script:
+Open a terminal or command prompt.
+Navigate to the directory containing 01_test_battery.py.
+
+Run the script:
+
+```bash
+python 01_test_battery.py
+```
+
+Output
+The results of the battery model analysis are saved in the pcb.data_battery object and printed using print_aligned_data. The output includes detailed information about the battery performance based on the test conditions.
+
+# Controller
+
+## Input File 
+
+For the Controller, the input file is set as `controller_set0x.csv` located in `adsp>data>propulsion`, and the configuration is as follows:
+
+```plaintext
+Mode| controller-name| loc-x| loc-y| loc-z| mass
+VTOL    KP21INV	       1.9336 0.525   0.5    5
+VTOL    KP21INV        1.9336 -0.525  0.5    5
+CTOL    KP21INV	       3.0336 0.525   0.5    5
+CTOL    KP21INV	       3.0336 -0.525  0.5    5
+```
+
+### Controller
+
+This manual provides detailed instructions for setting up and running a controller model test and analysis. The code integrates controller parameters from a database (DB), processes them using a controller model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.
+
+#### Components
+
+1. **Database (DB)**: Contains controller parameters.
+2. **Controller Model**: Selects and analyzes the controller model based on provided parameters.
+3. **Test Case**: Defines test conditions and input parameters.
+4. **Data Saved in PCB**: Stores the test results.
+
+#### Files and Scripts
+
+1. **Controller Parameters CSV File**: `adsp>adsp>data>controller>KP21INV.csv`
+2. **Controller Model Script**: `adsp>propulsion>electrical>controller.py`
+3. **Test Script**: `adsp>test demo>propulsion>04_test_controller.py`
+
+#### Controller Parameters CSV (`KP21INV.csv`)
+
+The CSV file contains key parameters for the controller model. Below is an example of the controller parameters used:
+
+```plaintext
+Controller,KP21INV
+type,unknown
+current_max,2000
+current_cont,400
+voltage_max,1500
+voltage_min,20
+mass,0.35
+length,0.02
+width,0.15
+height,0.63
+shape,rectangular
+resistance,0
+```
+
+#### Description of Parameters
+
+- type: The type of controller, in this case, unknown.
+- current_max: The maximum current the controller can handle, which is 2000A.
+- current_cont: The continuous current rating, which is 400A.
+- voltage_max: The maximum voltage rating, which is 1500V.
+- voltage_min: The minimum voltage rating, which is 20V.
+- mass: The mass of the controller, which is 0.35kg.
+- length: The length of the controller, which is 0.02m.
+- width: The width of the controller, which is 0.15m.
+- height: The height of the controller, which is 0.63m.
+- shape: The shape of the controller, which is rectangular.
+- resistance: The internal resistance of the controller, which is 0 ohms.
+- Controller Model Script (controller.py)
+- This script defines the ControllerModel class, which is responsible for loading controller parameters and performing the model analysis.
+  
+```Code Breakdown
+Imports```
+python
+Copy code
+from adsp.paths import get_controller_csv_path
+from adsp.utils.csv_reader import csv_reader
+ControllerModel Class
+python
+Copy code
+class ControllerModel:
+    def __init__(self, pcb, name_controller):
+        self.pcb = pcb
+        self.name_controller = name_controller
+
+    def load_data(self):
+        file = paths.db.get_controller_csv_path(self.name_controller)
+        data = csv_reader(file)
+        for parameter, value in data.items():
+            setattr(self.pcb.data_controller, parameter, value)
+
+    def run_model(self, throttle):
+        # Perform analysis here, for example:
+        voltage_out = self.pcb.data_controller.voltage_max * throttle
+        self.pcb.data_controller.voltage_out = voltage_out
+        # Additional analysis and model computation
+```
+
+#### Test Script (`04_test_controller.py`)
+
+This script runs the controller model using predefined test conditions.
+
+```python
+from adsp.propulsion.electrical.controller import (
+    get_controller,
+    ControllerModel,
+    Controller,
+)
+from adsp.propulsion.pcb import PCB
+from adsp.utils.print_align import print_aligned_data
+
+pcb = PCB()
+def main() -> None:
+    name_controller = "KP21INV"
+    throttle = 0.5
+
+    power_peak = 230000
+    current_peak = 570
+    
+    pcb.data_controller.power_peak = power_peak
+    pcb.data_controller.current_peak = current_peak
+    controller = get_controller(pcb, name_controller)
+    controller.load_data()
+    controller.run_model(throttle)
+    print_aligned_data(pcb.data_controller)
+
+if __name__ == "__main__":
+    main()
+```
+
+#### Running the Test
+
+- Prepare the CSV File: Ensure KP21INV.csv is in the ADSP>data>controller directory.
+- Update Parameters: Modify controller parameters in the CSV as needed.
+- Execute the Test Script:
+- Open a terminal or command prompt.
+- Navigate to the directory containing 04_test_controller.py.
+- Run the script:
+
+```bash
+python 04_test_controller.py
+```
+
+# Converter
+
+## Input File
+
+For the Converter, the input file is set as `converter_set0x.csv` located in `adsp>data>propulsion`, and the configuration is as follows:
+
+```plaintext
+Mode| converter-name| loc-x |loc-y |loc-z |mass
+VTOL    converter     1.9336  0.525   0.5    2
+VTOL    converter     1.9336  0.525   0.5    2
+VTOL    converter     1.9336  0.525   0.5    2
+VTOL    converter     1.9336  0.525   0.5    2
+```
+
+### Converter
+This manual provides detailed instructions for setting up and running a converter model test and analysis. The code integrates converter parameters from a database (DB), processes them using a converter model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.
+
+#### Components
+
+1. **Database (DB)**: Contains converter parameters.
+2. **Converter Model**: Selects and analyzes the converter model based on provided parameters.
+3. **Test Case**: Defines test conditions and input parameters.
+4. **Data Saved in PCB**: Stores the test results.
+
+#### Files and Scripts
+
+1. **Converter Parameters CSV File**: `ADSP>data>converter>converter.csv`
+2. **Converter Model Script**: `ADSP>propulsion>electrical>converter.py`
+3. **Test Script**: `test demo>propulsion>05_test_converter.py`
+
+#### Converter Parameters CSV (`converter.csv`)
+
+The CSV file contains key parameters for the converter model. Below is an example of the converter parameters used:
+
+```plaintext
+Converter,Unknown
+type,unknown
+resistance_mosfet,0.08
+resistance_diode,0.02
+inductance,0.07
+voltage_drop_diode,0.57
+```
+
+#### Description of Parameters
+
+- type: The type of converter, in this case, unknown.
+- resistance_mosfet: The resistance of the MOSFET, which is 0.08 ohms.
+- resistance_diode: The resistance of the diode, which is 0.02 ohms.
+- inductance: The inductance value, which is 0.07 H.
+- voltage_drop_diode: The voltage drop across the diode, which is 0.57V.
+
+#### Converter Model Script (converter.py)
+
+This script defines the ConverterModel class, which is responsible for loading converter parameters and performing the model analysis.
+
+```python
+class ConverterModel:
+    def __init__(self, pcb, name_converter):
+        self.pcb = pcb
+        self.name_converter = name_converter
+
+    def load_data(self):
+        file = paths.db.get_converter_csv_path(self.name_converter)
+        data = csv_reader(file)
+        for parameter, value in data.items():
+            setattr(self.pcb.data_converter, parameter, value)
+
+    def run_model(self, duty_cycle):
+        # Perform analysis here, for example:
+        voltage_out = self.pcb.data_converter.voltage_inp * duty_cycle
+        self.pcb.data_converter.voltage_out = voltage_out
+        # Additional analysis and model computation
+```
+
+#### Test Script (05_test_converter.py)
+
+This script runs the converter model using predefined test conditions.
+
+```python
+
+from adsp.propulsion.electrical.converter import (
+    get_converter,
+    ConverterModel,
+    Converter,
+)
+from adsp.propulsion.pcb import PCB
+from adsp.utils.print_align import print_aligned_data
+
+pcb = PCB()
+
+
+def main() -> None:
+    name_converter = "converter"
+    duty_cycle = 0.90
+    current = 216
+    voltage = 500
+
+    pcb.data_converter.current_out = current
+    pcb.data_converter.voltage_out = voltage
+    converter = get_converter(pcb, name_converter)
+    converter.load_data()
+    converter.run_model(duty_cycle)
+    print_aligned_data(pcb.data_converter)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+#### Running the Test
+
+- Prepare the CSV File: Ensure converter.csv is in the ADSP>data>converter directory.
+- Update Parameters: Modify converter parameters in the CSV as needed.
+- Execute the Test Script:
+- Open a terminal or command prompt.
+- Navigate to the directory containing 05_test_converter.py.
+- Run the script:
+
+```bash
+python 05_test_converter.py
+```
+
+#### Output
+The results of the converter model analysis are saved in the pcb.data_converter object and printed using print_aligned_data. The output includes detailed information about the converter performance based on the test conditions.
+
+# Inverter
+
+## Input File
+
+For the Inverter, the input file is set as `inverter_set0x.csv` located in `adsp>data>propulsion`, and the configuration is as follows:
+
+```plaintext
+Mode| inverter-name| loc-x| loc-y| loc-z |mass
+VTOL GaN-NTP8G206N   1.9336 0.525   0.5    2
+VTOL GaN-NTP8G206N   1.9336 -0.525  0.5    2
+CTOL GaN-NTP8G206N   3.0336 0.525   0.5    2
+CTOL GaN-NTP8G206N   3.0336 -0.525  0.5    2
+```
+
+### Inverter
+This manual provides detailed instructions for setting up and running an inverter model test and analysis. The code integrates inverter parameters from a database (DB), processes them using an inverter model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.
+
+#### Components
+
+1. **Database (DB)**: Contains inverter parameters.
+2. **Inverter Model**: Selects and analyzes the inverter model based on provided parameters.
+3. **Test Case**: Defines test conditions and input parameters.
+4. **Data Saved in PCB**: Stores the test results.
+
+#### Files and Scripts
+
+1. **Inverter Parameters CSV File**: `ADSP>data>inverter>GaN-NTP8G206N.csv`
+2. **Inverter Model Script**: `ADSP>propulsion>electrical>inverter.py`
+3. **Test Script**: `test demo>propulsion>06_test_inverter.py`
+
+#### Inverter Parameters CSV (`GaN-NTP8G206N.csv`)
+
+The CSV file contains key parameters for the inverter model. Below is an example of the inverter parameters used:
+
+```plaintext
+Inverter,GaN-NTP8G206N
+type,unknown
+resistance_mosfet,0.29
+resistance_diode,0.14
+inductance,0.07
+power_factor,0.97
+voltage_drop_diode,2.2
+```
+
+#### Description of Parameters
+
+- type: The type of inverter, in this case, unknown.
+- resistance_mosfet: The resistance of the MOSFET, which is 0.29 ohms.
+- resistance_diode: The resistance of the diode, which is 0.14 ohms.
+- inductance: The inductance value, which is 0.07 H.
+- power_factor: The power factor, which is 0.97.
+- voltage_drop_diode: The voltage drop across the diode, which is 2.2V.
+  
+#### Inverter Model Script (inverter.py)
+
+This script defines the InverterModel class, which is responsible for loading inverter parameters and performing the model analysis.
+
+```python
+class InverterModel:
+    def __init__(self, pcb, name_inverter):
+        self.pcb = pcb
+        self.name_inverter = name_inverter
+
+    def load_data(self):
+        file = paths.db.get_inverter_csv_path(self.name_inverter)
+        data = csv_reader(file)
+        for parameter, value in data.items():
+            setattr(self.pcb.data_inverter, parameter, value)
+
+    def run_model(self, modulation_ratio):
+        # Perform analysis here, for example:
+        voltage_out = self.pcb.data_inverter.voltage_inp * modulation_ratio
+        self.pcb.data_inverter.voltage_out = voltage_out
+        # Additional analysis and model computation
+```
+
+#### Test Script (`06_test_inverter.py`)
+
+This script runs the inverter model using predefined test conditions.
+
+```python
+from adsp.propulsion.electrical.inverter import get_inverter, InverterModel
+from adsp.propulsion.pcb import PCB
+from adsp.utils.print_align import print_aligned_data
+
+pcb = PCB()
+
+def main() -> None:
+    name_inverter = "GaN-NTP8G206N"
+    modulation_ratio = 0.90
+    current_out = 216
+    voltage_out = 500
+
+    pcb.data_inverter.current_out = current_out
+    pcb.data_inverter.voltage_out = voltage_out
+    inverter = get_inverter(pcb, name_inverter)
+    inverter.load_data()
+    inverter.run_model(modulation_ratio)
+    print_aligned_data(pcb.data_inverter)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+#### Running the Test
+
+- Prepare the CSV File: Ensure GaN-NTP8G206N.csv is in the ADSP>data>inverter directory.
+- Update Parameters: Modify inverter parameters in the CSV as needed.
+- Execute the Test Script:
+- Open a terminal or command prompt.
+- Navigate to the directory containing 06_test_inverter.py.
+
+#### Run the script:
+
+```bash
+python 06_test_inverter.py
+```
+
+#### Output
+
+The results of the inverter model analysis are saved in the pcb.data_inverter object and printed using print_aligned_data. The output includes detailed information about the inverter performance based on the test conditions.
+
+# Motor
+
+## Input File
+
+For the Motor, the input file is set as `motor_set0x.csv` located in `adsp>data>propulsion`, and the configuration is as follows:
+
+```plaintext
+Mode| motor-name    | loc-x |loc-y |loc-z |mass | diameter | length
+VTOL EMRAX348-LV-AC  1.9336  0.525   0.5    20      0.1       0.3
+VTOL EMRAX348-LV-AC  1.9336 -0.525   0.5    20      0.1       0.3
+CTOL EMRAX348-LV-AC  3.0336  0.525   0.5    20      0.1       0.3
+CTOL EMRAX348-LV-AC  3.0336 -0.525   0.5    20      0.1       0.3
+```
+
+### Motor
+This manual provides detailed instructions for setting up and running an motor model test and analysis. The code integrates Motor parameters from a database (DB), processes them using an motor model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.
+
+#### Components
+
+1. **Database (DB)**: Contains motor parameters.
+2. **Motor Model**: Selects and analyzes the motor model based on provided parameters.
+3. **Test Case**: Defines test conditions and input parameters.
+4. **Data Saved in PCB**: Stores the test results.
+
+#### Files and Scripts
+
+1. **Motor Parameters CSV File**: `ADSP>data>motor>EMRAX348-LV-AC.csv`
+2. **Motor Model Script**: `ADSP>propulsion>electrical>motor.py`
+3. **Test Script**: `test demo>propulsion>07_test_motor.py` & `test demo>propulsion>08_test_motor_analysis.py`
+
+#### Motor Parameters CSV (`EMARX348-LV-AC.csv`)
+
+The CSV file contains key parameters for the motor model. Below is an example of the motor parameters used:
+
+```plaintext
+motor, EMRAX348-LV-AC
+type, pmsm
+kv,10.58
+kt,0.72
+ke,0.94
+kv_noload,13.11
+resistance,0.0042
+inductance,0.0000285
+num_polepairs,10
+radius,0.174
+height,0.112
+friction_coefficient,0.3
+power_factor,0.97
+current_continous,600
+power_peak,400000
+current_peak,1500
+rpm_limit, 4000
+```
+
+#### Description of Parameters
+
+- type: The type of motor, in this case, PMSM(Permanent Magnet Synchronous Motor).
+- kv: Speed Constant, Indicates voltage required per RPM , which is 10.58 RPM/V
+- kt: Torque Constant, Represents torque per unit of current, which is 0.72 Nm/A
+- ke: Back EMF Constant, relates peak voltage induced by the permanent magnet in the per-unit rotational speed of each phase ,which is 0.94 V/rad/s
+- kv_noload: Speed Constant at no Load, which is 13.29 RPM/V
+- resistance : Internal Phase resistance at 25 celcius, which is 0.0042 ohms
+- inductance : Inductance of 1 phase, which is 0.0000285 H
+- num_polepairs : Number of Pole pairs, which is 10EA
+- radius : Motor Radius, which is 0.174 m
+- height : Motor Height, which is 0.112 m
+- friction_coefficient : Motor Friction coefficient(Torque / Motor Inertia * (angular velocity^2)) ,which is 0.3
+- power_factor : power factor, whcih is 0.97
+- current_continuous : Continuous Current, which is 600 A
+- power_peak : Peak power, which is 400000 W
+- current_peak: Peak Current, which is 1500 A 
+- rpm_limit: Limit RPM, which is 4000
+
+#### Motor Model Script (motor.py)
+
+This script defines the Motor Model class, which is responsible for loading motor parameters and performing the model analysis.
+
+```python
+class MotorModel(Motor):
+    def __init__(self, pcb, name_motor):
+        super().__init__(pcb, name_motor)
+
+    def load_data(self):
+        file = paths.db.get_motor_csv_path(self.name_motor)
+        data = pd.read_csv(file)
+        self.name_motor = np.array(data)
+
+        for parameter, value in self.name_motor:
+            try:
+                value = float(value)
+            except ValueError:
+                value = str(value)
+            setattr(self.data_motor, parameter, value)
+            setattr(self, parameter, value)
+
+        return self.data_motor
+
+    def run_model(self, rpm, power_out):
+
+        self.data_motor.power_out = power_out
+        self.data_motor.rpm = rpm
+                    ...
+```
+
+#### Test Script (`07_test_motor.py`)
+
+This script runs the motor model using predefined test conditions.
+
+```python
+from adsp.propulsion.electrical.motor import get_motor, MotorModel
+from adsp.propulsion.pcb import PCB
+from adsp.utils.print_align import print_aligned_data
+
+pcb = PCB()
+
+
+def main() -> None:
+    name_motor = "EMRAX348-LV-AC"
+
+    rpm = 4000
+    power_out = 400000
+    pcb.data_propeller.rpm = rpm
+    motor = get_motor(pcb, name_motor)
+    motor.load_data()
+    motor.run_model(rpm, power_out)
+    print_aligned_data(pcb.data_motor)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+#### Running the Test
+
+- Prepare the CSV File: Ensure EMRAX348_LV_AC.csv is in the ADSP>data>motor directory.
+- Update Parameters: Modify motor parameters in the CSV as needed.
+- Execute the Test Script:
+- Open a terminal or command prompt.
+- Navigate to the directory containing 07_test_motor.py.
+
+#### Run the script:
+
+```bash
+python 07_test_motor.py
+python 08_test_motor_analysis.py
+```
+
+#### Output
+
+The results of the motor model analysis are saved in the pcb.data_motor object and printed using print_aligned_data. The output includes detailed information about the motor performance based on the test conditions.
+
+# Propeller
+
+## Input File
+
+For the Propeller, the input file is set as `propeller_set0x.csv` located in `adsp>data>propulsion`, and the configuration is as follows:
+
+```plaintext
+Mode | propeller-name | loc-x (m) |loc-y (m) |loc-z (m) |mass (kg)
+VTOL    x57cruise        1.9336     0.525      0.5        2
+VTOL    x57cruise        1.9336     -0.525     0.5        2
+CTOL    x57cruise        3.0336     0.525      0.5        2
+CTOL    x57cruise        3.0336     -0.525     0.5        2
+```
+
+### Proopeller
+
+This manual provides detailed instructions for setting up and running an propeller model test and analysis. The code integrates propeller parameters from a database (DB), processes them using an propeller model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.
+
+#### Components
+
+1. **Database (DB)**: Contains Propeller parameters.
+2. **Propeller Model**: Selects and analyzes the Propeller model based on provided parameters.
+3. **Test Case**: Defines test conditions and input parameters.
+4. **Data Saved in PCB**: Stores the test results.
+
+#### Files and Scripts
+
+1. **Propeller Parameters CSV File**: `ADSP>data>propeller>x57cruise.csv`
+2. **Propeller Model Script**: `ADSP>propulsion>mechanical>propeller_vp>propeller.py` & `ADSP>propulsion>mechanical>propeller_cp>propeller.py`
+3. **Test Script**: `test demo>propulsion>10_test_propeller_vp.py` & `test demo>propulsion>11_test_propeller_db_generator.py`
+
+#### Propeller Parameters CSV (`x57cruise.csv`)
+
+The CSV file contains key parameters for the Propeller model. Below is an example of the motor parameters used:
+
+```plaintext
+radius_tip_real,0.98
+radius_hub_base,0.15
+redius_tip_base,0.75
+blades,3
+pitch_base,0.0
+pitch_min,0.0
+pitch_max,60.0
+r_loc(m),chord(m),twist(deg),airfoil 
+0.1605,0.1131,64.29,MH117 
+0.1856,0.1306,62.42,MH117 
+0.2094,0.1443,60.19,MH117 
+0.2338,0.1492,57.79,MH117 
+0.2575,0.1517,55.50,MH117 
+0.2820,0.1504,53.39,MH117 
+0.3051,0.1478,51.396,MH117 
+0.3295,0.1453,49.46,MH117 
+0.3539,0.1402,47.70,MH117 
+0.3777,0.1339,45.94,MH117 
+0.4015,0.1314,44.30,MH117 
+0.4259,0.1276,42.78,MH117 
+0.4497,0.1225,41.37,MH117 
+0.4735,0.1175,40.02,MH117 
+0.4979,0.1137,38.61,MH117 
+0.5223,0.1111,37.32,MH117 
+0.5454,0.1086,36.09,MH117 
+0.5699,0.1023,34.91,MH117 
+0.5936,0.0997,33.74,MH117 
+0.6174,0.0972,32.63,MH117 
+0.6418,0.0934,31.57,MH117 
+0.6656,0.0896,30.45,MH117 
+0.6894,0.0858,29.397,MH117 
+0.7144,0.0807,28.107,MH117 
+0.7376,0.0732,26.58,MH117 
+```
+
+#### Description of Parameters
+
+- radius_tip_real : actual tip radius of propeller (distance from the propeller hub to the outer tip of the blade), which is 0.98 m
+- radius_hub_base : base radius of the hub, which is 0.15 m
+- radius_tip_base : base radius of the propeller tip for the design which is 0.75 m
+- blades : Number of the blade
+- pitch_base : Basicall pitch angle when running
+- pitch_min : Minimum constraint of the pitch angle when running
+- pitch_max : Maximum constraint of the pitch angle when running
+- r_loc : propeller location at the section
+- chord : propeller sections' chord length
+- twist : propeller sections' twist angle
+- airfoil : propeller sections' airfoil
+
+#### Propeller Model Script (propeller.py)
+
+This script defines the Propeller Model class, which is responsible for loading propeller parameters and performing the propeller analysis.
+For the Constant Pitch(propeller_cp), estimate rpm to match thrust / for the Variable Pitch(propeller_vp), using `airfoil's surrogate model-> optimize pitch angle and RPM for high efficiency`
+
+```python
+class PropellerModel(Propeller):
+    def __init__(self, pcb, name_propeller):
+        super().__init__(pcb, name_propeller)
+    def run_model(self, rpm, velocity=0.0, altitude=10.0):
+        """
+        Read specific propeller database file and by interpolation,
+        calculate propeller performance.
+        This analysis does not use BEMT.
+        """
+        self.data_propeller.rpm = rpm
+        rps = self.data_propeller.rpm / 60.0  # rps
+        self.data_propeller.omega = rps * 2.0 * np.pi
+        self.data_propeller.velocity = float(velocity)
+                        ...
+    def get_init_rpm(self, velocity=0.0):
+        if velocity == 0.0:
+            return 0.5 * (self.rpmMax - self.rpmMin)
+        elif velocity > 0.0:
+            Jmean = 0.5 * (self.Jmax - self.Jmin)
+            return velocity / (Jmean * self.data.diameter)
+        else:
+            print("Wrong velocity input!!")
+
+    def estimate_rpm_to_match_thrust(self, velocity, thrust_req, altitude=10.0):
+        def func(rpm):
+            self.run_model(rpm, velocity, altitude)
+            return self.data_propeller.thrust - thrust_req
+
+        rpm_req = brentq(func, 0.0, 10000, full_output=False)
+        return self.run_model(rpm_req, velocity, altitude)
+```
+
+```python
+class PropellerModel(Propeller):
+    """Extends the Propeller class with methods for aerodynamic force calculations."""
+
+    def __init__(self, pcb, name_propeller):
+        super().__init__(pcb, name_propeller)
+
+    def get_pitch_for_target_thrust(self, rpm, velocity, altitude, target_thrust):
+        logger.info("Getting pitch for given thrust...")
+        self.max_pitch = 60.0
+        pitch_bounds = (
+            self.pitch_min,
+            self.pitch_max,
+        )  # Assuming max_pitch is the upper limit for pitch
+
+        # Define the objective function to maximize efficiency (negative for minimization)
+        def objective(x):
+            pitch = x
+            self.run_model(pitch, rpm, velocity, altitude)
+
+            thrust = self.data_propeller.thrust
+            efficiency = self.data_propeller.efficiency
+            pitch = self.data_propeller.pitch
+
+            logger.debug(
+                f"PITCH: {pitch[0]:.4f}, EFF: {efficiency[0]:.4f}, THRUST: {thrust[0]:.4f}"
+            )
+
+            return -self.data_propeller.efficiency
+```
+
+#### Test Script (`10_test_propeller_vp.py`)
+
+This script runs the variable pitch propeller model using predefined test conditions.
+
+```python
+from adsp.propulsion.mechanical.mechanical import MechanicalModule
+from adsp.utils.print_align import print_aligned_data
+
+pcb = PCB()
+
+
+name_propeller = "x57cruise"
+
+
+def get_optimal_pitch():
+    mechanical_module = MechanicalModule(pcb, name_propeller)
+    rpm = 2200
+    velocity = 100
+    altitude = 10
+    mechanical_module.get_optimal_pitch(rpm, velocity, altitude)
+    print(pcb.data_propeller.pitch)
+    print(pcb.data_propeller.efficiency)
+    print(pcb.data_propeller.thrust)
+    print(pcb.data_propeller.rpm)
+
+if __name__ == "__main__":
+    get_optimal_pitch()
+```
+
+#### Running the Test
+
+- Prepare the CSV File: Ensure x57cruise.csv is in the ADSP>data>propeller>geometry directory.
+- Update Parameters: Modify propeller parameters in the CSV as needed.
+- Execute the Test Script:
+- Open a terminal or command prompt.
+- Navigate to the directory containing 10_test_propeller_vp.py.
+
+#### Run the script:
+
+```bash
+python 10_test_propeller_vp.py
+```
+
+#### Output
+
+The results of the propeller model analysis are saved in the pcb.data_propeller object and printed using print_aligned_data. The output includes detailed information about the propeller performance based on the test conditions.
+
+# Integrated Propulsion Test
+
+## Test Script (`12_test_propulsion.py`)
+
+Test for Electrical-Energy Source & Test for Mechanical Only
+
+```python
+def test_electrical_and_energy():
+    rpm = 1744.53
+    torque = 1094.7694
+
+    name_converter = "converter"
+    name_inverter = "GaN-NTP8G206N"
+    name_controller = "KP21INV"
+    name_motor = "EMRAX348-LV-AC"
+
+    throttle = 0.60
+    pcb.data_motor.rpm = rpm
+    pcb.data_motor.torque = torque
+
+    electrical_module = ElectricalModule(
+        pcb, name_converter, name_inverter, name_controller, name_motor
+    )
+    electrical_module.run_analysis(throttle, rpm)
+
+    print_aligned_data(pcb.data_controller)
+
+    print(" === Motor Data === ")
+    print_aligned_data(pcb.data_motor)
+    print(" === Inverter Data === ")
+    print_aligned_data(pcb.data_inverter)
+    print(" === Converter Data === ")
+    print_aligned_data(pcb.data_converter)
+
+    current = pcb.data_converter.current_inp
+    duration_passed = 1200
+    name_battery = "test_battery01"
+    battery = get_battery(pcb, name_battery)
+    battery.load_data()
+    battery.run_model(current, duration_passed)
+    print_aligned_data(pcb.data_battery)
+
+    def mechanical():
+
+    propulsion = PropulsionAnalysisUAM(combus, pcb, name_propulsion)
+    propulsion.load_data()
+
+    throttle = []
+    power = []
+    efficiency = []
+    rpm = []
+    pitch =[]
+    velocity_range = range(50, 100, 10)
+    target_thrust = 2500.0
+    altitude = 500
+
+    for velocity in velocity_range:
+        try:
+            propulsion.get_throttle_for_target_thrust(velocity, altitude, target_thrust)
+            throttle_value = pcb.data_controller.throttle
+            power_value = pcb.data_motor.power_out
+            efficiency_value = pcb.data_propeller.efficiency
+            rpm_value = pcb.data_propeller.rpm
+            pitch_value = pcb.data_propeller.pitch
+        except Exception as e:
+            print(f"Error obtaining data for target thrust {target_thrust}: {e}")
+            throttle_value = None
+            power_value = None
+            efficiency_value = None
+            rpm_value = None
+            pitch_value = None
+
+        throttle.append(throttle_value)
+        power.append(power_value)
+        efficiency.append(efficiency_value)
+        rpm.append(rpm_value)
+        pitch.append(pitch_value)
+    
+    efficiency_list = [arr.item() for arr in efficiency]
+    rpm_list = [arr.item() for arr in rpm]
+    pitch_list = [arr.item() for arr in pitch]
+
+    fig, ax1 = plt.subplots()
+
+    ax1.plot(velocity_range, rpm_list, color='red', label='RPM')
+    ax1.set_ylabel('RPM', color='red')
+    ax1.set_xlabel('Velocity')
+    ax1.set_ylim(0, 4000)
+    ax1.tick_params(axis='y', labelcolor='red')
+    ax1.legend(loc='upper right')
+
+    ax2 = ax1.twinx()
+    ax2.plot(velocity_range, efficiency_list, color='blue', label='Efficiency')
+    ax2.set_ylabel('Efficiency', color='blue')
+    ax2.set_ylim(0, 1)
+    ax2.tick_params(axis='y', labelcolor='blue')
+    ax2.legend(loc='upper right')
+
+    ax3 = ax1.twinx()
+    ax3.spines['right'].set_position(('outward', 60)) 
+    ax3.plot(velocity_range, pitch_list, color='green', label='Pitch')
+    ax3.set_ylabel('Pitch', color='green')
+    ax3.set_ylim(0, 60)
+    ax3.tick_params(axis='y', labelcolor='green')
+    ax3.legend(loc='upper right')
+
+    plt.grid(True)
+    ax1.figure.tight_layout()
+    plt.show()
+```

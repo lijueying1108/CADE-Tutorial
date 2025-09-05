@@ -1,0 +1,843 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Performance and Mission Theory Manual &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><strong>Performance and Mission Theory Manual</strong></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/performance_theory.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="performance-and-mission-theory-manual">
+<h1><strong>Performance and Mission Theory Manual</strong><a class="headerlink" href="#performance-and-mission-theory-manual" title="Link to this heading"></a></h1>
+<p>This is the theory manual for performance and mission analysis inside CADE-MDA.</p>
+<p>It is written by referring to the books:</p>
+<blockquote>
+<div><p>[1] Aircraft Design: A Conceptual Approach(Six Edition) by Daniel P. Raymer</p>
+</div></blockquote>
+<blockquote>
+<div><p>[2] General Aviation Aircraft Design: Applied Methods and Procedures by Snorri Gudmundsson</p>
+</div></blockquote>
+<blockquote>
+<div><p>[3] Aircraft Performance: An Engineering Approach by Mohammad H. Sadraey</p>
+</div></blockquote>
+<blockquote>
+<div><p>[4] Principle of Helicopter Aerodynamics by J. Gordon Leishman</p>
+</div></blockquote>
+<blockquote>
+<div><p>[5] Aircraft Performance and Design by John D. Anderson</p>
+</div></blockquote>
+<br>
+<section id="performance-and-mission">
+<h2><strong>Performance and Mission</strong><a class="headerlink" href="#performance-and-mission" title="Link to this heading"></a></h2>
+<p>Performance is one discipline that indicates an aircraft’s capability by considering numerous disciplines together. A simplification to a 3-DOF, point-mass-based equation of motion is used for predicting performance, and it lies between the handbook methods and full 6-DOF simulations. The 3-DOF equation of motion is used to predict flight performance depending on the flight mode, such as forward flight, hovering, transition, or vertical flight modes.</p>
+<br>
+<section id="goal-of-performance-and-mission-analysis">
+<h3>Goal of Performance and Mission Analysis<a class="headerlink" href="#goal-of-performance-and-mission-analysis" title="Link to this heading"></a></h3>
+<p>The objective of the aircraft performance analysis is to accurately calculate the aircraft’s performance during each mission segment, and the objective of the mission analysis is to accurately estimate the expected mission performance for the given mission.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Analyzes point performance, mission performance, and field performance for converntional aircraft</p></li>
+<li><p>Mission performance calculation for SoC required, fuel required, energy required for given mission</p></li>
+<li><p>Point performance calculaiton for different point performance parameters such as maximum speed, stall speed, and so on</p></li>
+<li><p>Transition performance analysis for the aircraft that have different flight modes</p></li>
+<li><p>Field performance analysis for conventional take-off distance and landing distance</p></li>
+</ol>
+</div></blockquote>
+<br>
+</section>
+<section id="performance-and-mission-analysis-module-structure">
+<h3>Performance and Mission Analysis Module Structure<a class="headerlink" href="#performance-and-mission-analysis-module-structure" title="Link to this heading"></a></h3>
+<p>The performance program consists of 3 main analyses: <span style="color:rgb(24, 80, 145);">(1) flight segment analysis, (2) point performance optimizer, and (3) mission run calculation module.</span> The analysis program data flow is shown in the <a class="reference internal" href="#Performance_and_Mission_Analysis_Module"><span class="xref myst">figure</span></a>.</p>
+<p>The flight segment analysis module solves the equations of motion depending on the flight modes. It calculates parameters such as power, thrust, and specific air range for a given flight condition and adds them to the reports. The optimizer attempts to optimize based on the input of lower and upper bounds to find parameters such as maximum speed, max range, and so on.</p>
+<p>The mission fuel calculation module analyzes the mission for a given mission profile by calling the flight segment analysis module to determine the energy required for the mission. The analysis results can generate various performance curves, maximum performance parameters, and time histories along the mission profile.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/performance_and_mission.png" alt="Performance and Mission Analysis Module" width="600">
+    <figcaption>Performance and Mission Analysis Module</figcaption>
+  </figure>
+</div>
+<br>
+<ul class="simple">
+<li><p><strong>Steady Level Flight</strong></p>
+<ul>
+<li><p>Steady Level Flight at Any Given Condition</p></li>
+<li><p>Maximum True Air Speed</p></li>
+<li><p>Maximum Specific Air Range</p></li>
+<li><p>Maximum Specific Endurance</p></li>
+<li><p>Stall Speed</p></li>
+</ul>
+</li>
+<li><p><strong>Climb and Descent</strong></p>
+<ul>
+<li><p>Rate of Climb at Any Given Condition</p></li>
+<li><p>Fastest Climb</p></li>
+<li><p>Steepest Climb</p></li>
+<li><p>Most Economic Climb</p></li>
+<li><p>Rate of Descent at Any Given Condition</p></li>
+<li><p>Minimum Sink Rate</p></li>
+<li><p>Minimum Glide Angle</p></li>
+<li><p>Ceiling for Any Given Climb Rate</p></li>
+</ul>
+</li>
+<li><p><strong>Ceilings</strong></p>
+<ul>
+<li><p>Absolute Ceiling</p></li>
+<li><p>Service Ceiling</p></li>
+<li><p>Cruise Ceiling</p></li>
+<li><p>OGE Ceiling, IGE Ceiling</p></li>
+</ul>
+</li>
+<li><p><strong>Axial Flight</strong></p>
+<ul>
+<li><p>Hovering</p></li>
+<li><p>Axial Climb and Descent</p></li>
+<li><p>OGE and IGE Ceiling</p></li>
+</ul>
+</li>
+<li><p><strong>Transition</strong></p>
+<ul>
+<li><p>Altitude Hold Transition</p>
+<ul>
+<li><p>Forward Transition</p></li>
+</ul>
+</li>
+<li><p>Tilt Corridor</p></li>
+</ul>
+</li>
+<li><p><strong>Flight Envelope</strong></p>
+<ul>
+<li><p>Flight Envelope for Tilting Aircraft</p></li>
+</ul>
+</li>
+</ul>
+<br>
+<p>Mission analysis module includes,</p>
+<ul class="simple">
+<li><p><strong>Mission Profile Analysis</strong></p></li>
+<li><p><strong>Mission Segment Computation</strong></p>
+<ul>
+<li><p>Cruise</p>
+<ul>
+<li><p><em>cruise_distance_at_altitude_and_speed</em></p></li>
+</ul>
+</li>
+<li><p>Loiter</p>
+<ul>
+<li><p><em>loiter_time_at_altitude_and_speed</em></p></li>
+</ul>
+</li>
+<li><p>Climb</p>
+<ul>
+<li><p><em>climb_at_altitude_and_speed</em></p></li>
+<li><p><em>climb_at_altitude_and_climb_rate</em></p></li>
+</ul>
+</li>
+<li><p>Descent</p>
+<ul>
+<li><p><em>descent_at_altitude_and_speed</em></p></li>
+<li><p><em>descent_at_altitude_and_descent_rate</em></p></li>
+</ul>
+</li>
+<li><p>Hover</p>
+<ul>
+<li><p><em>hover_time_at_altitude</em></p></li>
+</ul>
+</li>
+<li><p>Axial Climb</p>
+<ul>
+<li><p><em>axial_climb_at_altitude_and_speed</em></p></li>
+</ul>
+</li>
+<li><p>Axial Descent</p>
+<ul>
+<li><p><em>axial_descent_at_altitude_and_speed</em></p></li>
+</ul>
+</li>
+<li><p>Transition</p>
+<ul>
+<li><p><em>transition_at_constant_altitude_and_constant_acceleration</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Mission Analysis</strong></p>
+<ul>
+<li><p>Mission Analysis for Given Mission Profile</p></li>
+<li><p>Maximum Endurance Mission</p>
+<ul>
+<li><p>Mission Analysis for Endurance Optimization</p></li>
+</ul>
+</li>
+<li><p>Maximum Range Mission</p>
+<ul>
+<li><p>Mission Analysis for Range Optimization</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+</section>
+</section>
+<section id="performance-analysis-module-flight-segment-analysis-and-point-performance-optimization">
+<h2><strong>Performance Analysis Module: Flight Segment Analysis and Point Performance Optimization</strong><a class="headerlink" href="#performance-analysis-module-flight-segment-analysis-and-point-performance-optimization" title="Link to this heading"></a></h2>
+<p>In this program, flight segment analysis/performance analysis is used to solve the equations of motion based on the flight segments. The results of flight segment analysis are used in the point performance optimizer to find the optimum airspeed, altitude, and throttle by using an optimizer. Explainations about each flight segment as well as the point performance optimization for each design variable will be described in here.</p>
+<br>
+<section id="steady-level-flight">
+<h3>Steady Level Flight<a class="headerlink" href="#steady-level-flight" title="Link to this heading"></a></h3>
+<p>When the aircraft is in a steady state (unaccelerated flight), the sum of forces must be zero. For steady-level flight, a trim condition is considered to predict performance in a practical approach. The equations of motion at the steady climb condition (with no acceleration) can be written as:</p>
+<div class="math notranslate nohighlight">
+\[ Tcos\alpha_{trim} - D_{trim} = 0 \]</div>
+<div class="math notranslate nohighlight">
+\[ Tsin\alpha_{trim} + L_{trim} - W = 0\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(T\)</span> : Thrust</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\alpha_{trim}\)</span> : Angle of attack at trim condition</em> <br>
+<em>- <span class="math notranslate nohighlight">\(D_{trim}\)</span> : Drag at trim condition</em> <br>
+<em>- <span class="math notranslate nohighlight">\(L_{trim}\)</span> : Lift at trim condition</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W\)</span> : Weight</em></p>
+</div></blockquote>
+<br>
+<p>The above trim condition can be solved by a fixed-point iteration method, by calling the trim analysis and propulsion analysis modules. The resultant analysis data are stored in the point performance output table to be called by other modules. The analysis will be solved for the steady-level-flight trim condition, and the airspeed is optimized according to the objective function.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/STL.png" alt="Steady Level Flight Analysis Flow Chart" width="300">
+    <figcaption>Steady Level Flight Analysis Flow Chart</figcaption>
+  </figure>
+</div>
+<br>
+<section id="maximum-true-airspeed">
+<h4>Maximum True Airspeed<a class="headerlink" href="#maximum-true-airspeed" title="Link to this heading"></a></h4>
+<p>Maximum true airspeed is the highest airspeed the aircraft can achieve while using full throttle (i.e., full thrust). The condition can be solved by matching the maximum thrust available and the thrust required at a given flight condition by calling the steady-level-flight module. It is solved numerically to find the airspeed that satisfies the condition below by giving a full throttle setting:</p>
+<div class="math notranslate nohighlight">
+\[ \delta_{t}=100 \%\]</div>
+<div class="math notranslate nohighlight">
+\[ T_{avl_{max}}(V,h,\delta_{t}) = T_{req}(V,h) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(\delta_{t}\)</span> : Throttle setting</em> <br>
+<em>- <span class="math notranslate nohighlight">\(T_{avl_{max}}\)</span> : Maximum thrust available</em> <br>
+<em>- <span class="math notranslate nohighlight">\(T_{req}\)</span> : Thrust required</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V\)</span> : Airspeed</em> <br>
+<em>- <span class="math notranslate nohighlight">\(h\)</span> : Flight altitude</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="maximum-specific-air-range">
+<h4>Maximum Specific Air Range<a class="headerlink" href="#maximum-specific-air-range" title="Link to this heading"></a></h4>
+<p>Maximum Specific Air Range is a function used to optimize the airspeed that achieves the maximum range. Specific air range <span class="math notranslate nohighlight">\((SAR)\)</span> is the distance the aircraft can achieve per unit of fuel mass or battery charge. This objective is called from the steady-level-flight module.</p>
+<p>For the <span style="color:rgb(24, 80, 145);">fueled</span> aircraft, <span class="math notranslate nohighlight">\((SAR)\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[ SAR = \frac{V}{\dot{m}_{f}} \]</div>
+<p>For <span style="color:rgb(24, 80, 145);">battery</span> aircraft, (<span class="math notranslate nohighlight">\(SAR\)</span>) is</p>
+<div class="math notranslate nohighlight">
+\[ SAR = \frac{V}{P_{elec}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(SAR\)</span> : Specific air range</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V\)</span> : Airspeed</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\dot{m}_{f}\)</span> : Fuel flow</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_{elec}\)</span> : Electrical power</em></p>
+</div></blockquote>
+<br>
+<p>The optimization formulation for maximimizing specific range can be written as below.</p>
+<div class="math notranslate nohighlight">
+\[ \max_{V} SAR \]</div>
+<div class="math notranslate nohighlight">
+\[ \textrm{subject to.} \]</div>
+<div class="math notranslate nohighlight">
+\[ V_{stall}\leq V\leq V_{max_{prop}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(V_{stall}\)</span> : Stall speed</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_{max_{prop}}\)</span> : Maximum speed for propeller</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="maximum-specific-endurance">
+<h4>Maximum Specific Endurance<a class="headerlink" href="#maximum-specific-endurance" title="Link to this heading"></a></h4>
+<p>Maximum specific endurance is found by optimizing the airspeed to achieve maximum endurance. Specific endurance <span class="math notranslate nohighlight">\((SE)\)</span> is the time the aircraft can remain aloft per unit of fuel mass or battery charge. This objective is also called from the steady-level-flight module.</p>
+<p>For the <span style="color:rgb(24, 80, 145);">fueled</span> aircraft, <span class="math notranslate nohighlight">\((SE)\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[ SE = \frac{1}{\dot{m}_{f}} \]</div>
+<p>For <span style="color:rgb(24, 80, 145);">battery</span> aircraft, (<span class="math notranslate nohighlight">\(SE\)</span>) is</p>
+<div class="math notranslate nohighlight">
+\[ SE = \frac{1}{P_{elec}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(SE\)</span> : Specific endurance</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V\)</span> : Airspeed</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\dot{m}_{f}\)</span> : Fuel flow</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_{elec}\)</span> : Electrical power</em></p>
+</div></blockquote>
+<br>
+<p>The optimization formulation for maximimizing specific endurance can be written as below.</p>
+<div class="math notranslate nohighlight">
+\[ \max_{V} SE \]</div>
+<div class="math notranslate nohighlight">
+\[ \textrm{subject to.} \]</div>
+<div class="math notranslate nohighlight">
+\[ V_{stall}\leq V\leq V_{max_{prop}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(V_{stall}\)</span> : Stall speed</em> <br>
+*- <span class="math notranslate nohighlight">\(V_{max_{prop}}\)</span> : Maximum speed for propeller</p>
+</div></blockquote>
+<br>
+</section>
+<section id="stall-speed">
+<h4>Stall Speed<a class="headerlink" href="#stall-speed" title="Link to this heading"></a></h4>
+<p>Stall speed is the minimum speed limit for level flight. It can be calculated based on <span class="math notranslate nohighlight">\(C_{L_{max}}\)</span> and wing loading:</p>
+<div class="math notranslate nohighlight">
+\[ V_{stall} = \sqrt{\frac{2W}{\rho S C_{L_{max}}} }\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(V_{stall}\)</span> : Stall speed</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W\)</span> : Weight</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\rho\)</span> : Density</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S\)</span> : Aircraft reference area</em> <br>
+<em>- <span class="math notranslate nohighlight">\(C_{L_{max}}\)</span> : Maximum lift coefficient</em></p>
+</div></blockquote>
+<br>
+</section>
+</section>
+<section id="climb-and-descent">
+<h3>Climb and Descent<a class="headerlink" href="#climb-and-descent" title="Link to this heading"></a></h3>
+<p>Climb is the rate at which the aircraft gains altitude, and descent is the rate at which the aircraft loses altitude.
+The climb and descent analysis equilibrium conditions can be written as:</p>
+<div class="math notranslate nohighlight">
+\[ T\cos\alpha_{trim} - D_{trim} = W\sin\theta \]</div>
+<div class="math notranslate nohighlight">
+\[ T\sin\alpha_{trim} + L = W\cos\theta \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(T\)</span> : Thrust</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\alpha_{trim}\)</span> : Angle of attack at trim condition</em> <br>
+<em>- <span class="math notranslate nohighlight">\(D_{trim}\)</span> : Drag at trim condition</em> <br>
+<em>- <span class="math notranslate nohighlight">\(L_{trim}\)</span> : Lift at trim condition</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\theta\)</span> : Climb angle</em></p>
+</div></blockquote>
+<br>
+<p>The above trim condition can be solved by a fixed-point iteration method, by calling the trim analysis and propulsion analysis modules. The resultant analysis data are stored in the point performance output table to be used by other modules.</p>
+<p>The throttle setting is given as <span class="math notranslate nohighlight">\(100\%\)</span> to achieve the maximum thrust available for the climb condition and <span class="math notranslate nohighlight">\(0\%\)</span> is given for the descent condition by default. This analysis will be solved for steady climb &amp; descent trim conditions, and the airspeed is optimized according to the objective function.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/clb.drawio.png" alt="Climb and Descent Flight Analysis Flow Chart" width="300">
+    <figcaption>Climb and Descent Flight Analysis Flow Chart</figcaption>
+  </figure>
+</div>
+<br>
+<section id="fastest-climb">
+<h4>Fastest Climb<a class="headerlink" href="#fastest-climb" title="Link to this heading"></a></h4>
+<p>Fastest climb is the climb condition in which the aircraft <span style="color:rgb(24, 80, 145);">achieves the maximum climb rate at a given throttle setting</span>. The climb rate is maximized subject to the airspeed:</p>
+<div class="math notranslate nohighlight">
+\[ \max_{V} ROC \]</div>
+<div class="math notranslate nohighlight">
+\[ \textrm{subject to.} \]</div>
+<div class="math notranslate nohighlight">
+\[ V_{stall}\leq V\leq V_{max} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(ROC\)</span> : Rate of climb</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_{stall}\)</span> : Stall speed</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_{max}\)</span> : Maximum speed</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="steepest-climb">
+<h4>Steepest Climb<a class="headerlink" href="#steepest-climb" title="Link to this heading"></a></h4>
+<p>The steepest climb is the condition in which the aircraft <span style="color:rgb(24, 80, 145);">climbs with the maximum climb angle.</span> It is solved by maximizing the climb angle subject to the airspeed:</p>
+<div class="math notranslate nohighlight">
+\[ \max_{V} \theta \]</div>
+<div class="math notranslate nohighlight">
+\[ \textrm{subject to.} \]</div>
+<div class="math notranslate nohighlight">
+\[ V_{stall}\leq V\leq V_{max} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(\theta\)</span> : Climb angle</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_{stall}\)</span> : Stall speed</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_{max}\)</span> : Maximum speed</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="most-economic-climb">
+<h4>Most Economic Climb<a class="headerlink" href="#most-economic-climb" title="Link to this heading"></a></h4>
+<p>The most economic climb condition is one in which the aircraft <span style="color:rgb(24, 80, 145);">climbs with minimum fuel consumption.</span> This climb condition is solved by maximizing <span class="math notranslate nohighlight">\(ROC/\dot{m}_{f}\)</span> subject to the airspeed:</p>
+<div class="math notranslate nohighlight">
+\[ \max_{V} \frac{ROC}{\dot{m}_{f}} \]</div>
+<div class="math notranslate nohighlight">
+\[ \textrm{subject to.} \]</div>
+<div class="math notranslate nohighlight">
+\[ V_{stall}\leq V\leq V_{max_{prop}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(ROC\)</span> : Rate of climb</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\dot{m}_{f}\)</span> : Fuel flow</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_{stall}\)</span> : Stall speed</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_{max}\)</span> : Maximum speed</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="minimum-sink-rate">
+<h4>Minimum Sink Rate<a class="headerlink" href="#minimum-sink-rate" title="Link to this heading"></a></h4>
+<p>Minimum sink rate is the condition in which the aircraft <span style="color:rgb(24, 80, 145);">glides with the minimum descent rate, effectively maximizing glide time.</span> This descent condition is solved by minimizing the descent rate subject to the airspeed:</p>
+<div class="math notranslate nohighlight">
+\[ \min_{V} ROD \]</div>
+<div class="math notranslate nohighlight">
+\[ \textrm{subject to.} \]</div>
+<div class="math notranslate nohighlight">
+\[ V_{stall}\leq V\leq V_{max} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(ROD\)</span> : Rate of descent</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_{stall}\)</span> : Stall speed</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_{max}\)</span> : Maximum speed</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="minimum-descent-angle">
+<h4>Minimum Descent Angle<a class="headerlink" href="#minimum-descent-angle" title="Link to this heading"></a></h4>
+<p>Minimum descent angle is the glide condition at which the aircraft <span style="color:rgb(24, 80, 145);">glides with the minimum descent angle, effectively maximizing glide distance.</span> This descent condition is solved by minimizing the descent angle subject to the airspeed:</p>
+<div class="math notranslate nohighlight">
+\[ \min_{V} \gamma \]</div>
+<div class="math notranslate nohighlight">
+\[ \textrm{subject to.} \]</div>
+<div class="math notranslate nohighlight">
+\[ V_{stall}\leq V\leq V_{max} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(\gamma\)</span> : Angle of descent</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_{stall}\)</span> : Stall speed</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_{max}\)</span> : Maximum speed</em></p>
+</div></blockquote>
+<br>
+</section>
+</section>
+<section id="ceiling">
+<h3>Ceiling<a class="headerlink" href="#ceiling" title="Link to this heading"></a></h3>
+<p>Ceiling performance is the analysis of the aircraft’s maximum flight altitude that can be maintained. The figure below illustrates this:</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/ceiling.jpg" alt="Ceiling Flight Analysis Flow Chart" width="600">
+    <figcaption>Ceiling Flight Analysis Flow Chart</figcaption>
+  </figure>
+</div>
+<br>
+<section id="absoulte-ceiling">
+<h4>Absoulte ceiling<a class="headerlink" href="#absoulte-ceiling" title="Link to this heading"></a></h4>
+<p>Absolute ceiling is the altitude at which the aircraft can maintain steady, level flight with a rate of climb approaching zero.</p>
+<br>
+</section>
+<section id="service-ceiling">
+<h4>Service ceiling<a class="headerlink" href="#service-ceiling" title="Link to this heading"></a></h4>
+<p>Service ceiling is the altitude at which the aircraft is capable of a 100 ft/min (or 0.5 m/s) rate of climb.</p>
+<br>
+</section>
+<section id="cruise-ceiling">
+<h4>Cruise Ceiling<a class="headerlink" href="#cruise-ceiling" title="Link to this heading"></a></h4>
+<p>Cruise ceiling is the altitude at which the aircraft can climb at 300 ft/min (or 1.5 m/s).</p>
+<br>
+</section>
+</section>
+<section id="axial-flight">
+<h3>Axial Flight<a class="headerlink" href="#axial-flight" title="Link to this heading"></a></h3>
+<p>When the aircraft is in a steady state (unaccelerated flight), the sum of forces must be zero. For steady axial flight, weight, drag, and thrust are the three force components. The equations of motion at the steady axial condition, with no acceleration, are considered. An axial flight analysis flow chart is shown in the figure below:</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/VTOLAnalysis.png" alt="Axial Flight Analysis Flow Chart" width="400">
+    <figcaption>Axial Flight Analysis Flow Chart</figcaption>
+  </figure>
+</div>
+<br>
+<div class="math notranslate nohighlight">
+\[ T = W \pm D\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(T\)</span> : Thrust</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W\)</span> : Weight</em> <br>
+<em>- <span class="math notranslate nohighlight">\(D\)</span> : Drag</em></p>
+</div></blockquote>
+<br>
+<section id="hovering">
+<h4>Hovering<a class="headerlink" href="#hovering" title="Link to this heading"></a></h4>
+<p>For hover, the required power setting must match the available thrust with the weight:</p>
+<div class="math notranslate nohighlight">
+\[ T = W \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(T\)</span> : Thrust</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W\)</span> : Weight</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="axial-climb-and-descent">
+<h4>Axial Climb and Descent<a class="headerlink" href="#axial-climb-and-descent" title="Link to this heading"></a></h4>
+<p>For axial climb, the maximum climb rate can be found based on the given input throttle setting by solving the equation of motion:</p>
+<div class="math notranslate nohighlight">
+\[ T(\delta) = W + D(V) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(\delta\)</span> : Throttle setting</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V\)</span> : Climb rate</em></p>
+</div></blockquote>
+<br>
+<p>For axial descent, the minimum climb (descent) rate can be found based on the given input throttle setting by solving the equation of motion:</p>
+<div class="math notranslate nohighlight">
+\[ T(\delta) = W - D(V) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(\delta\)</span> : Throttle setting</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V\)</span> : Descent rate</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="oge-and-ige-ceiling">
+<h4>OGE and IGE Ceiling<a class="headerlink" href="#oge-and-ige-ceiling" title="Link to this heading"></a></h4>
+<p>For vertical take-off and landing aircraft, OGE (Out of Ground Effect) and IGE (In Ground Effect) ceilings are two key parameters for hovering to determine the minimum and maximum altitudes. The hovering ceiling is divided into two ceilings, OGE and IGE. These parameters are solved by the method shown in the figure below:</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/OGE_IGE_ceiling.png" alt="OGE and IGE Hover Ceiling" width="400">
+    <figcaption>OGE and IGE Hover Ceiling</figcaption>
+  </figure>
+</div>
+<br>
+<p><strong>Out of Ground Effect (OGE) ceiling</strong> is the altitude for the maximum hovering capability. It can be achieved when the power required for hovering equals the maximum power available.</p>
+<p><strong>In Ground Effect (IGE) ceiling</strong> is the altitude for the minimum hovering altitude. Due to the downward movement of slipstream near the ground, the vortex effect strongly impacts the blades. A minimum altitude for hovering must be analyzed. An empirical equation is used in this module.</p>
+<br>
+</section>
+</section>
+<section id="transition">
+<h3>Transition<a class="headerlink" href="#transition" title="Link to this heading"></a></h3>
+<p>The Transition Analysis module derives performance indicators unique to an aircraft’s transition flights, specifically the <strong>tilt corridor</strong> and the <strong>flight envelope</strong> that accounts for the transition phase.</p>
+<p>These two indicators are particularly relevant for aircraft such as UAM (Urban Air Mobility) vehicles, which operate in both VTOL (Vertical Takeoff and Landing) mode and wing-based flight.</p>
+<section id="tilt-corridor">
+<h4>Tilt-Corridor<a class="headerlink" href="#tilt-corridor" title="Link to this heading"></a></h4>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/tilt_corridor_example.png" alt="Example of Tilt Corridor" width="400">
+    <figcaption>Example of Tilt Corridor</figcaption>
+  </figure>
+</div>
+<br>
+<p>The above figure is an example of the tilt corridor, where the red, black, and blue points represent the stall speed, minimum speed, and maximum speed at a given altitude and tilt angle, respectively.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/transition_FBD.png" alt="Free Body Diagram of Transition State" width="400">
+    <figcaption>Free Body Diagram of Transition State</figcaption>
+  </figure>
+</div>
+<br>
+<p>The figure above illustrates the free body diagram used to derive the Tilt Corridor. The rear rotor is fixed in the vertical direction, generating thrust exclusively in that direction. Meanwhile, the tilt rotor varies its tilt angle during transition flight, producing both forward thrust and vertical thrust simultaneously.</p>
+<p>The aerodynamic forces and aircraft weight, indicated by the yellow rectangle, must counterbalance each other so that the net force acting on the aircraft sums to zero, as shown in the diagram. In this section, these two conditions are referred to as Condition A and Condition B, respectively.</p>
+<div class="math notranslate nohighlight">
+\[ L+T_{rear}+T_{tilt}sin{\theta}-W \geq 0 \]</div>
+<div class="math notranslate nohighlight">
+\[ T_{tilt}cos{\theta}-D \geq 0 \]</div>
+<p>At this point, thrust is expressed as a function of altitude, incoming velocity, and throttle. To assess the aircraft’s extreme performance, the throttle for both the tilt and rear rotors is set to 1.0 (maximum power).</p>
+<div class="math notranslate nohighlight">
+\[ T = f(h,v_{inflow},\delta_{thr}=1.0) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(v_{inflow_{rear}}= 0 \)</span></em> <br>
+<em>- <span class="math notranslate nohighlight">\(v_{inflow_{tilt}}= Vcos\theta\)</span></em></p>
+</div></blockquote>
+<br>
+<p><span style="color:rgb(24, 80, 145);">The Stall Line</span>, marked in red in the example, is calculated based on the maximum thrust available for a given tilt angle (<span class="math notranslate nohighlight">\(\theta\)</span>).</p>
+<p>In this calculation, the lift condition assumes <span class="math notranslate nohighlight">\(C_{L_{max}}\)</span>, and the minimum speed that satisfies Condition A is determined. If Condition A can be satisfied solely by thrust at a given speed and tilt angle, the required Stall Speed becomes zero.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/transition_TvsD.png" alt="Minimum and Maximum Speed Line" width="300">
+    <figcaption>Minimum and Maximum Speed Line</figcaption>
+  </figure>
+</div>
+<br>
+<p><span style="color:rgb(24, 80, 145);">The minimum speed line and maximum speed line</span> represent the minimum and maximum speeds that satisfy both Condition A and Condition B for a given altitude and Tilt Angle.</p>
+<p>These speeds correspond to the two intersection points on the graph where Thrust Available and Drag (required thrust) curves meet.</p>
+<p><span style="color:rgb(7, 156, 241);"><strong>Examples</strong></span></p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/tilt_corridor_examples.png" alt="Altitude Sweep Tilt Corridor" width="600">
+    <figcaption>Altitude Sweep Tilt Corridor</figcaption>
+  </figure>
+</div>
+<p>The figures above illustrate the Tilt Corridor at various altitudes.</p>
+<p>At lower altitudes, flight at zero speed (Hovering) is possible. However, from approximately 5000 m, hovering becomes impossible, and the flight envelope gradually shrinks. By 25000 m, the practical flight capability is completely lost, indicating that no feasible flight region exists at this altitude.</p>
+<br>
+</section>
+</section>
+<section id="flight-envelope">
+<h3>Flight Envelope<a class="headerlink" href="#flight-envelope" title="Link to this heading"></a></h3>
+<p>The flight envelope is the speed band at a given altitude where steady-state flight is possible. The flight envelope is one of several ways to demonstrate performance in terms of minimum and maximum airspeed with altitude. It shows the aircraft’s capability over its entire altitude range. It is determined by finding the stall speed and maximum TAS for different flight altitudes until reaching the absolute ceiling, which is the altitude at which the aircraft can maintain level flight.</p>
+<ul class="simple">
+<li><p>Calculate stall speed by increasing the flight altitude from sea level to the absolute ceiling</p></li>
+<li><p>Calculate maximum TAS by increasing the flight altitude from sea level to the absolute ceiling</p></li>
+</ul>
+<br>
+<section id="flight-envelope-for-tilting-aircraft">
+<h4>Flight Envelope for Tilting Aircraft<a class="headerlink" href="#flight-envelope-for-tilting-aircraft" title="Link to this heading"></a></h4>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/transition_flight_envelope.jpg" alt="Concept of Transition Flight Envelope" width="400">
+    <figcaption>Concept of Transition Flight Envelope</figcaption>
+  </figure>
+</div>
+<br>
+<p>The conceptual diagram of the Flight Envelope considering the Transition Mode is shown in the figure above. For a typical rotary-wing aircraft (red region), hovering is possible, and the flight envelope extends to lower speeds compared to a fixed-wing aircraft.
+For a typical fixed-wing aircraft (blue region), there is a stall speed, but it can achieve higher speeds and altitudes compared to a rotary-wing aircraft.
+However, transition-capable aircraft combine both of these flight characteristics. As shown in the green region, they possess an extended Flight Envelope that blends and mitigates the limitations of both rotary-wing and fixed-wing aircraft.</p>
+<p>The Flight Envelope represents the minimum and maximum speeds at which an aircraft can fly at a given altitude, identifying the feasible altitude–speed range for flight.</p>
+<p>For transition-capable aircraft, the Flight Envelope is derived by extending the Tilt Corridor across different altitudes.</p>
+<p>At each given altitude, the maximum and minimum speeds are determined by considering all possible tilt angles. These two speed limits define the aircraft’s Flight Envelope.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/expansion_of_tilt_corridor.png" alt="Expansion of Tilt Corridor" width="400">
+    <figcaption>Expansion of Tilt Corridor</figcaption>
+  </figure>
+</div>
+<br>
+<p>The figure above illustrates a portion of the Tilt Corridor used to derive the Flight Envelope. At a given speed and altitude, it depicts the Stall Speed, Minimum Speed, and Maximum Speed, which help define the practical Flight Envelope (shown in green).</p>
+<br>
+</section>
+</section>
+</section>
+<section id="mission-analysis-module">
+<h2><strong>Mission Analysis Module</strong><a class="headerlink" href="#mission-analysis-module" title="Link to this heading"></a></h2>
+<p>Mission performance consists of three parts: (1) maximum range mission, (2)maximum endurance mission, and (3) a given flight mission profile (also known as mission fuel calculation).</p>
+<p>Mission fuel calculation looks at the entire mission profile, which results in the range and endurance capability for a given payload and given fuel or SoC (State of Charge) amount. Mission performance is calculated for climb, cruise, descent, hovering, transition, and vertical take-off and landing conditions. For calculating mission fuel or SoC required, the input must be provided from the mission profile. An example of a mission profile is explained in the following section.</p>
+<br>
+<section id="mission-profile-analysis">
+<h3>Mission Profile Analysis<a class="headerlink" href="#mission-profile-analysis" title="Link to this heading"></a></h3>
+<p>A <strong>mission profile</strong> can be imported in a *.csv format. The mission.xls mission profile is also shown in the figure below. An example mission profile can be seen in the figure:</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/mission_inputprof.png" alt="Mission Profile" width="600">
+    <figcaption>Mission Profile</figcaption>
+  </figure>
+</div>
+<br>
+<p>Mission profile analysis calculates the mission fuel required, SoC, mission range, and mission endurance at a given mission profile input. A fixed-point iteration is implemented to estimate the required fuel mass to complete the mission defined by the mission profile. It provides the output for each mission segment and for the entire mission profile. A detailed mission analysis is shown in the figure below:</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/MissionProfileAnalysis.drawio.png" alt="Mission Analysis Flow Chart" width="400">
+    <figcaption>Mission Analysis Flow Chart</figcaption>
+  </figure>
+</div>
+<br>
+</section>
+<section id="mission-segment-analysis">
+<h3>Mission Segment Analysis<a class="headerlink" href="#mission-segment-analysis" title="Link to this heading"></a></h3>
+<p>Each mission is composed of several mission segments. Each mission profile segment is defined by several parameters listed below. Total fuel mass is the sum of the fuel mass required for each segment. The mission starts with full fuel, and burned fuel is subtracted at each segment.</p>
+<p>Discrete segments are used to analyze each of the mission segments to obtain accurate data for each discipline, as well as range and endurance. Linear interpolation is used between the start and end points of the given mission input. The linear interpolation is shown in the figure below:</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/liner_segments.png" alt="Linear Interpolation" width="400">
+    <figcaption>Linear Interpolation</figcaption>
+  </figure>
+</div>
+<br>
+<p><span class="math notranslate nohighlight">\(Y\)</span> value is the input value depending on the mission profile input. It will break the segment into discrete segments based on a given <span class="math notranslate nohighlight">\(n_{seg}\)</span>.</p>
+<br>
+<section id="cruise-segment">
+<h4>Cruise Segment<a class="headerlink" href="#cruise-segment" title="Link to this heading"></a></h4>
+<p>Cruise segment analysis methodology examines a given speed, altitude, and distance from the input mission profile and provides the required fuel, SoC, energy, range, and endurance. In addition, all the analysis data are stored according to the time history for mission simulation. For the cruise segment, it is assumed that the aircraft is in steady-level flight.</p>
+<br>
+</section>
+<section id="loiter-segment">
+<h4>Loiter Segment<a class="headerlink" href="#loiter-segment" title="Link to this heading"></a></h4>
+<p>Loiter segment analysis calculates the required fuel for a given loiter time. It is also assumed that loitering operates in a steady-level-flight condition.</p>
+<br>
+</section>
+<section id="climb-and-descent-segment">
+<h4>Climb and Descent Segment<a class="headerlink" href="#climb-and-descent-segment" title="Link to this heading"></a></h4>
+<p>Climb and descent segment analysis methodology calculates the fuel required at a given altitude and speed from the mission profile.
+For climb analysis, the default input throttle setting <span class="math notranslate nohighlight">\(\delta_{t}\)</span> is set as 100%.
+For descent analysis, the default input throttle setting <span class="math notranslate nohighlight">\(\delta_{t}\)</span> is set as 0%.</p>
+<br>
+</section>
+<section id="vertical-take-off-and-landing-segment">
+<h4>Vertical Take-Off and Landing Segment<a class="headerlink" href="#vertical-take-off-and-landing-segment" title="Link to this heading"></a></h4>
+<p>VTOL takeoff and landing segment analysis methodology calculates the SoC and energy required at a given altitude and speed from the mission profile.</p>
+<br>
+</section>
+<section id="hover-segment">
+<h4>Hover Segment<a class="headerlink" href="#hover-segment" title="Link to this heading"></a></h4>
+<p>Hovering segment analysis follows the same logic as the loiter analysis. It calculates the required SoC and energy for a given altitude and hover time.</p>
+<br>
+</section>
+<section id="transition-segment">
+<h4>Transition Segment<a class="headerlink" href="#transition-segment" title="Link to this heading"></a></h4>
+<p>Transition segments for forward transition and backward transition are analyzed at a given altitude, as an altitude-hold transition, and calculate the required SoC and energy for that altitude.</p>
+<br>
+</section>
+</section>
+<section id="mission-analysis">
+<h3>Mission Analysis<a class="headerlink" href="#mission-analysis" title="Link to this heading"></a></h3>
+<p>Mission range and endurance are optimized by accounting for climb, cruise, and descent segments. An example mission profile can be seen in the figure below:</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/cruise_mission.png" alt="Example of Cruise Mission" width="400">
+    <figcaption>Example of Cruise Mission</figcaption>
+  </figure>
+</div>
+<br>
+<section id="maximum-endurance-mission">
+<h4>Maximum Endurance Mission<a class="headerlink" href="#maximum-endurance-mission" title="Link to this heading"></a></h4>
+<p>A maximum endurance mission is calculated as the endurance the aircraft can achieve by cruising at maximum specific endurance conditions. To achieve the maximum endurance, the aircraft <span style="color:rgb(24, 80, 145);">climbs with the most economical climb condition, cruises with maximum specific endurance, and then descends with the minimum sink rate condition.</span></p>
+<p>For fuel powered aircraft,</p>
+<div class="math notranslate nohighlight">
+\[ E_{max}=\int_{m_{f_{init}}}^{m_{f_{final}}} SE_{max} \,dm_{f} \]</div>
+<p>For battery powered aircraft,</p>
+<div class="math notranslate nohighlight">
+\[ E_{max}=\int_{SOC_{f_{init}}}^{m_{SOC_{final}}} SE_{max} \,dSOC \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(E_{max}\)</span> : Maximum endurance</em> <br>
+<em>- <span class="math notranslate nohighlight">\(m_{f_{init}}\)</span> : Initial fuel mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(m_{f_{final}}\)</span> : Final fuel mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(SE{max}\)</span> : Maximum specific endurance</em> <br>
+<em>- <span class="math notranslate nohighlight">\(m_{f}\)</span> : Fuel mass</em> <br>
+*- <span class="math notranslate nohighlight">\(SOC\)</span> : State of charge of battery</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Climb from sea level to cruise altitude with most economical climb condition</p></li>
+<li><p>Cruise at given altitude with maximum SE condtion until fuel mass is becomes 5% of initial fuel</p></li>
+<li><p>Descent from cruise altitude to sea level with minimum sink rate condition</p></li>
+</ul>
+<br>
+</section>
+<section id="maximum-range-mission">
+<h4>Maximum Range Mission<a class="headerlink" href="#maximum-range-mission" title="Link to this heading"></a></h4>
+<p>A maximum range mission is calculated as the range that an aircraft can cover by cruising at maximum specific air range conditions. To achieve the maximum range, the aircraft <span style="color:rgb(24, 80, 145);">climbs with the steepest climb condition, cruises with maximum specific air range, and descends with the minimum glide angle condition.</span></p>
+<p>For fuel powered aircraft,</p>
+<div class="math notranslate nohighlight">
+\[ R_{max}=\int_{m_{f_{init}}}^{m_{f_{final}}} SAR_{max} \,dm_{f} \]</div>
+<p>For battery powered aircraft,</p>
+<div class="math notranslate nohighlight">
+\[ R_{max}=\int_{SOC_{f_{init}}}^{m_{SOC_{final}}} SAR_{max} \,dSOC \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(R_{max}\)</span> : Maximum range</em> <br>
+<em>- <span class="math notranslate nohighlight">\(m_{f_{init}}\)</span> : Initial fuel mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(m_{f_{final}}\)</span> : Final fuel mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(SAR_{max}\)</span> : Maximum specific air range</em> <br>
+<em>- <span class="math notranslate nohighlight">\(m_{f}\)</span> : Fuel mass</em> <br>
+*- <span class="math notranslate nohighlight">\(SOC\)</span> : State of charge of battery</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Climb from sea level to cruise altitude with steepest climb condition</p></li>
+<li><p>Cruise at given altitude with maximum SAR condtion until fuel mass is becomes 5% of initial fuel</p></li>
+<li><p>Descent from cruise altitude to sea level with minimum descent angle condition</p></li>
+</ul>
+<br></section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

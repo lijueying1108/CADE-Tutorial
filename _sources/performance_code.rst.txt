@@ -1,0 +1,59 @@
+Performance analysis code manual
+================================
+
+This is the performance analysis code manual.
+
+
+.. automodule:: adsp.performance.performance
+
+.. autoclass:: adsp.performance.performance.PerformanceAnalysis
+    :members:
+    :special-members: __init__,
+
+
+.. autoclass:: adsp.performance.performance.SteadyLevelFlight
+    
+.. autofunction:: adsp.performance.performance.SteadyLevelFlight._run_steady_level_flight_at_given_condition
+.. autofunction:: adsp.performance.performance.SteadyLevelFlight._run_max_TAS
+.. autofunction:: adsp.performance.performance.SteadyLevelFlight._run_maximum_SAR
+.. autofunction:: adsp.performance.performance.SteadyLevelFlight._run_maximum_SE
+.. autofunction:: adsp.performance.performance.SteadyLevelFlight._run_stall_speed
+
+.. autoclass:: adsp.performance.performance.ClimbAndDescent
+    
+.. autofunction:: adsp.performance.performance.ClimbAndDescent._run_rate_of_climb
+.. autofunction:: adsp.performance.performance.ClimbAndDescent._run_fastest_climb
+.. autofunction:: adsp.performance.performance.ClimbAndDescent._run_steepest_climb
+.. autofunction:: adsp.performance.performance.ClimbAndDescent._run_most_economical_climb
+.. autofunction:: adsp.performance.performance.ClimbAndDescent._ceiling
+.. autofunction:: adsp.performance.performance.ClimbAndDescent._get_absolute_ceiling
+.. autofunction:: adsp.performance.performance.ClimbAndDescent._get_service_ceiling
+.. autofunction:: adsp.performance.performance.ClimbAndDescent._run_rate_of_descent    
+.. autofunction:: adsp.performance.performance.ClimbAndDescent._run_min_sink_rate
+.. autofunction:: adsp.performance.performance.ClimbAndDescent._run_min_glide_angle  
+
+.. autoclass:: adsp.performance.performance.AxialFlight
+
+.. autofunction:: adsp.performance.performance.AxialFlight._run_hovering
+.. autofunction:: adsp.performance.performance.AxialFlight._run_vtol_at_given_throttle
+.. autofunction:: adsp.performance.performance.AxialFlight._run_axial_climb
+.. autofunction:: adsp.performance.performance.AxialFlight._run_axial_descent
+.. autofunction:: adsp.performance.performance.AxialFlight._run_OGE_ceiling
+
+.. autoclass:: adsp.performance.performance.TransitionFlight
+
+.. autoclass:: adsp.performance.performance.Set_Performance_Result
+
+
+
+
+
+
+
+
+ 
+    
+
+
+
+

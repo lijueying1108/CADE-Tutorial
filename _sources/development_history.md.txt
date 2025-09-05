@@ -1,0 +1,39 @@
+# Development History
+
+ADSP development has started 15+ years ago. During this period many
+analysis methods were developed and used for academic and industry
+projects.
+
+The New ADSP development restarted in August 2021. Centralized software
+development system was created. The aim of The New ADSP is to release
+a leading product for aircraft analysis, design and optimization.
+
+The New ADSP has continuous development, delivery and continuous
+version numbering.
+
+## Old Versions
+
+The current version is written in Python 3. The older ADSP versions are
+listed below.
+
+1. Set of codes and scripts written mainly in Fortran.
+
+2. Integrated analysis framework written in MATLAB. This version got
+major upgrade incorporating propeller analysis, optimization with
+uncertainties and other advanced features. The code was primarily used
+for design of KLA-100 aircraft.
+
+3. Fully rewritten in Python 2.7 with internal name of actools (aircraft
+toolbox).
+
+4. actools has multiple forks developed for different projects
+performed by KADA
+   - UCAV
+   - fighter jet
+   - eVTOL
+   - Hydrogen powered eVTOL
+
+5. The New ADSP (current version) is a code with fully revised
+development environment and software architecture. This version has
+inherited analysis methods from actools-hyfly (Hydrogen Fuel Cell
+powered eVTOL-UAV)

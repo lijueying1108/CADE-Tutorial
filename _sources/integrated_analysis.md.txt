@@ -1,0 +1,6 @@
+# Integrated analysis
+
+this document will summarize the integrated analysis process 
+with examples and links to other modules
+
+The code manual is available [here](propulsion_user.md)

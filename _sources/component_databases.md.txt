@@ -1,0 +1,91 @@
+# Database
+
+This page describes the databases required to perform the Multi-Disciplinary Analysis (MDA) and Design Evaluation modules inside CADE.
+
+While various data and databases are required, they can be categorized into two main groups: aircraft <span style="color:rgb(24, 80, 145);">geometry related data</span> and <span style="color:rgb(24, 80, 145);">propulsion system component related data</span>. The list below shows the data files contained within the data folder, which stores all related databases.
+
+    - aircraft
+    - geometry-related
+        - airfoil
+        - bodyProfile
+    - propulsion-related
+        - battery
+        - controller
+        - converter
+        - energy
+        - esc
+        - fuelCell
+        - fuelTank
+        - gearBox
+        - inverter
+        - motor
+        - propulsion
+        - propeller-related
+            - propAirfoil
+            - propeller
+            - propGeom
+    - constant
+
+## Geometry Database
+
+The databases related to aircraft geometry include the **Airfoil Database** and **Body Profile Database**.
+
+The **Airfoil Database** contains the X and Y coordinate data of various airoils used for aircraft wings.
+
+Example of the airfoil data is shown as below:
+
+|COORDINATES|||||||||
+|------|---|---|---|---|---|---|---|---|
+|X|1|0.99931477|0.99726095|0.99384417|...|0.99726095|0.99931477|1|
+|Y|0|0.00009697|0.00038712|0.0008682|...|-0.00038712|-0.00009697|0|
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/airfoil_coordinate.png" alt="Airfoil Coordinate" width="600">
+    <figcaption>Airfoil Coordinate</figcaption>
+  </figure>
+</div>
+
+Airfoil data is typically normalized with values ranging between 0 and 1. The X coordinates generally start from 1, decrease to 0, and then increase back to 1. This means the coordinates represent the airfoil profile starting from the **trailing edge (X=1)**, passing through the **leading edge (X=0)**, and returning to the **trailing edge (X=1)**.
+
+<br>
+
+Similarly, the **Body Profile Database** includes the coordinate data for the side and top profiles of body-type geometries.
+
+Example of the body profile data is shown as below:
+
+|SideProfile_pts|60|||||||||
+|---|---|---|---|---|---|---|---|---|---|
+|SideProfile_X|7|6.751425|6.502851|...|0.170293|0.023928|...|6.751815|7
+|SideProfile_Y|0.65|0.65|0.65|...|0.150837|-0.048357|...|0.514886|0.52695
+|TopProfile_pts|30|
+|TopProfile_X|0|0.118802|0.314641|...|6.748294|7|
+|TopProfile_Y|0|0.215661|0.373104|...|0.103258|0.099474|
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/bodyProfile_coordinate.png" alt="Body Profile Coordinate" width="600">
+    <figcaption>Body Profile Coordinate</figcaption>
+  </figure>
+</div>
+
+Body profile data requires a format similart to that of airfoil data, but with an additional specification of the number of coordinate points. The number of points for `SideProfile_pts` and `TopProfile_pts` may be equal or different to each other. 
+
+For the **side profile**, the coordinates must follow a structure similar to an airfoil; starting from the rear-end of the body, proceeding to the front-tip, and returning back to the rear-end. Therefore, it is oftern convenient to define the number of `SideProfile_pts` as twice the number of `TopProfile_pts` to facilitate symmetric input of coordinate points.
+
+In contrast, the **top profile** is defined by sequencially inputting X and Y coordinate values from the front of the body to the rear, without the need to return to the starting point.
+
+<br>
+
+## Propulsion Database
+
+
+#  Mission Profile
+
+This section describes how to set up a mission profile. Users can define any custom mission profile according to their needs.
+
+The mission profile input data can be found at:
+
+**data/mission_input/mission.xlsx**
+
+How to setup mission profile is shown in [here](mission_profile.rst)

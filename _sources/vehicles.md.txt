@@ -1,0 +1,15 @@
+# Vehicles
+
+Complete list of supported frames and technologies.
+
+## Vehicle type
+
+- fixed wing UAV
+- eVTOL UAV
+  
+## Technology
+
+- electric battery
+- hydrogen fuel cell
+- Brushless DC motor
+- Fixed pitch propeller

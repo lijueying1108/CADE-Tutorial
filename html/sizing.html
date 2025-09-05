@@ -1,0 +1,214 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sizing &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Multi-Disciplinary Analysis (MDA)" href="multi_disciplinary_analysis.html" />
+    <link rel="prev" title="Concept Development" href="concept_dev.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sizing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-aircraft-sizing">What is Aircraft Sizing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#available-vehicles">Available Vehicles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#program-structure">Program Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-files">Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sizing-input">&gt; Sizing Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mission-profile">&gt; Mission Profile</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#manuals">Manuals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sizing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sizing.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="sizing">
+<h1>Sizing<a class="headerlink" href="#sizing" title="Link to this heading"></a></h1>
+<p>This section explains about aircraft sizing module inside CADE platform.</p>
+<br>
+<section id="what-is-aircraft-sizing">
+<h2>What is Aircraft Sizing<a class="headerlink" href="#what-is-aircraft-sizing" title="Link to this heading"></a></h2>
+<p><strong>Aircraft Sizing</strong> is one of the early design processes that make conceptual sketch of aircraft to be parameterized. After Concept Development Stage, aircraft has its only sketch, without any dimensional parameter such as size of Wing(Area, Span, etc.), Rotor(Radious, Chord, etc.), Weight(Structural, Motor, Battery, etc.). With some non-dimensional and technical assumption value, aircraft’s early specification can be determinined. After Sizing process, aircraft can be developed from conceptual level to early design level.</p>
+<br>
+</section>
+<section id="installation-and-setup">
+<h2>Installation and Setup<a class="headerlink" href="#installation-and-setup" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="installation_and_setup.html"><span class="std std-doc">Installation and Setup for CADE-Sizing</span></a></p></li>
+</ul>
+<br>
+</section>
+<section id="available-vehicles">
+<h2>Available Vehicles<a class="headerlink" href="#available-vehicles" title="Link to this heading"></a></h2>
+<p>Vehicle types available for CADE Sizing are listed below :</p>
+<p><strong>Power Train Type</strong></p>
+<ul class="simple">
+<li><p>Battery</p></li>
+<li><p>Hydrogen Fuel Cell</p></li>
+<li><p>Hybrid (Battery + Hydrogen Fuelcell)</p></li>
+</ul>
+<p><strong>Flight Mode Type</strong></p>
+<ul class="simple">
+<li><p>VTOL (Vertical Take-Off and Landing)</p>
+<ul>
+<li><p>Multicopter Type</p></li>
+<li><p>Tilting Type (All rotor Tilt, Portion of Rotor Tilted)</p></li>
+<li><p>Lift + Cruise Type</p></li>
+</ul>
+</li>
+<li><p>CTOL (Conventional Take-Off and Landing)</p></li>
+</ul>
+<br>
+</section>
+<section id="program-structure">
+<h2>Program Structure<a class="headerlink" href="#program-structure" title="Link to this heading"></a></h2>
+<p>You can find program structure at the link below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="sizing_program_structure.html"><span class="std std-doc">Program Structure of CADE-Sizing</span></a></p></li>
+</ul>
+<br>
+</section>
+<section id="input-files">
+<h2>Input Files<a class="headerlink" href="#input-files" title="Link to this heading"></a></h2>
+<p>There are two main input files to run CADE Sizing.</p>
+<section id="sizing-input">
+<h3>&gt; Sizing Input<a class="headerlink" href="#sizing-input" title="Link to this heading"></a></h3>
+<p>The first one is <strong>‘Sizing Input File’</strong>, which contains information about conceptual and technological informations.</p>
+<ul class="simple">
+<li><p>How the <strong>‘Conceptual layout’</strong> looks like?</p></li>
+<li><p>How good is the <strong>‘Assumed Aerodynamic characteristic’</strong>?</p></li>
+<li><p>How good is the <strong>‘Assumed technology of Propulsion components’</strong>?</p></li>
+<li><p>How good is the <strong>‘Assumed technology of Energy components’</strong>?</p></li>
+<li><p>How heavy are the <strong>‘Payload mass and Assumed portion of aircraft’</strong>?</p></li>
+</ul>
+<p>You can find more detailed explanations and examples of sizing input files at the link below :</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="sizing_input_example.html"><span class="std std-doc">Sizing Input examples</span></a></p></li>
+</ul>
+</section>
+<section id="mission-profile">
+<h3>&gt; Mission Profile<a class="headerlink" href="#mission-profile" title="Link to this heading"></a></h3>
+<p>Another input file required for the sizing is the <strong>‘Mission Profile’</strong>, which contains information about expected mission of aircraft.</p>
+<p>This file include the <span style="color:rgb(24, 80, 145);">(1) type of mission segment, (2) altitude, (3) speed, (4) time and (5) degree of hybridization.</span></p>
+<p>You can find more detailed explanations and examples of mission profile input files at the link below :</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="sizing_mission_profile.html"><span class="std std-doc">Mission Input examples</span></a></p></li>
+</ul>
+<br>
+</section>
+</section>
+<section id="manuals">
+<h2>Manuals<a class="headerlink" href="#manuals" title="Link to this heading"></a></h2>
+<p>You can check more detailed explanations about the theoretical backgrounds (Theory Manual) and how to run the analysis (User Manual) of CADE Sizing program at the link below :</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="sizing_theory.html"><span class="std std-doc">Sizing Theory Manual</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="concept_dev.html" class="btn btn-neutral float-left" title="Concept Development" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multi_disciplinary_analysis.html" class="btn btn-neutral float-right" title="Multi-Disciplinary Analysis (MDA)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

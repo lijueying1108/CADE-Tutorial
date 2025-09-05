@@ -1,0 +1,1317 @@
+# **Sizing Theory Manual**
+
+This is a theory manual for sizing program inside CADE.
+
+It is written by referring to the books:
+
+> [1] General Aviation Aircraft Design : Applied Methods and Procedures by Snorri Gudmundsson
+
+> [2] Aircraft Design : A Conceptual Approach (6th Edition) by Daniel P. Raymer
+
+> [3] VTOL Urban Air Mobility Concept Vehicles for Technology Development by Christopher Silva, AiAA Aviation Forum (2018)
+
+> [4] Helicopter Flight Physics by Constantin Rotaru and Michael Todorov (2017)
+
+> [5] Generic Design Methodology for Vertical Takeoff and Landing Aircraft with Hybrid-Electric Propulsion by Donguk Lee, Daejin Lim, and Kwanjung Yee, Journal of Aircraft (2022)
+
+> [6] An Initial Sizing Methodoligy for Hybrid-Electric Light Aircraft by D. Felix. Finger, Carsten Braun, and Cees Bil, AIAA Aviation Forum (2018)
+
+<br>
+
+## **Sizing**
+During the aircraft’s initial and conceptual design phase, the sizing module aims not only to <span style="color:rgb(24, 80, 145);">determine the aircraft’s shape and dimensions</span> but also to <span style="color:rgb(24, 80, 145);">derive the propulsion system’s size and required performance, as well as to predict the aircraft’s expected weight.</span>
+
+This sizing program can be used for sizing of Regional Air Mobility (RAM) and Urban Air Mobility (UAM) vehicles equipped with electric propulsion systems. 
+
+RAM is based on a Conventional Takeoff and Landing system, while UAM is based on a Vertical Takeoff and Landing system. Furthermore, UAM can be broadly classified into Lift+Cruise (LC), Tilting, and Partial Tilting types.
+
+<br>
+
+### Goal of Sizing Module
+As written above, the goal of CADE-Sizing module will be as following :
+
+> 1. Estimate aircraft's initial size and weight without any specific configuration parameters
+> 2. Estimate and predict required performance or spec of aircraft's propulsion system
+
+<br>
+
+### Sizing Module Structure
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/ram_uam_sizing_data_flow.png" alt="Sizing Program Data Flow" width="600">
+    <figcaption>Sizing Program Data Flow</figcaption>
+  </figure>
+</div>
+
+<br>
+
+Sizing program is divided into two main loop: 1)Analysis loop and 2)Sizing loop. Analysis loop is introduced considering the further development for various fidelity integration(Low/Mid/High Fidelity). 
+Sizing program includes aircraft configuration and aerodynamic processing, performance analysis, propulsion system mass calcualtion, mission analysis, energy mass calculation and maximum takeoff mass calcualtion. In addition, cost can also be estimated.
+
+- **Config/Aero Processing**
+  - Configuration Processing
+    - Correction for Unconventional Configuration
+      - Tandem Wing, Box Wing
+      - Blended Wing body, Blended wing body with Tandem Wing
+  - Aerodynamics Processing
+- **Performance Analysis**
+  - Conventional Flight Mode
+    - Cruise Performance
+      - Maximum Speed Calculation
+      - Maximum Endurance Speed Calculation
+      - Maximum Range Speed Calculation
+    - Climb Performance
+      - Maximum Rate of Climb
+      - Service Ceiling
+    - Descent Performance
+    - One Engine Inoperative (OEI) Climb
+    - Field Performance
+      - Take-Off Field Length
+      - Landing Field Length
+  - Vertical Flight Mode
+    - Hover
+      - Hover with Control Margin
+    - Vertical Climb
+    - Vertical Descent
+    - One Engine Inoperative (OEI) in Vertical Flight
+- **Propulsion System Mass Calculation**
+  - Rotor and Propeller Sizing
+    - Rotor Sizing
+    - Propeller Sizing
+  - Motor Sizing
+  - Controller Sizing
+- **Mission Analysis**
+  - Energy Module
+- **Energy System Mass Calculation**
+  - Battery Sizing
+  - Fuel Cell Sizing
+  - Tank Sizing
+- **Maximum Take-Off Mass Calculation**
+  - Mass Convergence
+- **Optimization**
+
+- **Appendix**
+  - Result
+    - Payload Range Diagram
+      - Payload Range Diagram for Battery
+      - Payload Range Diagram for Hydrogen Fuel Cell
+      - Payload Range Diagram for Hybrid
+
+<br>
+
+## **Config/Aero Processing**
+
+### Configuration Processing
+The configuration module takes input from input file and process module to calculate some of the aircraft configuration parameter(i.e. wingspan, wing area, aspect ratio).
+
+$$ S = W \: W/S $$
+$$ b = \sqrt{AR\cdot{S}} $$
+
+*Where,*
+
+> *- $S$ : Wing area* <br>
+> *- $W/S$ : Wing loading* <br>
+> *- $b$ : Wingspan* <br>
+> *- $AR$ : Aspect ratio*
+
+<br>
+
+#### Correction for Unconventional Configuration
+
+<br>
+
+<span style="color:rgb(6, 137, 170);">**Tandem Wing , Box Wing**</span>
+
+``Box Wing Fundamentals - An Aircraft Design Perspective``
+
+An equivalent assumption for tandem wing, and box wing is shwon in below figure.
+Aerodynamics parameters of tandem and box-wing will be estimated as same configuraitons. 
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/Tandem.png" alt="Tandem Wing Geometry Calculation" width="400">
+    <figcaption>Tandem Wing Aircraft Assumption</figcaption>
+  </figure>
+</div>
+
+<br>
+
+For the aspect ration of the box wing, it can be calculated as below :
+
+$$AR = \frac{b^2}{S_{front}+ S_{rear}} = \frac{b^2}{S}$$
+
+The empty fraction of tandem wing and box-wing increases about 23% compared to conventional configurtion aircraft. 
+
+$$\frac{m_{w,box}}{m_{w_{ref}}}=2^{0.3} = 1.23$$
+
+$$MF_{struct_{box/tandem}} = MF_{struct_{ref}} (1 + 0.23)$$
+
+Oswald efficiency of tandem and box-wing can be estimated as,
+ 
+$$ e_{box/tandem} = e_{ref}\frac{0.44+2.219\cdot{h/b}}{0.44+0.9594\cdot{h/b}} $$
+
+$$ C_{l_{total}} = C_{L_{front}}\cdot{s_1} + C_{L_{rear}}\cdot{s_2} $$
+
+$$ s_1 = \frac{S_{front}}{S_{front} + S_{rear}} $$
+
+$$ s_2 = \frac{S_{rear}}{S_{front} + S_{rear}} $$
+
+*Where,*
+
+> *- $e_{ref}$ : Reference oswlad efficiency of conventional aircraft* <br>
+> *- $h/b$ : Ratio of gap bewteen two wings and span* 
+
+<br>
+
+<span style="color:rgb(6, 137, 170);">**Blended Wing Body , Blended Wing Body with Tandem Wing**</span>
+
+An equivalent assumption for blended wing body configuration is shown in below figure :
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/BWB_Tandem.png" alt="BWB and BWB + Tandem Wing Geometry Calculation" width="400">
+    <figcaption>Blended Wing Body Aircraft Assumption</figcaption>
+  </figure>
+</div>
+
+<br>
+
+For Blended Wing Body (BWB) configurations, $b_{out}$ is outer wing span and $w_{body}$ is the body width. The total wingspan can be calculated by the combination of those two parameters.
+
+The area ratio is implimented, assuming that total ratio value of area should be unity. 
+
+$$ s_{body} + s_{out_{1}} + s_{out_{2}} = 1 $$
+
+In addition, for the simiplicity of user input, the area_ratio_wing ($s_{out}$) as input and the outer wing area ratio are re-calculated. 
+
+$$ s_{out_{1}} + s_{out_{2}} = 1 - s_{body} $$
+
+The area of two outer wing is assumed to have the same ratio, therefore, the area ratio for two different wing are calculated as below :
+
+$$ s_{out_{1}} = s_{out_{2}} = (1-s_{body})/2 $$
+
+The body area ratio ($s_{body}$) is re-calculated as,
+
+$$s_{body} = 1- 2 s_{out} $$
+
+span of outer wing can be calculated based on the area of outer wing and aspect ratio.
+
+$$b_{out} = \sqrt{AR_{wing} S_{out}}$$
+
+If the (area_ratio_wing ($s_{out}$)) is not given in the input file for BWB configuration, the default values will be assumed as $s_{body} = 0.4$, $s_{out_{1}} = 0.3$ and $s_{out_{2}} = 0.3$.
+
+<br>
+
+### Aerodynamics Processing
+Aerodynamics module analyze the drag polar, lift and drag at given flight condition. Induced factor $k$ is calculated as below and it is used to calculate drag coefficient. 
+
+$$ k = \frac{1}{\pi\cdot{e}\cdot{AR}} $$
+
+*Where,*
+
+> *- $k$ : Induced factor* <br>
+> *- $e$ : Oswald efficienft* <br>
+> *- $AR$ : Aspect ratio*
+
+<br>
+
+For the clean configuration airccraft, drag coefficient can be calculated from given lift coefficient value : 
+
+$$ C_{D} = C_{D_{0}}\ + \ k \ C_{L}^2 $$
+
+Above equation is used for calculating clean configuration drag polar.
+
+*Where,*
+
+> *- $k$ : Induced factor* <br>
+> *- $e$ : Oswald efficiency* <br>
+> *- $AR$ : Aspect ratio*
+
+<br>
+
+## **Performance Analysis**
+
+### Conventional Flight Mode
+
+#### Cruise Performance
+A cruise performance is analyze based on the equation of motion. 
+First, lift required is calculated based on the weight of aircraft. Then, the lift coefficient is calculated using cruise speed and flight altitude.
+
+$$ L = W $$
+
+$$ C_{L_{req}} = \frac{2L}{\rho{S}V}$$
+
+The $C_{L_{req}}$ is used to estimated the required thrust, based on the calculated drag from the aerodynamics module. Resulting aerodynamics drag is imported to the propulsion module as thrust required which satisfy the steady flight equation. 
+
+$$ C_D = C_{D_0}+k\cdot{C_{L}^2} $$
+$$ D = qSC_D $$
+$$ T_{req} = D $$
+$$ P_{req} = \frac{T_{req}V}{\eta_{p_{cruise}}} $$
+
+*Where,*
+
+> *- $\rho$ : Dynamic Pressure* <br>
+
+$\eta_{p_{cruse}}$ is typically assume between $0.8-0.9$ for all type of propellers.
+
+<br>
+
+<span style="color:rgb(6, 137, 170);">**Maximum Speed Calculation**</span>
+
+Maximum speed is solved numarically by finding the root of equation with the design varaible of airspeed by giving below condition.
+
+$$ P_{req}(V) = P_{avl}(V) $$
+
+*Where,*
+
+> *- $P_{avl}$ is calculated from $P/W$* <br>
+> *- $P_{req}$ is calculated based on $W/S$ and aerodynamics coefficeint* 
+
+<br>
+
+<span style="color:rgb(6, 137, 170);">**Maximum Endurance Speed Calculation**</span>
+
+Maximum endurance speed for propeller aircraft can be found at minimum power consumption condition.
+
+$$ V_{E_{max}} = \sqrt{\frac{2}{\rho}\cdot{\frac{W}{S}}\sqrt{\frac{k}{3C_{D_0}}}} $$
+
+<small>*\*Ref.레퍼런스 표기*</small>
+
+<br>
+
+<span style="color:rgb(6, 137, 170);">**Maximum Range Speed Calculation**</span>
+
+Maximum range speed for propeller aircraft can be found at minimum drag condition. 
+
+$$ V_{R_{max}} = \sqrt{\frac{2}{\rho}\cdot{\frac{W}{S}}\sqrt{\frac{k}{C_{D_0}}}} $$
+
+<small>*\*Ref.레퍼런스 표기*</small>
+
+<br>
+
+#### Climb Performance
+
+Climb performance is also analyzed based on the equation of motion. First, required lift is calcuated based on the aircraft weight and then, aerodynamics drag is estimated based on the requied lift. After that, rate of climb is calculated with the input power setting.
+
+Propeller efficiency at the climb condition for typical values are, 
+
+$0.65-0.70$ for fixed-pitch "climb" propeller,\
+$0.55-0.65$ for fixed-pitch "cruise" propeller,\
+$0.65-0.70$ for constant-speed propeller.\
+$T$ is set as 100% power setting as initial condition.
+
+<small>*\*Ref.레퍼런스 표기*</small>
+
+
+$$ T = \frac{P/W\cdot{\eta_{p_{climb}}}}{V} $$
+$$ L = W\cos\theta $$
+$$ C_{L_{req}} = \frac{2L}{\rho{SV}}$$
+$$ C_D = C_{D_0}+k\cdot{C_{L}^2} $$
+$$ D = qSC_{D} $$
+$$ ROC_{max} = \frac{(T-D)V}{W} $$
+$$ \theta = \sin^{-1}(ROC_{max}) $$
+$$ G = \tan\theta $$
+
+*Where,*
+
+>
+
+Above equations are solve numerically until $\theta$ is convergenced by newton-rapson method.
+
+<br>
+
+<span style="color:rgb(6, 137, 170);">**Maximum Rate of Climb**</span>
+
+Maximum climb condition can be found, at maximum excess power condition and the airspeed at that condidtion is given as,
+
+$$ V_{ROC_{max}} = \sqrt{\frac{2}{\rho}\cdot{\frac{W}{S}}\sqrt{\frac{k}{3C_{D_0}}}}$$
+
+<span style="color:rgb(6, 137, 170);">**Service Ceiling**</span>
+
+Service ceiling is the altitude when the maximum rate of climb is equal to 0.5 m/s. 
+
+<small>*\*Ref.레퍼런스 표기*</small>
+
+Therefore, altitude is increase until the rate of climb is become 0.5 m/s by running maximum rate of climb condition. 
+
+$$ h_{service} = f_{roc_{max}}(V_{ROC_{max}}=0.5) $$
+
+<br>
+
+#### Descent Performance
+
+Descent performance is also solve the same manar as the climb performance but the power setting is set as 10% of idle thrust but in most paper, descent performance is assume to be glide condition meaning the no power is using at the descent condition.
+
+<br>
+
+#### One Engine Inoperative (OEI) Climb
+
+One engine incoperative climb is solve the same with the climb analysis, but just multiplying one OEI factor,
+
+$$ P/W_{OEI} = \frac{N}{N-1}{P/W} $$
+
+<br>
+
+#### Field Performance
+
+Field performance include take-off and landing performance. Take-off and landing performance is the most critical part and it is also related with certification requirements.
+
+<br>
+
+<span style="color:rgb(6, 137, 170);">**Take-Off Field Length**</span>
+
+Take-off distance can be divided into four segments, ground roll, rotation, transition, and climb out segments.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/takeoff_distance.jpg" alt="Take-Off Distance" width="400">
+    <figcaption>Take-Off Distance</figcaption>
+  </figure>
+</div>
+
+<br>
+
+Ground roll segment is calculated as below,
+
+$$ V_{lift-off} = 1.2V_{stall} $$
+
+$$V _{stall_{TO}} = \sqrt{\frac{2(W/S)}{\rho{C_{L_{max}}}}} $$
+
+During the ground roll, the speed is assumed to as the average speed from $V=0$ to $V_{lift-off}$ speed. 
+
+$$ V_{field} = \frac{V_{lift-off}}{\sqrt{2}} $$
+
+$$ S_G = \frac{V_{lift-off}^2{W}}{2g(T-D-\mu(W-L))} $$
+
+Thrust ($T$) is estimated from power loading values and the power setting at the take-off condition can be set as 95% of full power or 100% of the full power.
+
+$$ T = P/W\cdot\frac{\eta_{p_{TO}W}}{V} $$
+
+Propeller efficiency at the take-off condition is,
+
+$0.45-0.5$ for fixed pitch climb propeller \
+$0.35-0.45$ for fixed pitch cruise propeller \
+$0.45-0.6$ for constant speed propeller.
+
+<small>*\*Ref.레퍼런스 표기*</small>
+
+Take-off lift ($L$) is calculated with the input take-off coefficeint assumption. Ground friction coefficient ($\mu$) is depended on ground materials. 
+
+$$ L = qSC_{L_{TO}} $$
+
+$$ D = qSC_{D_{TO}} $$
+
+$C_{L_{TO}}$ and $C_{D_{TO}}$ calculation is given in (aircraft performance an engineering approach)
+
+$$C_{L_{TO}} = C_{L_{cruise}} + \Delta C_{L_{flap}}$$
+
+$$ C_{L_{cruise}} = \frac{2 W}{\rho \ V^2 \ S}$$
+
+$\Delta C_{L_{flap}}$ is the lift increasement due to flap deflection, typical value are,
+
+$0.3-0.5$ for GA aircraft,\
+$0.4-0.7$ for large transport aircraft and\
+$0.4-0.6$ for fighter aircraft.  
+
+<small>*\*Ref.레퍼런스 표기*</small>
+
+<br>
+
+$$ C_{D_{TO}} = C_{D_{0_{TO}}} + k\ C_{L_{TO}}^2 $$
+
+$$ C_{D_{0_{TO}}} = C_{D_0} + \Delta{C_{D_{0_{TO}}}} $$
+
+$\Delta{C_{D_{0_{TO}}}}$ can be generated from both flap and landing gear but typical value are,
+
+$0.0005-0.01$ for general aviaion aircraft,\
+$0.014-0.018$ for small transport aircraft, (eg. business jet)\
+$0.02-0.03$ for large transport aircraft. 
+
+<small>*\*Ref. Aircraft Performance: An Engineering Approach (pg.374)*</small>
+
+<br>
+
+Rotation segment can be calculated from lift-off speed.
+
+For large aircraft, 
+
+$$ S_R = V_{lift-off} $$
+
+For small aircraft, 
+
+$$ S_R = 3V_{lift-off} $$
+
+Transition segment can be calculated from transition radius and initial climb angle. 
+
+$$\theta_{climb} = \sin^{-1}\frac{(T-D_{ab})}{W} $$
+
+$$ S_{TR} = R \sin\theta_{climb} $$
+
+$$ R \approx 0.2156 V_{stall}^2 $$
+
+$D_{ab}$ is the drag at airbone condition, it can be estimated by,
+
+$$C_{L_{ab}} = \frac{C_{L_{max}}}{1.25^2}$$
+
+$$ C_{D_{ab}} = C_{D_{0_{TO}}} + kC_{L_{ab}}^2 $$
+
+<small>*\*Ref. Aircraft Performance: An Engineering Approach (pg.382)*</small>
+
+<br>
+
+Climb out segment can also be calculated from obstacle clearance height and transition height.
+
+$$ h_{TR} = R(1-\cos\theta_{climb}) $$
+
+$$ S_C = \frac{h_{obst} - h_{TR}}{\tan\theta_{climb}} $$
+
+Finally, total take-off distance is the sum of all segment.
+
+$$ S_{TO} = S_G + S_R + S_{TR} + S_C $$
+
+<br>
+
+<span style="color:rgb(6, 137, 170);">**Landing Field Length**</span>
+
+Landing distance is divided into four segment. Approach distance, flare distance, free roll distance and breaking distance.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/landing_distance.jpg" alt="Landing Distance" width="400">
+    <figcaption>Landing Distance</figcaption>
+  </figure>
+</div>
+
+<br>
+
+Approach distance is calculated from descent angle, from powered and unpowered descent.
+
+For unpowered descent,
+
+$$ \tan\theta_{app} = \frac{D}{L}$$
+
+For powered descent,
+
+$$ \sin\theta_{app}  = \frac{D}{W} - \frac{T}{W}$$
+
+Flare height is calculated as,
+
+$$ h_F = R(1-\cos\theta_{app}) \approx 0.1512V_{stall}^2(1-\cos\theta_{app})$$
+
+The approach distance is calcualted as,
+
+$$ S_A = \frac{h_{obst}-h_{F}}{\tan\theta_{app}} $$
+
+Flare distance can be approximapely calculated as,
+
+$$ S_F = R\sin\theta_{app} \approx 0.1512V_{stall}^2\sin\theta_{app} $$
+
+Free-roll segment can be calculated from lift-off speed.
+
+For large aircraft, 
+
+$$ S_{FR} = V_{TD} $$
+
+For small aircraft, 
+
+$$ S_{FR} = 3\ V_{TD} $$
+
+$V_{TD}$ is $1.1 V_{stall}$ for all category of aircraft. 
+
+Breaking distance is calculated from breaking speed and landing configurations.
+
+$V_{BR} = 1.1 V_{stall}$ for all category of aircraft.
+
+Along the breaking distance, average distance from breaking speed to speed as 0 is used.
+
+$$ V_{field} = \frac{V_{BR}^2}{\sqrt{2}} $$
+
+$$ S_{BR} = \frac{V_{BR}^2{W}}{2g(T_{idle}-D_{ldg}-\mu(W-L))} $$
+
+$T_{idle}$ is idle thrust of the propulsion system which is,
+
+$7\%$ of stastic thrust for constant speed and,\
+$5-7\%$ of cruise thrust for fixed-pitch propeller.
+
+<small>*\*Ref. General Aviation Aircraft Design : Applied Methods and Procedure (pg.940)*</small>
+
+<br>
+
+### Vertical Flight Mode
+
+#### Hover
+
+A Hover Performance is analyzed based on the momentum theory. When aircraft is hovering, the equation of motion can be expressed as figure below :
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/hovering_helicopter.png" alt="Hovering Helicopter" width="400">
+    <figcaption>Hovering Helicopter</figcaption>
+  </figure>
+</div>
+
+<br>
+
+The well known equation for hovering power can be expressed as below :
+
+$$ P_{hover} = P_{i,Nonideal}+P_0 $$
+
+$$ v_{i_{hover}} = \sqrt{\frac{T}{2\rho A}}$$
+
+$$v_{i_{hover}} = \sqrt{\frac{(T/W)(W/A)}{2\rho}}$$
+
+$$P_{i,Nonideal} = T(k_{i}v_{i})$$
+
+$k_i$ is induced power correction factor that accounts for any rotor tip losses, non-uniform inflow, wake swirl, non-ideal wake contraction, and the finite number of blades. It has Typical value 1.15 in hovering.
+
+But for more realistic cases, additional thrust to overcome downwash loss from structure(below rotors) is considered.
+
+$$ \Delta{T} = f_w({S/A})T $$
+
+$$ f_w = k_{wet}(\frac{n^2C_{D_{wet}}}{4}) $$
+
+
+*Where,*
+
+> *- $T$ : Rotor thrust* <br>
+> *- $S$ : Wing area* <br>
+> *- $n$ is a factor depending on the vertical distance between the wing and the rotor. Varies on 1 to 2.* <br>
+> *- $C_{D_{wet}}$ : Drag coefficient based on the area wetted by the rotor's downwash.* <br>
+> *- $k_{wet}$ : Expected ratio of the wing/fuselage area wetted by the rotor’s downwash to the total wing area in the rotorcraft flight mode.* <br>
+<small> *This parameter depends on the selected aircraft configuration and can be estimated based on data for similar aircraft. XV-15 has 0.7.*</small>
+
+<br>
+
+Even if there is no wing/fuselage wetted area by the rotor's downwash, if user want to calculate additional thrust, we can consider $k_{wet}$ empherically.
+
+For the simplicity, $\frac{n^2C_{D_{wet}}}{4}$ can be approximated for a value of 0.7 (hardcoded).
+
+In hovering case, 
+
+$$ T=\frac{W}{1-f_{w}(S/A)} $$
+
+$$ \frac{T}{W}=\frac{W}{1-f_{w}[(W/A)/(W/S)]} $$
+
+If $({1-f_{w}[(W/A)/(W/S)]})$ value becomes negative (especially during the optimization process due to the determined values of $W/A$ and $W/S$), you need to adjust parameters such as $k_{fus}$, $k_{diameter}$, $k_{clearance}$, and $k_{wet}$ to ensure it becomes positive.
+
+And the Rotor Profile power, $P_o$, required to overcome the profile drag of the blades is suggested like below :
+
+$$ P_o = \rho AV^3_{tip}(\frac{\sigma{C_{d_{blade}}}}{8}) $$
+
+$$ \frac{P_o}{W} = \rho V^3_{tip}(\frac{\sigma{C_{d_{blade}}}}{8})/(W/A) $$
+
+*Where,*
+
+> *- $V_{tip}$ : Rotor tip speed ($R\Omega$)* <br>
+<small>*It should be considered about rotor tip stall, drag divergence mach number, etc.*</small>
+
+Total hovering power is suggested like $P_{hover} = P_i + P_o$. In this design stage, there are no precise data about a value of design parameters. So using figure of merit(FoM) is worth.
+
+From the upper equations,
+
+$$ \frac{P_{hover}}{W}=\frac{T}{W}(k_{i}v_{i})+\frac{P_o}{W} $$
+
+The well known rotorcraft's performance parameter is called FoM (Figure of Merit).
+
+$$ FoM = \frac{(T/W)v_i}{P_{hover}/W} $$
+
+*Where,*
+
+> *- $W/A$ : Disk loading [$N/m^2$]* <br>
+> *- $W/S$ : Wing loading [$N/m^2$]* <br>
+> *- $\rho$ : Air density* <br>
+> *- $FoM$ : Figure of merit*
+
+<br>
+
+<span style="color:rgb(6, 137, 170);">**Hover with Control Margin**</span>
+
+A control power margin is also consisdered for hover flight condition. Control margin of $50\%$ is suggested. But user can control this value with modifying input.
+
+<small>*\*Ref. An Efficient and Robust Sizing Method for eVTOL Aircraft Configurations in Conceptual Design*</small>
+
+$$ (\frac{P_{hover}}{W})_{control} = CM\frac{P_{hover}}{W} $$
+
+*Where,*
+
+> *- $CM$ : Control margin* 
+
+<br>
+
+#### Vertical Climb
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/climbing_helicopter.png" alt="Climbing Helicopter" width="400">
+    <figcaption>Climbing Helicopter</figcaption>
+  </figure>
+</div>
+
+<br>
+
+When rotorcraft moves to upward, vertically, the induced velocity getting bigger than hovering state.
+
+According to Momentum Theory,
+
+$$ v_i = \frac{-V_y}{2}+\sqrt{(\frac{V_y}{2})^2 + \frac{T}{2\rho{A}}} $$
+
+$$ v_i = \frac{-V_y}{2}+\sqrt{(\frac{V_y}{2})^2 + \frac{(T/W)(W/A)}{2\rho}}$$
+
+However unlike helicopter, most of the UAM aircrafts has wing, which generates vertical drag. So additional thrust required according to rate of climb is generated as below equations :
+
+$$ \Delta{T_1} = f_{p}S_{wing}V^2_{y} $$
+
+$$ f_p = 0.5\rho_0{k_p}C_{D_p} $$
+
+$$ T = \frac{W+f_{p}S{V^2_y}}{1-f_w(S/A)} $$
+
+$$\frac{T}{W}=\frac{1+f_{p}V_y^2/(W/S)}{1-f_w[(W/A)/(W/S)]} $$
+
+*Where,*
+
+> *- $k_p = S_{proj_{total}}/S_{wing}$, depends on aircraft concept, typically tail-sitters=1, transition = 1.2~1.5* <br>
+> *- $C_{D_p}$ : Vertical drag coefficient based on the aircraft projected area* <br>
+> - *Typically tail-sitters = $C_{D_{cruise}}$, transition = approximated as the drag coefficient for a similar size flat plate area (1.17 for low AR, 1.56 for high AR).*
+> - *By $k_p$, the reference area of $C_{D_P}$ is changed to aircraft area to wing area.*
+
+<br>
+
+Total power for vertical climb is expressed as below.
+
+$$ P_{climb_{total}} = P_{climb} + P_{i,Nonideal} + P_0 = T(V_y+k_{i}v_{i}) + P_0 $$
+
+$$ \frac{P_{climb_{total}}}{W}=\frac{T}{W}(v_{i}k_{i}+V_y)+\frac{P_0}{W} $$
+
+During the analysis of Climb case, $k_i$ used same with hover.
+
+After whole sizing process is finished, the determined motor power and maximum take-off weight (MTOW) are substituted into $P$ and $W$ respectively. Previously utilized inputs are used to calculate the vertical maximum climb rate, OEI vertical maximum climb rate, and the service ceiling, numerically.
+
+<br>
+
+#### Vertical Descent
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/descent_power.png" alt="Descent Power" width="400">
+    <figcaption>Descent Power</figcaption>
+  </figure>
+</div>
+
+<br>
+
+According to the momentum theory, induced velocity is derived as below equation.
+
+$$ v_i = \frac{-V_y}{2}+\sqrt{(\frac{V_y}{2})^2 - \frac{T}{2\rho{A}}} $$
+
+Assuming that,
+
+$$ \frac{T}{2\rho A} = v_{i_{hover}} $$
+
+In the range where $v_i$ has imaginary root, we call 'Vortex Ring State'.And we use empherical equations to estimate induced velocity in that state.
+
+If $(V_y < -2v_{i_{hover}})$,
+
+$$ v_i = -\frac{V_y}{2}-\sqrt{(\frac{V_y}{2})^2-v_{i_{hover}}^2} $$
+
+The vertical direction drag has negative sign, unlike vertical climb phase.
+
+$$ P_{descent_{total}} = P_{descent} + P_{i,Nonideal} + P_0 = T(V_y+v_i) + P_0 $$
+
+$$ T = \frac{W-f_{p}S{V^2_y}}{1-f_w(S/A)} $$
+
+$$ \frac{T}{W} = \frac{1-f_{p}V_y^2/(W/S)}{1-f_w[(W/A)/(W/S)]} $$
+
+$$ \frac{P_{descent}}{W} = \frac{T}{W}(v_i+V_y)+\frac{P_0}{W} $$
+
+$$ \frac{P_o}{W} = \rho{V}^3_{tip}(\frac{\sigma{C_{d_{blade}}}}{8})/(W/A) $$
+
+*$V_y$ is negative value in this equation.
+
+<br>
+
+If $(-2v_{i_{hover}} < V_y < 0)$, 
+
+we can calculate desecent power directly with $P_{hover}$
+
+$$ x = \frac{V_y}{v_{i_{hover}}} $$
+
+$$ \frac{P_{descent}}{P_{hover}} = 0.974-0.125x-1.372x^2-1.718x^3-0.655x^4 $$
+$$ P_{descent}={P_{hover}}(\frac{P_{descent}}{P_{hover}}) $$
+
+<br>
+
+#### One Engine Inoperative (OEI) in Vertical Flight
+
+One engine incoperative climb is solved in same manner with the climb analysis, just by multiplying one OEI factor.
+
+$$ P/W_{i,OEI} = \frac{N}{N-1}{P/W_{i}} $$
+
+*Here, $i$ can be $Hover$, $Climb_{total}$, or $Descent$*
+
+<br>
+
+## **Propulsion System Mass Calculation**
+Propulsion system sizing include propeller, motor, and controller of the train from the
+
+<vr>
+
+### Rotor and Propeller Sizing
+Propulsion system sizing includes propellers, motors and controllers of the powertrain. And total propulsion system also need to account the installation factor of each components. 
+
+$$ mass_{eProp} = f_{install}N_{prop}(mass_{propeller,rotor} + mass_{motor}+ mass_{controller}) $$
+
+*Where,*
+
+> *- $mass_{eProp}$ : Mass of electric propulsion system* <br>
+> *- $f_{install}$ : Propulsion installation factor <small>(1.05-1.3 for comprehensive design)*</small> <br>
+> *- $N_{prop}$ : Number of propeller* <br>
+> *- $mass_{propeller}$ : Propeller mass* <br>
+> *- $mass_{motor}$ : Motor mass* <br>
+> *- $mass_{controller}$ : Controller mass*
+
+<br>
+
+#### Rotor Sizing
+Rotor mass is estimated based on diameter of rotor. And the rotor diameter is calculatd by aircraft weight and disk loading.
+
+$$ A = W/(W/A) $$
+
+$$ A_{unit} = A/n_{rotor} $$
+
+$$ D_{rotor} = \sqrt{\frac{4A_{unit}}{\pi}} $$
+
+*Where,*
+
+> *- $A$ : Disk area, [$m^2$]*
+
+<br>
+
+However, the size of the rotor cannot increase infinitely, and it is often constrained by the span as it is attached to the wings. This practical constraint can be considered as shown in the figure below.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/rotor_diameter_constraint.png" alt="Rotor Diameter Constraint" width="400">
+    <figcaption>Rotor Diameter Constraint</figcaption>
+  </figure>
+</div>
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/k_diameter.png" alt="K-Diameter" width="500">
+    <figcaption>K-Diameter</figcaption>
+  </figure>
+</div>
+
+*Where,*
+
+> *- $R$ : Rotor radius* <br>
+> *- $R_{clearance}$ : Rotor radius margin for each rotor* <br>
+> *- $R_{out}$ : Length of the rotor that extends beyond the wing tip*
+
+From these values, the actual input parameters are considered.
+
+$$ k_{diameter} = R_{out}/R $$
+
+$$ k_{fuselage} = width_{fus}/span $$
+
+$$ k_{clearance} = R/R_{clearance} $$
+
+These three parameters are totally dependent with configuration of each concepts. Apart from the definitions of parameters, by adjusting values such as $k_{fus}$, the length of the rotor diameter (disk loading) can be controlled.
+
+Since the parameters for the rotor size is restricted, the disk loading is also restricted as well.
+
+$$ W/A = \frac{k_{clearance}^2[2n_{rotor_{spanwise}}-2k_{diameter}]^2 (W/S)}{{n_{rotor_{spanwise}}}\pi(AR)k_{fuselage}^2} $$
+
+Rotor mass is divided into three component, blade, hub, spin, and the mass of each part is estimated as below equations:
+
+$$ m_{blade} = 0.0029n_{rotor}n_{blade_{rotor}}^{0.5348}(0.5D_{rotor})^{1.7423}(c_{rotor})^{0.773}V_{tip}^{0.8756}v^{2.5105} $$
+
+$$ m_{hub }= 0.006112n_{rotor}n_{blade_{rotor}}^{0.204}(0.5D_{rotor})^{0.604}V_{tip^{0.528}}v^{1.002}(m_{blade}/n_{rotor})^{0.817} $$
+
+$$ m_{spin}= 7.386(0.5D_{rotor})^{2} $$
+
+*Where,*
+
+> *- $c_{rotor}$ : Rotor blade chord, = $A\sigma{D_{rotor}}$* <br>
+> *- $\sigma$ : Solidity ratio* <br>
+> *- $v$ : Specific volume of material (hard-coded 1/2700) [$m^3/kg$]*
+
+<br>
+
+#### Propeller Sizing
+Propeller mass is estimated based on diameter of propeller. Propeller diameter is calculated by Raymer's method. 
+
+<small>*\*Ref. Aircraft Design : A Conceptual Approach (pg.311)*</small>
+
+$$ D_{prop} = k_{p}(\frac{P_{max_{kw}}}{N_{prop}})^{0.25} $$ 
+
+*Here,*
+
+> *- $k_{p}$ = 0.56 for 2 blades propeller* <br>
+> *- $k_{p}$ = 0.52 for 3 blades propeller* <br>
+> *- $k_{p}$ = 0.49 for propeller's blades between 3 and 6*
+
+<br>
+
+$$ mass_{prop} = 1.1{(D_{prop}P_{prop_{max}}\sqrt{N_{b}})^{0.52}} $$
+
+*Where,*
+
+> *- $N_b$ : Number of blades of propeller* <br>
+> *- $mass_{prop}$ : Propeller mass*
+
+<small>*\*Ref. Propeller Design for Conceptual Turboprop Aircraft*</small>
+
+<br>
+
+### Motor Sizing
+Motor mass is estimated based on maximum motor power required. Motor sizing has two methods, one is based on power density and another one is based on regression model. 
+
+$$ P_{motor_{max}} = \frac{P_{prop_{max}}/N_{prop}}{\eta_{motor}} $$
+
+Motor sizing based on power desnity method, 
+
+$$ mass_{motor} = P_{motor_{max}}/N_{prop} / P^*_{motor} $$
+
+*Where,*
+
+> *- $P^*_{motor}$ : Motor power density*
+
+<br>
+
+Motor sizing based on regression model. Regression model is developed based on current technology of EMRAX, Joby and Magicall technology.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/motor_regression.jpg" alt="Regression Model for Motor Mass" width="400">
+    <figcaption>Regression Model for Motor Mass</figcaption>
+  </figure>
+</div>
+
+<br>
+
+$$ mass_{motor} = 0.208P_{motor}/N_{prop}+ 2.23 $$
+
+*Where,*
+
+> *- $P_{motor_{max}}$ : Motor maximum power* <br>
+> *- $mass_{motor}$ : Motor mass*
+
+<br>
+
+### Controller Sizing
+Controller mass is estimated based on maximum controller power required. Controller includes inveter and converter. Controller sizing has two 
+methods, one is based on power density and another is based on regression model.
+
+$$ P_{controller_{max}} = \frac{P_{motor_{max}}/N_{prop}}{\eta_{controller}} $$
+
+Controller sizing based on power desnity method, 
+
+$$ mass_{controller} = P_{controller_{max}}/N_{prop} / P^*_{controller} $$
+
+*Where,*
+
+> *- $P^*_{controller}$ : Motor power density*
+
+<br>
+
+Motor sizing based on regression model. Regression model is developed based on current technology of BRUSA, Electrocraft, Emsiso, Fuji technology.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/controller_regression.jpg" alt="Regression Model for Controller Mass" width="400">
+    <figcaption>Regression Model for Controller Mass</figcaption>
+  </figure>
+</div>
+
+<br>
+
+$$ mass_{controller} = 0.0553 P_{controller}/N_{prop} + 1.721 $$
+
+*Where,*
+
+> *- $P_{controller_{max}}$ : Controller maximum power* <br>
+> *- $mass_{controller}$ : Controller mass*
+
+<br>
+
+## **Mission Analysis**
+Mission module estimates the fuel required and the energy required of total flight mission. Mission module is connected to the performance module to estimated the required power for each segment. Each mission segment is analyzed to calculated required powered, fuel, and energy of each segments. The mission module is connected to performance and energy module to estimated the total energy required for the entire mission.
+
+The mission module analyzes for Vertical climb, hover, climb, crusie, descent, loiter and vertical descent mission segment. Using the same equation from performance analysis.
+
+Taxing segments can also be analyzed. Taxi-in and Taxi-out analysis is using simple assumption by using power setting. It is used $10\%$ of maximum power for Taxing segment. 
+
+<small>*\*Ref. VTOL Urban Air Mobility Concept Vehicles for Technology Development*</small>
+
+To analyze the mission, the entire mission should be provided with required informantion.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/uam_mission_profile.png" alt="Example of Mission Profile" width="400">
+    <figcaption>Example of Mission Profile</figcaption>
+  </figure>
+</div>
+
+<br>
+
+### Energy Module
+Total power electrical power required is calculated from mission analysis, but the energy required for each segment is multiply by hybridizaiton factor which can be defined for each mission segment. 
+
+$$ P_{batt} = Hp_{p}P_{elec} $$
+
+$$ P_{FC} = (1-Hp_p)P_{FC} $$
+
+$Hp_{p}$ is the electircal power hybridizaiton factor, which is controlled along the mission analysis. Energy required can be calculated by multipling the electrical power multiplying mission time. 
+
+$$ E_{elec} = \sum_{i=1}^n P_{elec_i}{time_i} $$
+
+$$ E_{batt} = \sum_{i=1}^n \frac{P_{batt_i}}{\eta_{batt}}{time_i} $$
+
+$$ E_{H2FC} = \sum_{i=1}^n \frac{P_{FC_i}}{\eta_{FC}}{time_i} $$
+
+*Where,*
+
+> *- $i$ : Each mission segments from take-off to landing* <br>
+> *- $E_{elec}$ : Electrical energy required* <br>
+> *- $E_{batt}$ : Battery energy required* <br>
+> *- $E_{H2FC}$ : Hydrogen fuel cell energy required* <br>
+> *- $\eta_{batt}$ : Battery efficiency* <br>
+> *- $\eta_{FC}$ : Fuel cell efficiency* <br>
+<small> *- Battery efficiency is typically vary from 0.6-0.75 (Ref. Designing Unmanned Aircraft Design, pg.326). But most of the paper assumes from 0.7-0.9 for battery efficiency.*</small> <br>
+<small> *- Fuel cell efficeincy is typically vary low since the heat energy is also produced and it is around 0.45-0.6 but in UNIFIER19 project, 0.5-0.6 is used.*</small>
+
+Hydrogen fuel consumption is also calculate along the mission to estimated the total fuel mass of the mission. 
+
+$$ \dot m_{fuel_i} = \frac{P_{FC_i}}{\eta_{FC}LHV},  \forall i \in nMission $$
+
+$$ mass_{fuel} = \dot m_{fuel_i}{time_i},  \forall i \in nMission $$
+
+*Where,*
+
+> *- $\dot m_{fuel_{i}}$ : Fuel consumption for mission segment $i$* <br>
+> *- $\eta_{FC}$ : Fuel cell efficiency* <br>
+> *- $mass_{fuel}$ : Fuel mass of all mission* <br>
+> *- $time_i$ : Time for mission segment $i$*
+
+<br>
+
+Sizing loop include electric propulsion system sizing and energy system after the mission analysis. 
+
+<br>
+
+## **Energy System Mass Calculation**
+Energy system include battery, hydrogen fuel and tank components. Since the hybridization factor changes along the mission, the maximum power is varied depending on the hybridization factor. Therefore, sizing of battery and fuel cell are performed after the mission analysis by finding the maximum power of each segment. 
+
+$$ P_{elec_{max}} = \max{P_{elec_i}}, \forall i \in nMission $$
+
+$$ P_{batt_{max}} = \max{P_{batt_i}}, \forall i \in nMission $$
+
+$$ P_{FC_{max}} = \max{P_{FC_i}}, \forall i \in nMission $$
+
+*Where,*
+
+> *- $nMission$ : Mission segments* <br>
+> *- $P_{elec_{max}}$ : Electrical maximum power* <br>
+> *- $P_{batt_{max}}$ : Battery maximum power* <br>
+> *- $P_{FC_{max}}$ : Fuel cell maximum power*
+
+<br>
+
+Electrical power calculation is already mentioned in performance and propulsion analysis loop section. 
+
+<br>
+
+### Battery Sizing
+Battery energy system is required to size depending on required energy and maximum energy of required mission. Battery weight is corresponding to both maximum power and energy, therefore, specific power density and specific energy density are required to satisfy. But in this sizing method, three methods are provided, (1) energy density method, (2) power density method and (3) maximum mass method. 
+
+<span style="color:rgb(6, 137, 170);">**1. Specific Energy Density Method**</span>
+   
+Specific energy density method is usually corresponding to the energy required of the flight mission. Which can be calculated as, 
+
+$$ mass_{batt_{E^*}} = \frac{E_{batt}}{f_{usable}E^*} $$
+
+<small>*\*Ref. 레퍼런스 제대로 표기*</small>
+
+*Where,*
+
+> *- $mass_{batt_{E^*}}$ : Mass of battery by specific energy density* <br>
+> *- $E_{batt}$ : Battery mission energy* <br>
+> *- $f_{usable}$ : Usable battery energy, which is similar to depth of discharge, typically 0.8* <br>
+> *- $E^*$ : Specific energy density, it can be depending on the technology level*
+
+<br>
+
+<span style="color:rgb(6, 137, 170);">**2. Specific Power Density Method**</span> 
+   
+Specific power density method is used to cover maximum power required of the mission. The mass is calculated as,
+
+$$ mass_{batt_{P^*}} = \frac{P_{batt_{max}}}{P^*} $$
+
+*Where,*
+
+> *- $mass_{batt_{P^*}}$ : Mass of battery by specific power density* <br>
+> *- $P_{batt_{max}}$ : Maximum battery power of the mission segment* <br>
+> *- $P^*$ : Specific power density, it is depending on the technology level*
+
+<br>
+
+<span style="color:rgb(6, 137, 170);">**3. Maximum Mass Method**</span>
+
+Maximum mass method is proposed not to under or over size the battery depending on the required maximum power and required energy. 
+
+<small>*\*Ref. Preliminary Weight Sizing of Light Pure-Electric and Hybrid-Electric Aircraft*</small>
+
+$$ mass_{batt} = \max\{{mass_{batt_{E^*}}, mass_{batt_{P^*}}}\} $$
+
+*Where,*
+
+> *- $mass_{batt}$ : Mass battery by maximum mass method*
+
+<br>
+
+### Fuel Cell Sizing
+Fuel cell is sized based on the the maximum power of fuel cell.
+
+$$ mass_{FC} = \frac{P_{FC_{max}}}{P^*_{FC}} $$
+
+*Where,*
+
+> *- $mass_{FC}$ : Fuel cell mass* <br>
+> *- $P_{FC_{max}}$ : Maximum fuel cell power of the mission segment* <br>
+> *- $P^*_{FC}$ : Specific power density of fuel cell*
+
+<br>
+
+### Tank Sizing
+Hydrogen tank is sized based on gravimetric index (GI), which is the ratio of fuel mass and total fuel system.
+
+<small>*\*Ref.Performance Analysis of Evolutionary Hydrogen-Powered Aircraft*</small>
+
+$$ GI = \frac{mass_{fuel}}{mass_{fuel}+mass_{tank}} $$
+
+*Where,*
+
+> *- $GI$ : Gravimetric index (0.2-0.6 typical value)* <br>
+> *- $mass_{fuel}$ : Fuel mass* <br>
+> *- $mass_{tank}$ : Tank mass*
+
+<br>
+
+Considering this gravimetric index, mass of tank is size as below equation, depending on the type of hydrogen.
+
+For gas hydrogen,
+
+$$ mass_{tank_{GAS}} = \frac{mass_{fuel_{mission}}}{GI} - mass_{fuel_{mission}} $$
+
+For liquid hydrogen, evaporation of the liquid is accounted as $7\%$ for the safety of the tank.
+
+<small>*\*Ref.레퍼런스 제대로 표기*</small>
+
+$$ mass_{tank_{LIQUID}} = 1.07({\frac{mass_{fuel_{mission}}}{GI} - mass_{fuel_{mission}}}) $$
+
+*Where,*
+
+> *- $mass_{tank_{GAS}}$ : Mass of tank by gas hydrogen* <br>
+> *- $mass_{tank_{LIQUID}}$ : Mass of tank by liquid hydrogen* <br>
+> *- $mass_{fuel}$ : Hydrogen mass along the mission.*
+
+<br>
+
+Finally, the total energy system mass is calcualted by adding up all the mass of each component.
+
+$$ mass_{energy} = mass_{battery} + mass_{fuel} + mass_{FC} + mass_{tank} $$
+
+*Where,*
+
+> *- $mass_{energy}$ : Energy system total mass* <br>
+> *- $mass_{battery}$ : Battery mass* <br>
+> *- $mass_{fuel}$ : Fuel mass* <br>
+> *- $mass_{FC}$ : Fuel cell mass* <br>
+> *- $mass_{tank}$ : Tank mass*
+
+<br>
+
+## **Maximum Take-Off Mass Calculation**
+This module calculates the maximum take-off mass of the aircraft by combining propulsion system, energy system mass and mass fraction assumption values.
+
+$$ MTOM = \frac{mass_{prop} + mass_{energy} + mass_{payload}}{1-(MF_{struct}+MF_{avionics}+MF_{subsys})} $$
+
+$$ MTOW = MTOM *g $$
+
+$$ mass_{empty} = mass_{eProp} + mass_{struct} + mass_{avionics} + mass_{subsys }$$
+
+$$ MF_{empty} = \frac{mass_{empty}}{MTOM} $$
+
+*Where,*
+
+> *- $MTOM$ : Maximum take-off mass* <br>
+> *- $MTOW$ : Maximum take-off weight* <br>
+> *- $mass_{prop}$ : Electric propulsion system mass* <br>
+> *- $mass_{energy}$ : Energy system mass* <br>
+> *- $mass_{payload}$ : Payload mass* <br>
+> *- $mass_{empty}$ : Empty mass* <br>
+> *- $MF_{struct}$ : Structural mass fraction* <br>
+> *- $MF_{avionics}$ : Avionics mass fraction* <br>
+> *- $MF_{subsys}$ : Subsystem mass fraction* <br>
+> *- $MF_{empty}$ : Empty mass fraction* <br>
+> *- $g$ : Graviational acceleration ($9.81 m/s^2$)*
+
+<br>
+
+### Mass Convergence
+Mass convergence is finally calculated with the initial guess weight input and calculated MTOW value. If the input and output value are same then, mass convergence will be iteration will be stop and give the all the analysis and sizing data of the convergence mass condition.
+
+<br>
+
+## **Optimization** 
+Sizing optimization can be run with the below formulation, the optimizaiton is to find the best combination of wing loading and power loading to minimize the the objective function. Objective function can be the minimization of MTOW or Cost or other user input parameters. Below formulation show the sample formulation of this sizing program. 
+
+$$ \min_{P/W, W/S, x} \ MTOW $$
+
+Subject to:
+
+$$ V_{stall} \leq V_{stall_{req}} $$
+
+$$ V_{cruise} \geq V_{cruise_{req}} $$
+
+$$ G \geq G_{req}$$
+
+$$ ROC_{max} \geq ROC_{max_{req}} $$
+
+$$ S_{TO} \leq S_{TO_{req}} $$
+
+$$ h_{ceiling} \geq h_{ceiling_{req}} $$
+
+$$ g(x)... $$
+
+$$ ... $$
+
+*Where,*
+
+> *- $x$ : User define variables* <br>
+> *- $g(x)$ : User defined constraints* <br>
+
+Other constraints parameters that is defined by user requirements.
+
+<br>
+
+# *APPENDIX*
+In the appendix, results for some of the sizing examples are introduced.
+
+## **Result**
+Sizing matrix plot is to see the feasible region of our design point for the varialbe of wing loading and power loading for a objective function.
+
+Requirements parameters such as stall speed, cruise speed, rate of climb, climb gradient, take-off distance and ceiling are make input and find the power loading and wing loading that are equal to the requirements and make plots for a objective function. The requireed parameters are run from the performacne moddule and sizing the whole sizing loop is run for a range of power loading and wing loading. 
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/constraint_ram.png" alt="Sizing Matrix Example for RAM Aircraft" width="400">
+    <figcaption>Sizing Matrix Example for RAM Aircraft</figcaption>
+  </figure>
+</div>
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/constraint_ctol.png" alt="Constraint Diagram Example for CTOL Flight" width="400">
+    <figcaption>Constraint Diagram Example for CTOL Flight</figcaption>
+  </figure>
+</div>
+
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/constraint_vtol.png" alt="Constraint Diagram Example for VTOL Flight" width="400">
+    <figcaption>Constraint Diagram Example for VTOL Flight</figcaption>
+  </figure>
+</div>
+
+<br>
+<!--#TODO change the pics-->
+
+For the Sizing Matrix(for CTOL aircraft), the sizing process can be examined using only W/S, and it allows verification of whether the design variables meet the requirements, with the MTOW results contour for the given W/S and P/W.
+
+For the Constraint Diagram(for VTOL aircraft), W/S, W/A, P/W:CTOL, and P/W:VTOL are utilized. While the MTOW contour cannot be checked, the satisfaction of the requirements can be verified.
+
+<br>
+
+### Payload Range Diagram
+Payload range diagram shows the aircraft capability for the whole range in terms of payload and range. In conventional fuel powered aircraft, the payload and fuel mass are tradeoff between the harmonic range and maximum fuel range. The harmonic range is the range that is only for the cruise segegment without any segement.Fuel mass at the cruise segment can be differ depending the design.
+
+$$ R = SR * mass_{fuel} $$
+
+$$ SR = V_{cruise}/mass_{fuel_{cruise}} $$
+
+<br>
+
+#### Payload Range Diagram for Battery
+For the battery powered aircraft, cruise battery battery weight is set by the mission analysis as,
+
+$$ R = SR\cdot{E_{batt}} = SR\cdot{mass_{batt}}\cdot{f_{usable}}\cdot{E*} $$
+
+$$ SR = V_{cruise}/P_{batt} $$ 
+
+Therefore, the mass of battery can be update with the the payload increasement to keep the MTOW as constant.
+
+$$ mass_{batt} = mass_{batt_{init}} \pm \Delta mass_{payload} $$
+
+$$ \Delta mass_{payload} = mass_{payload_{init}} \pm mass_{payload_{new}} $$
+
+*Where,*
+
+> *- $R$ : Cruise range only* <br>
+> *- $SR$ : Specific air range* <br>
+> *- $mass_{fuel}$ : Fuel mass* <br>
+> *- $V_{cruise}$ : Cruise airspeed* <br>
+> *- $mass_{fuel_{cruise}}$ : Cruise fuel consumption* <br>
+> *- $E_{batt}$ : Energy at the cruise phase* <br>
+> *- $E^*$ : Specific energy density of battery* <br>
+> *- $P_{batt}$ : Battery power at cruise condition* <br>
+> *- $\Delta mass_{payload}$ : Paylaod mass increasement* <br>
+> *- $mass_{payload_{new}}$ : Mass of new payload*
+
+<br>
+
+#### Payload Range Diagram for Hydrogen Fuel Cell
+For hydrogen fuel cell power aircraft, hydrogen mass and tank mass should be make trade-off between payload and range diagram. Therfore, the hydrogen tank mass is update depending on the fuel consumption at the crusie flight phase.
+
+$$ R = SR * mass_{fuel} = SR\cdot\frac{mass_{tank}}{f_{safety}(\frac{1}{GI}-1)} $$
+
+$$ SR = V_{cruise}\dot{mass_{fuel}} $$
+
+Therefore, the mass of tank can be update with the the payload increasement to keep the MTOW as constant.
+
+$$ mass_{tank} = mass_{tank_{init}} \pm \Delta mass_{payload} $$
+
+$$ \Delta mass_{payload} = mass_{payload_{init}} \pm mass_{payload_{new}} $$
+
+*Where,*
+
+> *- $R$ : Cruise range only* <br>
+> *- $SR $ : Specific air range* <br>
+> *- $mass_{fuel}$ : Fuel mass* <br>
+> *- $V_{cruise}$ : Cruise airspeed* <br>
+> *- $mass_{fuel_{cruise}}$ : Cruise fuel consumption* <br>
+> *- $f_{safety}$ : Tank safety factor <small>(1 for gas, 1.07 for liquid)*</small> <br>
+> *- $GI$ : Tank gravimetric index* <br>
+> *- $\dot{mass_{fuel}}$ : Fuel consumption* <br>
+> *- $\Delta mass_{payload}$ : Paylaod mass increasement* <br>
+> *- $mass_{payload_{new}}$ : Mass of new payload*
+
+<br>
+
+#### Payload Range Diagram for Hybrid
+For the hybrid powerd aircraft, the range calcualtion of battery and hydroen fuel cell powered should be multiply by the hybridization factor. 
+
+$$ R_{fc} = SR\cdot{mass_{fuel}} = SR\cdot\frac{mass_{tank}}{f_{safety}(\frac{1}{GI}-1)}\cdot(1-Hp) $$
+
+$$ R_{batt} = SR\cdot{E_{batt}} = SR\cdot{mass_{batt}}\cdot{f_{usable}}\cdot{E^*}\cdot{Hp} $$
+
+$$ R = R_{fc} + R_{batt} $$
+
+*Where,*
+
+> *- $R_{fc}$ : Hydrogen fuel cell powered range* <br>
+> *- $R_{batt}$ : Battery powered range* <br>
+> *- $R$ : Total range* <br>
+> *- $Hp$ : Hybridization factor at the cruise phase*

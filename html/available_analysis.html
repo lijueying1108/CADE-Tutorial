@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Available Analysis Runcases &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Available Analysis Runcases</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/available_analysis.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="available-analysis-runcases">
+<h1>Available Analysis Runcases<a class="headerlink" href="#available-analysis-runcases" title="Link to this heading"></a></h1>
+<p>This file shows the input parameter for each runcase.
+The name of subsection is the keyword used in the command CSV file.</p>
+<section id="point-performance">
+<h2>point-performance<a class="headerlink" href="#point-performance" title="Link to this heading"></a></h2>
+<p>Runs performance modules and calculate all the point performance
+paramters.</p>
+<p><code class="docutils literal notranslate"><span class="pre">RUN:point-performance</span></code></p>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>altitude<span class="classifier">float, m</span></dt><dd><p>altitude for point performance analysis</p>
+</dd>
+<dt>throttle-max<span class="classifier">float, -</span></dt><dd><p>maximum throttle for maximum speed calculation</p>
+</dd>
+<dt>throttle-min<span class="classifier">float, -</span></dt><dd><p>minimum throttle for minimum speed calculation</p>
+</dd>
+</dl>
+<p>drag-model : simplify-drag-model, trim-drag-model</p>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><span class="math notranslate nohighlight">\(V_{max}\)</span><span class="classifier">float, m/s</span></dt><dd><p>maximum speed at given altitude and given throttle-max condition</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(V_{R_{max}}\)</span><span class="classifier">float, m/s</span></dt><dd><p>maximum range speed at given altitude</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(V_{E_{max}}\)</span><span class="classifier">float, m/s</span></dt><dd><p>maximum endurance speed at given altitude</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(R_{max}\)</span><span class="classifier">float, km</span></dt><dd><p>maximum range at given altitude</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">math<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>E_{max}</cite> : float, min
+maximum endurance at given altitude</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt><span class="math notranslate nohighlight">\(V_{stall}\)</span><span class="classifier">float, m/s</span></dt><dd><p>stall speed at given altitude</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(ROC_{max}\)</span><span class="classifier">float, m/s</span></dt><dd><p>maximum climb rate at given altitude and throttle-max condition</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(\theta_{max}\)</span><span class="classifier">float, deg</span></dt><dd><p>maximum climb angle ate given altitude and throttle-max condition</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(ROD_{min}\)</span><span class="classifier">float, m/s</span></dt><dd><p>minimum sink rate at given altitude</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(\gamma_{min}\)</span><span class="classifier">float, deg</span></dt><dd><p>minimum glide angle at given altitude</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(ROC_{VTOL_{max}}\)</span><span class="classifier">float, m/s</span></dt><dd><p>maximum vertical rate of climb</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(ROC_{VTOL_{OEI}}\)</span><span class="classifier">float, m/s</span></dt><dd><p>vertical rate of climb at one engine failure</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(h_{service}\)</span><span class="classifier">float, m</span></dt><dd><p>service ceiling at given throttle-max condition</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(h_{absolute}\)</span><span class="classifier">float,m</span></dt><dd><p>absolute ceiling at given throttle-max condition</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(h_{OGE}\)</span><span class="classifier">float, m</span></dt><dd><p>out of ground effect ceiling</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="mission-analyze">
+<h2>mission-analyze<a class="headerlink" href="#mission-analyze" title="Link to this heading"></a></h2>
+<p>Analyze the aircraft mission of given input mission profile. Calculate
+mission fuel, mission SOC, mission Energy, mission range, mission time.</p>
+<p><code class="docutils literal notranslate"><span class="pre">RUN</span> <span class="pre">:</span> <span class="pre">mission-analyze</span></code></p>
+<section id="id1">
+<h3>Input<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>input-mission: string</dt><dd><p>name of a mission profile to analyze. Available mission profiles
+are as follows: simple_mission_eurostar, simple_mission_rtvt,
+simple_mission_rtvt, maximum_range_mission,
+maximum_endurance_mission</p>
+</dd>
+</dl>
+<p>Mission profile can be found in [here](mission_code.rst).
+Input mission profile consists of mission flight segemnts and
+it’s flight condition.</p>
+</section>
+<section id="id2">
+<h3>Output<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>segments: string array,</dt><dd><p>mission segments name of given mission profile</p>
+</dd>
+<dt>mission-range: float array, m</dt><dd><p>total distance of given mission profile</p>
+</dd>
+<dt>mission-endurance: float array, minutes</dt><dd><p>total time of given mission profile</p>
+</dd>
+<dt>mission-SOC<span class="classifier">float array, -</span></dt><dd><p>total SOC consumption at diffent mission flight segments</p>
+</dd>
+<dt>mission-energy: float array, Wh</dt><dd><p>total energy consumption at different mission flight segments</p>
+</dd>
+<dt>figure:</dt><dd><p>mission energy plot</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="performance-steady-level-velocity-sweep">
+<h2>performance-steady-level-velocity-sweep<a class="headerlink" href="#performance-steady-level-velocity-sweep" title="Link to this heading"></a></h2>
+<p>Analyze for steady level flight for different velocity at given
+altitude, this function is especially for plotting and checking details
+results</p>
+<p><code class="docutils literal notranslate"><span class="pre">RUN</span> <span class="pre">:</span> <span class="pre">performance-steady-level-velocity-sweep</span></code></p>
+<section id="id3">
+<h3>input<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>altitude<span class="classifier">float, m</span></dt><dd><p>altitude for analyzing steady level flight condition</p>
+</dd>
+<dt>throttle-max<span class="classifier">float, -</span></dt><dd><p>maximum throttle for calculating maximum power, thrust available</p>
+</dd>
+<dt>velocity-min<span class="classifier">float, m/s</span></dt><dd><p>minimum velocity limit for analysis</p>
+</dd>
+<dt>velocity-max<span class="classifier">float, m/s</span></dt><dd><p>maximum velocity limit for analysis</p>
+</dd>
+<dt>velocity-step<span class="classifier">integer,</span></dt><dd><p>step of the velocity from minimum to maximum velocity</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h3>output<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><span class="math notranslate nohighlight">\(V\)</span><span class="classifier">float array, m/s</span></dt><dd><p>velocity for each velocity-step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(T_{req}\)</span><span class="classifier">float array, N</span></dt><dd><p>required thrust for each velocity step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(T_{avl}\)</span><span class="classifier">float array, N</span></dt><dd><p>thrust available for each velocity step and throttle-max condition</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(P_{req}\)</span><span class="classifier">float array, Watt</span></dt><dd><p>power required for each velocity step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(P_{avl}\)</span><span class="classifier">float array, Watt</span></dt><dd><p>power available for each velocity step and throttle-max condition</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(\frac{L}{D}\)</span><span class="classifier">float array, -</span></dt><dd><p>lift-to-drag ration for each velocity step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(SAR\)</span><span class="classifier">float array, m/(Watt sec)</span></dt><dd><p>specific air range at each velocity step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(SE\)</span><span class="classifier">float array, 1/(Watt)</span></dt><dd><p>specific endurance at each velocity step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(P_{s}\)</span><span class="classifier">float array,</span></dt><dd><p>specific excess power at each velocity step</p>
+</dd>
+<dt>figures:</dt><dd><p>plot all of above parameters with velocity limit</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="performance-climb-descent-rate-velocity-sweep">
+<h2>performance-climb-descent-rate-velocity-sweep<a class="headerlink" href="#performance-climb-descent-rate-velocity-sweep" title="Link to this heading"></a></h2>
+<p>Analyze for climb and descent for different velocity at given altitude,
+this function is especially for plotting and checking details results</p>
+<p><code class="docutils literal notranslate"><span class="pre">RUN</span> <span class="pre">:</span> <span class="pre">performance-climb-descent-rate-velocity-sweep</span></code></p>
+<section id="id5">
+<h3>input<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>altitude<span class="classifier">float, m</span></dt><dd><p>altitude for analyzing steady level flight condition</p>
+</dd>
+<dt>throttle-max<span class="classifier">float, -</span></dt><dd><p>maximum throttle for calculating maximum power, thrust available</p>
+</dd>
+<dt>velocity-min<span class="classifier">float, m/s</span></dt><dd><p>minimum velocity limit for analysis</p>
+</dd>
+<dt>velocity-max<span class="classifier">float, m/s</span></dt><dd><p>maximum velocity limit for analysis</p>
+</dd>
+<dt>velocity-step<span class="classifier">integer,</span></dt><dd><p>step of the velocity from minimum to maximum velocity</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>output<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><span class="math notranslate nohighlight">\(V\)</span><span class="classifier">float array, m/s</span></dt><dd><p>velocity for each velocity-step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(D\)</span><span class="classifier">float array, N</span></dt><dd><p>drag for each velocity step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(P_{s}\)</span><span class="classifier">float array, Watt/N</span></dt><dd><p>specific excess power at each velocity step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(\frac{L}{D}\)</span><span class="classifier">float array</span></dt><dd><p>lift-to-drag ration for each velocity step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(ROC\)</span><span class="classifier">float array, m/s</span></dt><dd><p>rate of climb at each velocity step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(\theta\)</span><span class="classifier">float array, deg</span></dt><dd><p>climb angle at each velocity step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(ROD`\)</span><span class="classifier">float array, m/s</span></dt><dd><p>descent rate at each velocity step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(\gamma\)</span><span class="classifier">float array, deg</span></dt><dd><p>descent angle ate each velociyt step</p>
+</dd>
+<dt>figures :</dt><dd><p>plot all of above parameters with velocity limit</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="flight-envelope-speed-altitude">
+<h2>flight-envelope-speed-altitude<a class="headerlink" href="#flight-envelope-speed-altitude" title="Link to this heading"></a></h2>
+<p>Runs performance modules and calculate stall speed and maximum speed at
+different altitude</p>
+<p><code class="docutils literal notranslate"><span class="pre">RUN</span> <span class="pre">:</span> <span class="pre">flight-envelope-speed-altitude</span></code></p>
+<section id="id7">
+<h3>Input<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>throttle-max<span class="classifier">float, -</span></dt><dd><p>maximum throttle to calculate maximum speed [0,1]</p>
+</dd>
+<dt>altitude-max<span class="classifier">float, m</span></dt><dd><p>maximum altitude to search the flight envelope</p>
+</dd>
+<dt>altitude-min<span class="classifier">float, m</span></dt><dd><p>minimum altitude of flight envelope, default is zero</p>
+</dd>
+<dt>velocity-min<span class="classifier">float, m/s</span></dt><dd><p>velocity lower bound for optimize search region (to remove in next
+version)</p>
+</dd>
+<dt>velocity-max<span class="classifier">float, m/s</span></dt><dd><p>velocity upper bound for optimize search region (to remove in next
+version)</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h3>Output<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><span class="math notranslate nohighlight">\(V_{max}\)</span><span class="classifier">float array, m/s</span></dt><dd><p>maximum speed at different altitude for given altitude-max and
+altitude-min with the altitude-step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(V_{min}\)</span><span class="classifier">float array, m/s</span></dt><dd><p>minimum speed at different altitude for given altitude-max and
+altitude-min with the altitude-step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(V_{stall}\)</span><span class="classifier">float array, m/s</span></dt><dd><p>stall speed at different altitude for given altitude-max and
+altitude-min with altitude-step</p>
+</dd>
+<dt>altitude<span class="classifier">float array, m</span></dt><dd><p>altitude for given altitude-max and altitude-min with altitude-step</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="hover-ceiling">
+<h2>hover-ceiling<a class="headerlink" href="#hover-ceiling" title="Link to this heading"></a></h2>
+<p>Runs performance modules and OGE hover ceiling</p>
+<p><code class="docutils literal notranslate"><span class="pre">RUN</span> <span class="pre">:</span> <span class="pre">hover-ceiling</span></code></p>
+<section id="id9">
+<h3>Input<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>throttle-max<span class="classifier">float, -</span></dt><dd><p>maximum throttle to calculate maximum speed [0,1]</p>
+</dd>
+<dt>altitude-max<span class="classifier">float, m</span></dt><dd><p>maximum altitude to search the flight envelope</p>
+</dd>
+<dt>altitude-min<span class="classifier">float, m</span></dt><dd><p>minimum altitude of flight envelope, default is zero</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Output<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><span class="math notranslate nohighlight">\(h\)</span><span class="classifier">float array, m</span></dt><dd><p>altitude for given altitude-max and altitude-min with altitude-step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(P_{req}\)</span><span class="classifier">float array, kWatt</span></dt><dd><p>Power required at different altitude for vertical flight with altitude-step</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(P_{max}\)</span><span class="classifier">float array, kWatt</span></dt><dd><p>Power available at different altitude for vertical flight with altitude-step</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

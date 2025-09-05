@@ -1,0 +1,22 @@
+# Release History
+
+## Version 1.0.0
+
+- The initial adsp rewritten in Python3 with new architecture
+- Electric propulsion system
+  - Battery
+  - Hydrogen fuel cell
+  - BLDC motor
+- Propeller analysis
+  - BEMT
+  - Look up table
+- Configuration analysis
+- Weight estimation
+- Aerodynamics
+- Trim
+- Performance
+- Mission
+
+## Version 1.0.1
+
+- bugfixes

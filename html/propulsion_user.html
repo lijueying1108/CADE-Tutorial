@@ -1,0 +1,614 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Performance Code Manual &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Performance Code Manual</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/propulsion_user.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="performance-code-manual">
+<h1>Performance Code Manual<a class="headerlink" href="#performance-code-manual" title="Link to this heading"></a></h1>
+<p>To run the Propulsion, all propulsions components must be initialzed.</p>
+<section id="initialize-parameter">
+<h2>Initialize Parameter<a class="headerlink" href="#initialize-parameter" title="Link to this heading"></a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>This section is the initialization of Component&#39;s Performance&amp;Specifications Parameters 
+</pre></div>
+</div>
+<section id="system">
+<h3>System<a class="headerlink" href="#system" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* Number of System 
+</pre></div>
+</div>
+</section>
+<section id="power-source">
+<h3>Power Source<a class="headerlink" href="#power-source" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* Battery Specification Specification &amp; Performance
+
+* Fuel Cell Specification &amp; Performance
+
+* Fuel Tank Specification &amp; Performance
+</pre></div>
+</div>
+</section>
+<section id="motor">
+<h3>Motor<a class="headerlink" href="#motor" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* BLDC Motor Specification &amp; Performance
+</pre></div>
+</div>
+</section>
+<section id="esc">
+<h3>ESC<a class="headerlink" href="#esc" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* ESC Specification &amp; Performance
+</pre></div>
+</div>
+</section>
+<section id="propeller">
+<h3>Propeller<a class="headerlink" href="#propeller" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* Propeller Specification &amp; Performance
+</pre></div>
+</div>
+</section>
+<section id="fuel-cell">
+<h3>Fuel Cell<a class="headerlink" href="#fuel-cell" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* PEMFC Specification &amp; Performance
+</pre></div>
+</div>
+</section>
+</section>
+<section id="create-propeller">
+<h2>Create Propeller<a class="headerlink" href="#create-propeller" title="Link to this heading"></a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Run propeller analysis based on the Blade Element Momentum Theory (BEMT).
+Load PropellerAnalysis class for the analysis.
+Save propeller performance data as a csv file to the dedicated directory.
+The save file format is as below: example of running this class
+</pre></div>
+</div>
+<section id="input-parameters">
+<h3>Input Parameters<a class="headerlink" href="#input-parameters" title="Link to this heading"></a></h3>
+<p>propName : Propeller Name<br />
+diameter  : Propeller Diameter<br />
+pitch : Propeller pitch angle<br />
+nblade : blade number<br />
+rpm : rpm range\</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>propName = ~
+pitch = ~
+nblade = ~
+rpm = ~
+</pre></div>
+</div>
+<p>run=CreatePropeller()
+run.create_input(propName,diameter,pitch,nblade)
+run.run_analysis_BEMT(propName, rpm)</p>
+</section>
+<section id="create-input">
+<h3>create  input<a class="headerlink" href="#create-input" title="Link to this heading"></a></h3>
+<p>This function is for when user has no certain propeller geometry file.<br />
+If user have specific defined propeller geometry file, <br />
+no need to run this function.\</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Several Assumptions:\
+        airfoil: clark-y\
+        twist angle: APC propeller\
+        thickness ratio: APC propeller
+</pre></div>
+</div>
+<section id="id1">
+<h4>Input Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<p>propName : str name of the propeller &amp; save file<br />
+diameter : float propeller diameter (unit: inch)<br />
+pitch : float propeller geometry pitch. (unit: inch)<br />
+numBlades : int number of blades (unit: non dim)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>propName : ~
+diameter : ~
+pitch : ~
+numBlades : ~
+</pre></div>
+</div>
+</section>
+<section id="output-parameters">
+<h4>Output Parameters<a class="headerlink" href="#output-parameters" title="Link to this heading"></a></h4>
+<p>Excel File will be generated (.xlsx)<br />
+Propeller geometry file for the BEMT input.</p>
+</section>
+</section>
+<section id="create-bemt-propeller">
+<h3>create bemt propeller<a class="headerlink" href="#create-bemt-propeller" title="Link to this heading"></a></h3>
+<section id="id2">
+<h4>Input Parameters<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<p>inputFile : str The propeller geometry file<br />
+rpmInput : list User desired range of RPM, ex) [1000,9000]\</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>inputFile : ~\
+rpmInput : ~
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h4>Output Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    Propeller analysis file
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="id4">
+<h2>Propeller<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<section id="read-csv">
+<h3>read_csv<a class="headerlink" href="#read-csv" title="Link to this heading"></a></h3>
+<p>Reads in excel propeller database. Two database files are needed:
+propeller, airfoil.</p>
+<section id="id5">
+<h4>Input Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<p>propName : str propeller name<br />
+dbPath : path path of the propeller database. Default db will be used if not specified.<br />
+afDbPath : path path of the airfoil database. Default db will be used if not specified.\</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    propName : ~
+    dbPath : ~
+    afDbPath : ~
+</pre></div>
+</div>
+</section>
+</section>
+<section id="create-splines">
+<h3>create splines<a class="headerlink" href="#create-splines" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    Make Propeller geometry based on interpolation
+</pre></div>
+</div>
+</section>
+<section id="analyze-geometry">
+<h3>analyze geometry<a class="headerlink" href="#analyze-geometry" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    Geometry Analyze
+</pre></div>
+</div>
+</section>
+<section id="get-solidity-ratio">
+<h3>get solidity ratio<a class="headerlink" href="#get-solidity-ratio" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    Get solidity ratio from created Propeller
+</pre></div>
+</div>
+</section>
+<section id="analyze-prop-bemt">
+<h3>analyze prop bemt<a class="headerlink" href="#analyze-prop-bemt" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    Performs propeller analysis by using BEMT. In case of poor convergence 
+    (required J cannot be achieved at given rpm and airspeed) 
+    function returns advance ratio and CP=None, CT=None, effy=None.
+    Method returns thrust, power required, propeller advance ratio *J*, 
+    thrust coefficient *CT*, power coefficient *CP* and efficiency *effy* 
+    at given pitch angle, rpm, velocity and density
+</pre></div>
+</div>
+<section id="id6">
+<h4>Input Parameters<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<p>N : float propeller rotation speed (unit: RPM)
+V : float true airspeed of aircraft (unit: m/s)
+rho : float air density (unit: kg/m^3)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    N : ~
+    V : ~
+    rho : ~
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h4>Output Parameters<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<p>J : float advance ratio
+CT : float thrust coefficient
+CP : float power coefficient
+effy : float propeller efficiency</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>J : ~
+CT :~
+CP : ~
+effy : ~
+</pre></div>
+</div>
+</section>
+</section>
+<section id="generate-approx-models">
+<h3>generate approx models<a class="headerlink" href="#generate-approx-models" title="Link to this heading"></a></h3>
+<p>Approximation Model of Geometry</p>
+</section>
+<section id="analyze-prop">
+<h3>analyze prop<a class="headerlink" href="#analyze-prop" title="Link to this heading"></a></h3>
+<p>Read specific propeller database file and by interpolation,
+calculate propeller performance.
+This analysis does not use BEMT.</p>
+</section>
+<section id="get-init-rpm">
+<h3>get init rpm<a class="headerlink" href="#get-init-rpm" title="Link to this heading"></a></h3>
+<p>initialize RPM</p>
+</section>
+<section id="match-rpm-reqt">
+<h3>match rpm reqT<a class="headerlink" href="#match-rpm-reqt" title="Link to this heading"></a></h3>
+<p>Run propeller analysis matching with Required Thrust</p>
+<section id="id8">
+<h4>Input Parameters<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<p>velocity : float input aircraft operating velocity (unit: m/s)
+reqPwer : float input required power (unit: W)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>velocity : ~
+reqPwer : ~
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h4>Output Parameters<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<p>RPM : float RPM value to satisfy the required power at the velocity
+RPM : ~</p>
+</section>
+</section>
+</section>
+<section id="id10">
+<h2>Motor<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<section id="calc-reqmotcurrent">
+<h3>calc_reqMotCurrent<a class="headerlink" href="#calc-reqmotcurrent" title="Link to this heading"></a></h3>
+<p>Calculate Motor Current</p>
+<section id="id11">
+<h4>Input Parameters<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
+<p>Torque : float Input Motor Torque(Nm)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Torque : ~ 
+</pre></div>
+</div>
+</section>
+<section id="id12">
+<h4>Output Parameters<a class="headerlink" href="#id12" title="Link to this heading"></a></h4>
+<p>Current : float Required Motor Current (A)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Current : ~
+</pre></div>
+</div>
+</section>
+</section>
+<section id="calc-motrpm">
+<h3>calc motRPM<a class="headerlink" href="#calc-motrpm" title="Link to this heading"></a></h3>
+<p>Calculate Motor RPM</p>
+<section id="id13">
+<h4>Input Parameters<a class="headerlink" href="#id13" title="Link to this heading"></a></h4>
+<p>Voltage : Motor Voltage(V)
+Current : Motor Current(A)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Voltage : ~
+Current : ~
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h4>Output Parameters<a class="headerlink" href="#id14" title="Link to this heading"></a></h4>
+<p>RPM : Motor rotation RPM</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RPM : ~
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="id15">
+<h2>ESC<a class="headerlink" href="#id15" title="Link to this heading"></a></h2>
+<p>Derive ESC output voltage and current based on input throttle, battery
+voltage &amp; current.</p>
+<section id="get-current-voltage">
+<h3>get current voltage<a class="headerlink" href="#get-current-voltage" title="Link to this heading"></a></h3>
+<section id="input-parameter">
+<h4>Input Parameter<a class="headerlink" href="#input-parameter" title="Link to this heading"></a></h4>
+<p>voltage : float Input battery voltage (unit: V)
+current : float Input motor required current (unit: A)
+throttle : float Input specific throttle value (unit: %/100)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>voltage : ~
+current : ~
+throttle : ~
+</pre></div>
+</div>
+</section>
+<section id="output-parameter">
+<h4>Output Parameter<a class="headerlink" href="#output-parameter" title="Link to this heading"></a></h4>
+<p>voltage_esc : float esc output voltage (unit: V)
+current_esc : float esc output current (unit: A)
+voltage_esc : ~
+current_esc : ~</p>
+</section>
+</section>
+</section>
+<section id="battery">
+<h2>Battery<a class="headerlink" href="#battery" title="Link to this heading"></a></h2>
+<p>Derive battery output voltage, current and state of charge</p>
+<section id="cell-analysis">
+<h3>cell analysis<a class="headerlink" href="#cell-analysis" title="Link to this heading"></a></h3>
+<p>Define user desired type of battery cell
+such as Li-Po, Hydrogen Fuel cell,…</p>
+<section id="id16">
+<h4>Input Parameters<a class="headerlink" href="#id16" title="Link to this heading"></a></h4>
+<p>name : str name of the battery cell type</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    name : ~  
+</pre></div>
+</div>
+</section>
+<section id="id17">
+<h4>Output Parameters<a class="headerlink" href="#id17" title="Link to this heading"></a></h4>
+<p>Initial parameter values depending on the battery type</p>
+</section>
+</section>
+<section id="get-batt-voltage">
+<h3>get batt voltage<a class="headerlink" href="#get-batt-voltage" title="Link to this heading"></a></h3>
+<p>Derive battery output voltage
+two functions</p>
+<ol class="arabic simple">
+<li><p>get_voltage_cell1: theoritical</p></li>
+<li><p>get_voltage_cell2:
+<ref> : A new approach to calculating endurance in electric flight and
+comparing fuel cells and batteries p.812</p></li>
+</ol>
+<section id="id18">
+<h4>Input Parameters<a class="headerlink" href="#id18" title="Link to this heading"></a></h4>
+<p>current : float Input battery current (unit: A)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    current : ~
+</pre></div>
+</div>
+</section>
+<section id="id19">
+<h4>Output Parameters<a class="headerlink" href="#id19" title="Link to this heading"></a></h4>
+<p>voltage_batt : float battery output voltage (unit: V)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    voltage_batt : ~
+</pre></div>
+</div>
+</section>
+</section>
+<section id="get-batt-params">
+<h3>get batt params<a class="headerlink" href="#get-batt-params" title="Link to this heading"></a></h3>
+<p>Calculate Battery EMF, Resistance, Cell EMF</p>
+</section>
+<section id="get-battv-i-coeff">
+<h3>get battV_I_coeff<a class="headerlink" href="#get-battv-i-coeff" title="Link to this heading"></a></h3>
+<p>Get battery coefficienct from cell analysis</p>
+</section>
+<section id="drain">
+<h3>drain<a class="headerlink" href="#drain" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Derive drain of the battery based on the input current and duration
+</pre></div>
+</div>
+<section id="id20">
+<h4>Input Parameters<a class="headerlink" href="#id20" title="Link to this heading"></a></h4>
+<p>current : float Input battery current (unit: A)
+duration : float Input user desired duration time (unit: s)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>current :~
+duration : ~
+</pre></div>
+</div>
+</section>
+<section id="id21">
+<h4>Output Parameters<a class="headerlink" href="#id21" title="Link to this heading"></a></h4>
+<p>soc : float State of charge of the battery (unit : %)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>soc : ~
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="fuelcell">
+<h2>FuelCell<a class="headerlink" href="#fuelcell" title="Link to this heading"></a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Derive Fuel Cell Voltage, current and Hydrogen Use
+</pre></div>
+</div>
+<section id="gen-ocv">
+<h3>gen OCV<a class="headerlink" href="#gen-ocv" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Calculate Fuel Cell EMF from thermaldynamics
+</pre></div>
+</div>
+<section id="id22">
+<h4>Input Parameters<a class="headerlink" href="#id22" title="Link to this heading"></a></h4>
+<p>Oper_temp: float Define for calculating EMF as unit fuel cell from chemical theory</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Oper_temp: ~
+</pre></div>
+</div>
+</section>
+<section id="id23">
+<h4>Output Parameters<a class="headerlink" href="#id23" title="Link to this heading"></a></h4>
+<p>EMF : EMF of unit fuel Cell</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>EMF : ~
+</pre></div>
+</div>
+</section>
+</section>
+<section id="gen-volloss">
+<h3>gen volloss<a class="headerlink" href="#gen-volloss" title="Link to this heading"></a></h3>
+<section id="id24">
+<h4>Input Parameters<a class="headerlink" href="#id24" title="Link to this heading"></a></h4>
+<p>current_density : float Define for calculating several kinds of voltage losses(resistance)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>current_density : ~
+</pre></div>
+</div>
+</section>
+<section id="output-parameteres">
+<h4>Output Parameteres<a class="headerlink" href="#output-parameteres" title="Link to this heading"></a></h4>
+<p>vol_loss : voltage losses from cell when current flows through cell</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vol_loss : ~
+</pre></div>
+</div>
+</section>
+</section>
+<section id="pemfc-analysis">
+<h3>pemfc analysis<a class="headerlink" href="#pemfc-analysis" title="Link to this heading"></a></h3>
+<section id="id25">
+<h4>Input Parameters<a class="headerlink" href="#id25" title="Link to this heading"></a></h4>
+<p>Required Power of Fuel Cell : float Define Fuel Cell Required Power
+Cell Voltage of Fuel Cell : float Define Fuel Cell Voltage
+Hydrognen Mass flow : float Define for calculating hydrogen fuel use</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Required Power of Fuel Cell : ~
+Cell Voltage of Fuel Cell : ~
+Hydrognen Mass flow : ~
+</pre></div>
+</div>
+</section>
+<section id="id26">
+<h4>Output Parameteres<a class="headerlink" href="#id26" title="Link to this heading"></a></h4>
+<p>Hydrognen Mass flow : float Hydrogen Usage</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Hydrognen Mass flow : ~
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="system-analysis">
+<h2>System Analysis<a class="headerlink" href="#system-analysis" title="Link to this heading"></a></h2>
+<p>Analyze the user input propulsion set.
+Load each necessary class of each components.
+Input components are battery, ESC, motor, and propeller</p>
+<section id="run-analysis">
+<h3>run analysis<a class="headerlink" href="#run-analysis" title="Link to this heading"></a></h3>
+<section id="id27">
+<h4>Input Parameters<a class="headerlink" href="#id27" title="Link to this heading"></a></h4>
+<p>velocity : float input aircraft operating velocity (unit: m/s)
+throttle : float input aircraft operating throttle (unit: %/100)
+altitude : float input operating altitude for density calculation (unit: m)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>velocity : ~
+throttle : ~
+altitude : ~
+</pre></div>
+</div>
+</section>
+<section id="id28">
+<h4>Output Parameteres<a class="headerlink" href="#id28" title="Link to this heading"></a></h4>
+<p>Analysis results as defined in PropulsionData class</p>
+</section>
+</section>
+<section id="match-thrust">
+<h3>match thrust<a class="headerlink" href="#match-thrust" title="Link to this heading"></a></h3>
+<section id="id29">
+<h4>Input Parameters<a class="headerlink" href="#id29" title="Link to this heading"></a></h4>
+<p>velocity : float input aircraft operating velocity (unit: m/s)
+reqThrust : float input required thrust (unit: N)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    velocity : ~
+    reqThrust : ~
+</pre></div>
+</div>
+</section>
+<section id="id30">
+<h4>Output Parameteres<a class="headerlink" href="#id30" title="Link to this heading"></a></h4>
+<p>throttle : float Throttle value to satisfy the required thrust at the velocity</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>throttle : ~
+</pre></div>
+</div>
+</section>
+</section>
+<section id="load-wt-results">
+<h3>load wt results<a class="headerlink" href="#load-wt-results" title="Link to this heading"></a></h3>
+<section id="id31">
+<h4>Input Parameters<a class="headerlink" href="#id31" title="Link to this heading"></a></h4>
+<p>name : str input name of Wind Tunnel test result file format: .csv</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    name : ~
+</pre></div>
+</div>
+</section>
+<section id="id32">
+<h4>Output Parameteres<a class="headerlink" href="#id32" title="Link to this heading"></a></h4>
+<p>Arrays of: Propulsion System Parameters</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    Arrays of:
+    torque (Nm), thrust (kgf), batt_voltage (V),
+    esc_current (A),rpm (rpm), electrical_powe (W),
+    mechanical_power (W), throttle (%/100)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="propulsion-output-example">
+<h3>Propulsion Output Example<a class="headerlink" href="#propulsion-output-example" title="Link to this heading"></a></h3>
+<p>Propulsion output example for above run cases can be found in <a class="reference internal" href="propulsion_output_example.html"><span class="std std-doc">here</span></a>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

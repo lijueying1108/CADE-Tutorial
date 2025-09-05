@@ -1,0 +1,69 @@
+Mission Profile Setup
+========================
+
+This section describes how to set up a mission profile. Users can define any custom mission profile according to their needs.
+
+The mission profile input data can be found at:
+
+``data/mission_input/mission.xlsx``
+
+Mission profiles can be composed depending on user requirements. This framework offers a variety of mission segments. Users can select any combination of segments to define and run a mission scenario.
+
+Available Mission Segments
+----------------------------
+
+The list of mission segments that can be analyzed includes:
+
+``AXIAL_CLIMB_AT_ALTITUDE_AND_SPEED``,  
+``AXIAL_CLIMB_AT_ALTITUDE_AND_CLIMB_RATE``,  
+``HOVER_AT_ALTITUDE_AND_TIME``,  
+``CLIMB_AT_ALTITUDE_AND_SPEED``,  
+``CLIMB_AT_ALTITUDE_AND_CLIMB_RATE``,  
+``CLIMB_AT_MAX_CLIMB_RATE``,  
+``CLIMB_AT_ECONOMICAL_CLIMB``,  
+``CRUISE_AT_SPEED_AND_DISTANCE``,  
+``LOITER_AT_SPEED_AND_TIME``,  
+``CRUISE_AT_MAX_RANGE_SPEED``,  
+``CRUISE_AT_MAX_ENDURANCE_SPEED``,  
+``DESCENT_AT_ALTITUDE_AND_DESCENT_RATE``,  
+``DESCENT_AT_MIN_DESCENT_RATE``,  
+``AXIAL_DESCENT_AT_ALTITUDE_AND_SPEED``,  
+``AXIAL_DESCENT_AT_ALTITUDE_AND_DESCENT_RATE``
+
+A complete mission profile example is shown below.
+
+.. csv-table:: Available mission segments and example setup
+    :file: mission_profile_setup.csv
+    :header-rows: 1
+
+Explanation of Mission Segment Inputs
+---------------------------------------
+
+- **nSeg**: Number of subdivisions for each segment. More segments generally improve accuracy.
+- **segment**: Segment keyword used to define each mission phase.
+- **h start**, **h end**: Starting and ending altitudes [m].
+- **V start**, **V end**: Starting and ending speeds [m/s].
+- **climb rate**: Vertical climb or descent rate [m/s].
+- **range, m**: Horizontal range [m].
+- **time, s**: Time duration [s].
+- **x**: Marked where input is not required.
+
+Segment Descriptions
+-----------------------
+
+- ``AXIAL_CLIMB_AT_ALTITUDE_AND_SPEED``: Vertical (axial) climb at a given altitude and constant VTOL speed.
+- ``AXIAL_CLIMB_AT_ALTITUDE_AND_CLIMB_RATE``: Vertical climb at constant altitude and specified climb rate.
+- ``HOVER_AT_ALTITUDE_AND_TIME``: Hover at a fixed altitude for a given time.
+- ``CLIMB_AT_ALTITUDE_AND_SPEED``: Climb between two altitudes with specified start and end speeds.
+- ``CLIMB_AT_ALTITUDE_AND_CLIMB_RATE``: Climb between altitudes at constant climb rate.
+- ``CLIMB_AT_MAX_CLIMB_RATE``: Climb at the maximum possible climb rate.
+- ``CLIMB_AT_ECONOMICAL_CLIMB``: Climb optimized for minimum fuel consumption.
+- ``CRUISE_AT_SPEED_AND_DISTANCE``: Cruise at a given speed and distance.
+- ``LOITER_AT_SPEED_AND_TIME``: Loiter at specified speed for a given time.
+- ``CRUISE_AT_MAX_RANGE_SPEED``: Cruise segment optimized for maximum range.
+- ``CRUISE_AT_MAX_ENDURANCE_SPEED``: Cruise segment optimized for maximum endurance.
+- ``DESCENT_AT_ALTITUDE_AND_DESCENT_RATE``: Descent at constant altitude with given descent rate.
+- ``DESCENT_AT_MIN_DESCENT_RATE``: Descent at the minimum descent rate.
+- ``AXIAL_DESCENT_AT_ALTITUDE_AND_SPEED``: Vertical descent at a given speed and altitude.
+- ``AXIAL_DESCENT_AT_ALTITUDE_AND_DESCENT_RATE``: Vertical descent at constant altitude and rate.
+

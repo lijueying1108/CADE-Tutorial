@@ -1,0 +1,474 @@
+# Battery
+
+## Overview
+
+This manual provides detailed instructions for setting up and running a battery model test and analysis. The code integrates battery parameters from a database (DB), processes them using a battery model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.
+
+### Components
+1. **Database (DB)**: Contains battery parameters.
+2. **Battery Model**: Selects and analyzes the battery model based on provided parameters.
+3. **Test Case**: Defines test conditions and input parameters.
+4. **Data Saved in PCB**: Stores the test results.
+
+## Files and Scripts
+
+1. **Battery Parameters CSV File**: `ADSP>data>battery>test_battery01.csv`
+2. **Battery Model Script**: `ADSP>propulsion>energy>battery.py`
+3. **Test Script**: `test demo>propulsion>01_test_battery.py`
+
+
+## Battery Parameters CSV
+
+The CSV file contains key parameters for the battery model. Below is an example of the battery parameters used:
+
+```plaintext
+source_type,battery
+type,Li-Po
+current_filtered,2.5
+capacity_nominal,20.0
+voltage_fullcharged,4.3
+voltage_out_nominal,3.61
+voltage_constant,3.2
+capacity_exponential,5.0
+capacity_max,26.136
+energy,96.0
+resistance_internal,0.006
+```
+
+
+Description of Parameters
+- type: The type of battery, in this case, Li-Po (Lithium Polymer).
+- current_filtered: The filtered current value, which is 2.5A.
+- capacity_nominal: The nominal capacity of the battery, which is 20.0Ah.
+- voltage_fullcharged: The voltage when the battery is fully charged, which is 4.3V.
+- voltage_out_nominal: The nominal output voltage of the battery, which is 3.61V.
+- voltage_constant: The constant voltage level, which is 3.2V.
+- capacity_exponential: The capacity in the exponential zone, which is 5.0Ah.
+- capacity_max: The maximum capacity of the battery, which is 26.136Ah.
+- energy: The total energy stored in the battery, which is 96.0Wh.
+- resistance_internal: The internal resistance of the battery, which is 0.006 ohms.
+  
+
+## Main Battery Model Script (`battery.py`)
+
+The file is located in `propulsion->energy->battery.py`. This script contains `get_battery`, `Battery` and `BatteryModel` class. They are responsible for loading battery parameters and performing the model analysis.
+
+```python
+def get_battery(pcb, name_battery):
+    with open(paths.db.get_energy_csv_path(name_battery), "r") as csv_file:
+        csv_reader = csv.reader(csv_file)
+        next(csv_reader)
+        cell_type = next(csv_reader)
+    type = cell_type[1]
+
+    if type == "Li-Po":
+        return BatteryModel(pcb, name_battery)
+    elif type == "":
+        return BatteryModel(pcb, name_battery)
+    else:
+        return BatteryModel(pcb, name_battery)
+
+
+class Battery:
+    def __init__(self, pcb, name_battery):
+        self.pcb = pcb
+        self.data_battery = pcb.data_battery
+        self.name_battery = name_battery
+
+    def load_data(
+        self,
+    ):
+        file = paths.db.get_energy_csv_path(self.name_battery)
+        data = pd.read_csv(file)
+        self.name_battery = np.array(data)
+        for parameter, value in self.name_battery:
+            try:
+                value = float(value)
+            except ValueError:
+                value = str(value)
+            setattr(self.data_battery, parameter, value)
+            setattr(self, parameter, value)
+
+        return self.data_battery
+
+
+class BatteryModel(Battery):
+    def __init__(self, pcb, name_battery):
+        super().__init__(pcb, name_battery)
+```
+
+
+### Test Code
+
+```python
+from adsp.propulsion.energy.battery import get_battery
+from adsp.print.align import print_aligned_data
+
+
+def main() -> None:
+    pcb = PCB()
+    name_battery = "test_battery01"
+    current = 300
+    duration_passed = 3600
+
+    battery = get_battery(pcb, name_battery)
+    battery.load_data()
+    battery.run_model(current, duration_passed)
+    print_aligned_data(pcb.data_battery)
+
+if __name__ == "__main__":
+    main()
+```
+
+### Running the Test
+
+- Prepare the CSV File: Ensure test_battery01.csv is in the ADSP>data>battery directory.
+- Update Parameters: Modify battery parameters in the CSV as needed.
+- Execute the Test Script:
+Open a terminal or command prompt.
+Navigate to the directory containing 01_test_battery.py.
+
+Run the script:
+```
+python 01_test_battery.py
+```
+
+Output
+The results of the battery model analysis are saved in the pcb.data_battery object and printed using print_aligned_data. The output includes detailed information about the battery performance based on the test conditions.
+
+# Controller
+
+## Overview
+
+This manual provides detailed instructions for setting up and running a controller model test and analysis. The code integrates controller parameters from a database (DB), processes them using a controller model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.
+
+### Components
+1. **Database (DB)**: Contains controller parameters.
+2. **Controller Model**: Selects and analyzes the controller model based on provided parameters.
+3. **Test Case**: Defines test conditions and input parameters.
+4. **Data Saved in PCB**: Stores the test results.
+
+## Files and Scripts
+
+1. **Controller Parameters CSV File**: `ADSP>data>controller>KP21INV.csv`
+2. **Controller Model Script**: `ADSP>propulsion>electrical>controller.py`
+3. **Test Script**: `test demo>propulsion>04_test_controller.py`
+
+## Controller Parameters CSV (`KP21INV.csv`)
+
+The CSV file contains key parameters for the controller model. Below is an example of the controller parameters used:
+
+```plaintext
+Controller,KP21INV
+type,unknown
+current_max,2000
+current_cont,400
+voltage_max,1500
+voltage_min,20
+mass,0.35
+length,0.02
+width,0.15
+height,0.63
+shape,rectangular
+resistance,0
+```
+### Description of Parameters
+- type: The type of controller, in this case, unknown.
+- current_max: The maximum current the controller can handle, which is 2000A.
+- current_cont: The continuous current rating, which is 400A.
+- voltage_max: The maximum voltage rating, which is 1500V.
+- voltage_min: The minimum voltage rating, which is 20V.
+- mass: The mass of the controller, which is 0.35kg.
+- length: The length of the controller, which is 0.02m.
+- width: The width of the controller, which is 0.15m.
+- height: The height of the controller, which is 0.63m.
+- shape: The shape of the controller, which is rectangular.
+- resistance: The internal resistance of the controller, which is 0 ohms.
+- Controller Model Script (controller.py)
+- This script defines the ControllerModel class, which is responsible for loading controller parameters and performing the model analysis.
+  
+```Code Breakdown
+Imports```
+python
+Copy code
+from adsp.paths import get_controller_csv_path
+from adsp.utils.csv_reader import csv_reader
+ControllerModel Class
+python
+Copy code
+class ControllerModel:
+    def __init__(self, pcb, name_controller):
+        self.pcb = pcb
+        self.name_controller = name_controller
+
+    def load_data(self):
+        file = paths.db.get_controller_csv_path(self.name_controller)
+        data = csv_reader(file)
+        for parameter, value in data.items():
+            setattr(self.pcb.data_controller, parameter, value)
+
+    def run_model(self, throttle):
+        # Perform analysis here, for example:
+        voltage_out = self.pcb.data_controller.voltage_max * throttle
+        self.pcb.data_controller.voltage_out = voltage_out
+        # Additional analysis and model computation
+```
+### Test Script (`04_test_controller.py`)
+This script runs the controller model using predefined test conditions.
+
+```python
+from adsp.propulsion.electrical.controller import (
+    get_controller,
+    ControllerModel,
+    Controller,
+)
+from adsp.propulsion.pcb import PCB
+from adsp.utils.print_align import print_aligned_data
+
+pcb = PCB()
+Main Function
+python
+Copy code
+def main() -> None:
+    name_controller = "KP21INV"
+    throttle = 0.5
+
+    power_peak = 230000
+    current_peak = 570
+    
+    pcb.data_controller.power_peak = power_peak
+    pcb.data_controller.current_peak = current_peak
+    controller = get_controller(pcb, name_controller)
+    controller.load_data()
+    controller.run_model(throttle)
+    print_aligned_data(pcb.data_controller)
+
+
+if __name__ == "__main__":
+    main()
+```
+## Running the Test
+- Prepare the CSV File: Ensure KP21INV.csv is in the ADSP>data>controller directory.
+- Update Parameters: Modify controller parameters in the CSV as needed.
+- Execute the Test Script:
+- Open a terminal or command prompt.
+- Navigate to the directory containing 04_test_controller.py.
+- Run the script:
+```bash
+python 04_test_controller.py
+```
+
+# Converter
+
+### Overview
+
+This manual provides detailed instructions for setting up and running a converter model test and analysis. The code integrates converter parameters from a database (DB), processes them using a converter model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.
+
+### Components
+1. **Database (DB)**: Contains converter parameters.
+2. **Converter Model**: Selects and analyzes the converter model based on provided parameters.
+3. **Test Case**: Defines test conditions and input parameters.
+4. **Data Saved in PCB**: Stores the test results.
+
+## Files and Scripts
+
+1. **Converter Parameters CSV File**: `ADSP>data>converter>converter.csv`
+2. **Converter Model Script**: `ADSP>propulsion>electrical>converter.py`
+3. **Test Script**: `test demo>propulsion>05_test_converter.py`
+
+### Converter Parameters CSV (`converter.csv`)
+
+The CSV file contains key parameters for the converter model. Below is an example of the converter parameters used:
+
+```plaintext
+Converter,Unknown
+type,unknown
+resistance_mosfet,0.08
+resistance_diode,0.02
+inductance,0.07
+voltage_drop_diode,0.57
+```
+#### Description of Parameters
+- type: The type of converter, in this case, unknown.
+- resistance_mosfet: The resistance of the MOSFET, which is 0.08 ohms.
+- resistance_diode: The resistance of the diode, which is 0.02 ohms.
+- inductance: The inductance value, which is 0.07 H.
+- voltage_drop_diode: The voltage drop across the diode, which is 0.57V.
+- 
+#### Converter Model Script (converter.py)
+This script defines the ConverterModel class, which is responsible for loading converter parameters and performing the model analysis.
+
+```python
+class ConverterModel:
+    def __init__(self, pcb, name_converter):
+        self.pcb = pcb
+        self.name_converter = name_converter
+
+    def load_data(self):
+        file = paths.db.get_converter_csv_path(self.name_converter)
+        data = csv_reader(file)
+        for parameter, value in data.items():
+            setattr(self.pcb.data_converter, parameter, value)
+
+    def run_model(self, duty_cycle):
+        # Perform analysis here, for example:
+        voltage_out = self.pcb.data_converter.voltage_inp * duty_cycle
+        self.pcb.data_converter.voltage_out = voltage_out
+        # Additional analysis and model computation
+```
+
+### Test Script (05_test_converter.py)
+This script runs the converter model using predefined test conditions.
+
+```python
+
+from adsp.propulsion.electrical.converter import (
+    get_converter,
+    ConverterModel,
+    Converter,
+)
+from adsp.propulsion.pcb import PCB
+from adsp.utils.print_align import print_aligned_data
+
+pcb = PCB()
+
+
+def main() -> None:
+    name_converter = "converter"
+    duty_cycle = 0.90
+    current = 216
+    voltage = 500
+
+    pcb.data_converter.current_out = current
+    pcb.data_converter.voltage_out = voltage
+    converter = get_converter(pcb, name_converter)
+    converter.load_data()
+    converter.run_model(duty_cycle)
+    print_aligned_data(pcb.data_converter)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+#### Running the Test
+- Prepare the CSV File: Ensure converter.csv is in the ADSP>data>converter directory.
+- Update Parameters: Modify converter parameters in the CSV as needed.
+- Execute the Test Script:
+- Open a terminal or command prompt.
+- Navigate to the directory containing 05_test_converter.py.
+- Run the script:
+- ```
+```bash
+python 05_test_converter.py
+```
+
+#### Output
+The results of the converter model analysis are saved in the pcb.data_converter object and printed using print_aligned_data. The output includes detailed information about the converter performance based on the test conditions.
+
+# Inverter
+
+## Overview
+
+This manual provides detailed instructions for setting up and running an inverter model test and analysis. The code integrates inverter parameters from a database (DB), processes them using an inverter model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.
+
+### Components
+1. **Database (DB)**: Contains inverter parameters.
+2. **Inverter Model**: Selects and analyzes the inverter model based on provided parameters.
+3. **Test Case**: Defines test conditions and input parameters.
+4. **Data Saved in PCB**: Stores the test results.
+
+## Files and Scripts
+
+1. **Inverter Parameters CSV File**: `ADSP>data>inverter>GaN-NTP8G206N.csv`
+2. **Inverter Model Script**: `ADSP>propulsion>electrical>inverter.py`
+3. **Test Script**: `test demo>propulsion>06_test_inverter.py`
+
+## Inverter Parameters CSV (`GaN-NTP8G206N.csv`)
+
+The CSV file contains key parameters for the inverter model. Below is an example of the inverter parameters used:
+
+```plaintext
+Inverter,GaN-NTP8G206N
+type,unknown
+resistance_mosfet,0.29
+resistance_diode,0.14
+inductance,0.07
+power_factor,0.97
+voltage_drop_diode,2.2
+```
+### Description of Parameters
+- type: The type of inverter, in this case, unknown.
+- resistance_mosfet: The resistance of the MOSFET, which is 0.29 ohms.
+- resistance_diode: The resistance of the diode, which is 0.14 ohms.
+- inductance: The inductance value, which is 0.07 H.
+- power_factor: The power factor, which is 0.97.
+- voltage_drop_diode: The voltage drop across the diode, which is 2.2V.
+### Inverter Model Script (inverter.py)
+
+This script defines the InverterModel class, which is responsible for loading inverter parameters and performing the model analysis.
+```
+class InverterModel:
+    def __init__(self, pcb, name_inverter):
+        self.pcb = pcb
+        self.name_inverter = name_inverter
+
+    def load_data(self):
+        file = paths.db.get_inverter_csv_path(self.name_inverter)
+        data = csv_reader(file)
+        for parameter, value in data.items():
+            setattr(self.pcb.data_inverter, parameter, value)
+
+    def run_model(self, modulation_ratio):
+        # Perform analysis here, for example:
+        voltage_out = self.pcb.data_inverter.voltage_inp * modulation_ratio
+        self.pcb.data_inverter.voltage_out = voltage_out
+        # Additional analysis and model computation
+```
+
+### Test Script (`06_test_inverter.py`)
+
+This script runs the inverter model using predefined test conditions.
+```python
+
+from adsp.propulsion.electrical.inverter import get_inverter, InverterModel
+from adsp.propulsion.pcb import PCB
+from adsp.utils.print_align import print_aligned_data
+
+pcb = PCB()
+
+def main() -> None:
+    name_inverter = "GaN-NTP8G206N"
+    modulation_ratio = 0.90
+    current_out = 216
+    voltage_out = 500
+
+    pcb.data_inverter.current_out = current_out
+    pcb.data_inverter.voltage_out = voltage_out
+    inverter = get_inverter(pcb, name_inverter)
+    inverter.load_data()
+    inverter.run_model(modulation_ratio)
+    print_aligned_data(pcb.data_inverter)
+
+
+if __name__ == "__main__":
+    main()
+```
+### Running the Test
+- Prepare the CSV File: Ensure GaN-NTP8G206N.csv is in the ADSP>data>inverter directory.
+- Update Parameters: Modify inverter parameters in the CSV as needed.
+- Execute the Test Script:
+- Open a terminal or command prompt.
+- Navigate to the directory containing 06_test_inverter.py.
+
+### Run the script:
+
+```bash
+python 06_test_inverter.py
+```
+
+
+### Output
+
+The results of the inverter model analysis are saved in the pcb.data_inverter object and printed using print_aligned_data. The output includes detailed information about the inverter performance based on the test conditions.
+

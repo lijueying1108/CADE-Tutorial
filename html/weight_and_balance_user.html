@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>weight and balance user manual &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">weight and balance user manual</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/weight_and_balance_user.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="weight-and-balance-user-manual">
+<h1>weight and balance user manual<a class="headerlink" href="#weight-and-balance-user-manual" title="Link to this heading"></a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="integrated-analysis-user-manual">
+<h1>Integrated Analysis User Manual<a class="headerlink" href="#integrated-analysis-user-manual" title="Link to this heading"></a></h1>
+<p>This is a user manual for integrated analysis of modules inside CADE-MDA.</p>
+<br>
+<p>To run the integrated analysis, two main input files are necessary. Detailed descriptions, formatting guidelines, and an example file for these input files can be found in here : (1) Command Input File, <a class="reference internal" href="cmd_input.html"><span class="std std-doc">here</span></a> and (2) Aircraft Input File, <a class="reference internal" href="config_input.html"><span class="std std-doc">here</span></a>.</p>
+<p>Get initial (minimum) aircraft data (configuration, weight and propulsion component data) from main <em><strong>‘Aircraft Input File</strong></em>.</p>
+<p>After defining the aircraft’s basic data in the <em><strong>‘Aircraft Input File’</strong></em>, the integrated analysis settings are specified in the <em><strong>‘Command Input File’</strong></em>.</p>
+<br>
+<section id="aircraft-setting">
+<h2>Aircraft Setting<a class="headerlink" href="#aircraft-setting" title="Link to this heading"></a></h2>
+<p>This ‘AIRCRAFT’ section setups the aircraft to be analyzed.<br>
+<span style="color:rgb(21, 184, 0);">AIRCRAFT: object </span><br>
+&gt; File name of <em><strong>Aircraft Input File</strong></em> for analysis. <br></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>AIRCRAFT : KP2A-UAM-VP
+</pre></div>
+</div>
+</section>
+<section id="discipline-and-methodology-setting">
+<h2>Discipline and Methodology Setting<a class="headerlink" href="#discipline-and-methodology-setting" title="Link to this heading"></a></h2>
+<p>This ‘METHODOLOGY’ section defines and initializes the analysis methodology to be executed. <br>
+&gt; Below <strong>‘METHODOLOGY</strong> list of all the <strong>‘DISCIPLINE’</strong> to be analyzed.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>METHODOLOGY
+</pre></div>
+</div>
+<section id="discipline-wise-methodology-setting">
+<h3><span style="color:rgb(24, 80, 145);">Discipline-wise Methodology Setting</span><a class="headerlink" href="#discipline-wise-methodology-setting" title="Link to this heading"></a></h3>
+<p>This ‘DISCIPLINE’ section setups the analysis methodology for each discipline to be executed. <br>
+<span style="color:rgb(21, 184, 0);">configuration/weight-and-balance/aerodynamics/propulsion : object </span><br>
+&gt; Analysis discipline to be analyzed. <br>
+&gt;&gt; To run the ‘Configuration Analysis’, the <strong>‘DISCIPLINE’</strong> must be set to include the <code class="docutils literal notranslate"><span class="pre">configuration</span></code> <br>
+&gt;&gt; To run the ‘Weight and Balance Analysis’, the <strong>‘DISCIPLINE’</strong> must be set to include the <code class="docutils literal notranslate"><span class="pre">weight-and-balance</span></code> <br>
+&gt;&gt; To run the ‘Aerodynamics and Stability &amp; Control Analysis’, the <strong>‘DISCIPLINE’</strong> must be set to include the <code class="docutils literal notranslate"><span class="pre">aerodynamics</span></code> <br>
+&gt;&gt; To run the ‘Electric Propulison Analysis’, the <strong>‘DISCIPLINE’</strong> must be set to include the <code class="docutils literal notranslate"><span class="pre">propulsion</span></code> <br></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>DISCIPLINE : configuration
+DISCIPLINE : weight-and-balance
+DISCIPLINE : aerodynamics
+DISCIPLINE : propulsion
+</pre></div>
+</div>
+<br>
+</section>
+<section id="weight-and-balance">
+<h3><code class="docutils literal notranslate"><span class="pre">weight-and-balance</span></code><a class="headerlink" href="#weight-and-balance" title="Link to this heading"></a></h3>
+<p>Weight and Balance module requires methodology settings for 1 type of analyses :</p>
+<ul>
+<li><p><em><strong>(1) Weight Estimation Methodology Setting</strong></em></p>
+<ul class="simple">
+<li><p>5 different types of aircraft weight estimation methods are provided</p></li>
+</ul>
+  <br>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  analysis method : Raymer/Torenbeek/USAF/AFDD/Wetted_Area_Structural
+</pre></div>
+</div>
+</li>
+<li><p><em><strong>(2) Wetted Area Structural Method Setting</strong></em></p>
+<ul class="simple">
+<li><p>If <strong>Wetted_Area_Structural</strong> method is selected, the following inputs are required:</p></li>
+</ul>
+  <br>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  avg_material_density_fuselage : Average fuselage skin material density [kg/m^2]
+  avg_material_density_wing : Average wing skin material density [kg/m^2]
+  avg_material_density_tail : Average empennage skin material density [kg/m^2]
+  avg_skin_thickness_fuselage : Average fuselage skin thickness [m]
+  avg_skin_thickness_wing : Average wing skin thickness [m]
+  avg_skin_thickness_tail : Average empennage skin thickness [m]
+</pre></div>
+</div>
+</li>
+<li><p><em><strong>(3) Default Parameter Setting</strong></em></p>
+<ul class="simple">
+<li><p>The following fields are auto‐populated with default values for the four supported methods (Raymer, Torenbeek, USAF, AFDD) but can be edited if you need to override them:</p></li>
+<li><p>For detailed definitions and recommended values, refer to <a class="reference internal" href="weight_and_balance_theory.html"><span class="std std-doc">Weight and Balance Theory Manual</span></a></p></li>
+<li><p>Fuel Mass</p>
+<ul>
+<li><p>Fuel mass in kilograms.</p></li>
+<li><p>For electric aircraft, set this to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+  <br>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  mass-fuel: Fuel Weight (kg)  
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Raymer/Torenbeek/USAF Fudge Factors</p>
+<ul>
+<li><p>These correction factors adjust baseline component weights to account for advanced materials, and manufacturing allowances.</p></li>
+</ul>
+</li>
+</ul>
+  <br>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  corr_factor_raymer_material_wing: 0.85  
+  corr_factor_raymer_material_tail: 0.83  
+  corr_factor_raymer_material_fuselage: 0.90  
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>AFDD Technology Factors</p>
+<ul>
+<li><p>These correction factors reflect advanced materials and technology maturity.</p></li>
+</ul>
+</li>
+</ul>
+  <br>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  corr_factor_afdd_technology_wing: 0.73  
+  corr_factor_afdd_technology_horizontal_tail: 0.65  
+  corr_factor_afdd_technology_vertical_tail: 0.79  
+  corr_factor_afdd_technology_V_tail: 0.65  
+  corr_factor_afdd_technology_fuselage: 0.89  
+</pre></div>
+</div>
+  <br>
+</li>
+</ul>
+<p>* Each methodologies’ theoretical explainations can be checked in <a class="reference internal" href="weight_and_balance_theory.html"><span class="std std-doc">Weight and Balance Theory Manual</span></a></p>
+<hr class="docutils" />
+<br>
+</section>
+</section>
+<section id="run-analysis">
+<h2>Run Analysis<a class="headerlink" href="#run-analysis" title="Link to this heading"></a></h2>
+<p>This ‘ANALYSIS’ section defines the actual runcases to be executed. <br>
+&gt; Below <strong>‘ANALYSIS</strong>, list of all the <strong>‘RUN’</strong> CASE to be analyzed.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ANALYSIS
+</pre></div>
+</div>
+<section id="discipline-wise-runcase-setting">
+<h3><span style="color:rgb(24, 80, 145);">Discipline-wise Runcase Setting</span><a class="headerlink" href="#discipline-wise-runcase-setting" title="Link to this heading"></a></h3>
+<p>This ‘RUN’ section setups the runcase and specifies the analysis conditions for each runcases. <br>
+&gt; Analysis runcases to be executed.
+<br></p>
+</section>
+<section id="configuration">
+<h3><code class="docutils literal notranslate"><span class="pre">configuration</span></code><a class="headerlink" href="#configuration" title="Link to this heading"></a></h3>
+<p>To run the ‘Configuration Analysis’, the <strong>‘RUN’</strong> must be set to <strong>‘configuration’</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RUN : configuration
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3><code class="docutils literal notranslate"><span class="pre">weight-and-balance</span></code><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>To run the ‘Weight and Balance Analysis’, the <strong>‘RUN’</strong> must be set to <strong>‘weight-table’</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RUN : weight-table
+</pre></div>
+</div>
+<br></section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

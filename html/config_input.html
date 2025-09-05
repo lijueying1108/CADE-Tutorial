@@ -1,0 +1,2710 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aircraft Input File &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Aircraft Input File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/config_input.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="aircraft-input-file">
+<h1>Aircraft Input File<a class="headerlink" href="#aircraft-input-file" title="Link to this heading"></a></h1>
+<p>This page describes the aircraft input file required to perform the Multi-Disciplinary
+Analysis (MDA) and Design Evaluation modules inside CADE.</p>
+<p>Aircraft input file is a single CSV file that contains detailed information and data
+about the target aircraft to be analyzed : (1) Design Quantities, (2) Aircraft Configuration,
+(3) Internal Weight Components, (3) Propulsion System
+Aircraft input files by default are located in <code class="docutils literal notranslate"><span class="pre">cade/data/aircraft</span></code> directory.</p>
+<p>The file is divided into four main sections and subsections.
+CADE performs search by the section header, so it is important to write
+them correctly.</p>
+<p>Example of the aircraft input file is shown below:</p>
+<table class="docutils align-default" id="id9">
+<caption><span class="caption-text">Example of aircraft input file</span><a class="headerlink" href="#id9" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>options</p></td>
+<td><p>UAM</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>DESIGN QUANTITIES</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>aircraft-type</p></td>
+<td><p>UAM</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>design-gross-mass</p></td>
+<td><p>2253.9</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>design-speed</p></td>
+<td><p>66.6</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>design-altitude</p></td>
+<td><p>600</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>design-load-factor</p></td>
+<td><p>3.5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>design-landing-load-factor</p></td>
+<td><p>1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mission-profile</p></td>
+<td><p>mission-profile-1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONFIGURATION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>WING</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-configuration</p></td>
+<td><p>BOXWING</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>surface-number</p></td>
+<td><p>4</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-type</p></td>
+<td><p>MAINWING</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-half-span</p></td>
+<td><p>5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-root-chord</p></td>
+<td><p>2.0595</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-location</p></td>
+<td><p>5.1435</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-incidence</p></td>
+<td><p>4.387</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-seg-span-location</p></td>
+<td><p>50</p></td>
+<td><p>90</p></td>
+<td><p>100</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-seg-taper</p></td>
+<td><p>0.675</p></td>
+<td><p>0.6147</p></td>
+<td><p>0.8435</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-seg-sweep</p></td>
+<td><p>20</p></td>
+<td><p>20</p></td>
+<td><p>20</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-seg-dihedral</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-sec-airfoil</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-sec-twist</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>-2.8764</p></td>
+<td><p>-5.7527</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-cs-type</p></td>
+<td><p>AILERON</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-cs-chord</p></td>
+<td><p>0</p></td>
+<td><p>0.25</p></td>
+<td><p>0.25</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-type</p></td>
+<td><p>REARWING</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-half-span</p></td>
+<td><p>3.504</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-root-chord</p></td>
+<td><p>1.17</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-location</p></td>
+<td><p>10.457</p></td>
+<td><p>1.5095</p></td>
+<td><p>6.7975</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-incidence</p></td>
+<td><p>-2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-seg-span-location</p></td>
+<td><p>50</p></td>
+<td><p>100</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-seg-taper</p></td>
+<td><p>0.9098</p></td>
+<td><p>0.9009</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-seg-sweep</p></td>
+<td><p>-34.30598566</p></td>
+<td><p>-34.30598566</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-seg-dihedral</p></td>
+<td><p>-5.003</p></td>
+<td><p>-5.003</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-sec-airfoil</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-sec-twist</p></td>
+<td><p>0</p></td>
+<td><p>1.91355</p></td>
+<td><p>3.8271</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-cs-type</p></td>
+<td><p>NONE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-cs-chord</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-type</p></td>
+<td><p>V-TAIL</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-half-span</p></td>
+<td><p>2.347</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-root-chord</p></td>
+<td><p>1.3</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-location</p></td>
+<td><p>9.4</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-incidence</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-seg-span-location</p></td>
+<td><p>10</p></td>
+<td><p>90</p></td>
+<td><p>100</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-seg-taper</p></td>
+<td><p>0.99</p></td>
+<td><p>0.9192</p></td>
+<td><p>0.98901</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-seg-sweep</p></td>
+<td><p>24.241</p></td>
+<td><p>24.241</p></td>
+<td><p>24.241</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-seg-dihedral</p></td>
+<td><p>49.9798</p></td>
+<td><p>49.9798</p></td>
+<td><p>49.9798</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-sec-airfoil</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-sec-twist</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-cs-type</p></td>
+<td><p>RUDDERVATOR</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-cs-chord</p></td>
+<td><p>0</p></td>
+<td><p>0.5</p></td>
+<td><p>0.5</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>BODY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>body-number</p></td>
+<td><p>1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>body-type</p></td>
+<td><p>FUSELAGE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>body-length</p></td>
+<td><p>7</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>body-height</p></td>
+<td><p>1.75</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>body-width</p></td>
+<td><p>1.6</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>body-profile</p></td>
+<td><p>KP-1-fuselage</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>body-location</p></td>
+<td><p>3.995</p></td>
+<td><p>0</p></td>
+<td><p>4.2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>LANDING GEAR</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>lg-type</p></td>
+<td><p>NONE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>PROPULSION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>name_propulsion</p></td>
+<td><p>propulsion_set_boxwing</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>W&amp;B</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>MASS COMPONENTS</p></td>
+<td><p>GROUP</p></td>
+<td><p>MIN MASS</p></td>
+<td><p>MAX MASS</p></td>
+<td><p>CG-X</p></td>
+<td><p>CG-Y</p></td>
+<td><p>CG-Z</p></td>
+<td><p>LX</p></td>
+<td><p>LY</p></td>
+<td><p>LZ</p></td>
+<td><p>SYMMETRY</p></td>
+<td><p>SHAPE</p></td>
+<td><p>DENSITY</p></td>
+<td><p>ORIENTATION</p></td>
+</tr>
+<tr class="row-odd"><td><p>Payload</p></td>
+<td><p>Payload</p></td>
+<td><p>444.55</p></td>
+<td><p>444.55</p></td>
+<td><p>6.25</p></td>
+<td><p>0</p></td>
+<td><p>4.134194</p></td>
+<td><p>1.77</p></td>
+<td><p>1.57</p></td>
+<td><p>1.37</p></td>
+<td><p>X</p></td>
+<td><p>rectangular</p></td>
+<td><p>0</p></td>
+<td><p>Ox</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p>DESIGN QUANTITIES
+This page describes the aircraft input file required to perform the Multi-Disciplinary
+Analysis (MDA) and Design Evaluation modules inside CADE.</p>
+<p>Aircraft input file is a single CSV file that contains detailed information and data
+about the target aircraft to be analyzed : (1) Design Quantities, (2) Aircraft Configuration,
+(3) Internal Weight Components, (3) Propulsion System
+Aircraft input files by default are located in <code class="docutils literal notranslate"><span class="pre">cade/data/aircraft</span></code> directory.</p>
+<p>The file is divided into four main sections and subsections.
+CADE performs search by the section header, so it is important to write
+them correctly.</p>
+<p>Example of the aircraft input file is shown below:</p>
+<table class="docutils align-default" id="id10">
+<caption><span class="caption-text">Example of aircraft input file</span><a class="headerlink" href="#id10" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+<col style="width: 7.1%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>options</p></td>
+<td><p>UAM</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>DESIGN QUANTITIES</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>aircraft-type</p></td>
+<td><p>UAM</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>design-gross-mass</p></td>
+<td><p>2253.9</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>design-speed</p></td>
+<td><p>66.6</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>design-altitude</p></td>
+<td><p>600</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>design-load-factor</p></td>
+<td><p>3.5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>design-landing-load-factor</p></td>
+<td><p>1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mission-profile</p></td>
+<td><p>mission-profile-1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CONFIGURATION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>WING</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-configuration</p></td>
+<td><p>BOXWING</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>surface-number</p></td>
+<td><p>4</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-type</p></td>
+<td><p>MAINWING</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-half-span</p></td>
+<td><p>5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-root-chord</p></td>
+<td><p>2.0595</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-location</p></td>
+<td><p>5.1435</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-incidence</p></td>
+<td><p>4.387</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-seg-span-location</p></td>
+<td><p>50</p></td>
+<td><p>90</p></td>
+<td><p>100</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-seg-taper</p></td>
+<td><p>0.675</p></td>
+<td><p>0.6147</p></td>
+<td><p>0.8435</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-seg-sweep</p></td>
+<td><p>20</p></td>
+<td><p>20</p></td>
+<td><p>20</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-seg-dihedral</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-sec-airfoil</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-sec-twist</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>-2.8764</p></td>
+<td><p>-5.7527</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-cs-type</p></td>
+<td><p>AILERON</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-cs-chord</p></td>
+<td><p>0</p></td>
+<td><p>0.25</p></td>
+<td><p>0.25</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-type</p></td>
+<td><p>REARWING</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-half-span</p></td>
+<td><p>3.504</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-root-chord</p></td>
+<td><p>1.17</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-location</p></td>
+<td><p>10.457</p></td>
+<td><p>1.5095</p></td>
+<td><p>6.7975</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-incidence</p></td>
+<td><p>-2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-seg-span-location</p></td>
+<td><p>50</p></td>
+<td><p>100</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-seg-taper</p></td>
+<td><p>0.9098</p></td>
+<td><p>0.9009</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-seg-sweep</p></td>
+<td><p>-34.30598566</p></td>
+<td><p>-34.30598566</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-seg-dihedral</p></td>
+<td><p>-5.003</p></td>
+<td><p>-5.003</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-sec-airfoil</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-sec-twist</p></td>
+<td><p>0</p></td>
+<td><p>1.91355</p></td>
+<td><p>3.8271</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-cs-type</p></td>
+<td><p>NONE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-cs-chord</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-type</p></td>
+<td><p>V-TAIL</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-half-span</p></td>
+<td><p>2.347</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-root-chord</p></td>
+<td><p>1.3</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-location</p></td>
+<td><p>9.4</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-incidence</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-seg-span-location</p></td>
+<td><p>10</p></td>
+<td><p>90</p></td>
+<td><p>100</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-seg-taper</p></td>
+<td><p>0.99</p></td>
+<td><p>0.9192</p></td>
+<td><p>0.98901</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-seg-sweep</p></td>
+<td><p>24.241</p></td>
+<td><p>24.241</p></td>
+<td><p>24.241</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-seg-dihedral</p></td>
+<td><p>49.9798</p></td>
+<td><p>49.9798</p></td>
+<td><p>49.9798</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-sec-airfoil</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td><p>E214</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-sec-twist</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>wing-cs-type</p></td>
+<td><p>RUDDERVATOR</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wing-cs-chord</p></td>
+<td><p>0</p></td>
+<td><p>0.5</p></td>
+<td><p>0.5</p></td>
+<td><p>0</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>BODY</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>body-number</p></td>
+<td><p>1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>body-type</p></td>
+<td><p>FUSELAGE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>body-length</p></td>
+<td><p>7</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>body-height</p></td>
+<td><p>1.75</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>body-width</p></td>
+<td><p>1.6</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>body-profile</p></td>
+<td><p>KP-1-fuselage</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>body-location</p></td>
+<td><p>3.995</p></td>
+<td><p>0</p></td>
+<td><p>4.2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>LANDING GEAR</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>lg-type</p></td>
+<td><p>NONE</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>PROPULSION</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>name_propulsion</p></td>
+<td><p>propulsion_set_boxwing</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>W&amp;B</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>MASS COMPONENTS</p></td>
+<td><p>GROUP</p></td>
+<td><p>MIN MASS</p></td>
+<td><p>MAX MASS</p></td>
+<td><p>CG-X</p></td>
+<td><p>CG-Y</p></td>
+<td><p>CG-Z</p></td>
+<td><p>LX</p></td>
+<td><p>LY</p></td>
+<td><p>LZ</p></td>
+<td><p>SYMMETRY</p></td>
+<td><p>SHAPE</p></td>
+<td><p>DENSITY</p></td>
+<td><p>ORIENTATION</p></td>
+</tr>
+<tr class="row-odd"><td><p>Payload</p></td>
+<td><p>Payload</p></td>
+<td><p>444.55</p></td>
+<td><p>444.55</p></td>
+<td><p>6.25</p></td>
+<td><p>0</p></td>
+<td><p>4.134194</p></td>
+<td><p>1.77</p></td>
+<td><p>1.57</p></td>
+<td><p>1.37</p></td>
+<td><p>X</p></td>
+<td><p>rectangular</p></td>
+<td><p>0</p></td>
+<td><p>Ox</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<section id="design-quantities">
+<h2>DESIGN QUANTITIES<a class="headerlink" href="#design-quantities" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">DESIGN</span> <span class="pre">QUANTITIES</span></code> section provides information on the type of aircraft to be analyzed
+and the associated design conditions.</p>
+<p><code class="docutils literal notranslate"><span class="pre">DESIGN</span> <span class="pre">QUANTITIES</span></code> section provides information on the type of aircraft to be analyzed
+and the associated design conditions.</p>
+<dl class="simple">
+<dt>aircraft-type<span class="classifier">string</span></dt><dd><p>type of aircraft (e.g. UAV, UAM, etc.)
+type of aircraft (e.g. UAV, UAM, etc.)</p>
+</dd>
+<dt>design-gross-mass<span class="classifier">float, kg</span></dt><dd><p>design mass</p>
+</dd>
+<dt>design-speed<span class="classifier">float, m/s</span></dt><dd><p>design cruise speed</p>
+</dd>
+<dt>design-altitude<span class="classifier">float, m</span></dt><dd><p>design cruise altitude</p>
+</dd>
+<dt>design-load-factor<span class="classifier">float</span></dt><dd><p>design load factor</p>
+</dd>
+<dt>design-landing-load factor<span class="classifier">float</span></dt><dd><p>design lanidng load factor</p>
+</dd>
+<dt>mission-profile<span class="classifier">string</span></dt><dd><p>mission profile of the aircraft</p>
+<ul class="simple">
+<li><p>Mission profiles are save in mission.csv file located in <code class="docutils literal notranslate"><span class="pre">cade/data/mission_input</span></code> directory.</p></li>
+<li><p>The mission analysis uses mission profile described in the corresponding excel tab.</p></li>
+<li><p>How to create a mission profile is described in the ‘Database’ page.</p></li>
+</ul>
+</dd>
+</dl>
+<hr class="docutils" />
+<p>CONFIGURATION
+mission-profile : string</p>
+<blockquote>
+<div><p>mission profile of the aircraft</p>
+<ul class="simple">
+<li><p>Mission profiles are save in mission.csv file located in <code class="docutils literal notranslate"><span class="pre">cade/data/mission_input</span></code> directory.</p></li>
+<li><p>The mission analysis uses mission profile described in the corresponding excel tab.</p></li>
+<li><p>How to create a mission profile is described in the ‘Database’ page.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="configuration">
+<h2>CONFIGURATION<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">CONFIGURATION</span></code> section provides detailed information on the aircraft configuration and geometries.
+This section is divided into three subsections: <code class="docutils literal notranslate"><span class="pre">WING</span></code>, <code class="docutils literal notranslate"><span class="pre">BODY</span></code>, and <code class="docutils literal notranslate"><span class="pre">LANDING</span> <span class="pre">GEAR</span></code>.</p>
+<p>WING
+<code class="docutils literal notranslate"><span class="pre">CONFIGURATION</span></code> section provides detailed information on the aircraft configuration and geometries.
+This section is divided into three subsections: <code class="docutils literal notranslate"><span class="pre">WING</span></code>, <code class="docutils literal notranslate"><span class="pre">BODY</span></code>, and <code class="docutils literal notranslate"><span class="pre">LANDING</span> <span class="pre">GEAR</span></code>.</p>
+<section id="wing">
+<h3>WING<a class="headerlink" href="#wing" title="Link to this heading"></a></h3>
+<p><strong>From here, configuration input parameters for whole aircraft’s wing type are required.</strong>
+Based on the theoretical background of the configuration analysis inside CADE-MDA,
+the wing input data is provided in the format to support the ‘Multi-Segment Wing Analysis’.
+<strong>From here, configuration input parameters for whole aircraft’s wing type are required.</strong>
+Based on the theoretical background of the configuration analysis inside CADE-MDA,
+the wing input data is provided in the format to support the ‘Multi-Segment Wing Analysis’.</p>
+<dl>
+<dt>wing-configuration<span class="classifier">string</span></dt><dd><p>type of overall wing layout. This could be conventional, tandem,
+type of overall wing layout. This could be conventional, tandem,
+canard, box-wing or else</p>
+<ul class="simple">
+<li><p>Depending on the <code class="docutils literal notranslate"><span class="pre">wing-configuration</span></code>, calculation of the reference area, span, and MAC can be different.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/available_wing_configuration.png"><img alt="Available Wing Configurations" class="align-center" src="../_images/available_wing_configuration.png" style="width: 400px;" />
+</a>
+<ul class="simple">
+<li><p>Depending on the <code class="docutils literal notranslate"><span class="pre">wing-configuration</span></code>, calculation of the reference area, span, and MAC can be different.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/available_wing_configuration.png"><img alt="Available Wing Configurations" class="align-center" src="../_images/available_wing_configuration.png" style="width: 400px;" />
+</a>
+</dd>
+<dt>surface-number<span class="classifier">integer</span></dt><dd><p>the number of lifting-surfaces. Any types of wing(main wing, canard, winglet or
+the number of lifting-surfaces. Any types of wing(main wing, canard, winglet or
+tail wings) all counts.</p>
+<ul class="simple">
+<li><p>For example, if the ‘BOXWING’ configuration as above figure,
+the <code class="docutils literal notranslate"><span class="pre">surface-number</span></code> is 4 : WING[0] MAINWING, WING[1] WINGLET, WING[2] REARWING, WING[3] V-TAIL.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">surface-number</span></code> considers only the half wing.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/box_wing_surface_number.png"><img alt="Number of Wing Surfaces" class="align-center" src="../_images/box_wing_surface_number.png" style="width: 350px;" />
+</a>
+</dd>
+</dl>
+<p><strong>From here, configuration input parameters for ‘defined’ wing are required.</strong>
+The value of <code class="docutils literal notranslate"><span class="pre">surface-number</span></code> and the number of <code class="docutils literal notranslate"><span class="pre">wing-type</span></code> in this input file should be the same.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For example, if the ‘BOXWING’ configuration as above figure,
+the <code class="docutils literal notranslate"><span class="pre">surface-number</span></code> is 4 : WING[0] MAINWING, WING[1] WINGLET, WING[2] REARWING, WING[3] V-TAIL.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">surface-number</span></code> considers only the half wing.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/box_wing_surface_number.png"><img alt="Number of Wing Surfaces" class="align-center" src="../_images/box_wing_surface_number.png" style="width: 350px;" />
+</a>
+</div></blockquote>
+<p><strong>From here, configuration input parameters for ‘defined’ wing are required.</strong>
+The value of <code class="docutils literal notranslate"><span class="pre">surface-number</span></code> and the number of <code class="docutils literal notranslate"><span class="pre">wing-type</span></code> in this input file should be the same.</p>
+<dl>
+<dt>wing-type<span class="classifier">string</span></dt><dd><p>type or the name of the wing. From this line to <code class="docutils literal notranslate"><span class="pre">wing-cs-chord</span></code>
+defines for same wing surface.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wing-type</span></code> available for MAINWING, FRONTWING, REARWING, CANARD, and for tail wings, HORIZONTAL, VERTICAL, V-TAIL, H-TAIL is available.</p></li>
+<li><p>Below table shows the example combination of <code class="docutils literal notranslate"><span class="pre">wing-type</span></code> to make <code class="docutils literal notranslate"><span class="pre">wing-configuration</span></code>.</p></li>
+</ul>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>wing-configuration</p></th>
+<th class="head"><p>wing-type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CONVENTIONAL + T-TAIL</p></td>
+<td><p>MAINWING, HORIZONTAL, VERTICAL</p></td>
+</tr>
+<tr class="row-odd"><td><p>CANARD + VERTICAL TAIL</p></td>
+<td><p>CANARD, MAINWING, VERTICAL</p></td>
+</tr>
+<tr class="row-even"><td><p>TANDEM + H-TAIL</p></td>
+<td><p>FRONTWING, REARWING, H-TAIL</p></td>
+</tr>
+<tr class="row-odd"><td><p>BOXWING + V-TAIL</p></td>
+<td><p>MAINWING, WINGLET, REARWING, V-TAIL</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Below figure shows the example of <code class="docutils literal notranslate"><span class="pre">MAINWING</span></code>.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/mainwing_example.png"><img alt="Example of Main Wing" class="align-center" src="../_images/mainwing_example.png" style="width: 600px;" />
+</a>
+<p>defines for same wing surface.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wing-type</span></code> available for MAINWING, FRONTWING, REARWING, CANARD, and for tail wings, HORIZONTAL, VERTICAL, V-TAIL, H-TAIL is available.</p></li>
+<li><p>Below table shows the example combination of <code class="docutils literal notranslate"><span class="pre">wing-type</span></code> to make <code class="docutils literal notranslate"><span class="pre">wing-configuration</span></code>.</p></li>
+</ul>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>wing-configuration</p></th>
+<th class="head"><p>wing-type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CONVENTIONAL + T-TAIL</p></td>
+<td><p>MAINWING, HORIZONTAL, VERTICAL</p></td>
+</tr>
+<tr class="row-odd"><td><p>CANARD + VERTICAL TAIL</p></td>
+<td><p>CANARD, MAINWING, VERTICAL</p></td>
+</tr>
+<tr class="row-even"><td><p>TANDEM + H-TAIL</p></td>
+<td><p>FRONTWING, REARWING, H-TAIL</p></td>
+</tr>
+<tr class="row-odd"><td><p>BOXWING + V-TAIL</p></td>
+<td><p>MAINWING, WINGLET, REARWING, V-TAIL</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Below figure shows the example of <code class="docutils literal notranslate"><span class="pre">MAINWING</span></code>.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/mainwing_example.png"><img alt="Example of Main Wing" class="align-center" src="../_images/mainwing_example.png" style="width: 600px;" />
+</a>
+</dd>
+<dt>wing-half-span<span class="classifier">float, m</span></dt><dd><p>length of defined wing’s half span.</p>
+<a class="reference internal image-reference" href="../_images/wing_half_span_example.png"><img alt="Wing Half Span" class="align-center" src="../_images/wing_half_span_example.png" style="width: 600px;" />
+</a>
+<a class="reference internal image-reference" href="../_images/wing_half_span_example.png"><img alt="Wing Half Span" class="align-center" src="../_images/wing_half_span_example.png" style="width: 600px;" />
+</a>
+</dd>
+<dt>wing-root-chord<span class="classifier">float, m</span></dt><dd><p>length of defined wing’s root chord.</p>
+<a class="reference internal image-reference" href="../_images/wing_root_chord_example.png"><img alt="Wing Root Chord" class="align-center" src="../_images/wing_root_chord_example.png" style="width: 600px;" />
+</a>
+<a class="reference internal image-reference" href="../_images/wing_root_chord_example.png"><img alt="Wing Root Chord" class="align-center" src="../_images/wing_root_chord_example.png" style="width: 600px;" />
+</a>
+</dd>
+<dt>wing-location<span class="classifier">float array, m</span></dt><dd><p>location of defined wing’s root chord’s leading edge start.
+3 columns are for x, y, z coordinate from aircraft’s reference point.</p>
+</dd>
+<dt>wing-incidence<span class="classifier">float, deg</span></dt><dd><p>angle of defined wing’s incidence. Incidence angle is an angle between
+fuselage and wing attachment part.</p>
+<a class="reference internal image-reference" href="../_images/wing_location_incidence_example.png"><img alt="Wing Location and Incidence Angle" class="align-center" src="../_images/wing_location_incidence_example.png" style="width: 600px;" />
+</a>
+</dd>
+</dl>
+<p><strong>From here, configuration parameters for each segment or section of defined wing are required.</strong>
+<a href="#id1"><span class="problematic" id="id2">*</span></a>Each column is for each segment or section.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/wing_location_incidence_example.png"><img alt="Wing Location and Incidence Angle" class="align-center" src="../_images/wing_location_incidence_example.png" style="width: 600px;" />
+</a>
+</div></blockquote>
+<p><strong>From here, configuration parameters for each segment or section of defined wing are required.</strong>
+<a href="#id3"><span class="problematic" id="id4">*</span></a>Each column is for each segment or section.</p>
+<dl>
+<dt>wing-seg-span-location<span class="classifier">float array, %</span></dt><dd><p>location of each segment’s (span) tip in percentages.
+100 means tip chord of defined wing.
+location of each segment’s (span) tip in percentages.
+100 means tip chord of defined wing.</p>
+<ul class="simple">
+<li><p>Example figure has 3 segments : Seg[0], Seg[1], and Seg[2].</p></li>
+<li><p>The first segment’s tip is at 50% of defined wing’s half span,
+the second segment’s tip is at 90% of the wing’s half span,
+and the third segment’s tip is at 100% of the wing’s half span.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/wing_seg_span_location_example.png"><img alt="Wing Segment's Span Location" class="align-center" src="../_images/wing_seg_span_location_example.png" style="width: 600px;" />
+</a>
+</dd>
+<dt>wing-seg-taper<span class="classifier">float array</span></dt><dd><p>ratio between each segment’s root chord length and tip chord length.
+1 means the segment is rectangular shape.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wing</span><span class="o">-</span><span class="n">seg</span><span class="o">-</span><span class="n">taper</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Seg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">Tip</span> <span class="n">Chord</span> <span class="o">/</span> <span class="n">wing</span><span class="o">-</span><span class="n">root</span><span class="o">-</span><span class="n">chord</span>
+
+<span class="n">wing</span><span class="o">-</span><span class="n">seg</span><span class="o">-</span><span class="n">taper</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Seg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">Tip</span> <span class="n">Chord</span> <span class="o">/</span> <span class="n">Seg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">Tip</span> <span class="n">Chord</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/wing_seg_taper_example.png"><img alt="Wing Segment's Taper Ratio" class="align-center" src="../_images/wing_seg_taper_example.png" style="width: 600px;" />
+</a>
+<ul class="simple">
+<li><p>Example figure has 3 segments : Seg[0], Seg[1], and Seg[2].</p></li>
+<li><p>The first segment’s tip is at 50% of defined wing’s half span,
+the second segment’s tip is at 90% of the wing’s half span,
+and the third segment’s tip is at 100% of the wing’s half span.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/wing_seg_span_location_example.png"><img alt="Wing Segment's Span Location" class="align-center" src="../_images/wing_seg_span_location_example.png" style="width: 600px;" />
+</a>
+</dd>
+<dt>wing-seg-taper<span class="classifier">float array</span></dt><dd><p>ratio between each segment’s root chord length and tip chord length.
+1 means the segment is rectangular shape.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wing</span><span class="o">-</span><span class="n">seg</span><span class="o">-</span><span class="n">taper</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Seg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">Tip</span> <span class="n">Chord</span> <span class="o">/</span> <span class="n">wing</span><span class="o">-</span><span class="n">root</span><span class="o">-</span><span class="n">chord</span>
+
+<span class="n">wing</span><span class="o">-</span><span class="n">seg</span><span class="o">-</span><span class="n">taper</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Seg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">Tip</span> <span class="n">Chord</span> <span class="o">/</span> <span class="n">Seg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">Tip</span> <span class="n">Chord</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/wing_seg_taper_example.png"><img alt="Wing Segment's Taper Ratio" class="align-center" src="../_images/wing_seg_taper_example.png" style="width: 600px;" />
+</a>
+</dd>
+<dt>wing-seg-sweep<span class="classifier">float array, deg</span></dt><dd><p>angle of each segment’s sweep. Sweep angle is an angle between root chord’s apex
+and tip chord’s apex in longitudinal direction. If +, it is sweep back, if -, it is sweep forward.</p>
+</dd>
+<dt>wing-seg-dihedral<span class="classifier">float array, deg</span></dt><dd><p>angle of each segment’s dihedral. Dihedral angle is an angle between root chord’s apex
+and tip chord’s apex in vertical direction. If +, it is dihedral, if -, it is anhedral.</p>
+<ul class="simple">
+<li><p>Example figure has ‘zero’ dihedral angle, so it looks like a straight line in the front view.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/wing_seg_sweep_dihedral_example.png"><img alt="Wing Segment's Sweep and Dihedral Angle" class="align-center" src="../_images/wing_seg_sweep_dihedral_example.png" style="width: 600px;" />
+</a>
+<ul class="simple">
+<li><p>Example figure has ‘zero’ dihedral angle, so it looks like a straight line in the front view.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/wing_seg_sweep_dihedral_example.png"><img alt="Wing Segment's Sweep and Dihedral Angle" class="align-center" src="../_images/wing_seg_sweep_dihedral_example.png" style="width: 600px;" />
+</a>
+</dd>
+<dt>wing-sec-airfoil<span class="classifier">string array</span></dt><dd><p>name of airfoil used in each wing section.</p>
+<ul class="simple">
+<li><p>Name of Airfoil : it will bring coordinate data from Airfoil Database.</p></li>
+</ul>
+<p>For detailed information about airfoil DB, please refer to the ‘Database’ page.</p>
+<ul class="simple">
+<li><p>Airfoil coordinate dataset is saved in <code class="docutils literal notranslate"><span class="pre">cade/data/airfoil</span></code> directory.</p></li>
+<li><p>Name of Airfoil : it will bring coordinate data from Airfoil Database.</p></li>
+</ul>
+<p>For detailed information about airfoil DB, please refer to the ‘Database’ page.</p>
+<ul class="simple">
+<li><p>Airfoil coordinate dataset is saved in <code class="docutils literal notranslate"><span class="pre">cade/data/airfoil</span></code> directory.</p></li>
+</ul>
+</dd>
+<dt>wing-sec-twist<span class="classifier">float array, deg</span></dt><dd><p>angle of each section’s twist. Twist angle is an angle between root chordline and tip chordline.</p>
+<a class="reference internal image-reference" href="../_images/wing_sec_airfoil_twist_example.png"><img alt="Wing Section's Airfoil and Twist Angle" class="align-center" src="../_images/wing_sec_airfoil_twist_example.png" style="width: 600px;" />
+</a>
+</dd>
+<dt><strong>From here, configuration parameters for defined wing’s control surface are required.</strong></dt><dd><a class="reference internal image-reference" href="../_images/wing_sec_airfoil_twist_example.png"><img alt="Wing Section's Airfoil and Twist Angle" class="align-center" src="../_images/wing_sec_airfoil_twist_example.png" style="width: 600px;" />
+</a>
+</dd>
+</dl>
+<p><strong>From here, configuration parameters for defined wing’s control surface are required.</strong></p>
+<dl>
+<dt>wing-cs-type<span class="classifier">string</span></dt><dd><p>type of defined wing’s control surface. If there is no control surface input ‘NONE’.</p>
+</dd>
+<dt>wing-cs-chord<span class="classifier">float array, ratio</span></dt><dd><p>ratio of each wing section’s chord length and control surface’s chord length.
+If 0, it means there is no control surface in that wing section.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wing</span><span class="o">-</span><span class="n">cs</span><span class="o">-</span><span class="n">chord</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Control</span> <span class="n">Surface</span> <span class="n">Chord</span> <span class="n">Length</span> <span class="n">at</span> <span class="n">Sec</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">/</span> <span class="n">Sec</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="n">Chord</span> <span class="n">Length</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/wing_cs_type_chord_example.png"><img alt="Wing's Control Surface Type and Chord Ratio" class="align-center" src="../_images/wing_cs_type_chord_example.png" style="width: 600px;" />
+</a>
+</dd>
+</dl>
+</section>
+<section id="body">
+<h3>BODY<a class="headerlink" href="#body" title="Link to this heading"></a></h3>
+<dl>
+<dt><strong>From here, configuration parameters for whole aircraft’s body type are required.</strong></dt><dd><p>ratio of each wing section’s chord length and control surface’s chord length.
+If 0, it means there is no control surface in that wing section.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wing</span><span class="o">-</span><span class="n">cs</span><span class="o">-</span><span class="n">chord</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Control</span> <span class="n">Surface</span> <span class="n">Chord</span> <span class="n">Length</span> <span class="n">at</span> <span class="n">Sec</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">/</span> <span class="n">Sec</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="n">Chord</span> <span class="n">Length</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/wing_cs_type_chord_example.png"><img alt="Wing's Control Surface Type and Chord Ratio" class="align-center" src="../_images/wing_cs_type_chord_example.png" style="width: 600px;" />
+</a>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h3>BODY<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p><strong>From here, configuration parameters for whole aircraft’s body type are required.</strong></p>
+<dl class="simple">
+<dt>body-number<span class="classifier">integer</span></dt><dd><p>the number of body surfaces. Any types of body(fuselage, motor boom, or
+nacelle) all counts.</p>
+<ul class="simple">
+<li><p>For example, if the aircraft has fuselage and motor boom,
+the <code class="docutils literal notranslate"><span class="pre">body-number</span></code> is 2 : BODY[0] FUSELAGE, BODY[1] MOTORBOOM.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>From here, configuration input parameters for defined body are required.</strong>
+* The value of ‘body-number’ and the number of ‘body-type’ in this csv should be the same.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For example, if the aircraft has fuselage and motor boom,
+the <code class="docutils literal notranslate"><span class="pre">body-number</span></code> is 2 : BODY[0] FUSELAGE, BODY[1] MOTORBOOM.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>From here, configuration input parameters for defined body are required.</strong>
+* The value of ‘body-number’ and the number of ‘body-type’ in this csv should be the same.</p>
+<dl>
+<dt>body-type<span class="classifier">string</span></dt><dd><p>type or the name of the body. From this line to ‘body-location’ defines
+for same body part.</p>
+</dd>
+<dt>body-length<span class="classifier">float, m</span></dt><dd><p>length of defined body(longitudinal direction).</p>
+</dd>
+<dt>body-height<span class="classifier">float, m</span></dt><dd><p>length of defined body(vertical direction)</p>
+</dd>
+<dt>body-width<span class="classifier">float, m</span></dt><dd><p>length of defined body(lateral direction)</p>
+</dd>
+<dt>body-profile<span class="classifier">string</span></dt><dd><p>file name of defined body’s profile coordinate file.</p>
+<ul class="simple">
+<li><p>Name of Body Profile : it will bring coordinate data from Body Profile Database.</p></li>
+</ul>
+<p>For detailed information about body profile DB, please refer to the ‘Database’ page.</p>
+<ul class="simple">
+<li><p>Body profile coordinate dataset is saved in <code class="docutils literal notranslate"><span class="pre">cade/data/bodyProfile</span></code> directory.</p></li>
+<li><p>Name of Body Profile : it will bring coordinate data from Body Profile Database.</p></li>
+</ul>
+<p>For detailed information about body profile DB, please refer to the ‘Database’ page.</p>
+<ul class="simple">
+<li><p>Body profile coordinate dataset is saved in <code class="docutils literal notranslate"><span class="pre">cade/data/bodyProfile</span></code> directory.</p></li>
+</ul>
+</dd>
+<dt>body-location<span class="classifier">float array, m</span></dt><dd><p>location of defined body’s nose starting point. 3 columns
+are for x, y, z coordinate from aircraft’s reference point.</p>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="../_images/body_params_example.png"><img alt="Body Type's Input Parameters" class="align-center" src="../_images/body_params_example.png" style="width: 600px;" />
+</a>
+<p>LANDING GEAR
+.. image:: _static/fig/body_params_example.png</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">width<span class="colon">:</span></dt>
+<dd class="field-odd"><p>600px</p>
+</dd>
+<dt class="field-even">align<span class="colon">:</span></dt>
+<dd class="field-even"><p>center</p>
+</dd>
+<dt class="field-odd">alt<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Body Type’s Input Parameters</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="landing-gear">
+<h3>LANDING GEAR<a class="headerlink" href="#landing-gear" title="Link to this heading"></a></h3>
+<p><strong>From here, configuration parameters for whole aircraft’s landing gear are required.</strong>
+<strong>From here, configuration parameters for whole aircraft’s landing gear are required.</strong></p>
+<dl class="simple">
+<dt>lg-type<span class="classifier">string</span></dt><dd><p>type of landing gear. The input should be <code class="docutils literal notranslate"><span class="pre">WHEEL</span></code> or <code class="docutils literal notranslate"><span class="pre">SKID</span></code> or <code class="docutils literal notranslate"><span class="pre">NONE</span></code>.
+If the input is <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, the landing gear parameters and analyses are ignored.
+type of landing gear. The input should be <code class="docutils literal notranslate"><span class="pre">WHEEL</span></code> or <code class="docutils literal notranslate"><span class="pre">SKID</span></code> or <code class="docutils literal notranslate"><span class="pre">NONE</span></code>.
+If the input is <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, the landing gear parameters and analyses are ignored.</p>
+</dd>
+<dt>lg-gear-retraction<span class="classifier">string</span></dt><dd><p>input for landing gear retraction. The input should be ‘Fixed’ or ‘Retractable’</p>
+</dd>
+</dl>
+</section>
+<section id="case-of-wheel-type-landing-gear">
+<h3>Case of Wheel-Type Landing Gear<a class="headerlink" href="#case-of-wheel-type-landing-gear" title="Link to this heading"></a></h3>
+</section>
+<section id="id6">
+<h3>Case of Wheel-Type Landing Gear<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="line-block">
+<div class="line">From here, same column is for same wheel position</div>
+</div>
+<dl class="simple">
+<dt>lg-position<span class="classifier">string array</span></dt><dd><p>position of each landing gear’s wheel.</p>
+</dd>
+<dt>lg-tire-width<span class="classifier">float array, m</span></dt><dd><p>width length of defined landing gear’s wheel.</p>
+</dd>
+<dt>lg-tire-diameter<span class="classifier">float array, m</span></dt><dd><p>diameter length of defined landing gear’s wheel.</p>
+</dd>
+<dt>lg-strut-angle<span class="classifier">float array, deg</span></dt><dd><p>angle between defined landing gear’s strut and the ground.</p>
+</dd>
+<dt>lg-strut-length<span class="classifier">float array, m</span></dt><dd><p>length of defined landing gear wheel attached strut.</p>
+</dd>
+<dt>lg-strut-diameter<span class="classifier">float array, m</span></dt><dd><p>diameter length of defined landing gear wheel attached struts’ tube.</p>
+</dd>
+<dt>lg-ground-contact-X<span class="classifier">float array, m</span></dt><dd><p>X(longitudinal)-direction coordinate point of defined landing gear wheel from the aircraft reference point.</p>
+</dd>
+<dt>lg-ground-contact-Y<span class="classifier">float array, m</span></dt><dd><p>Y(lateral)-direction coordinate point of defined landing gear wheel from the aircraft reference point .</p>
+</dd>
+<dt>lg-ground-contact-Z<span class="classifier">float array, m</span></dt><dd><p>Z(vertical)-direction coordinate point of defined landing gear wheel from the aircraft reference point.</p>
+</dd>
+</dl>
+</section>
+</section>
+<hr class="docutils" />
+<section id="propulsion">
+<h2>PROPULSION<a class="headerlink" href="#propulsion" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>name_propulsion<span class="classifier">string</span></dt><dd><p>Name of Propulsion System Set : it will bring specifications data from db</p>
+</dd>
+</dl>
+</section>
+<hr class="docutils" />
+<section id="weight-and-balance">
+<h2>WEIGHT AND BALANCE<a class="headerlink" href="#weight-and-balance" title="Link to this heading"></a></h2>
+</section>
+<hr class="docutils" />
+<section id="id7">
+<h2>PROPULSION<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>name_propulsion<span class="classifier">string</span></dt><dd><p>Name of Propulsion System Set : it will bring specifications data from db</p>
+</dd>
+</dl>
+</section>
+<hr class="docutils" />
+<section id="id8">
+<h2>WEIGHT AND BALANCE<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>MASS COMPONENTS<span class="classifier">string</span></dt><dd><p>Components’ name with fixed weight</p>
+</dd>
+<dt>GROUP<span class="classifier">string</span></dt><dd><p>Based on the weight breakdown, the groups of empty, energy, and payload are divided</p>
+</dd>
+<dt>MIN MASS<span class="classifier">float, kg</span></dt><dd><p>Weight measured when having the lowest weight</p>
+</dd>
+<dt>MAX MASS<span class="classifier">float, kg</span></dt><dd><p>Weight measured when having the highest weight</p>
+</dd>
+<dt>CG-X<span class="classifier">float, m</span></dt><dd><p>Center of gravity x-coordinates</p>
+</dd>
+<dt>CG-Y<span class="classifier">float, m</span></dt><dd><p>Center of gravity y-coordinates</p>
+</dd>
+<dt>CG-Z<span class="classifier">float, m</span></dt><dd><p>Center of gravity z-coordinates</p>
+</dd>
+<dt>LX<span class="classifier">float, m</span></dt><dd><p>Length of component to x-axis</p>
+</dd>
+<dt>LY<span class="classifier">float, m</span></dt><dd><p>Length of component to y-axis</p>
+</dd>
+<dt>LZ<span class="classifier">float, m</span></dt><dd><p>Length of component to z-axis</p>
+</dd>
+<dt>SYMMETRY<span class="classifier">string</span></dt><dd><p>Determine symmetry based on the y-axis</p>
+</dd>
+<dt>SHAPE<span class="classifier">string</span></dt><dd><p>The basic shape of a component</p>
+</dd>
+<dt>ORIENTATION<span class="classifier">string</span></dt><dd><p>Unlike mass of a body, the moment of inertia is not a fixed quantity
+but depends on orientation and position of the axis of rotation.</p>
+</dd>
+</dl>
+<p>Below are explanations for the LX, LY, LZ, and SHAPE columns; all other fields (for example, MASS COMPONENTS and MIN MASS) have been defined previously.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">LX</span></code> (meters)</dt><dd><p>Primary dimension along the X‐axis.
+- For <code class="docutils literal notranslate"><span class="pre">hollow_cylinder</span></code> and <code class="docutils literal notranslate"><span class="pre">solid_cylinder</span></code>, this is the cylinder length.
+- For <code class="docutils literal notranslate"><span class="pre">rectangular</span></code>, this is the length in the X direction.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">LY</span></code> (meters)</dt><dd><p>Primary dimension along the Y‐axis.
+- Only used for <code class="docutils literal notranslate"><span class="pre">rectangular</span></code> shapes (the Y‐axis length).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">LZ</span></code> (meters)</dt><dd><p>Primary dimension along the Z‐axis.
+- Only used for <code class="docutils literal notranslate"><span class="pre">rectangular</span></code> shapes (the Z‐axis length).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SHAPE</span></code> (string)</dt><dd><p>Geometric shape used to compute the mass moment of inertia. Supported values:
+<code class="docutils literal notranslate"><span class="pre">hollow_cylinder</span></code>, <code class="docutils literal notranslate"><span class="pre">solid_cylinder</span></code>, <code class="docutils literal notranslate"><span class="pre">solid_sphere</span></code>,
+<code class="docutils literal notranslate"><span class="pre">hollow_sphere</span></code>, <code class="docutils literal notranslate"><span class="pre">rectangular</span></code>, and <code class="docutils literal notranslate"><span class="pre">Point</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="required-parameters-by-shape">
+<h2>Required Parameters by Shape<a class="headerlink" href="#required-parameters-by-shape" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>hollow_cylinder</strong>
+Requires three numeric inputs (outer diameter <cite>D1</cite>, inner diameter <cite>D2</cite>, and cylinder length <cite>LX</cite>).
+In the input file only <cite>LX</cite> appears in its own column; the diameters are passed via the parameter list order.
+Unused slots must be marked <cite>x</cite>.
+Example:</p></li>
+</ul>
+<p>LX=0.016, LY=x, LZ=x, SHAPE=hollow_cylinder</p>
+<ul class="simple">
+<li><p><strong>solid_cylinder</strong></p></li>
+</ul>
+<p>Requires two numeric inputs: cylinder length (<cite>LX</cite>) and diameter (<cite>LY</cite>).
+Example:
+LX=0.029, LY=0.03, LZ=x, SHAPE=solid_cylinder</p>
+<ul class="simple">
+<li><p><strong>solid_sphere</strong> / <strong>hollow_sphere</strong></p></li>
+</ul>
+<p>Require a single numeric input: radius (<cite>LX</cite>).
+Example:
+LX=0.0236, LY=x, LZ=x, SHAPE=solid_sphere</p>
+<ul class="simple">
+<li><p><strong>rectangular</strong></p></li>
+</ul>
+<p>Requires three numeric inputs: lengths along X, Y, and Z (<cite>LX</cite>, <cite>LY</cite>, <cite>LZ</cite>).
+Example:
+LX=0.053, LY=0.0107, LZ=0.026, SHAPE=rectangular</p>
+<ul class="simple">
+<li><p><strong>Point</strong></p></li>
+</ul>
+<p>No numeric inputs are required (the component is treated as a point mass).
+Example:
+LX=x, LY=x, LZ=x, SHAPE=Point</p>
+<p>Note
+- All <strong>required</strong> dimensions (<cite>LX</cite>, <cite>LY</cite>, <cite>LZ</cite>) must be entered as numeric values.
+- Unused dimension slots must be filled with <cite>x</cite>.
+- Units must be in meters [m] to ensure correct moment‐of‐inertia calculations.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

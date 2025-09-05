@@ -1,0 +1,52 @@
+# Configuration User Manual
+
+This is a user manual for configuration analysis inside CADE-MDA.
+
+<br>
+
+To run the configuration analysis, two main input files are necessary. Detailed descriptions, formatting guidelines, and an example file for these input files can be found in here : (1) Command Input File, [here](cmd_input.rst) and (2) Aircraft Input File, [here](config_input.rst).
+
+Get initial (minimum) configuration parameters from main ***'Aircraft Input File*** and calculate more detailed configuation parameters by running configuration analysis code.
+
+After defining the aircraft's basic configuration data in the ***'Aircraft Input File'***, the configuration analysis settings are specified in the ***'Command Input File'***.
+
+<br>
+
+## Aircraft Setting
+This 'AIRCRAFT' section setups the aircraft to be analyzed.<br>
+<span style="color:rgb(21, 184, 0);">AIRCRAFT: object </span><br>
+    > File name of ***Aircraft Input File*** for analysis. <br>
+
+    AIRCRAFT : KP2A-UAM-VP
+
+## Discipline and Methodology Setting
+This 'METHODOLOGY' section defines and initializes the analysis methodology to be executed. <br>
+    > Below **'METHODOLOGY** list of all the **'DISCIPLINE'** to be analyzed.
+
+    METHODOLOGY
+
+### <span style="color:rgb(24, 80, 145);">Configuration Analysis Setting</span>
+This 'DISCIPLINE' section setups the analysis methodology for each discipline to be executed. <br>
+<span style="color:rgb(21, 184, 0);">configuration : object </span><br>
+    > Analysis discipline to be analyzed. <br>
+    >> To run the 'Configuration Analysis', the **'DISCIPLINE'** must be set to ```configuration```
+
+    DISCIPLINE : configuration
+
+*No addtional input settings are required to run the configuration analysis*
+
+## Run Analysis
+This 'ANALYSIS' section defines the actual runcases to be executed. <br>
+    > Below **'ANALYSIS**, list of all the **'RUN'** CASE to be analyzed.
+
+    ANALYSIS
+
+### <span style="color:rgb(24, 80, 145);">Configuration Analysis Execution</span>
+This 'RUN' section setups the runcase and specifies the analysis conditions for each runcases. <br>
+<span style="color:rgb(21, 184, 0);">configuration : object </span><br>
+    > Analysis runcases to be executed. <br>
+    >> To run the 'Configuration Analysis', the **'RUN'** must be set to ```configuration```
+
+    RUN : configuration
+
+*No addtional runcase settings are required for the configuration analysis*

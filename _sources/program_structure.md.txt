@@ -1,0 +1,35 @@
+# Program structure
+
+## Directories
+
+```text
+    cade
+    |   .gitignore
+    |   requirements.txt
+    |   README.md
+    +---cade
+    |   |   analysis_source_codes
+    +---data
+    |   |   csv databases
+    +---doc
+    |   |   user's manual
+    |   |   theory manual
+    +--- input
+    |   |   input for analysis
+    +---output
+    |   |   results of analysis
+    +---temp
+    +---tests
+    |   |   test runcases
+```
+
+The code execution is fully controlled from a single csv (spreadsheet)
+file. *data* folder contains several examples. Complete structure of
+the *Command input file* is shown in sections below.
+
+## Files
+
+- command input file
+- test
+- list all DB
+- location of reports

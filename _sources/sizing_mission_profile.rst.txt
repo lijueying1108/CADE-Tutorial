@@ -1,0 +1,74 @@
+Sizing mission profile
+========================
+
+
+Convential Takeoff and Landing Mission Profile
+----------------------------------
+
+This section will show how mission profile can be made depending on the user requirements.
+A list of mission segements that can be analyzed for this code are 
+``TAXI-IN``, ``TAKEOFF``, ``CLIMB``, ``CRUISE``, ``DESCENT``, ``LANDING``, ``LOITER``, ``TAXI-OUT`` segements.
+
+A complete mission profile making is shown below.
+
+.. csv-table:: Sample mission profile.
+    :file: sizing/sample_full_mission.csv
+
+``TAXI-IN`` segment, a *duration* and *hybridiation* values need to be provided.
+
+``TAKEOFF`` segment, a *distance* and *hybridization* values need to be provided.
+
+``CLIMB`` segment, a *start-alt*, *end-alt* and *climb_rate* and a *hybridization* paraemter are required to provide.
+
+``CRUISE`` segment, *start-alt* and *end-alt* must be set as same value, and *start* should be also keep as same 
+
+for this sizing stage. *distance* and *hybridization* parameter also need to provide.
+
+``LOITER`` segment, is as same as cruise segemet, but only *duration* need to provide and a *hybridiation* factor.
+
+``DESCENT`` segement, is also need to provide for *start-alt*, *end-alt* and *climb_rate* and a *hybridization* paraemter are required to provide.
+
+``LANDING`` segement, a *distance* and *hybridiation* parameters are required to provide. 
+
+``TAXI-OUT`` segment, a *duration* and *hybridiation* values need to be provided.
+
+
+
+Vertical Takeoff and Landing Mission Profile
+----------------------------------
+
+This section will show how mission profile can be made depending on the user requirements.
+A list of mission segements that can be analyzed for this code are 
+``TAXI-IN``, ``VTOL-CLIMB``, ``HOVER``, ``CLIMB``, ``CRUISE``, ``DESCENT``, ``VTOL-DESCENT``, 
+``LOITER``, ``TAXI-OUT`` segements.
+
+A complete mission profile making is shown below.
+
+.. csv-table:: Sample mission profile.
+    :file: sizing/sample_uam_full_mission.csv
+
+``TAXI-IN`` segment, a *duration* and *hybridiation* values need to be provided.
+
+``VTOL-CLIMB`` segment, a *start-alt*, *end-alt* and *climb_rate* and a *hybridization* paraemter are required to provide.
+
+``HOVER`` segment, a *start-alt*, *end-alt* and *duration* paraemter are required to provide.
+
+``CLIMB`` segment, a *start-alt*, *end-alt* and *climb_rate* and a *hybridization* paraemter are required to provide.
+
+``CRUISE`` segment, *start-alt* and *end-alt* must be set as same value, and *start* should be also keep as same 
+
+for this sizing stage. *distance* and *hybridization* parameter also need to provide.
+
+``LOITER`` segment, is as same as cruise segemet, but only *duration* need to provide and a *hybridiation* factor.
+
+``DESCENT`` segement, is also need to provide for *start-alt*, *end-alt* and *climb_rate* and a *hybridization* paraemter are required to provide.
+
+``VTOL-DESCENT`` segment, a *start-alt*, *end-alt* and *climb_rate* and a *hybridization* paraemter are required to provide.
+
+``TAXI-OUT`` segment, a *duration* and *hybridiation* values need to be provided.
+
+An example simple mission profile is shown below
+
+
+
+

@@ -1,0 +1,36 @@
+# Program structure
+
+## Directories
+
+```text
+    CADE
+    |   .gitignore
+    |   requirements.txt
+    |   README.md
+    +---cade
+    |   +---core
+    |   |   +---sizing
+    |   |   |   |sizing source code
+    +---data
+    |   |   csv databases including mission profile, cost factor
+    +---doc
+    |   |   user's manual
+    |   |   theory manual
+    +---input
+    |   |   input file for different test cases
+    +---output
+    |   |   results of analysis
+    +---tests
+    |   |   test runcases
+```
+
+The code execution is fully controlled from a single csv (spreadsheet)
+file. *data* folder contains several examples. Complete structure of
+the *Command input file* is shown in sections below.
+
+## Files
+
+- command input file *input* directory
+- test *tests* directory
+- list all DB *data* directory
+- location of reports *output* directory

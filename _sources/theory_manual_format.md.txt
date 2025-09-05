@@ -1,0 +1,85 @@
+**(Analysis Module) Theory Manual**
+=============
+
+This is a theory manual for (Analysis Module) analysis inside CADE-MDA.
+It is written by referring to the books:
+
+> [1] Reference Name by Author
+
+> [2] Reference Name by Author
+
+> [3] Reference Name by Author
+
+
+# **(Analysis Module)**
+
+What is this (Analysis Module)? Introduction for this (Analysis Module)
+
+
+## Goal of (Analsis Module)
+
+> 1. 
+> 2.
+> 3.
+
+
+## (Analysis Module) Structure
+
+- add figure
+- describe process and sub-modules inside (Analysis Module)
+- match the description with figure
+
+Example
+- Airfoil Geometry (LV.1)
+- Wing Type Geometry (LV.1)
+  - Multi-Segment Wing Analysis (LV.2)
+  - Equivalent Wing Analysis (LV.2)
+- Body Type Geometry (LV.1)
+- ... (LV.1)
+  - ... (LV.2)
+- Aircraft Configuration Plot Module (LV.1)
+
+
+# **Airfoil Geometry / VLM Analysis / Battery Moddule / VTOL Performance ... (LV.1)**
+
+Description : What is this analysis / module / methodology ?
+
+![Fig Caption](./fig/fig_name.jpg)
+
+
+## Airfoil Thickness (LV.2)
+
+Description : What is this analysis / module / methodology ?
+
+$$ t=Curve_{Up}(x_t)-Curve_{Lo}(x_t) $$
+
+*Where,*
+
+*- $Curve_{Up}$ : parameter description*
+
+*- $Curve_{Lo}$ : parameter description*
+
+*- $x_t$ : parameter description*
+
+
+## Airfoil Camber (LV.2)
+
+Description : What is this analysis / module / methodology ?
+
+$$ t=Curve_{Up}(x_t)-Curve_{Lo}(x_t) $$
+
+*Where,*
+
+*- $Curve_{Up}$ : parameter description*
+
+*- $Curve_{Lo}$ : parameter description*
+
+*- $x_t$ : parameter description*
+
+
+# **Wing Type Geometry (LV.1)**
+
+Description : What is this analysis / module / methodology ?
+
+
+# *APPENDIX*

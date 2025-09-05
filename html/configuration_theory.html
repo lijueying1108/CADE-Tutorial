@@ -1,0 +1,892 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuration Theory Manual &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><strong>Configuration Theory Manual</strong></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/configuration_theory.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="configuration-theory-manual">
+<h1><strong>Configuration Theory Manual</strong><a class="headerlink" href="#configuration-theory-manual" title="Link to this heading"></a></h1>
+<p>This is a theory manual for configuration analysis inside CADE-MDA.
+It is written by referring to the books:</p>
+<blockquote>
+<div><p>[1] Aircraft Design : A Conceptual Approach (6th Edition) by Daniel P. Raymer</p>
+</div></blockquote>
+<blockquote>
+<div><p>[2] General Aviation Aircraft Design : Applied Methods and Procedures by Snorri Gudmundsson
+<small> Appendix C1 : Design of Conventional Aircraft</small> <br>
+<small> Appendix D  : Geometry of Lifting Surfaces</small></p>
+</div></blockquote>
+<blockquote>
+<div><p>[3] Development of an Emprically Based Computer Program to Predict the Aerodynamic Characteristics of Aircraft by Roy T. Schemensky</p>
+</div></blockquote>
+<br>
+<section id="configuration">
+<h2><strong>Configuration</strong><a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<p>The aircraft configuration defines the overall architecture of the aircraft, influencing all multi-disciplinary aspects of its performance and design. An aircraft comprises numerous components, each contributing to the vehicle’s aerodynamic, structural, and operational characteristics. Overall aircraft geometry must be decomposed into its constituent components, allowing for detailed evaluations within each discipline. The aircraft configuration components covered in this geometry analysis module can be found in <a class="reference internal" href="#configuration-analysis-structure"><span class="xref myst">here</span></a>.</p>
+<br>
+<section id="goal-of-configuration-analysis">
+<h3>Goal of Configuration Analysis<a class="headerlink" href="#goal-of-configuration-analysis" title="Link to this heading"></a></h3>
+<p>The objective of the aircraft configuration analysis is to accurately represent the aircraft geometry, enabling integration with subsequent analysis modules—such as weight and balance, aerodynamics, stability and control, propulsion, and performance assessment—and to deliver accurately calculated geometry parameter values.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Parameterize all kinds of various aircraft configuration <br>
+<small><span style="color:rgb(24, 80, 145);">* Parameterization of Aircraft Configuration : Transforming each configuration component into geometric elements and interpreting them using mathematical and geometrical methods.</span></small></p></li>
+<li><p>Calculate the parametrized configuration (geometry) parameters accurately</p></li>
+<li><p>Deliver the required configuration parameters to subsequent analysis modules</p></li>
+</ol>
+</div></blockquote>
+<br>
+</section>
+<section id="configuration-analysis-module-structure">
+<h3>Configuration Analysis Module Structure<a class="headerlink" href="#configuration-analysis-module-structure" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>Airfoil Geometry</strong></p></li>
+<li><p><strong>Wing Type Geometry</strong></p>
+<ul class="simple">
+<li><p>Below wing types are calculated with two main functions : <br></p></li>
+</ul>
+<blockquote>
+<div><p><span style="color:rgb(24, 80, 145);">(1) Calcuate Multi-Segment Wing, (2) Calculate Equivalent Wing</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Main Wing</p></li>
+<li><p>Tail Wing (Stabilizer)</p></li>
+<li><p>Multi Wings (ex. Canard, Tandem, etc.)</p></li>
+<li><p>Wingtip or Winglets (Endplate)</p></li>
+<li><p>Control Surfaces</p></li>
+<li><p>etc.</p></li>
+</ul>
+</li>
+<li><p><strong>Body Type Geometry</strong></p>
+<ul class="simple">
+<li><p>Fuselage</p></li>
+<li><p>Motor Booms</p></li>
+<li><p>Nacelles</p></li>
+<li><p>etc.</p></li>
+</ul>
+</li>
+<li><p><strong>Landing System Geometry</strong></p>
+<ul class="simple">
+<li><p>Landing Gear</p></li>
+<li><p>Strut</p></li>
+</ul>
+</li>
+<li><p><strong>Propulsion Component Geometry</strong></p></li>
+<li><p><strong>Geometry Tools Module</strong></p></li>
+<li><p><strong>Aircraft Configuration Plot Module</strong></p></li>
+</ul>
+<br>
+</section>
+</section>
+<section id="airfoil-geometry">
+<h2><strong>Airfoil Geometry</strong><a class="headerlink" href="#airfoil-geometry" title="Link to this heading"></a></h2>
+<p>The airfoil is often considered the heart of the aircraft, as it influences various aspects such as cruise speed, take-off and landing distances, stall speed, and the overall aerodynamic efficiency of the wing configuration throughout all flight phases. The wing configuration analysis evaluates each section of the entire wing, where each section corresponds to an individual airfoil.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/airfoil_geometry.jpg" alt="Airfoil Geometry" width="400">
+    <figcaption>Airfoil Geometry</figcaption>
+  </figure>
+</div>
+<br>
+<section id="airfoil-thickness">
+<h3>Airfoil Thickness<a class="headerlink" href="#airfoil-thickness" title="Link to this heading"></a></h3>
+<p>Airfoil thickness is the maximum distance between upper and lower profiles of airfoil coordinates.
+Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper and lower surface profile at maximum airfoil thickness location point as below :</p>
+<div class="math notranslate nohighlight">
+\[ t=Curve_{Up}(x_t)-Curve_{Lo}(x_t) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(Curve_{Up}\)</span> : Newly created cubic splines of airfoil <span style="color:rgb(24, 80, 145);">upper</span> surface profile</em> <br>
+<em>- <span class="math notranslate nohighlight">\(Curve_{Lo}\)</span> : Newly created cubic splines of airfoil <span style="color:rgb(24, 80, 145);">lower</span> surface profile</em> <br>
+<em>- <span class="math notranslate nohighlight">\(x_t\)</span> : X-axis location of airfoil maximum camber</em> <br>
+<small><span style="color:rgb(99, 94, 94);">* <span class="math notranslate nohighlight">\(x_t\)</span> is founded by searching maximum value of the thickness(<span class="math notranslate nohighlight">\(t\)</span>) in boundary (minimum x-coordinate value of <span class="math notranslate nohighlight">\(Curve_{Up}\)</span> or <span class="math notranslate nohighlight">\(Curve_{Lo}\)</span> to maximum x-coordinate value of <span class="math notranslate nohighlight">\(Curve_{Up}\)</span> or <span class="math notranslate nohighlight">\(Curve_{Lo}\)</span>)</span></small></p>
+</div></blockquote>
+<br>
+</section>
+<section id="airfoil-camber">
+<h3>Airfoil Camber<a class="headerlink" href="#airfoil-camber" title="Link to this heading"></a></h3>
+<p>Airfoil camber refers to the maximum distance between the mean camber line and the chord line. The mean camber line is defined as the line connecting the midpoint of the upper and lower surface profiles.</p>
+<div class="math notranslate nohighlight">
+\[ Camber=\frac{Curve_{Up}(x_{Camber})+Curve_{Lo}(x_{Camber})}{2} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(x_{Camber}\)</span> : X-axis location of airfoil maximum camber</em> <br>
+<small><span style="color:rgb(99, 94, 94);">* <span class="math notranslate nohighlight">\(x_{Camber}\)</span> is founded by searching maximum value of the camber(<span class="math notranslate nohighlight">\(camber\)</span>) in boundary (minimum x-coordinate value of <span class="math notranslate nohighlight">\(Curve_{Up}\)</span> or <span class="math notranslate nohighlight">\(Curve_{Lo}\)</span> to maximum x-coordinate value of <span class="math notranslate nohighlight">\(Curve_{Up}\)</span> or <span class="math notranslate nohighlight">\(Curve_{Lo}\)</span>)
+</span></small></p>
+</div></blockquote>
+<p>Generally, an airfoil with camber can generate more lift compared to a flat airfoil, but as the camber increases, drag may also increase.</p>
+<br>
+</section>
+<section id="airfoil-length">
+<h3>Airfoil Length<a class="headerlink" href="#airfoil-length" title="Link to this heading"></a></h3>
+<p>The airfoil length is the perimeter of the given airfoil shape.</p>
+<div class="math notranslate nohighlight">
+\[ L_{Airfoil}=\int_{0}^{n-1}\sqrt{(P_{i,0}-P_{i+1,0})^2+(P_{i,1}-P_{i+1,1})^2} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(n\)</span> : The number of total airfoil coordinate points</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_{i,0}\)</span> : <span style="color:rgb(24, 80, 145);">X-axis</span> coordinate value of i-th airfoil coordinate point</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_{i,1}\)</span> : <span style="color:rgb(24, 80, 145);">Y-axis</span> coordinate value of i-th airfoil coordinate point</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="airfoil-area">
+<h3>Airfoil Area<a class="headerlink" href="#airfoil-area" title="Link to this heading"></a></h3>
+<p>The airfoil area refers to the area of the airfoil section.</p>
+<div class="math notranslate nohighlight">
+\[ A_{Airfoil}=Area_{Up}+Area_{Lo} \]</div>
+<p>Here, <span class="math notranslate nohighlight">\(Area_{Up}\)</span> refers to the area of upper airfoil surface and <span class="math notranslate nohighlight">\(Area_{Lo}\)</span> is the area of lower airfoil surface</p>
+<div class="math notranslate nohighlight">
+\[ Area_{Up}=\bigg|\int_{0}^{1}Curve_{Up}\;dP\bigg| \]</div>
+<div class="math notranslate nohighlight">
+\[ Area_{Lo}=\bigg|\int_{0}^{1}Curve_{Lo}\;dP\bigg| \]</div>
+<br>
+</section>
+<section id="airfoil-leading-edge-parameter-i-e-le-parameter">
+<h3>Airfoil Leading Edge Parameter (i.e. <em>LE Parameter</em>)<a class="headerlink" href="#airfoil-leading-edge-parameter-i-e-le-parameter" title="Link to this heading"></a></h3>
+<p>Airfoil leading edge parameter is the thickness factor of airfoil’s leading edge like <span class="math notranslate nohighlight">\(\varDelta y\)</span>(%C) in below figure.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/airfoil_LE_parameter.jpg" alt="Airfoil Leading Edge Parameter">
+    <figcaption> Airfoil Leading Edge Parameter</figcaption>
+</div>
+<div class="math notranslate nohighlight">
+\[ LE\:Parameter=(y_2-y_1)t\cdot{100} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(y_2\)</span> : Y-axis length from point at <span style="color:rgb(24, 80, 145);">6%</span> of airfoil chord length</em> <br>
+<em>- <span class="math notranslate nohighlight">\(y_1\)</span> : Y-axis length from point at <span style="color:rgb(24, 80, 145);">0.15%</span> of airfoil chord length</em> <br>
+<em>- <span class="math notranslate nohighlight">\(t\)</span> : Airfoil thickness</em></p>
+</div></blockquote>
+<br>
+</section>
+</section>
+<section id="wing-type-geometry">
+<h2><strong>Wing Type Geometry</strong><a class="headerlink" href="#wing-type-geometry" title="Link to this heading"></a></h2>
+<p>The wing might be the most important component of the entire aircraft system or configuration. It primarily serves the role of generating lift as it moves through air or other types of fluid. Wing is a 3-dimension configuration component with a streamlined cross-section known as an ‘<a class="reference internal" href="#airfoil-geometry"><span class="xref myst">airfoil</span></a>.’</p>
+<p>In configuration module inside CADE-MDA, wing type encompasses the main wing, secondary wings, winglets, endplates, tail wings (stabilzers), or any other wing-related configurations. Additionally, the geometry of the control surfaces is also calculated inside the <span style="color:rgb(0, 170, 85);"><em>Class</em></span> of wing geometry calcuation. <span style="color:rgb(24, 80, 145);">The key objective of wing type geometry analysis is to ensure it works for any shape of wing configuration.</span> To achieve this, two methodologies are employed for wing type geometry analysis in CADE-MDA.</p>
+<br>
+<section id="multi-segment-wing-calculation">
+<h3>Multi-Segment Wing Calculation<a class="headerlink" href="#multi-segment-wing-calculation" title="Link to this heading"></a></h3>
+<p>When analyzing an aircraft’s wing-type geometry, the wing planform shape is commonly assumed to be trapezoidal. However, most aircraft do not have a perfect trapezoidal wing planform shape; in reality, they are often more complex than just a simple “trapezoidal” shape. Therefore, to analyze the wing geometry accurately, the wing should be broken down into multiple segments, each approximating a trapezoidal shape. This methodology is called <strong>‘multi-segment wing calculation’</strong>. While representing a wing with too many segments can complicate the analysis, this approach allows for the representation of various wing configurations, which is the primary goal of this configuration module in CADE-MDA.</p>
+<p>A wing represented by a multi-segment approach is divided into <span class="math notranslate nohighlight">\(N\)</span> sections, resulting in <span class="math notranslate nohighlight">\(N-1\)</span> trapezoidal-shaped segments. The two images below illustrate the geometry of multi-segment wing.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/wing_segment_section.jpg" alt="Multi-Segment Wing Breakdown" width="400">
+  <figcaption> Multi-Segment Wing Breakdown </figcaption>
+</div>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/multi_segment_wing_geometry.jpg" alt="Multi-Segment Wing Geometry" width="400">
+  <figcaption> Multi-Segment Wing Geometry </figcaption>
+</div>
+<p>The wing configuration parameters of a multi-segment wing are calculated using the following equations:</p>
+<br>
+</section>
+<section id="wing-segment-span-section-chord-and-location-apex">
+<h3>Wing Segment Span, Section Chord, and Location(Apex)<a class="headerlink" href="#wing-segment-span-section-chord-and-location-apex" title="Link to this heading"></a></h3>
+<ul>
+<li><p>For the <span style="color:rgb(24, 80, 145);">1st segment (<em>i=0</em>)</span>,</p>
+<div class="math notranslate nohighlight">
+\[ b_i=\frac{1}{2}\cdot{b_{ref}}\cdot{\frac{{b_i}_{Loc}}{100}} \]</div>
+<div class="math notranslate nohighlight">
+\[ c_i=C_{r}\]</div>
+<div class="math notranslate nohighlight">
+\[ c_{i+1}=c_i\cdot\lambda_i \]</div>
+</li>
+<li><p>Following the 1st segment <span style="color:rgb(24, 80, 145);">(<em>i=1,2,3,…,N-1</em>)</span></p>
+<div class="math notranslate nohighlight">
+\[ b_i=\frac{1}{2}\cdot{b_{ref}}\cdot{\frac{{b_i}_{Loc}-{b_{i-1}}_{Loc}}{100}} \]</div>
+<div class="math notranslate nohighlight">
+\[ c_{i+1}=c_i\cdot\lambda_i \]</div>
+</li>
+</ul>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(b_i\)</span> : Span of <span class="math notranslate nohighlight">\(i\)</span>-th segment</em> <br>
+<em>- <span class="math notranslate nohighlight">\({b_i}_{Loc}\)</span> : The position of the end span of the <span class="math notranslate nohighlight">\(i\)</span>-th segment within the entire halfspan in percentage</em> <br>
+<em>- <span class="math notranslate nohighlight">\(c_i\)</span> : Chord length of <span class="math notranslate nohighlight">\(i\)</span>-th section</em> <br>
+<em>- <span class="math notranslate nohighlight">\(C_{r}\)</span> : Root chord length</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\lambda_i\)</span> : Taper ratio of <span class="math notranslate nohighlight">\(i\)</span>-th segment</em></p>
+</div></blockquote>
+<p>To calculate the apex coordinates (<em>x, y, z direction</em>) of each section considering 3-dimensional rotation angles such as twist, sweep, and dihedral angle, the infinitesimal distance is computed.</p>
+<div class="math notranslate nohighlight">
+\[ dx_i=b_i\cdot\tan\;({\Lambda_{LE}}_i) \]</div>
+<div class="math notranslate nohighlight">
+\[ dy_i=b_i\cdot\cos\;(\Gamma_i) \]</div>
+<div class="math notranslate nohighlight">
+\[ dz_i=b_i\cdot\sin\;(\Gamma_i) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(dx_i\)</span> : Infinitesimal length of X-direction offset of <span class="math notranslate nohighlight">\(i\)</span>-th segment</em> <br>
+<em>- <span class="math notranslate nohighlight">\(dy_i\)</span> : Infinitesimal length of Y-direction offset of <span class="math notranslate nohighlight">\(i\)</span>-th segment</em> <br>
+<em>- <span class="math notranslate nohighlight">\(dz_i\)</span> : Infinitesimal length of Z-direction offset of <span class="math notranslate nohighlight">\(i\)</span>-th segment</em> <br>
+<em>- <span class="math notranslate nohighlight">\({\Lambda_{LE}}_i\)</span> : Leading edge sweep angle of the <span class="math notranslate nohighlight">\(i\)</span>-th segment</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Gamma_i\)</span> : Dihedral angle of the <span class="math notranslate nohighlight">\(i\)</span>-th segment</em></p>
+</div></blockquote>
+<p>By adding <span class="math notranslate nohighlight">\(dx_i,dy_i,dz_i\)</span> to current apex point of each direction, next segment’s (<span class="math notranslate nohighlight">\(i+1\)</span>) starting point can be calculated as below equations.</p>
+<div class="math notranslate nohighlight">
+\[ x_{i+1}=x_i+dx_i \]</div>
+<div class="math notranslate nohighlight">
+\[ y_{i+1}=y_i+dy_i \]</div>
+<div class="math notranslate nohighlight">
+\[ z_{i+1}=x_i+dz_i \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(x_i,y_i,z_i\)</span> : Apex of each <span class="math notranslate nohighlight">\(i-th\)</span> segment’s root leading edge starting point</em> <br></p>
+</div></blockquote>
+<p>The absolute coordinate point of <span class="math notranslate nohighlight">\(i\)</span>-th segment could be described as below:</p>
+<div class="math notranslate nohighlight">
+\[ {P_x}[i]=x_i+{P_x} \]</div>
+<div class="math notranslate nohighlight">
+\[ {P_y}[i]=y_i+{P_y} \]</div>
+<div class="math notranslate nohighlight">
+\[ {P_z}[i]=z_i+{P_z} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\({P_x}, {P_y}_, {P_z}\)</span> : Absolute coordinate of the wing(wing location)</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="wing-section-angles">
+<h3>Wing Section Angles<a class="headerlink" href="#wing-section-angles" title="Link to this heading"></a></h3>
+<p>The above equations represent the positions of the starting points of each section based on the leading edge. The positions of each section at <span style="color:rgb(24, 80, 145);"> 25%, 50% of the chord, and the trailing edge</span> are calculated using the equations below.</p>
+<div class="math notranslate nohighlight">
+\[ dc_i=c_{i+1}-c_i \]</div>
+<div class="math notranslate nohighlight">
+\[ {\Lambda_{C/2}}_i=arctan\Big(\frac{dx_i+0.5dc_i}{b_i}\Big) \]</div>
+<div class="math notranslate nohighlight">
+\[ {\Lambda_{C/4}}_i=arctan\Big(\frac{dx_i+0.25dc_i}{b_i}\Big) \]</div>
+<div class="math notranslate nohighlight">
+\[ {\Lambda_{TE}}_i=arctan\Big(\frac{dx_i+dc_i}{b_i}\Big) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(dc_i\)</span> : Difference in chord length between the current section</em> (<span class="math notranslate nohighlight">\(i\)</span>) <em>and the next section</em> (<span class="math notranslate nohighlight">\(i+1\)</span>) <br>
+<em>- <span class="math notranslate nohighlight">\(\Lambda_{C/2}\)</span> : Half(50%) chord sweep angle of <span class="math notranslate nohighlight">\(i\)</span>-th segment</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Lambda_{C/4}\)</span> : Quarter(25%) chord sweep angle of <span class="math notranslate nohighlight">\(i\)</span>-th segment</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Lambda_{TE}\)</span> : Trailing edge sweep angle of <span class="math notranslate nohighlight">\(i\)</span>-th segment</em></p>
+</div></blockquote>
+<p>For the first section of the wing, which is root airfoil, only the incidence angle is considered for the rotation angle. For the following sections, rotation angle is calculated by adding up the twist angle to the incidence angle.</p>
+<div class="math notranslate nohighlight">
+\[ \Theta_{i+1}=\theta_{i}+{\theta_{tw}}_{i+1} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(\Theta_i\)</span> : Total rotation angle of <span class="math notranslate nohighlight">\(i\)</span>-th section airfoil</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\theta_i\)</span> : Incidence angle of wing</em> <br>
+<em>- <span class="math notranslate nohighlight">\({\theta_{tw}}_i\)</span> : Twist angle of <span class="math notranslate nohighlight">\(i\)</span>-th section airfoil</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="wing-area-and-volume">
+<h3>Wing Area and Volume<a class="headerlink" href="#wing-area-and-volume" title="Link to this heading"></a></h3>
+<p>By assuming that each segment is <span style="color:rgb(24, 80, 145);"> trapezoidal shape</span>, each segment area can be calculated as below:</p>
+<div class="math notranslate nohighlight">
+\[ S_{ref}[i]=\frac{1}{2}\cdot{b_i}\cdot(c_i+c_{i+1}) \]</div>
+<p>For the wetted area, it depends on the thickness of the airfoil used in defined section of segment.</p>
+<ul class="simple">
+<li><p>Thickness ratio <span style="color:rgb(24, 80, 145);">less than 0.05</span> ( <span class="math notranslate nohighlight">\({t/c}_{airfoil} &lt; 0.05\)</span> ):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ S_{wetted}[i]=2.003\cdot{S_{ref}[i]} \]</div>
+<ul class="simple">
+<li><p>Thickness ratio <span style="color:rgb(24, 80, 145);">more than 0.05</span> ( <span class="math notranslate nohighlight">\({t/c}_{airfoil} &lt; 0.05\)</span> ):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ S_{wetted}[i]=\{1.977+0.52\cdot{(t/c)_{Airfoil}[i]}\}\cdot{S_{ref}[i]} \]</div>
+<br>
+<section id="area-and-volume-of-the-entire-wing">
+<h4>Area and Volume of the Entire Wing<a class="headerlink" href="#area-and-volume-of-the-entire-wing" title="Link to this heading"></a></h4>
+<p>The reference area and wetted area of the entire wing can be calculated by summing the area of each segment.</p>
+<div class="math notranslate nohighlight">
+\[ S_{ref}=\sum_{i=0}^{N-1}S_{ref}[i]\]</div>
+<div class="math notranslate nohighlight">
+\[ S_{wetted}=\sum_{i=0}^{N-1}S_{wetted}[i]\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(S_{ref}\)</span> : Referece area of the entire wing</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_{wetted}\)</span> : Wetted area of the entire wing</em> <br>
+<small> If the wing being analyzed is symmetric, the total wing area can be obtained by <span style="color:rgb(24, 80, 145);"> doubling the calculated wing area.</span> In this configuration module, both symmetric and unsymmetric wings are considered, and the calculation incorporates a symmetric/unsymmetric variable.</small></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>volume calculation checking and description</p></li>
+</ul>
+<br>
+</section>
+</section>
+<section id="equivalent-wing-calculation">
+<h3>Equivalent Wing Calculation<a class="headerlink" href="#equivalent-wing-calculation" title="Link to this heading"></a></h3>
+<p>In the previous <a class="reference internal" href="#multi-segment-wing-calculation"><span class="xref myst">section</span></a>, the multi-segment wing calculation methodology was introduced for analyzing wing type geometry. While this method allows analysis of various wing configurations, it can make analysis more complex for highly intricate wing geometry. To simplify the analysis,. the multi-segment wing can be converted and replaced with an equivalent wing.</p>
+<p>An equivalent wing is a simplified trapezoidal wing geometry, while maintaining the same aerodynamic characteristics as the original wing(multi-segment wing). The following outlines the 4 main principles of the equivalent wing conversion:</p>
+<div class="math notranslate nohighlight">
+\[ S_{Original\;Wing}=S_{Equivalent\;Wing} \]</div>
+<div class="math notranslate nohighlight">
+\[ AR_{Original\;Wing}=AR_{Equivalent\;Wing} \]</div>
+<div class="math notranslate nohighlight">
+\[ MAC_{Original\;Wing}=MAC_{Equivalent\;Wing} \]</div>
+<div class="math notranslate nohighlight">
+\[ AC_{Original\;Wing}=AC_{Equivalent\;Wing} \]</div>
+<p><small>From this point onward, the subscript <strong>‘O’</strong> will be used for the <strong>‘Original Wing’</strong>, and <strong>‘E’</strong> for the <strong>‘Equivalent Wing’</strong></small></p>
+<p>In summary, wing area(<span class="math notranslate nohighlight">\(S\)</span>), aspect ratio(<span class="math notranslate nohighlight">\(AR\)</span>), mean aerodynamic chord(<span class="math notranslate nohighlight">\(MAC\)</span>), and aerodynamic center(<span class="math notranslate nohighlight">\(AC\)</span>) of equivalent wing should be same as the original wing.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/equivalent_wing_geometry.jpg" alt="Equivalent Wing Geometry" width="400">
+  <figcaption> Equivalent Wing Geometry </figcaption>
+</div>
+<p>Since the equivalent wing has the same Mean Aerodynamic Chord (MAC) as the original wing, its MAC value is computed and provided to other discipline modules, such as weight and balance module and aerodynamic module.</p>
+<p>According to the 4 principles of equivalent wing conversion, the equivalent wing and the original wing have the same wing area(<span class="math notranslate nohighlight">\(S\)</span>) and aspect ratio(<span class="math notranslate nohighlight">\(AR\)</span>), which implies that they also share the same wingspan.</p>
+<div class="math notranslate nohighlight">
+\[ AR = \frac{b}{c} = \frac{b^2}{S} \]</div>
+<div class="math notranslate nohighlight">
+\[ b_{O}=b_{E} \]</div>
+<p>To calculate the MAC of the equivalent wing, basic geometry parameter of it should be calculated first.</p>
+<br>
+<section id="equivalent-wing-root-and-tip-chord">
+<h4>Equivalent Wing Root and Tip Chord<a class="headerlink" href="#equivalent-wing-root-and-tip-chord" title="Link to this heading"></a></h4>
+<div class="math notranslate nohighlight">
+\[ C_{R_E} = K\cdot{C_{WR}}=\frac{2}{S_W}\sum_{i=0}^{N-1}c_{i}\cdot{S_i} \]</div>
+<div class="math notranslate nohighlight">
+\[ C_{T_E} = K\cdot{C_{WT}}=\frac{2}{S_W}\sum_{i=0}^{N-1}c_{i+1}\cdot{S_i} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(C_{R_E}\)</span> : Root chord of equivalent wing</em> <br>
+<em>- <span class="math notranslate nohighlight">\(C_{T_E}\)</span> : Tip chord of equivalent wing</em> <br>
+<em>- <span class="math notranslate nohighlight">\(c_i\)</span> : Chord of <span class="math notranslate nohighlight">\(i\)</span>-th section</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_i\)</span> : Segment area of <span class="math notranslate nohighlight">\(i\)</span>-th segment</em></p>
+</div></blockquote>
+<p><em>Here,</em></p>
+<div class="math notranslate nohighlight">
+\[ K= \frac{S_O}{S_W} \]</div>
+<div class="math notranslate nohighlight">
+\[ S_W=\frac{b_O}{S_O}\Bigg(\sum_{i=0}^{N-1}c_i\cdot{S_i}+\sum_{i=0}^{N-1}c_{i+1}\cdot{S_i}\Bigg) \]</div>
+<div class="math notranslate nohighlight">
+\[ C_{WR} = \sum_{i=0}^{N-1}c_{i}\cdot{S_i} \]</div>
+<div class="math notranslate nohighlight">
+\[ C_{WT} = \sum_{i=0}^{N-1}c_{i+1}\cdot{S_i} \]</div>
+<p>If the root chord and tip chord of the equivalent wing are known, the taper ratio can be calculated as follows.</p>
+<div class="math notranslate nohighlight">
+\[ \lambda_{E} = \frac{C_{T_E}}{C_{R_E}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(\lambda_{E}\)</span> : Taper ratio of equivalent wing</em> <br></p>
+</div></blockquote>
+<p>In CADE’s configuration module, <span style="color:rgb(24, 80, 145);">the taper ratio of the equivalent wing is used as the representative taper ratio value.</span></p>
+<br>
+</section>
+<section id="equivalent-wing-sweep-angle">
+<h4>Equivalent Wing Sweep Angle<a class="headerlink" href="#equivalent-wing-sweep-angle" title="Link to this heading"></a></h4>
+<p>The leading edge sweep angle of the equivalent wing can be computed using the leading edge sweep angles of each segment from multi-segment wing geometry. Based on this, the sweep angles at the half-chord(50%), quarter-chord()25%, and trailing edge of the equivalent wing can also be calculated as below:</p>
+<div class="math notranslate nohighlight">
+\[ \Lambda_{LE_E} = \frac{2}{S_O}\sum_{i=0}^{N-1}\Lambda_{LE_i}\cdot{S_i} \]</div>
+<div class="math notranslate nohighlight">
+\[ \Lambda_{{C/4}_E} = arctan\Big(tan(\Lambda_{LE_E})-\frac{CO}{4}\Big) \]</div>
+<div class="math notranslate nohighlight">
+\[ \Lambda_{{C/2}_E} = arctan\Big(tan(\Lambda_{LE_E})-\frac{CO}{2}\Big) \]</div>
+<div class="math notranslate nohighlight">
+\[ \Lambda_{TE_E} = arctan\Big(tan(\Lambda_{LE_E})-CO\Big) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(\Lambda_{LE_i}\)</span> : Leading edge sweep angle of <span class="math notranslate nohighlight">\(i\)</span>-th segment</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Lambda_{LE_E}\)</span> : Leading edge sweep angle of equivalent wing</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Lambda_{{C/2}_E}\)</span> : Half(50%) chord sweep angle of equivalent wing</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Lambda_{{C/4}_E}\)</span> : Quarter(25%) chord sweep angle of equivalent wing</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Lambda_{TE_E}\)</span> : Trailing edge sweep angle of equivalent wing</em></p>
+</div></blockquote>
+<p><em>Here,</em></p>
+<div class="math notranslate nohighlight">
+\[ CO = \frac{4}{AR}\cdot\frac{1-\lambda_E}{1+\lambda_E} \]</div>
+<br>
+</section>
+<section id="calculation-of-mean-aerodynamic-chord-mac">
+<h4>Calculation of Mean Aerodynamic Chord (MAC)<a class="headerlink" href="#calculation-of-mean-aerodynamic-chord-mac" title="Link to this heading"></a></h4>
+<p>After calculating the fundamental geometric parameters of the equivalent wing, the MAC (Mean Aerodynamic Chord) and its related parameters can be determined. Using the previously computed equivalent wing parameters—wingspan, root chord, taper ratio, and leading edge sweep angle—<span style="color:rgb(24, 80, 145);">the MAC length, its spanwise location from the root, and its x-directional offset from the root leading edge</span> can be calculated using the following equations.</p>
+<div class="math notranslate nohighlight">
+\[ MAC = \frac{2C_{R_E}}{3}\cdot\frac{1+\lambda_E+{\lambda_E}^2}{1+\lambda_E} \]</div>
+<div class="math notranslate nohighlight">
+\[ y_{MAC} = \frac{b}{6}\cdot\frac{1+2\lambda_E}{1+\lambda_E} \]</div>
+<div class="math notranslate nohighlight">
+\[ x_{{LE}_{MAC}} = arctan\Big(\Lambda_{LE_E}\Big)\cdot{y_{MAC}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(MAC\)</span> : Mean Aerodynamic Chord of both equivalent wing and original wing</em> <br>
+<em>- <span class="math notranslate nohighlight">\(y_{MAC}\)</span> : Spanwise location (y-direction) location of MAC from the root</em> <br>
+<em>-<span class="math notranslate nohighlight">\(x_{{LE}_{MAC}}\)</span> : x-directional offset of the MAC’s leading edge starting point from the root’s leading edge starting point</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="equivalent-wing-airfoil-parameter-and-dihedral-angle">
+<h4>Equivalent Wing Airfoil Parameter and Dihedral Angle<a class="headerlink" href="#equivalent-wing-airfoil-parameter-and-dihedral-angle" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Airfoil Parameters</strong></p></li>
+</ul>
+<p>In the multi-segment wing calculation, airfoil parameters—thickness (ratio), camber, and leading edge radius—were determined for each section. However, after converting to the equivalent wing, these paramters need to be re-calculated.</p>
+<p>First, average values for airfoil thickness ratio, camber and x-location of maximum thickness is calculated as below:</p>
+<div class="math notranslate nohighlight">
+\[ (t/c)_{avg_i}=\frac{t_{Airfoil}[i]+t_{Airfoil}[i+1]}{2} \]</div>
+<div class="math notranslate nohighlight">
+\[ Camber_{avg_i}=\frac{Camber_{Airfoil}[i]+Camber_{Airfoil}[i+1]}{2} \]</div>
+<div class="math notranslate nohighlight">
+\[ x_{t_{avg_i}}=\frac{{x_t}_{Airfoil}[i]+{x_t}_{Airfoil}[i+1]}{2} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(t_{Airfoil}[i]\)</span> : Airfoil thickness of <span class="math notranslate nohighlight">\(i\)</span>-th section</em> <br>
+<em>- <span class="math notranslate nohighlight">\(Camber_{Airfoil}[i]\)</span> : Airfoil camber of <span class="math notranslate nohighlight">\(i\)</span>-th section</em> <br>
+<em>- <span class="math notranslate nohighlight">\({x_t}_{Airfoil}[i]\)</span> : Location of airfoil maximum thickness of <span class="math notranslate nohighlight">\(i\)</span>-th section</em></p>
+</div></blockquote>
+<p>The segment-wise average values are calculated and then used to derive the corresponding parameters for the equivalent wing.</p>
+<div class="math notranslate nohighlight">
+\[ (t/c)_{E}=\frac{\sqrt{\sum_{i=0}^{N-1}(t/c)_{avg_i}\cdot{S_i}}}{S_E} \]</div>
+<div class="math notranslate nohighlight">
+\[ Camber_{E}=\frac{\sqrt{\sum_{i=0}^{N-1}Camber_{avg_i}\cdot{S_i}}}{S_E} \]</div>
+<div class="math notranslate nohighlight">
+\[ x_{t_{E}}=\frac{\sqrt{\sum_{i=0}^{N-1}x_{t_{avg_i}}\cdot{S_i}}}{S_E} \]</div>
+<div class="math notranslate nohighlight">
+\[ {LE\:Parameter}_{E} = 1.1019\cdot{(t/c)_{E}}^2 \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\((t/c)_{E}\)</span> : Airfoil thickness of equivalent wing</em> <br>
+<em>- <span class="math notranslate nohighlight">\(Camber_{E}\)</span> : Airfoil camber of equivalent wing</em> <br>
+<em>- <span class="math notranslate nohighlight">\(x_{t_{E}}\)</span> : Location of airfoil maximum thickness of equivalent wing</em> <br>
+<em>- <span class="math notranslate nohighlight">\({LE\:Parameter}_{E}\)</span> : Airfoil leading edge parameter of equivalent wing</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_i\)</span> : Segment area of <span class="math notranslate nohighlight">\(i\)</span>-th segment</em></p>
+</div></blockquote>
+<br>
+<ul class="simple">
+<li><p><strong>Equivalent Dihedral Angle</strong></p></li>
+</ul>
+<p>Also for the dihedral angle, the segment-wise average values are calculated and then used to derive the corresponding parameters for the equivalent wing.</p>
+<div class="math notranslate nohighlight">
+\[ {\Gamma}_E = arctan\Big(\frac{\sum_{i=0}^{N-1}tan(\Gamma_i)\cdot{S_i}}{S_E}\Big) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\({\Gamma}_E\)</span> : Dihedral Angle of equivalent wing</em> <br>
+<em>- <span class="math notranslate nohighlight">\({\Gamma}_i\)</span> : Dihedral Angle of <span class="math notranslate nohighlight">\(i\)</span>-th segment</em> <br></p>
+</div></blockquote>
+<p>In the previous <a class="reference internal" href="#calculation-of-mean-aerodynamic-chord-mac"><span class="xref myst">section</span></a>, the MAC-related parameters of the equivalent wing were calculated. <span style="color:rgb(24, 80, 145);">The absolute coordinates (x, y, z) of the MAC</span> leading edge point can be determined using the following equations, considering the dihedral angle of the equivalent wing to account for its 3-dimensional wing configuration.</p>
+<div class="math notranslate nohighlight">
+\[ P_{x_{MAC}} = P_x + x_{LE_{MAC}} \]</div>
+<div class="math notranslate nohighlight">
+\[ P_{y_{MAC}} = P_y + y_{MAC}\cdot{cos(\Gamma_E)} \]</div>
+<div class="math notranslate nohighlight">
+\[ P_{z_{MAC}} = P_z + y_{MAC}\cdot{sin(\Gamma_E)} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(P_{x_{MAC}}, P_{y_{MAC}}, P_{z_{MAC}}\)</span> : Absolute coordinate of the MAC(wing MAC location)</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_x, P_y, P_z\)</span> : Absolute coordinate of the wing(wing location)</em></p>
+</div></blockquote>
+<br>
+</section>
+</section>
+<section id="equivalent-horizontal-vertical-wing-calculation">
+<h3>Equivalent Horizontal/Vertical Wing Calculation<a class="headerlink" href="#equivalent-horizontal-vertical-wing-calculation" title="Link to this heading"></a></h3>
+<p>For wing configurations with dihedral or rotation angles, such as V-Tail, the wing can be divided into two directional components: <span style="color:rgb(24, 80, 145);">Horizontal and Vertical parts.</span></p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/equivalent_h_v_wing_geometry.jpg" alt="Equivalent Horizontal/Vertical Wing Breakdown" width="500">
+  <figcaption> Equivalent Horizontal/Vertical Wing Breakdown </figcaption>
+</div>
+<p>This conversion method is particularly useful for wings with <span style="color:rgb(24, 80, 145);">large dihedral or anhedral angles.</span> By applying the conversion principles outlined below, the calculations remain consistent whether using the multi-segment wing approach or the equivalent wing analysis methodology.</p>
+<ul class="simple">
+<li><p><strong>Equivalent Horizontal Wing Conversion</strong></p></li>
+</ul>
+<p>For the horizontal wing, dihedral/anhedral angle assumed to be zero.</p>
+<div class="math notranslate nohighlight">
+\[ \Gamma_{horizontal}=0\degree \]</div>
+<p>The span of equivalent horizontal wing is converted as below:</p>
+<div class="math notranslate nohighlight">
+\[ b_{horizontal}=b_O\cdot{cos|{(\Gamma_E)}}| \]</div>
+<br>
+<ul class="simple">
+<li><p><strong>Equivalent Vertical Wing Conversion</strong></p></li>
+</ul>
+<p>For the horizontal wing, dihedral/anhedral angle assumed to be 90 deg.</p>
+<div class="math notranslate nohighlight">
+\[ \Gamma_{vertical}=90\degree \]</div>
+<p>The span of equivalent vertical wing is converted as below:</p>
+<div class="math notranslate nohighlight">
+\[ b_{vertical}=b_O\cdot{sin|{(\Gamma_E)}}| \]</div>
+<p>After converting the span (<span class="math notranslate nohighlight">\(b_{horizontal}\)</span> and <span class="math notranslate nohighlight">\(b_{vertical}\)</span>) and the dihedral angle (<span class="math notranslate nohighlight">\(\Gamma_{horizontal}\)</span> and <span class="math notranslate nohighlight">\(\Gamma_{vertical}\)</span>), these values are used as input parameters for the <a class="reference internal" href="#multi-segment-wing-calculation"><span class="xref myst">multi-segment wing</span></a> and <a class="reference internal" href="#equivalent-wing-calculation"><span class="xref myst">equivalent wing calculation</span></a> of the corresponding equivalent horizontal or vertical wings.</p>
+<br>
+</section>
+<section id="control-surface-geometry">
+<h3>Control Surface Geometry<a class="headerlink" href="#control-surface-geometry" title="Link to this heading"></a></h3>
+<p>Control surfaces are generally attached to wing-type configurations. Therefore, in the CADE configuration module, control surface geometry analysis is included within the wing-type geometry analysis. CADE utilizes the AVL program for aerodynamic and flight stability analysis of winged aircraft. In multi-segment wing analysis, <span style="color:rgb(24, 80, 145);">any segment with an attached control surface should be treated as a single, distict segment.</span></p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/control_surface_geometry.jpg" alt="Control Surface Geometry" width="400">
+  <figcaption> Control Surface Geometry </figcaption>
+</div>
+<p>Since the control surface is considered as a single segment in the multi-segment wing, as shown in the figure above, its index(<span class="math notranslate nohighlight">\(i\)</span>) is treated same as the index of the corresponding wing segment.</p>
+<p><small><span style="color:rgb(99, 94, 94);"> In the above figure, control surface is located on the 1st segment of the multi-segment wing, so the index is 1</span></small></p>
+<div class="math notranslate nohighlight">
+\[ P_{x_{cs}}=P_x[i]+(c_i-c_{cs}[i]) \]</div>
+<div class="math notranslate nohighlight">
+\[ P_{y_{cs}}=P_y[i] \]</div>
+<div class="math notranslate nohighlight">
+\[ P_{z_{cs}}=P_z[i] \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(P_{x_{cs}}, P_{y_{cs}}, P_{z_{cs}}\)</span> : Absolute coordinate of the control surface starting point (control surface start point location)</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_{x_i}, P_{y_i}, P_{z_i}\)</span> : Absolute coordinate of the <span class="math notranslate nohighlight">\(i\)</span>-th section starting point (<span class="math notranslate nohighlight">\(i\)</span>-th section start point location)</em> <br>
+*- <span class="math notranslate nohighlight">\(c_i\)</span> : Chord of <span class="math notranslate nohighlight">\(i\)</span>-th wing section <br>
+*- <span class="math notranslate nohighlight">\(c_{cs}[i]\)</span> : Root chord of the control surface <br>
+<small><span style="color:rgb(99, 94, 94);"> The chord length of the control surface is calculated by multiplying the input value of the control surface-to-wing chord ratio value to corresponding section’s chord length.</span></small></p>
+</div></blockquote>
+<p>Control surface area is calculated as below:</p>
+<div class="math notranslate nohighlight">
+\[ S_{cs}=\frac{1}{2}\cdot{b_i}\cdot(c_{cs}[i]+c_{cs}[i+1]) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(S_{cs}\)</span> : Control surface area</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="sref-bref-lref-for-different-configuration">
+<h3>Sref, Bref, Lref for Different Configuration<a class="headerlink" href="#sref-bref-lref-for-different-configuration" title="Link to this heading"></a></h3>
+<p>Based on the wing configuration (e.g., conventional, canard, tandem, or box-wing, etc.), the definitions of wing reference area (<span class="math notranslate nohighlight">\(S_{ref}\)</span>), reference span (<span class="math notranslate nohighlight">\(b_{ref}\)</span>), and reference MAC (<span class="math notranslate nohighlight">\(L_{ref}\)</span>) may vary. These parameters are crucial as they are directly used in subsequent analysis modules. Therefore, it is essential to understand the diffenced in calculation that varies depending on the aircraft configuration.</p>
+<p>There are many types of area used in aircraft design. Below explains about the definitions of the different area types.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/reference_area_exposed_area.jpg" alt="Comparison of Reference Area and Exposed Area" width="400">
+  <figcaption> Comparison of Reference Area and Exposed Area </figcaption>
+</div>
+<ul>
+<li><p>Reference Area, <span class="math notranslate nohighlight">\(S_{ref}\)</span></p>
+<p>: The area of the trapezoidal shape reference wing</p>
+</li>
+<li><p>Exposed Area, <span class="math notranslate nohighlight">\(S_{exposed}\)</span></p>
+<p>: The area of the wing that is actually exposed outside of the fuselage. Typically, the <span class="math notranslate nohighlight">\(S_{ref}\)</span> is larger than the <span class="math notranslate nohighlight">\(S_{exposed}\)</span> because the <span class="math notranslate nohighlight">\(S_{ref}\)</span> extends from the fuselage centerline, including the portion that is not visible from the outside.</p>
+</li>
+<li><p>Wetted Area, <span class="math notranslate nohighlight">\(S_{wetted}\)</span></p>
+<p>: The area of the wing that would become wet if the aircraft were submerged in water. While the <span class="math notranslate nohighlight">\(S_{ref}\)</span> and <span class="math notranslate nohighlight">\(S_{exposed}\)</span> are 2-dimensional areas of the wing planform, the <span class="math notranslate nohighlight">\(S_{wetted}\)</span> is a 3-dimensional surface area.</p>
+</li>
+<li><p>Projected Area, <span class="math notranslate nohighlight">\(S_{proj}\)</span></p>
+<p>: The area of the top-view, side-view, and front-view of an aircraft refers to the projection of the aircraft’s configuration onto each respective plane. These are typically used to represent the overall size and profile of the aircraft from different perspective.</p>
+</li>
+</ul>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/projected_area.jpg" alt="Projected Area" width="350">
+  <figcaption> Projected Area </figcaption>
+</div>
+<br>
+<p>Based on the definition of each wing area type, the following equations describe how to calculate the parameters.</p>
+<section id="conventional-or-canard-wing-configuration">
+<h4>Conventional or Canard Wing Configuration<a class="headerlink" href="#conventional-or-canard-wing-configuration" title="Link to this heading"></a></h4>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/conventional_wing_configuration.jpg" alt="Conventional Wing" width="350">
+  <figcaption> Conventional Wing Configuration </figcaption>
+</div>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/canard_wing_configuration.jpg" alt="Canard Wing" width="350">
+  <figcaption> Canard Wing Configuration </figcaption>
+</div>
+<p>These two types of configurations only considers the main wing when calculating <span class="math notranslate nohighlight">\(S_{ref}, B_{ref}, L_{ref}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[ S_{ref}=(S_{ref})_{Main\:Wing} \]</div>
+<div class="math notranslate nohighlight">
+\[ S_{wetted}=(S_{wetted})_{Main\:Wing} \]</div>
+<div class="math notranslate nohighlight">
+\[ S_{exposed}=(S_{exposed})_{Main\:Wing} \]</div>
+<div class="math notranslate nohighlight">
+\[ B_{ref}=(B_{ref})_{Main\:Wing} \]</div>
+<div class="math notranslate nohighlight">
+\[ L_{ref}=(L_{ref})_{Main\:Wing} \]</div>
+<br>
+</section>
+<section id="tandem-or-box-wing-configuration">
+<h4>Tandem or Box Wing Configuration<a class="headerlink" href="#tandem-or-box-wing-configuration" title="Link to this heading"></a></h4>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/tandem_wing_configuration.jpg" alt="Tandem Wing" width="350">
+  <figcaption> Tandem Wing Configuration </figcaption>
+</div>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/box_wing_configuration.jpg" alt="Box Wing" width="350">
+  <figcaption> Box Wing Configuration </figcaption>
+</div>
+<p>These two types of configurations considers both front and rear wing when calculating <span class="math notranslate nohighlight">\(S_{ref}, B_{ref}, L_{ref}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[ S_{ref}=(S_{ref})_{Front\:wing}+(S_{ref})_{Rear\:wing} \]</div>
+<div class="math notranslate nohighlight">
+\[ S_{wetted}=(S_{wetted})_{Front\:wing}+(S_{wetted})_{Rear\:wing} \]</div>
+<div class="math notranslate nohighlight">
+\[ S_{exposed}=(S_{exposed})_{Front\:wing}+(S_{exposed})_{Rear\:wing} \]</div>
+<div class="math notranslate nohighlight">
+\[ B_{ref}=\max\{(B_{ref})_{Front\:wing},(B_{ref})_{Rear\:wing}\} \]</div>
+<div class="math notranslate nohighlight">
+\[ L_{ref}=\frac{(L_{ref}\cdot\ S_{ref})_{Front\:wing}+(L_{ref}\cdot\ S_{ref})_{Rear\:wing}}{S_{ref}} \]</div>
+<br>
+</section>
+</section>
+</section>
+<section id="body-type-geometry">
+<h2><strong>Body Type Geometry</strong><a class="headerlink" href="#body-type-geometry" title="Link to this heading"></a></h2>
+<p>In the configuration analysis, the body type geometryy module analyzes components related to the aircraft’s main body, including the fuselage, nacelles, motor booms, and etc. Typically, the body type geometries are represented by extending a <span style="color:rgb(24, 80, 145);">cross-section along the specific direction</span> (e.g. fuselage is extended along aircraft’s longitudinal direction). In this module, the <span style="color:rgb(24, 80, 145);">side-view and top-view profiles (coordinate points)</span> of the configuration are provided as input parameters, allowing an efficient calculation of all body type geometry. Especially, these body type elements have a significant effect on an aircraft’s friction drag, so accurately calculating the wetted area is crucial at this stage.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/body_type_profile_example.jpg" alt="Top/Side Profile of Body Type Configuration" width="400">
+  <figcaption> Top/Side Profile of Body Type Configuration </figcaption>
+</div>
+<br>
+<p>In CADE configuration module, 5 key input parameters are required for body type geometry analysis:</p>
+<blockquote>
+<div><p>(1) Overall Length <br>
+(2) Overall Height <br>
+(3) Overall Width <br>
+(4) Body Profile Data <br>
+(5) Location</p>
+</div></blockquote>
+<section id="cross-section-diameter-area-and-diameter-to-length-ratio">
+<h3>Cross-Section Diameter, Area, and Diameter-to-Length Ratio<a class="headerlink" href="#cross-section-diameter-area-and-diameter-to-length-ratio" title="Link to this heading"></a></h3>
+<p>Using the input values of length, height, and width, parameters such as the average diameter, cross-sectional area, and diameter-to-length ratio are calculated. Based on the computed diameter and given lenght, a fitting process is executed using profile data.</p>
+<div class="math notranslate nohighlight">
+\[ d_{avg}=\frac{1}{2}(h+w) \]</div>
+<div class="math notranslate nohighlight">
+\[ A_{avg}=\frac{\pi}{4}\cdot{d_{avg}}^2 \]</div>
+<div class="math notranslate nohighlight">
+\[ d/l = \frac{d_{avg}}{l}\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(d_{avg}\)</span> : Average diameter of cross-section</em> <br>
+<em>- <span class="math notranslate nohighlight">\(h\)</span> : Overall height of the body</em> <br>
+<em>- <span class="math notranslate nohighlight">\(w\)</span> : Overall width of the body</em> <br>
+<em>- <span class="math notranslate nohighlight">\(l\)</span> : Overall length of the body</em> <br>
+<em>- <span class="math notranslate nohighlight">\(A_{avg}\)</span> : Average cross-section area</em> <br>
+<em>- <span class="math notranslate nohighlight">\(d/l\)</span> : Diameter-to-length ratio</em></p>
+</div></blockquote>
+</section>
+<section id="wetted-area-and-volume">
+<h3>Wetted Area and Volume<a class="headerlink" href="#wetted-area-and-volume" title="Link to this heading"></a></h3>
+<p>The wetted area of a body type configuration is calculated under the assumption that it has elliptical cross-sections. By integrating the circumference of each cross-section along the specific direction, the wetted area is determined. <br>
+<small>* Body type elements commonly used in aircraft generally have cross-sections that extend along the longitudinal direction.</small></p>
+<p>To accurately calculate the circumference of the cross-section, the point data from the input body profile is used.</p>
+<ul class="simple">
+<li><p>Side Profile Data is splited into <span style="color:rgb(0, 170, 85);"><em>profileUp</em></span> and <span style="color:rgb(0, 170, 85);"><em>profileLo</em></span></p>
+<ul>
+<li><p><span style="color:rgb(0, 170, 85);"><em>profileUp</em></span> : z-direction coordinate data value bigger than 0</p></li>
+<li><p><span style="color:rgb(0, 170, 85);"><em>profileLo</em></span> : z-direction coordinate data value smaller than 0</p></li>
+<li><p><span style="color:rgb(0, 170, 85);"><em>profileUp[0], profileLo[0]</em></span> : x-direction coordinate</p></li>
+<li><p><span style="color:rgb(0, 170, 85);"><em>profileUp[1], profileLo[1]</em></span> : z-direction coordinate</p></li>
+</ul>
+</li>
+<li><p>Top Profile Data is represented as <span style="color:rgb(0, 170, 85);"><em>profileTop</em></span></p>
+<ul>
+<li><p><span style="color:rgb(0, 170, 85);"><em>profileTop[0]</em></span> : x-direction coordinate</p></li>
+<li><p><span style="color:rgb(0, 170, 85);"><em>profileTop[1]</em></span> : y-direction coordinate</p></li>
+</ul>
+</li>
+</ul>
+<br>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/ellipse.jpg" alt="Geometry of Ellipse" width="400">
+  <figcaption> Geometry of Ellipse </figcaption>
+</div>
+<p>With number of <span class="math notranslate nohighlight">\(n\)</span> side-view/top-view profile points,</p>
+<div class="math notranslate nohighlight">
+\[ a_i=\frac{P_y[i]+P_y[i+1]}{2} \]</div>
+<div class="math notranslate nohighlight">
+\[ b_i=\frac{P_z[i]+P_z[i+1]}{2} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(a_i\)</span> : Length of <span style="color:rgb(24, 80, 145);">semi-major</span> axis (Y-axis : Width of cross-section)</em> <br>
+<em>- <span class="math notranslate nohighlight">\(b_i\)</span> : Length of <span style="color:rgb(24, 80, 145);">semi-minor</span> axis (Z-axis : Height of cross-section)</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_y[i]\)</span> : <span class="math notranslate nohighlight">\(i\)</span>-th coordinate point of the top profile</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_z[i]\)</span> : <span class="math notranslate nohighlight">\(i\)</span>-th coordinate point of the side profile</em> <br></p>
+</div></blockquote>
+<div class="math notranslate nohighlight">
+\[ c_i=\frac{4\cdot\{\pi{a_ib_i+(a_i-b_i)^2}\}}{a_i+b_i} \]</div>
+<div class="math notranslate nohighlight">
+\[ A_i = \pi\cdot{a_i}\cdot{b_i} \]</div>
+<div class="math notranslate nohighlight">
+\[ dx_i=P_x[i+1]+P_x[i] \]</div>
+<div class="math notranslate nohighlight">
+\[ A_{max} = max(A_i) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(c_i\)</span> : Circumference of <span class="math notranslate nohighlight">\(i\)</span>-th coordinate point of the profile</em> <br>
+<em>- <span class="math notranslate nohighlight">\(A_i\)</span> : Ellipse area (cross-section) of <span class="math notranslate nohighlight">\(i\)</span>-th coordinate point of the profile</em> <br>
+<em>- <span class="math notranslate nohighlight">\(dx_i\)</span> : An incremental of <span class="math notranslate nohighlight">\(i\)</span>-th coordinate point of the profile in x-axis (longitudinal direction)</em> <br>
+<em>- <span class="math notranslate nohighlight">\(A_{max}\)</span> : Maximum cross-section area</em></p>
+</div></blockquote>
+<p>Using the above equations, the circumference and cross-section area of each section have been calculated. The total wetted area can be determined by integrating the circumference along the longitudinal direction, while the volume of the body is obtained by integrating the cross-sectional area along the same direction.</p>
+<div class="math notranslate nohighlight">
+\[ S_{wetted}=\int_{0}^{n}c_i\;dx_i \]</div>
+<div class="math notranslate nohighlight">
+\[ V = \int_{0}^{n}A_i\;dx_i\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(S_{wetted}\)</span> : Wetted area of body type configuration</em> <br></p>
+</div></blockquote>
+<br>
+</section>
+</section>
+<section id="landing-system-geometry">
+<h2><strong>Landing System Geometry</strong><a class="headerlink" href="#landing-system-geometry" title="Link to this heading"></a></h2>
+<p>Landing system can be considered as the legs of an aircraft and is also a crucial feature. There are various types and configuration of landing system, but the most commonly used are the wheel type and skid type. Since these two types have significantly different structures, the geometry analysis methodologies are divided into two separate modules.</p>
+<br>
+<section id="wheel-type-landing-gear">
+<h3>Wheel Type Landing Gear<a class="headerlink" href="#wheel-type-landing-gear" title="Link to this heading"></a></h3>
+<p>Wheel type landing gear can be either retractable or non-retractable. Whether the landing gear retracts or not is important, as it affects the aircraft’s drag. The figure below illustrates the tire geometry of wheel type landing gear.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/tire_geometry.jpg" alt="Tire Geometry" width="400">
+  <figcaption> Tire Geometry </figcaption>
+</div>
+<p>There are various layouts for wheel type, but they primarily differ in the number of wheels and their arrangement. In this configuration module, the number of wheels and their locations are provided as input parameters.</p>
+<p>For the number of <span class="math notranslate nohighlight">\(n\)</span> wheels,</p>
+<div class="math notranslate nohighlight">
+\[ S_{wetted,\;tire}=\pi\cdot{d_{tire}}\cdot({\frac{d_{tire}}{2}}+w_{tire}) \]</div>
+<div class="math notranslate nohighlight">
+\[ S_{wetted,\;strut}=\pi\cdot{d_{strut}}\cdot{l_{strut}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(d_{tire}\)</span> : Diameter of each tire</em> <br>
+<em>- <span class="math notranslate nohighlight">\(w_{tire}\)</span> : Width of each tire</em> <br>
+<em>- <span class="math notranslate nohighlight">\(d_{strut}\)</span> : Diameter of each strut</em> <br>
+<em>- <span class="math notranslate nohighlight">\(l_{strut}\)</span> : Length of each strut</em></p>
+</div></blockquote>
+<p>Here, shape of the tire and strut are assumed as a cylinder.</p>
+<p>The wetted area of the wheel type landing gear is ultimately obtained by summing the wetted areas of the tires and struts, multiplied by their respective quantities.</p>
+<div class="math notranslate nohighlight">
+\[ S_{wetted}=\sum_{i=1}^{n}S_{wetted,\;tire}[i]+\sum_{i=1}^{N}S_{wetted,,\;strut}[i]\ \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(n\)</span> : Number of tires</em> <br>
+<em>- <span class="math notranslate nohighlight">\(N\)</span> : Number of strut</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="strut-type-landing-system">
+<h3>Strut Type Landing System<a class="headerlink" href="#strut-type-landing-system" title="Link to this heading"></a></h3>
+<p>Nowadays, various VTOL (Vertical Take-Off and Landing) aircrafts are being developed due to urban operation environment, and these VTOL aircrafts typically use skid type landing system instead of wheel type landing gear.</p>
+<p>TBD</p>
+</section>
+</section>
+<section id="propulsion-component-geometry">
+<h2><strong>Propulsion Component Geometry</strong><a class="headerlink" href="#propulsion-component-geometry" title="Link to this heading"></a></h2>
+<p>In an aircraft, numerous propulsion system components exist. However, in this CADE configuration analysis module, only the <span style="color:rgb(24, 80, 145);">disk area of the thruster (or propeller)</span> is calculated and included in the total aircraft area. Since the CADE’s multi-disciplinary analysis module focuses on the conceptual design phase, only the disk area, which externally influences the aircraft’s configuration and geometry, is considered. Internal components, such as battery, motor, converter/inverter, etc., housed within the aircraft are not taken into account.</p>
+<div class="math notranslate nohighlight">
+\[ A_{disk}=\frac{\pi}{4}\cdot{d_{prop}}\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(d_{prop}\)</span> : Diameter of propeller</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="appendix">
+<h2><em>APPENDIX</em><a class="headerlink" href="#appendix" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

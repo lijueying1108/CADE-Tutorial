@@ -1,0 +1,165 @@
+# **Configuration Theory Manual**
+
+This is a theory manual for configuration analysis inside CADE-MDA.
+It is written by referring to the books:
+
+> [1] Aircraft Design : A Conceptual Approach (6th Edition) by Daniel P. Raymer
+
+> [2] General Aviation Aircraft Design : Applied Methods and Procedures by Snorri Gudmundsson
+  <small> Appendix C1 : Design of Conventional Aircraft</small> <br>
+  <small> Appendix D  : Geometry of Lifting Surfaces</small>
+
+> [3] Development of an Emprically Based Computer Program to Predict the Aerodynamic Characteristics of Aircraft by Roy T. Schemensky
+
+<br>
+
+## **Configuration**
+The aircraft configuration defines the overall architecture of the aircraft, influencing all multi-disciplinary aspects of its performance and design. An aircraft comprises numerous components, each contributing to the vehicle’s aerodynamic, structural, and operational characteristics. Overall aircraft geometry must be decomposed into its constituent components, allowing for detailed evaluations within each discipline. The aircraft configuration components covered in this geometry analysis module can be found in [here](#configuration-analysis-structure). 
+
+
+### Goal of Configuration Analysis
+The objective of the aircraft configuration analysis is to accurately represent the aircraft geometry, enabling integration with subsequent analysis modules—such as weight and balance, aerodynamics, stability and control, propulsion, and performance assessment—and to deliver accurately calculated geometry parameter values.
+
+> 1. Parameterize all kinds of various aircraft configuration <br>
+<small><span style="color:rgb(24, 80, 145);">* Parameterization of Aircraft Configuration : Transforming each configuration component into geometric elements and interpreting them using mathematical and geometrical methods.</span></small>
+> 2. Calculate the parametrized configuration (geometry) parameters accurately
+> 3. Deliver the required configuration parameters to subsequent analysis modules
+
+
+### Configuration Analysis Module Structure
+- **Airfoil Geometry**
+- **Wing Type Geometry**
+  - Below wing types are calculated with two main functions : <br>
+  > <span style="color:rgb(24, 80, 145);">(1) Calcuate Multi-Segment Wing, (2) Calculate Equivalent Wing</span>
+    - Main Wing
+    - Tail Wing (Stabilizer)
+    - Multi Wings (ex. Canard, Tandem, etc.)
+    - Wingtip or Winglets (Endplate)
+  - Control Surfaces
+  - etc.
+- **Body Type Geometry**
+  - Fuselage
+  - Motor Booms
+  - Nacelles
+  - etc.
+- **Landing System Geometry**
+  - Landing Gear
+  - Strut
+- **Propulsion Component Geometry**
+- **Geometry Tools Module**
+- **Aircraft Configuration Plot Module**
+
+<br>
+
+## **Airfoil Geometry**
+The airfoil is often considered the heart of the aircraft, as it influences various aspects such as cruise speed, take-off and landing distances, stall speed, and the overall aerodynamic efficiency of the wing configuration throughout all flight phases. The wing configuration analysis evaluates each section of the entire wing, where each section corresponds to an individual airfoil.
+
+![Airfoil geometry](./fig/airfoil_geometry.jpg)
+
+### Airfoil Thickness
+Airfoil thickness is the maximum distance between upper and lower profiles of airfoil coordinates.
+Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper and lower surface profile at maximum airfoil thickness location point as below :
+
+$$ t=Curve_{Up}(x_t)-Curve_{Lo}(x_t) $$
+
+*Where,*
+
+> *- $Curve_{Up}$ : Newly created cubic splines of airfoil <span style="color:rgb(24, 80, 145);">upper</span> surface profile* <br>
+>*- $Curve_{Lo}$ : Newly created cubic splines of airfoil <span style="color:rgb(24, 80, 145);">lower</span> surface profile* <br>
+> *- $x_t$ : X-axis location of airfoil maximum camber* <br>
+<small><span style="color:rgb(99, 94, 94);">* $x_t$ is founded by searching maximum value of the thickness($t$) in boundary (minimum x-coordinate value of $Curve_{Up}$ or $Curve_{Lo}$ to maximum x-coordinate value of $Curve_{Up}$ or $Curve_{Lo}$)</span></small>
+
+### Airfoil Camber
+Airfoil camber refers to the maximum distance between the mean camber line and the chord line. The mean camber line is defined as the line connecting the midpoint of the upper and lower surface profiles. 
+
+$$ Camber=\frac{Curve_{Up}(x_{Camber})+Curve_{Lo}(x_{Camber})}{2} $$
+
+*Where,*
+
+> *- $x_{Camber}$ : X-axis location of airfoil maximum camber* <br>
+<small><span style="color:rgb(99, 94, 94);">* $x_{Camber}$ is founded by searching maximum value of the camber($camber$) in boundary (minimum x-coordinate value of $Curve_{Up}$ or $Curve_{Lo}$ to maximum x-coordinate value of $Curve_{Up}$ or $Curve_{Lo}$)
+</span></small>
+
+Generally, an airfoil with camber can generate more lift compared to a flat airfoil, but as the camber increases, drag may also increase.
+
+### Airfoil Length
+The airfoil length is the perimeter of the given airfoil shape.
+
+$$ L_{Airfoil}=\int_{0}^{n-1}\sqrt{(P_{i,0}-P_{i+1,0})^2+(P_{i,1}-P_{i+1,1})^2} $$
+
+*Where,*
+
+> *- $n$ : The number of total airfoil coordinate points* <br>
+> *- $P_{i,0}$ : <span style="color:rgb(24, 80, 145);">X-axis</span> coordinate value of i-th airfoil coordinate point* <br>
+> *- $P_{i,1}$ : <span style="color:rgb(24, 80, 145);">Y-axis</span> coordinate value of i-th airfoil coordinate point*
+
+### Airfoil Area
+The airfoil area refers to the area of the airfoil section. 
+
+$$ A_{Airfoil}=Area_{Up}+Area_{Lo} $$
+
+Here, $Area_{Up}$ refers to the area of upper airfoil surface and $Area_{Lo}$ is the area of lower airfoil surface
+
+$$ Area_{Up}=\bigg|\int_{0}^{1}Curve_{Up}\;dP\bigg| $$
+
+$$ Area_{Lo}=\bigg|\int_{0}^{1}Curve_{Lo}\;dP\bigg| $$
+
+### Airfoil Leading Edge Parameter (i.e. *LE Parameter*)
+Airfoil leading edge parameter is the thickness factor of airfoil's leading edge like $\varDelta y$(%C) in below figure.
+
+![Airfoil leading edge parameter](./fig/airfoil_LE_parameter.jpg)
+
+$$ LE\:Parameter=(y_2-y_1)t\times100 $$
+
+*Where,*
+
+> *- $y_2$ : Y-axis length from point at <span style="color:rgb(24, 80, 145);">6%</span> of airfoil chord length* <br>
+> *- $y_1$ : Y-axis length from point at <span style="color:rgb(24, 80, 145);">0.15%</span> of airfoil chord length* <br>
+> *- $t$ : Airfoil thickness*
+
+<br>
+
+## **Wing Type Geometry**
+The wing might be the most important component of the entire aircraft system or configuration. It primarily serves the role of generating lift as it moves through air or other types of fluid. Wing is a 3-dimension configuration component with a streamlined cross-section known as an '[airfoil](#airfoil-geometry).' 
+
+In configuration module inside CADE-MDA, wing type encompasses the main wing, secondary wings, winglets, endplates, tail wings (stabilzers), or any other wing-related configurations. Additionally, the geometry of the control surfaces is also calculated inside the <span style="color:rgb(0, 170, 85);">*Class*</span> of wing geometry calcuation. <span style="color:rgb(24, 80, 145);">The key objective of wing type geometry analysis is to ensure it works for any shape of wing configuration.</span> To achieve this, two methodologies are employed for wing type geometry analysis in CADE-MDA.
+
+### Multi-Segment Wing Calculation
+When analyzing an aircraft's wing-type geometry, the wing planform shape is commonly assumed to be trapezoidal. However, most aircraft do not have a perfect trapezoidal wing planform shape; in reality, they are often more complex than just a simple "trapezoidal" shape. Therefore, to analyze the wing geometry accurately, the wing should be broken down into multiple segments, each approximating a trapezoidal shape. This methodology is called **'multi-segment wing calculation'**. While representing a wing with too many segments can complicate the analysis, this approach allows for the representation of various wing configurations, which is the primary goal of this configuration module in CADE-MDA.
+
+A wing represented by a multi-segment approach is divided into $N$ sections, resulting in $N-1$ trapezoidal-shaped segments. The two images below illustrate the geometry of multi-segment wing.
+
+![Multi-segment wing breakdown](./fig/wing_segment_section.jpg)
+
+![Multi-segment wing geometry](./fig/multi_segment_wing_geometry.jpg)
+
+The wing configuration parameters of a multi-segment wing are calculated using the following equations:
+
+- For the <span style="color:rgb(24, 80, 145);">1st segment ($i=0$)</span>,
+  
+    $$ b_i=\frac{1}{2}\cdot{b_{ref}}\cdot{\frac{{b_i}_{Loc}}{100}} $$
+
+    $$ c_i=C_{r}$$
+
+    $$ c_{i+1}=c_i\cdot\lambda_i $$
+
+- Following the 1st segment <span style="color:rgb(24, 80, 145);">($i=1,2,3,...,N-1$)</span>
+  
+    $$ b_i=\frac{1}{2}\cdot{b_{ref}}\cdot{\frac{{b_i}_{Loc}-{b_{i-1}}_{Loc}}{100}} $$
+
+    $$ c_{i+1}=c_i\cdot\lambda_i $$
+
+*Where,*
+
+> *- $b_i$ : Span of $i$-th segment* <br>
+> *- ${b_i}_{Loc}$ : The position of the end span of the $i$-th segment within the entire halfspan in percentage* <br>
+
+$c_i$ : Chord length of $i$-th section
+
+$C_{r}$ : Root chord length
+
+$\lambda_i$ : Taper ratio of $i$-th segment
+
+<br>
+
+## *APPENDIX*

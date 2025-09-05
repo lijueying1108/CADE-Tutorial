@@ -1,0 +1,346 @@
+UAM Command input file
+==================
+
+There is a single CSV input file that controls the whole analysis. 
+Command input files by default are located in ``input`` directory.
+
+The file is divided into three main sections and subsections. 
+eASP performs search by the section header, so it is important to write 
+them correctly.
+
+This example input file is for Tilting UAM. 
+
+.. csv-table:: Example of sizing input file
+   :file: sizing/sample_input_file_uam.csv
+
+The first row of the table is for the parameters naming and the second row should be provied the value and variables.
+
+SIZING INPUT (mandatory)
+--------------------
+
+The first line always contains the ``SIZING INPUT`` keyword and the input file 
+will be read if not defined. There will be some error. It should follows the ``mission_profile``
+keyword to defind the mission profile name. Mission profile input making is shown in :doc:`sizing_mission_profile`.
+
+CONFIGURATION (mandatory)
+--------------------
+
+The configuration ``CONFIGURATION`` keyword needs to define for based on the aircraft type. 
+
+Currently, ``aircraft_type`` can only be selected as ``CONVENTIONAL``, ``TANDEM-WING``, ``BLENDED-BODY-TANDEM-WING``.
+
+``aspect_ratio_wing`` paraemter need to specify based on the design aircraft. If there is no design aircraft,
+Here are some of the parameters that you can you depending on the aircraft category is shown in 
+:doc:`sizing_input_parameters_guide`.
+
+``flap_position`` flap position need to specify for ``TANDEM-WING`` and ``BLENDED-BODY-TANDEM-WING`` configuration,
+the key words can be defined as ``BOTH-WING``, ``FRONT-WING``, and ``REAR-WING``. 
+
+``height_to_span_ratio`` paraemter needs to provide for ``TANDEM-WING`` and ``BLENDED-BODY-TANDEM-WING`` for aerodynamcis 
+oswald efficiency correction.
+
+``area_ratio_wing`` parameter needs to provide for ``TANDEM-WING`` configuration for separating front wing, and rea wing area 
+calculation.
+In case of ``BLENDED-BODY-TANDEM-WING`` configraiont, area ration of 0.3 for front and rear wing and 0.4 for body area ration is hard-coded.
+
+``num_of_propellers_ctol`` parameter needs to provide for sizing the propeller model.
+
+``num_of_rotor_vtol`` parameter need to separate rotors which is used only for vertical(VTOL) direction.
+
+``num_of_rotor_tilt`` parameter need to separate rotors which is used for both vertical(VTOL) and horizontal(CTOL) direction.
+
+``num_of_propellers_blades`` parameter also need to provide depending on the design of based line aircraft.
+
+``num_of_rotor_blades`` parameter also need to provide depending on the design of based line aircraft.
+
+``k_p`` parameter need to calculate vertical direction drag. ``k_p`` is defined as (S_proj_total_ac/S_proj_wing) and used to convert the drag coefficient
+, calculated based on the Projected Area of the whole aircraft, to the drag coefficient calculated for the wing area. Recommended value is proper sketch's value or similar aircraft's.
+If there is no data  the parameters that you can you depending on the aircraft category is shown in :doc:`sizing_input_parameters_guide`
+
+``k_fuselage`` parameter need to calculate maximum rotor radius. It means the ratio, fuselage width to wing span.
+
+``k_clearance`` parameter need to calculate maximum rotor radius. It means the marginal gap of rotor radius and is defined to the ratio.
+
+``k_diameter`` parameter need to calculate maximum rotor radius. It means how much length can be useful added to span.
+If VTOL rotor is attatched on wing tip(like Osprey), each end extends out by a 1 radius, for a total extension of 1 diameter beyond the Wing Tip.
+If you want to design it so that it extends 1 diameter less than the Wing Tip, you should enter -1. Other constants can also be entered.
+
+``num_rotor_span_wise`` parameter need to calculate maximum rotor radius. It means how many rotors exist along to wing span.
+
+``k_fuselage``, ``k_clearance``, ``k_diameter``, ``num_rotor_span_wise`` are totally dependent on aircraft concept. There is no guide value.
+
+AERODYNAMICS (mandatory)
+--------------------
+
+The aerodynmaics ``AERODYNAMICS`` keyword needs to define for based on the aircraft type or design paraemter.
+For the aerodynamics the required paraemters for performance and mission analysis need to be provided.
+
+``Cd_blade`` is rotor blade's drag coefficient to calculate rotor profile drag. Typically use 0.01.
+
+``C_D_p`` is aircraft's vertical direction drag coefficient, and it's reference area is total aircraft's projected area.
+
+``V_tip`` is rotor tip speed when aircraft hover. It should be reasonable value consider drag divergence mach for rotor tip, rotor tip stall, etc.
+
+``oswald_effy`` is the oswald efficiey of aircraft. 
+
+``CD_0`` is the friction drag coefficient which need to defined.
+
+``CL_max_clean`` is the maximum lift coefficeint for clean configuration. 
+
+``k_i`` is induced power correction factor for calculate FoM and induced power during hovering, vertical climb.
+Typical average value of ``k_i`` in hovering is 1.15~. However, recommended way is that 'fit ``k_i`` to FoM'.
+In this program, FoM is is output.
+
+``k_wet`` parameter used to predict the rotor thrust loss caused by objects below the rotor.
+``k_wet`` is the expected ratio of the wing,fuselage area wetted by the rotor’s downwash to the total wing area in the rotorcraft flight mode.
+The parameter depends on the selected aircraft configuration and can be estimated based on data for similar aircraft.
+How to be used in code or equation is explained in theory manual.
+
+Above aerodynmaics assumption parameters are also provided in :doc:`sizing_input_parameters_guide`.
+
+PROPULSION (mandatory)
+--------------------
+
+The propulsion ``PROPULSION`` keyword needs to define for the propulsive efficiency of each electric components.
+As well as the installation factor of the propulsion need to be provided for calculaing the mass of total 
+propulsion system.
+
+The efficiency of propeller may varies depending on the propeller type while electrical efficiency can be keep as a constant value.
+Above efficiency assumption parameters are also provided in :doc:`sizing_input_parameters_guide`.
+
+Propulsion system for ``motor_sizing_method`` and ``controller_sizing_method`` sizing method 
+need to defined as ``POWER-DENSITY`` or ``REGRESSION`` for the mass calculation of motor and controller.
+If ``POWEWR-DENSITY`` method is used, related power density value need to provide.
+If ``REGRESSiON`` method is used, power density value doesn't need to provide.
+
+``power_density_motor``, ``power_density_motor_vtol``, ``power_density_motor_tilt``, these three are for seperation of motor in various cases.
+
+``power_density_motor`` is power density of motor only horizontal motor both in RAM and UAM, except for tilt.
+
+``power_density_motor_vtol`` is power density of motor only vertical motor in UAM, except for tilt.
+
+``power_density_motor_tilt``is power density of motor only can being tilt, except for only CTOL or VTOL.
+
+``power_density_controller``, ``power_density_controller_vtol``, ``power_density_controller_tilt``, these three are for seperation of controller in various cases.
+
+``power_density_controller`` is power density of controller attached to only horizontal motor both in RAM and UAM, except for tilt.
+
+``power_density_controller_vtol`` is power density of controller attached to only vertical motor in UAM, except for tilt.
+
+``power_density_controller_tilt``is power density of controller attached to only can being tilt motor, except for only CTOL or VTOL.
+
+``descent_power_setting`` is for power estimation of CTOL mode descent flight. In many cases, power of descent is estimated as the ratio of cruise flight.
+For example, If ``descent_power_setting`` is 0.4, the power of descent flight is 40% of cruise flight required power.
+
+``vtol_motor_control_power_margin`` is constant, for control margin of vtol at the hovering condition. 
+
+ENERGY-SYSTEM (mandatory)
+--------------------
+
+The energy system ``ENERGY-SYSTEM`` keywords define the type of energy system. 
+
+If the aircraft is fully electric, ``energy_source`` must be defined as ``BATTERY``. 
+
+And the required battery parameters need to defined in ``BATTERY`` keywords. In that case, 
+``HYDROGEN-FUEL-CELL`` parameters doesn't need to defined. 
+
+``battery_sizing_method`` keyword also need to defined which has three options. They are
+
+``ENERGY-DENSITY``, ``POWER-DENSITY`` and ``MAX-MASS`` methods. 
+
+If the aircraft is fully hydrogen fuel cell, ``energy_source`` must be defined as ``HYDROGEN-FUEL-CELL``.
+
+And the required fuel cell parameters need to defined in ``HYDROGEN-FUEL-CELL`` keywords.
+``tank_sizing_method`` is currenlty only one option later, there will be another option. It can be keep as,
+``GRAVIMETRIC-DENSITY`` for sizing tank mass. 
+
+``hydrogen_type`` also selected for ``LIQUID`` or ``GAS``.
+
+If the aircrft used both energy source, ``energy_source`` must be defined as ``HYBRID``. Both battery and hydrogen fuel cell
+parameter need to defiend. 
+
+``power_density_batt`` is the power density of battey in W/kg.
+
+``spec_energy_batt_wh_per_kg`` is specific energy density of battery in Wh/kg.
+
+``volumetric_energy_density_batt`` is the volumetric density of battery in Wh/L
+
+``effy_batt`` is the battery efficiency.
+
+``power_density_fuel_cell`` is the fuel cell power density in W/kg.
+
+``volumetric_power_density_fuel_cell`` is the fuel cell volumetric density in W/L
+
+``effy_fuel_cell`` is the hydrogen fuel cell efficiency.
+
+``tank_GI`` is gravimetric tank index for tank sizing.
+
+``temperature_tank`` is the design hydrogne tank temperature and it is only effective for ``GAS`` hydrogen. 
+
+``pressure_tank`` is the hydrogen design pressure for ``GAS`` usually 350 bar to 700 bar.
+
+Assumption parameters for both ``BATTERY`` and ``HYDROGEN-FUEL-CELL`` are provide in :doc:`sizing_input_parameters_guide`.
+
+THERMAL-MANAGEMENT-SYSTEM (mandatory)
+--------------------
+
+The energy system ``THERMAL-MANAGEMENT-SYSTEM`` keywords define the type of thermal management system. 
+
+``power_density_thermal_management_sys`` is the power density of the thermal management system for mass calcualtion
+
+
+MASS (mandatory)
+--------------------
+
+The mass ``MASS`` keyword need to be defind for mass fraction input to estimated the maximum takeoff mass.
+
+``mass_frac_subsys`` is the subsystem mass fraction, which includes APU, flight control, hydraulics, electrical, instrument, oxygen, furnshing, miscellaneous and contigency mass. 
+
+``mass_frac_avionics`` is the avionics mass fraction.
+
+``mass_frac_struct`` is the structural mass fraction, which includes fuselage, wing, tail, undercarriage and naccele mass.
+
+Assumption parameters ``mass_frac`` values are provided in :doc:`sizing_input_parameters_guide`.
+
+INITIAL-DESIGN-POINT (optional)
+--------------------
+
+The ``INITIAL-DESIGN-POINT`` keyword is only need to specify when the optimization is not required.
+By setting this section, user can check the feasible region without running the optimization.
+
+``power_loading`` is the power loading of the design aircraft in W/N.
+In UAM, it means the power loading of CTOL only motor's power loading.
+
+``power_loading_vtol_tilt`` is used in partial tilting case.
+In the code, power_loading_vtol_tilt is calculated to fit each mode.
+
+``power_loading_vtol`` is used in Lift+Cruise case and it means power loading of only VTOL mode.
+
+``wing_loading`` is the wing loading of the design aircraft in N/m^2, numerically means W/S.
+W is total weight of aircraft. S is wing area
+
+``disk_loading`` is the disk loading of the design aircraft in N/m^2, numerically means W/A.
+W is total weight of aircraft. A is total disk area
+
+``maximum_takeoff_mass`` is the maximum takeoff mass of the design aircraft.
+
+Above paraemter can be selected depending on the reference aircraft or design aircraft.
+
+DESIGN VARIABLES (mandatory)
+--------------------
+
+``DESIGN VARIABLES`` keyword need to defined whether, the user want to optimize or not. That's is a mandatory keyword 
+for reading the files. In this keyword, the first row includes, parameters, ``DEISGN VARIABLES``, intial design point, ``x0``, 
+lowe bound ``lb``, upper bound ``ub`` need to define for optimizing the sizing program.
+
+User can add any design variables from the input parameters of above keywords list to minimize or maximize the 
+the objective function. The unit of the design variable need to match with the input parameters unit.
+
+A sample of design variables making is shown in below.
+
+Design variables for Lift_cruise type UAM, 
+
+.. csv-table:: Example of design varaibles section
+   :file: sizing/lift_cruise_design_variables.csv
+
+Design variables for tilting type UAM, 
+
+.. csv-table:: Example of design varaibles section
+   :file: sizing/tilting_design_variables.csv
+
+Design variables for partial tilting type UAM, 
+
+.. csv-table:: Example of design varaibles section
+   :file: sizing/partial_tilting_design_variables.csv
+
+
+OBJECTIVE (mandatory)
+--------------------
+
+``OBJECTIVE`` keyword is also mandatory for reading the input file, wherether, the user want to optimize or not. 
+Objective section include parameters and target method. 
+
+``min`` for the minimization of objective function.
+
+``max`` for maximization of objective function.
+
+A sample of design objective are shown in below.
+
+.. csv-table:: Example of objective section
+   :file: sizing/sample-objective.csv
+
+The objective parameter can be selected for any output parameters list in the directory ``data\combus\uam-parameters.csv``, 
+``data\combus\uam-tilt-parameters.csv``, ``data\combus\uam-partial-tilt-parameters.csv``.
+
+
+CONSTRAINT (mandatory)
+--------------------
+
+``CONSTRAINT`` keyword is also mandatory for reading the input file, the constraint parameters are also used to plot
+the sizing matrix of the deisgn mass and cost for the visualization of the constraints. 
+The constraint section must be defined in the order of 
+
+constraint parameters, leq or geq, constraint parameters req and value of the required parameter.
+
+``leq`` is used for less than or equal sign for constraint. 
+
+``geq`` is used for greather than or equal sign for constraint.
+
+List of design requirements are also specifiy also in here. User defined required constraint can also be added. 
+
+A sample of constraint section.
+
+.. csv-table:: Example of constraint section
+    :file: sizing/sample_constraint_uam.csv
+
+The constraint parameters can be selected for any output parameters list in the directory ``data\combus\uam-parameters.csv``, 
+``data\combus\uam-tilt-parameters.csv``, ``data\combus\uam-partial-tilt-parameters.csv``.
+
+If there no tradeoff want to perform, the user can be stop by adding 
+``END`` keyword at the end of the input file.
+
+
+ONE-DIMENSION-TRADEOFF (optional)
+--------------------
+
+``ONE-DIMENSION-TRADEOFF`` keyword is optional for tradeoff study depending on the user selected varaibles and output parameters.
+To use this keyword, input parameters, start value, end value and number of sample need to proved for the tradeoff.
+
+The tradeoff input and output parameters can be selected paraemters list in the directory ``data\combus\uam-parameters.csv``, 
+``data\combus\uam-tilt-parameters.csv``, ``data\combus\uam-partial-tilt-parameters.csv``.
+
+A sample of one dimensional tradeoff section.
+
+.. csv-table:: Example of one dimensional tradeoff section
+    :file: sizing/sample-one-dimension.csv
+
+
+TWO-DIMENSION-TRADEOFF (optional)
+--------------------
+
+``TWO-DIMENSION-TRADEOFF`` keyword is optional for tradeoff study depending on the user selected varaibles and output parameters.
+To use this keyword, input parameters, start value, end value and number of sample need to proved for the tradeoff.
+
+The tradeoff input and output parameters can be selected paraemters list in the directory ``data\combus\ram-parameters.csv``.
+
+A sample of two dimensional tradeoff section.
+
+.. csv-table:: Example of two dimensional tradeoff section
+    :file: sizing/sample-two-dimension.csv
+
+
+NOTE1
+^^^^
+For running hybridization optimization, a specific design optimization need to be formulated,
+An Example formulation in this sizing program can be make as below,
+
+.. csv-table:: Hybridization optimization formulation
+    :file: sizing/hybridization_optimization.csv
+
+
+NOTE2
+^^^^
+There is some ``bug`` in the tradeoff.
+
+If ``ONE-DIMENSION-TRADEOFF`` is specify, then ``TWO-DIMENSION-TRADEOFF`` cannot be run. 
+Consequently, if ``TWO-DIMENSION-TRADEOFF`` is specify, then ``ONE-DIMENSION-TRADEOFF`` cannot be run. 

@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weight and Balance Theory Manual &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><strong>Weight and Balance Theory Manual</strong></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/weight_and_balance_theory.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="weight-and-balance-theory-manual">
+<h1><strong>Weight and Balance Theory Manual</strong><a class="headerlink" href="#weight-and-balance-theory-manual" title="Link to this heading"></a></h1>
+<p>This is a theory manual for weight and balance analysis inside CADE-MDA.<br />
+It is written by referring to the books:</p>
+<blockquote>
+<div><p>[1] “Weight and Balance Handbook” by U.S. Department of Transportation  Federal Aviation Administrantion(FAA)</p>
+</div></blockquote>
+<blockquote>
+<div><p>[2] “Aircraft Design : A Conceptual Approach (6th Edition)” by Daniel P. Raymer</p>
+</div></blockquote>
+<blockquote>
+<div><p>[3] “GENERAL AVIATION AIRCRAFT DESIGN: APPLIED METHODS AND PROCEDURE”S by Snorri Gudmundsson</p>
+</div></blockquote>
+<blockquote>
+<div><p>[4] “NDARC (NASA Design and Analysis of Rotorcraft) Theory,”by Wayne Johnson</p>
+</div></blockquote>
+<blockquote>
+<div><p>[5] “ADVANCED AIRCRAFT DESIGN” by Egbert Torenbeek</p>
+</div></blockquote>
+<br>
+<section id="weight-and-balance">
+<h2><strong>Weight and Balance</strong><a class="headerlink" href="#weight-and-balance" title="Link to this heading"></a></h2>
+<p>Weight and Balance analysis estimates the weight of aircraft components to calculate maximum takeoff weight (MTOW) and structural mass. It then computes the center of gravity (CG) to ensure the aircraft remains within its safe operational range. Moments of inertia (MoI) are calculated to quantitatively assess the aircraft’s stability and control characteristics. These results streamline the design process and support effective management of aircraft stability and performance.</p>
+<br>
+<section id="goal-of-weight-and-balance">
+<h3>Goal of Weight and Balance<a class="headerlink" href="#goal-of-weight-and-balance" title="Link to this heading"></a></h3>
+<p>The objective of the aircraft weight and balance analysis is to predict the aircraft’s maximum takeoff weight (MTOW), structural mass, center of gravity (CG), and moment of inertia (MoI).</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Predict component weights to verify safe operational limits.</p></li>
+<li><p>Calculate the aircraft’s center of gravity (CG) to ensure it remains within its operational range.</p></li>
+<li><p>Compute moments of inertia (MoI) to assess stability and control characteristics.</p></li>
+</ol>
+</div></blockquote>
+<br>
+</section>
+<section id="weight-and-balance-analysis-module-structure">
+<h3>Weight and Balance Analysis Module Structure<a class="headerlink" href="#weight-and-balance-analysis-module-structure" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Aircraft Weight</strong></p>
+<ul>
+<li><p>Weight Breakdown and Weight Estimation Methods</p>
+<ul>
+<li><p>Weight Breakdown for Different Types of Aircraft</p></li>
+<li><p>Raymer Weight Estimation</p></li>
+<li><p>Torenbeek Weight Estimation</p></li>
+<li><p>USAF Weight Estimation</p></li>
+<li><p>AFDD Weight Estimation</p></li>
+<li><p>Wetted-Area Structural Weight Estimation</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Aircraft Center of Gravity</strong></p>
+<ul>
+<li><p>Basic Center of Gravity Equations</p></li>
+<li><p>Basic Weight and Balance Equations</p></li>
+</ul>
+</li>
+<li><p><strong>Aircraft Moment of Inertia</strong></p>
+<ul>
+<li><p>Basic Theory for Aircraft Arms and Moment</p></li>
+<li><p>Moment Of Inertia</p></li>
+<li><p>Parallel-Axis Theorem</p></li>
+</ul>
+</li>
+</ul>
+<br>
+</section>
+</section>
+<section id="aircraft-weight">
+<h2>Aircraft Weight<a class="headerlink" href="#aircraft-weight" title="Link to this heading"></a></h2>
+<p>Aircraft weight calculation is the process of computing the mass of each component—structure, propulsion, systems—and summing them to determine the total aircraft weight.<br />
+This total weight directly influences key performance metrics such as takeoff and landing distances, rate of climb, and cruise speed.<br />
+Moreover, increases in weight necessitate stronger structures and higher-thrust engines, raising manufacturing and operational costs.<br />
+Therefore, accurate weight calculation and optimized mass management from design through operation and maintenance are essential.
+<br></p>
+<section id="weight-breakdown-and-weight-estimation-methods">
+<h3><strong>Weight Breakdown and Weight Estimation Methods</strong><a class="headerlink" href="#weight-breakdown-and-weight-estimation-methods" title="Link to this heading"></a></h3>
+<p>This section is organized into two complementary chapters.<br />
+The <strong>Weight Breakdown</strong> chapter explains how to identify and classify the primary components contributing to aircraft weight.<br />
+The <strong>Weight Estimation Methods</strong> chapter outlines the weight calculation procedures using empirical and physics-based methodologies such as Raymer, Torenbeek, and AFDD.</p>
+<section id="weight-breakdown-for-different-types-of-aircraft">
+<h4><strong>Weight Breakdown for Different Types of Aircraft</strong><a class="headerlink" href="#weight-breakdown-for-different-types-of-aircraft" title="Link to this heading"></a></h4>
+<p>This section divides the aircraft’s weight components into five groups—structure, propulsion, energy, payload, and miscellaneous systems—and outlines the primary elements and functions of each group.</p>
+<p>Aircraft Components:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Group</p></th>
+<th class="head"><p>Typical Items</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Structure</strong></p></td>
+<td><p>Wing, Fuselage, Empennage, Landing Gear</p></td>
+<td><p>Primary load-paths</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Propulsion</strong></p></td>
+<td><p>Motors, Propellers, Inverters, Converters</p></td>
+<td><p><em>Energy source excluded</em></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Energy</strong></p></td>
+<td><p>Battery, Fuel, Thermal-Management System</p></td>
+<td><p>Swappable packs possible</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Payload</strong></p></td>
+<td><p>Passengers, Cargo, Sensors</p></td>
+<td><p>Mission-dependent</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Misc. Systems</strong></p></td>
+<td><p>Avionics, Flight-Controls, Installation</p></td>
+<td><p>Often shifts CG aft</p></td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/Evtol_Components.jpg" alt="Evtol Components" width="500">
+  <figcaption> eVTOL weight-component breakdown </figcaption>
+</div>
+<br>
+<p>Empty Weight (<span class="math notranslate nohighlight">\(W_e\)</span>) is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+W_e = W_{\mathrm{structure}} + W_{\mathrm{propulsion,fixed}} + W_{\mathrm{battery}} + W_{\mathrm{Misc, Systems}}
+\]</div>
+<p><span style="color:rgb(24, 80, 145);"><strong>Note:</strong> For conventional (fuel-based) aircraft, omit <span class="math notranslate nohighlight">\(W_{\mathrm{battery}}\)</span>.</p>
+<p>Operating Empty Weight (<span class="math notranslate nohighlight">\(W_{OE}\)</span>) is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+W_{OE} = W_e + W_{\mathrm{crew}}   + W_{\mathrm{unusable\ energy}}
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(W_{\mathrm{unusable\,energy}}\)</span>: the residual fuel, oil, or battery charge that cannot be used.</p></li>
+</ul>
+<p>Maximum takeoff weight (<span class="math notranslate nohighlight">\(W_{TO}\)</span>) is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+W_0 = W_{OE}  + W_{payload} +W_{\mathrm{operational\ fluids}} \quad(+\ \text{additional mission equipment})
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(W_{OE}\)</span>: operating empty weight (structure, propulsion, systems)</p></li>
+<li><p><span class="math notranslate nohighlight">\(W_b\)</span>: battery (energy) weight</p></li>
+<li><p><span class="math notranslate nohighlight">\(W_p\)</span>: payload weight (passengers, cargo, sensors)</p></li>
+</ul>
+<p><span style="color:rgb(24, 80, 145);"><strong>Note:</strong> For electric aircraft, <span class="math notranslate nohighlight">\(W_{\mathrm{operational\,fluids}} = 0\)</span>.
+<br></p>
+</section>
+<section id="weight-estimation-methods">
+<h4><strong>Weight Estimation Methods</strong><a class="headerlink" href="#weight-estimation-methods" title="Link to this heading"></a></h4>
+<p>Weight estimation models use geometric parameters (for example, wing area and fuselage length) together with design inputs (such as material density and design gross weight) to calculate the mass of each aircraft component and the complete vehicle through a combination of empirical correlations and mathematical relations.</p>
+<ol class="arabic simple">
+<li><p><strong>Raymer Weight Estimation Method</strong></p>
+<ul class="simple">
+<li><p><strong>Feature:</strong> Quickly predicts the total airframe mass range using key geometric variables (e.g., wing area, fuselage length).</p></li>
+<li><p><strong>Applicable to:</strong> <span style="color:rgb(24, 80, 145);">General aviation aircraft</p></li>
+</ul>
+</li>
+<li><p><strong>Torenbeek Weight Estimation Method</strong></p>
+<ul class="simple">
+<li><p><strong>Feature:</strong> Specialized for large transport aircraft, delivering high accuracy through detailed component breakdown based on shape and design parameters.</p></li>
+<li><p><strong>Applicable to:</strong> <span style="color:rgb(24, 80, 145);">Transport-category airplanes</p></li>
+</ul>
+</li>
+<li><p><strong>USAF Weight Estimation Method</strong></p>
+<ul class="simple">
+<li><p><strong>Feature:</strong> Uses military-specific correlations to account for armament, avionics, and other mission equipment in component-level weight calculations.</p></li>
+<li><p><strong>Applicable to:</strong> <span style="color:rgb(24, 80, 145);">Light,utility aircraft</p></li>
+</ul>
+</li>
+<li><p><strong>AFDD Weight Estimation Method (NASA NDARC)</strong></p>
+<ul class="simple">
+<li><p><strong>Feature:</strong> Tailored for rotorcraft, tiltrotor, and tiltwing configurations by incorporating rotor-specific components and dynamic load factors.</p></li>
+<li><p><strong>Applicable to:</strong> <span style="color:rgb(24, 80, 145);">Tiltrotor and tiltwing aircraft</p></li>
+</ul>
+</li>
+<li><p><strong>Wetted-Area Structural Weight Method</strong></p>
+<ul class="simple">
+<li><p><strong>Feature:</strong> Computes primary structure (skin, fittings, frame) mass directly from wetted area and empirically derived density/thickness factors.</p></li>
+<li><p><strong>Applicable to</strong>: <span style="color:rgb(24, 80, 145);">Small, skin-dominant airframes and UAV fuselages</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="weight-estimation-correction-factors">
+<h4>Weight Estimation Correction Factors<a class="headerlink" href="#weight-estimation-correction-factors" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Raymer, Torenbeek &amp; USAF Methods</strong><br />
+Component weights are first calculated using their respective empirical formulas, then adjusted by a <strong>fudge factor</strong> to account for unmodeled structure, fittings, and manufacturing tolerances.<br />
+Refer to the image below for the recommended fudge factor values and apply them accordingly.</p></li>
+</ul>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/fudge_factor.jpg" alt="fudge factor" width="400">
+  <figcaption> Fudge Factor </figcaption>
+</div>
+<ul class="simple">
+<li><p><strong>AFDD Method (NASA NDARC)</strong><br />
+Rather than a single multiplier, each component (rotor blades, gearboxes, hubs, etc.) is scaled by a specific <strong>technology correction factor</strong> based on material and subsystem maturity.<br />
+Consult the image below for the individual correction factors and multiply them into your component weight calculations.</p></li>
+</ul>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/technology_factor.jpg" alt="technology factor" width="400">
+  <figcaption> Technology Factor </figcaption>
+</div>
+<br>
+</section>
+<section id="raymer-weight-estimation">
+<h4><strong>Raymer Weight Estimation</strong><a class="headerlink" href="#raymer-weight-estimation" title="Link to this heading"></a></h4>
+<p>Raymer’s method applies regression formulas to key geometric (e.g., wing area) and loading (e.g., design gross weight) parameters for rapid estimation of component and total aircraft weight.<br />
+It provides fast, reliable predictions of the total weight range during the conceptual design phase of general aviation (GA) aircraft.<br />
+This module uses the<span style="color:rgb(24, 80, 145);"> GA-specific </span>Raymer weight estimation formula.</p>
+</section>
+<section id="main-wing-weight-formula">
+<h4>Main Wing Weight Formula<a class="headerlink" href="#main-wing-weight-formula" title="Link to this heading"></a></h4>
+<div class="math notranslate nohighlight">
+\[
+W_{\mathrm{wing}}
+= 0.036\,S_w^{0.758}\,W_{\mathrm{fuel}}^{0.0035}\,
+  \Bigl(\tfrac{AR}{\cos^2\Lambda_{c/4}}\Bigr)^{0.6}
+  q^{0.006}\,\lambda^{0.04}\,
+  \Bigl(\tfrac{100\,t_c}{\cos\Lambda_{c/4}}\Bigr)^{-0.3}
+  (N_z\,W_{dg})^{0.49}
+\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(S_w\)</span> : Wing planform area [ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W_{\mathrm{fuel}}\)</span> : Fuel weight in wing [lb]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(AR\)</span> : Wing aspect ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Lambda_{c/4}\)</span> : Quarter-chord sweep angle</em> <br>
+<em>- <span class="math notranslate nohighlight">\(q\)</span> : Dynamic pressure at cruise [lb/ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\lambda\)</span> : Taper ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(t_c\)</span> : Thickness-to-chord ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(N_z\)</span> : Ultimate load factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W_{dg}\)</span> : Design gross weight [lb]</em> <br></p>
+</div></blockquote>
+<br>
+</section>
+<section id="horizontal-vertical-tail-weight-formulas">
+<h4>Horizontal &amp; Vertical Tail Weight Formulas<a class="headerlink" href="#horizontal-vertical-tail-weight-formulas" title="Link to this heading"></a></h4>
+<div class="math notranslate nohighlight">
+\[
+W_{\mathrm{horizontal\_tail}}
+= 0.016\,(N_z W_{dg})^{0.414}\,q^{0.168}\,S_{ht}^{0.896}
+  \Bigl(\tfrac{100\,t_c}{\cos\Lambda_{ht}}\Bigr)^{-0.12}
+  \Bigl(\tfrac{AR}{\cos^2\Lambda_{ht}}\Bigr)^{0.043}
+  \lambda_{ht}^{-0.02}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+W_{\mathrm{vertical\_tail}}
+= 0.073\Bigl(1 + 0.2\,\tfrac{H_t}{H_v}\Bigr)\,(N_z W_{dg})^{0.376}\,q^{0.122}\,S_{vt}^{0.873}
+  \Bigl(\tfrac{100\,t_c}{\cos\Lambda_{vt}}\Bigr)^{-0.49}
+  \Bigl(\tfrac{AR}{\cos^2\Lambda_{vt}}\Bigr)^{0.357}
+  \lambda_{vt}^{0.039}
+\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(N_z\)</span> : Ultimate load factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W_{dg}\)</span> : Design gross weight [lb]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(q\)</span> : Dynamic pressure at cruise [lb/ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_{ht}\)</span> : Horizontal tail area [ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_{vt}\)</span> : Vertical tail area [ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Lambda_{ht}\)</span> : Horizontal tail sweep at 25% MAC</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Lambda_{vt}\)</span> : Vertical tail sweep at 25% MAC</em> <br>
+<em>- <span class="math notranslate nohighlight">\(t_c\)</span> : Thickness-to-chord ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(AR\)</span> : Aspect ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\lambda_{ht}\)</span> : Horizontal tail taper ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\lambda_{vt}\)</span> : Vertical tail taper ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(H_t/H_v\)</span> : Tail configuration factor (0.0 conv.; 1.0 T-tail)</em> <br></p>
+</div></blockquote>
+<br>
+</section>
+<section id="fuselage-weight-formula">
+<h4>Fuselage Weight Formula<a class="headerlink" href="#fuselage-weight-formula" title="Link to this heading"></a></h4>
+<div class="math notranslate nohighlight">
+\[
+W_{\mathrm{fuselage}}
+= 0.052\,S_f^{1.086}\,(N_z\,W_{dg})^{0.177}\,L_{fus}^{-0.051}
+  \Bigl(\tfrac{L_{fus}}{W_{fus}}\Bigr)^{-0.072}\,q^{0.241}
+  + W_{press}
+\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(S_f\)</span> : Fuselage wetted area [ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(N_z\)</span> : Ultimate load factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(L_{fus}\)</span> : Fuselage length [ft]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W_{fus}\)</span> : Fuselage width [ft]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(q\)</span> : Dynamic pressure at cruise [lb/ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W_{press}\)</span> : Pressurization weight penalty [lb]</em> <br></p>
+</div></blockquote>
+<br>
+</section>
+<section id="torenbeek-weight-estimation">
+<h4><strong>Torenbeek Weight Estimation</strong><a class="headerlink" href="#torenbeek-weight-estimation" title="Link to this heading"></a></h4>
+<p>The Torenbeek weight estimation method, taken from <em>Synthesis of Subsonic Airplane Design</em>, targets subsonic transport aircraft—especially light transport types with metallic airframes.<br />
+This module applies the Torenbeek formulas for <span style="color:rgb(24, 80, 145);">light transport-category</span> weight estimation.</p>
+</section>
+<section id="id1">
+<h4>Main Wing Weight Formula<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<div class="math notranslate nohighlight">
+\[
+W_{\mathrm{wing}}
+= 0.00125\,W_{dg}\,
+  \Bigl(\tfrac{b}{\cos\Lambda_{c/2}}\Bigr)^{0.75}
+  \Bigl(1 + \sqrt{\tfrac{6.3\,\cos\Lambda_{c/2}}{b}}\Bigr)
+  N_z^{0.55}\,
+  \Bigl(\tfrac{b\,S_w}{t_{\max}\,W_{dg}\,\cos\Lambda_{c/2}}\Bigr)^{0.3}
+\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(b\)</span> : Wing span [ft]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Lambda_{c/2}\)</span> : Half-chord sweep angle</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_w\)</span> : Wing planform area [ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(t_{\max}\)</span> : Maximum thickness [ft]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(N_z\)</span> : Ultimate load factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W_{dg}\)</span> : Design gross weight [lb]</em> <br></p>
+</div></blockquote>
+</section>
+<section id="horizontal-vertical-tail-weight-formula">
+<h4>Horizontal &amp; Vertical Tail Weight Formula<a class="headerlink" href="#horizontal-vertical-tail-weight-formula" title="Link to this heading"></a></h4>
+<div class="math notranslate nohighlight">
+\[
+W_{\mathrm{tailwing}}
+= 0.04\,(N_z\,S_{stab}^2)^{0.75}
+\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(N_z\)</span> : Ultimate load factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_{stab}\)</span> : Stabilizer planform area [ft²]</em> <br></p>
+</div></blockquote>
+<br>
+</section>
+<section id="id2">
+<h4>Fuselage Weight Formula<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<div class="math notranslate nohighlight">
+\[
+W_{\mathrm{fuselage}}
+= 0.021 \times 1.07
+  \times \sqrt{\frac{V_d \,L_{fus}}{W_{fus} + H_{fus}}}
+  \times S_f^{1.2}
+\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(V_d\)</span> : Design dive speed [kt]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(L_{fus}\)</span> : Fuselage length [ft]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W_{fus}\)</span> : Fuselage width [ft]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(H_{fus}\)</span> : Fuselage height [ft]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_f\)</span> : Fuselage wetted area [ft²]</em> <br></p>
+</div></blockquote>
+<br>
+</section>
+<section id="usaf-weight-estimation">
+<h4><strong>USAF Weight Estimation</strong><a class="headerlink" href="#usaf-weight-estimation" title="Link to this heading"></a></h4>
+<p>The USAF weight estimation method uses U.S. Air Force operational and maintenance data to empirically predict the mass of fighter and light/utility fixed-wing aircraft.<br />
+This module applies the USAF formulas for<span style="color:rgb(24, 80, 145);">  light/utility aircraft </span>weight estimation.</p>
+</section>
+<section id="id3">
+<h4>Main Wing Weight Formula<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<div class="math notranslate nohighlight">
+\[
+W_{\mathrm{wing}}
+= 96.948\,
+  \Bigl(\tfrac{N_z\,W_{dg}}{10^5}\Bigr)^{0.65}
+  \Bigl(\tfrac{AR}{\cos\Lambda_{c/4}}\Bigr)^{0.57}
+  \Bigl(\tfrac{S_w}{100}\Bigr)^{0.61}
+  \Bigl(1 + \tfrac{\lambda}{2\,t_c}\Bigr)^{0.36}
+  \Bigl(1 + \tfrac{V_H}{500}\Bigr)^{0.5}
+\Bigr)^{0.993}
+\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(AR\)</span> : Wing aspect ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Lambda_{c/4}\)</span> : Quarter-chord sweep angle</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_w\)</span> : Wing planform area [ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\lambda\)</span> : Taper ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(t_c\)</span> : Thickness-to-chord ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_H\)</span> : Horizontal tail volume coefficient</em> <br>
+<em>- <span class="math notranslate nohighlight">\(N_z\)</span> : Ultimate load factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W_{dg}\)</span> : Design gross weight [lb]</em> <br></p>
+</div></blockquote>
+<br>
+</section>
+<section id="id4">
+<h4>Horizontal &amp; Vertical Tail Weight Formula<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<div class="math notranslate nohighlight">
+\[
+W_{hstab}
+= 71.927\,
+  \Bigl(\tfrac{N_z\,W_{dg}}{10^5}\Bigr)^{0.87}
+  \Bigl(\tfrac{S_{ht}}{100}\Bigr)^{1.2}
+  \Bigl(\tfrac{l_{ht}}{10}\Bigr)^{0.483}
+  \sqrt{\tfrac{b_{ht}}{t_c}}
+\Bigr)^{0.458}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+W_{vstab}
+= 55.786\,
+  \Bigl(1 + 0.2\,F_{tail}\Bigr)
+  \Bigl(\tfrac{N_z\,W_{dg}}{10^5}\Bigr)^{0.87}
+  \Bigl(\tfrac{S_{vt}}{100}\Bigr)^{1.2}
+  \sqrt{\tfrac{b_{vt}}{t_c}}
+\Bigr)^{0.458}
+\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(N_z\)</span> : Ultimate load factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W_{dg}\)</span> : Design gross weight [lb]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_{ht}\)</span> : Horizontal tail area [ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_{vt}\)</span> : Vertical tail area [ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(l_{ht}\)</span> : Horizontal stabilizer arm length [ft]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(b_{ht}\)</span> : Horizontal stabilizer span [ft]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(b_{vt}\)</span> : Vertical stabilizer span [ft]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(t_c\)</span> : Thickness-to-chord ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(F_{tail}\)</span> : Tail fin factor</em> <br></p>
+</div></blockquote>
+<br>
+</section>
+<section id="id5">
+<h4>Fuselage Weight Formula<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<div class="math notranslate nohighlight">
+\[
+W_{\mathrm{fuselage}}
+= 200 \,
+  \Bigl(
+    \bigl(\tfrac{N_z\,W_{dg}}{10^5}\bigr)^{0.286}
+    \,(L_{fus}/10)^{0.857}
+    \,\tfrac{W_{fus} + H_{fus}}{10}
+    \,\bigl(\tfrac{V_H}{100}\bigr)^{0.338}
+  \Bigr)^{1.1}
+\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(N_z\)</span> : Ultimate load factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W_{dg}\)</span> : Design gross weight [lb]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(L_{fus}\)</span> : Fuselage length [ft]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W_{fus}\)</span> : Fuselage width [ft]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(H_{fus}\)</span> : Fuselage height [ft]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_H\)</span> : Cruise speed [kt]</em> <br></p>
+</div></blockquote>
+<br>
+</section>
+<section id="afdd-weight-estimation">
+<h4><strong>AFDD Weight Estimation</strong><a class="headerlink" href="#afdd-weight-estimation" title="Link to this heading"></a></h4>
+<p>The AFDD weight estimation method, part of NASA’s NDARC toolkit, uses rotorcraft‐specific regression formulas and technology correction factors to predict component and total mass for helicopters, tiltrotors, and tiltwing VTOL configurations.<br />
+This module applies the AFDD formulas for <span style="color:rgb(24, 80, 145);">tiltrotor and tiltwing aircraft</span> weight estimation.</p>
+</section>
+<section id="id6">
+<h4>Main Wing Weight Formula<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<div class="math notranslate nohighlight">
+\[
+W_{\mathrm{wing}}
+= 5.66411\,
+  \Bigl(\tfrac{W_{sdg}\,\mathrm{lift\_factor}}{1000\,\cos\Lambda_{c/2}}\Bigr)^{0.847}
+  N_z^{0.39579}\,S_w^{0.12754}\,AR^{0.50016}
+  \Bigl(\tfrac{1+\lambda}{t_c}\Bigr)^{0.09359}
+  (1 - b_{fold})^{-0.14356}
+\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(W_{sdg}\)</span> : Structural design weight [lb]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\mathrm{lift\_factor}\)</span> : Rotorcraft lift multiplier</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Lambda_{c/2}\)</span> : Half-chord sweep angle</em> <br>
+<em>- <span class="math notranslate nohighlight">\(N_z\)</span> : Ultimate load factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_w\)</span> : Wing planform area [ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(AR\)</span> : Wing aspect ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\lambda\)</span> : Taper ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(t_c\)</span> : Thickness-to-chord ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(b_{fold}\)</span> : Foldable-span fraction (0–1)</em> <br></p>
+</div></blockquote>
+<br>
+</section>
+<section id="id7">
+<h4>Horizontal &amp; Vertical Tail Weight Formula<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<div class="math notranslate nohighlight">
+\[
+W_{hstab}
+= 0.7176\,S_{ht}^{1.1881}\,AR_{ht}^{0.3173}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+W_{vstab}
+= 1.0460\,f_{tr}\,S_{vt}^{0.9441}\,AR_{vt}^{0.5332}
+\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(S_{ht}\)</span> : Horizontal stabilizer area [ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_{vt}\)</span> : Vertical stabilizer area [ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(AR_{ht}\)</span> : Horizontal stabilizer aspect ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(AR_{vt}\)</span> : Vertical stabilizer aspect ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(f_{tr}\)</span> : Tail fin factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(N_z\)</span> : Ultimate load factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W_{dg}\)</span> : Design gross weight [lb]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(F_{tail}\)</span> : Tail fin factor (USAF)</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_{stab}\)</span> : Stabilizer planform area</em> <br></p>
+</div></blockquote>
+</section>
+<section id="id8">
+<h4>Fuselage Weight Formula<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<div class="math notranslate nohighlight">
+\[
+W_{\mathrm{fuselage}}
+= 5.896\,f_{ramp}\,
+  \Bigl(\tfrac{W_{dg}}{1000}\Bigr)^{0.4908}
+  \,N_z^{0.1323}\,S_f^{0.2544}\,L_{fus}^{0.6100}
+\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(f_{ramp}\)</span> : Ramp factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W_{dg}\)</span> : Design gross weight [lb]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(N_z\)</span> : Ultimate load factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_f\)</span> : Fuselage wetted area [ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(L_{fus}\)</span> : Fuselage length [ft]</em> <br></p>
+</div></blockquote>
+<br>
+</section>
+<section id="wetted-area-structural-weight-estimation">
+<h4><strong>Wetted-Area Structural Weight Estimation</strong><a class="headerlink" href="#wetted-area-structural-weight-estimation" title="Link to this heading"></a></h4>
+<p>The Wetted-Area Structural Weight Estimation method calculates the fuselage’s primary structure mass directly from its wetted surface area, using average skin density and total thickness, then applies empirically derived fractions for fittings and frame.<br />
+This module applies these formulas to <span style="color:rgb(24, 80, 145);">small, skin-dominant airframes (e.g., UAV fuselages)</span> for concept-level sizing.</p>
+<div class="math notranslate nohighlight">
+\[
+W_{\mathrm{struct}}
+= \rho_{\mathrm{avg}}\;t_{\mathrm{skin,avg}}\;S_{\mathrm{wetted}}\;\bigl(1 + f_{\mathrm{fitting}} + f_{\mathrm{frame}}\bigr)
+\]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(rho_{\mathrm{avg}}\)</span>: average skin density [lb/ft³]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(t_{\mathrm{skin,avg}}\)</span>: average skin thickness [in]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S_{\mathrm{wetted}}\)</span>: wetted area of the specific structure [ft²]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(f_{\mathrm{fitting}}\)</span>: fitting weight fraction (e.g., 0.15)</em> <br>
+<em>- <span class="math notranslate nohighlight">\(f_{\mathrm{frame}}\)</span>: frame weight fraction (e.g., 0.25)</em> <br></p>
+</div></blockquote>
+<p><span style="color:rgb(24, 80, 145);"><strong>Note:</strong> Use the corresponding <span class="math notranslate nohighlight">\(S_{\mathrm{wetted}}\)</span> for each structural element (fuselage, wing, empennage, etc.) when applying this formula.</p>
+</section>
+</section>
+</section>
+<section id="aircraft-center-of-gravity">
+<h2>Aircraft Center of Gravity<a class="headerlink" href="#aircraft-center-of-gravity" title="Link to this heading"></a></h2>
+<p>Weight and balance in aircraft follow the lever principle: each mass multiplied by its arm about the balance point (CG) produces a moment. Equilibrium is achieved when the algebraic sum of all moments about the CG equals zero, so that nose-up and nose-down moments exactly counterbalance.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/Effect_of_Aft_CG.jpg" alt="Aft_CG" width="450">
+  <figcaption> Effect of aft CG: insufficient elevator nose‐down authority when CG shifts rearward </figcaption>
+</div>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/Effect_of_Forward_CG.jpg" alt="Forward_CG" width="450">
+    <figcaption>Effect of forward CG: insufficient elevator nose‐up authority when CG shifts forward</figcaption>
+  </figure>
+</div>
+<section id="basic-center-of-gravity-equation">
+<h3>Basic Center of Gravity Equation<a class="headerlink" href="#basic-center-of-gravity-equation" title="Link to this heading"></a></h3>
+<p><span style="color:rgb(24, 80, 145);">The balance point can be determined by dividing the total moment by the total weight.</span> This balance point is equal to the CG, and can be mathematically expressed as:</p>
+<div class="math notranslate nohighlight">
+\[ CG = \frac{total\;moment}{total\;weight} \]</div>
+<p>The center of gravity (CG) is found by dividing the sum of all weight‐induced moments by the total weight. To calculate it:</p>
+<ol class="arabic simple">
+<li><p>Measure each weight’s arm from the datum.</p></li>
+<li><p>Multiply each arm by its corresponding weight to obtain each moment.</p></li>
+<li><p>Sum all weights and sum all moments (ignore the lever’s own weight).</p></li>
+<li><p>Divide the total moment by the total weight to locate the CG along the lever.</p></li>
+</ol>
+<p>Example:</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/CG_calculation.webp" alt="CG Calculation" width="500">
+    <figcaption>CG calculation example using a lever‐model setup</figcaption>
+  </figure>
+</div>
+<br>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/CG_calculation_table.webp" alt="CG Calculation Table" width="500">
+    <figcaption>CG calculation results in weight–arm–moment table</figcaption>
+  </figure>
+</div>
+<br>
+<p>Weight A is 100 pounds and is located 50 inches from the datum; weight B is 100 pounds and is located 90 inches from the datum; and weight C is 200 pounds and is located 150 inches from the datum. The total weight is therefore 400 pounds, and the total moment about the datum is 5,000 + 9,000 + 30,000 = 44,000 lb·in. The balance point (CG) is found by dividing the total moment by the total weight, giving 44,000 ÷ 400 = 110 in from the datum.</p>
+<br>
+<p>These formulas calculate how far a given weight must move to achieve a specified CG shift. By rearranging them, you can also determine the necessary weight, movement distance, or total aircraft weight to produce the desired CG change.</p>
+<div class="math notranslate nohighlight">
+\[ \frac{W_{shifted}}{MTOW}=\frac{\Delta\;CG}{\Delta\;d}\]</div>
+<div class="math notranslate nohighlight">
+\[ MTOW=\frac{W_{shifted}\times\Delta\;d }{\Delta\;CG} \]</div>
+<div class="math notranslate nohighlight">
+\[ W_{shifted}=\frac{MTOW \times\Delta\;CG}{\Delta\;d} \]</div>
+<div class="math notranslate nohighlight">
+\[ \Delta\;CG=\frac{W_{shifted}\times\;\Delta\;d}{MTOW} \]</div>
+<div class="math notranslate nohighlight">
+\[ \Delta\;d=\frac{MTOW\times\;\Delta\;CG}{W_{shifted}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(W_{shifted}\)</span> : Weight shifted [lbs]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(MTOW\)</span> : Maximum Take-Off Weight [lbs]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Delta\;CG\)</span> : Change in aircraft center of gravity location [in.]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Delta\;d\)</span> : Distance of the weight shifted [in.]</em></p>
+</div></blockquote>
+<br>
+</section>
+</section>
+<section id="moment-of-inertia">
+<h2><strong>Moment of Inertia</strong><a class="headerlink" href="#moment-of-inertia" title="Link to this heading"></a></h2>
+<section id="basic-theory-for-aircraft-arm-moment">
+<h3>Basic Theory for Aircraft Arm &amp; Moment<a class="headerlink" href="#basic-theory-for-aircraft-arm-moment" title="Link to this heading"></a></h3>
+<section id="arm-moment">
+<h4><strong>Arm &amp; Moment</strong><a class="headerlink" href="#arm-moment" title="Link to this heading"></a></h4>
+<p>Arm is the distance between a component’s CG and the datum—negative when forward/left and positive when aft/right. During design, the datum is placed ahead of the aircraft so all arms remain positive, and maximum weight and allowable CG range are defined from that datum in inches or as a percentage of MAC.</p>
+<p>Moment is the product of a weight (lb) and its arm (in), expressed in pound-inches (lb·in), and represents the tendency to rotate about the datum. Moments carry a sign—positive when they pitch the airplane up and negative when they pitch it down—based on the direction of the arm relative to the pivot.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/aircraft_moment.png" alt="Aircraft Moment" width="400">
+    <figcaption>Sign conventions for weight, arm and moment, and resulting nose-up/down rotation</figcaption>
+  </figure>
+</div>
+<br>
+</section>
+</section>
+<section id="id9">
+<h3><strong>Moment Of Inertia</strong><a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>A rotating body resists changes in its angular motion according to its mass and the square of its distance from the axis, analogous to how mass governs linear momentum. The mass moment of inertia quantifies this resistance.</p>
+<p>For a point mass <span class="math notranslate nohighlight">\(m\)</span> at a distance <span class="math notranslate nohighlight">\(r\)</span> from the axis:
+$<span class="math notranslate nohighlight">\(
+I = m\,r^2
+\)</span>$</p>
+<p>For a continuous body around the roll axis:
+$<span class="math notranslate nohighlight">\(
+I_{xx} = \int (y^2 + z^2)\,dm
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>I_{xx}<span class="math notranslate nohighlight">\(, \)</span>I_{yy}<span class="math notranslate nohighlight">\(, and \)</span>I_{zz}$ are the moments about the roll, pitch, and yaw axes, respectively.</p>
+<p>Accurate MOI values are essential for dynamic stability analysis, control response prediction, flight‐control system design, and high‐fidelity simulation—<span style="color:rgb(24, 80, 145);">especially in eVTOLs with distributed propulsion and complex transition modes. </span></p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/aircraft_moi.png" alt="Aircraft MoI" width="400">
+    <figcaption>Point-mass moment of inertia</figcaption>
+  </figure>
+</div>
+<br>
+</section>
+<section id="parallel-axis-theorem">
+<h3>Parallel-Axis Theorem<a class="headerlink" href="#parallel-axis-theorem" title="Link to this heading"></a></h3>
+<p>Refer to the figure below, which depicts a rigid body rotating about an axis that does not pass through its center of gravity (CG).</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/aircraft_moi_parallel_axis.png" alt="Aircraft MoI Parallel Axis" width="400">
+    <figcaption>Parallel-axis theorem illustration</figcaption>
+  </figure>
+</div>
+<br>
+<p>In this setup, let <span class="math notranslate nohighlight">\(r_{CG}\)</span> be the distance from the body’s center of gravity to the rotation axis <span class="math notranslate nohighlight">\(O\)</span>, <span class="math notranslate nohighlight">\(r\)</span> the distance from <span class="math notranslate nohighlight">\(O\)</span> to an infinitesimal mass element <span class="math notranslate nohighlight">\(dm\)</span>, and <span class="math notranslate nohighlight">\(r'\)</span> the distance from <span class="math notranslate nohighlight">\(dm\)</span> to the CG. The moment of inertia about <span class="math notranslate nohighlight">\(O\)</span> is then</p>
+<div class="math notranslate nohighlight">
+\[ I_O=mr_{CG}^2+\int_Br^{'}dm=mr_{CG}^2 +I_{CG} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(I_{CG}\)</span> : Moment of inertia of the body about its own CG</em> <br>
+<em>- <span class="math notranslate nohighlight">\(r^{'}\)</span> : Distance from CG to an infinitesimal mass <span class="math notranslate nohighlight">\(dm\)</span></em> <br>
+<em>- <span class="math notranslate nohighlight">\(r_{CG}\)</span> : Distance from the reference point O to the CG of the body</em> <br>
+<em>- <span class="math notranslate nohighlight">\(m\)</span> : The mass of the body</em> <br></p>
+</div></blockquote>
+<br>
+<p>This is the <strong>parallel‐axis theorem</strong>, which enables calculation of a body’s moment of inertia about any axis <span class="math notranslate nohighlight">\(O\)</span> by adding <span class="math notranslate nohighlight">\(m\,r_{CG}^2\)</span> to its CG-based inertia <span class="math notranslate nohighlight">\(I_{CG}\)</span>, and translation of component MOIs from their CG to any desired axis without re‐integrating.</p>
+<div class="math notranslate nohighlight">
+\[ I_{XX}=I_{XX_{CG}}+m(y_{CG}^2+z_{CG}^2) \]</div>
+<div class="math notranslate nohighlight">
+\[ I_{YY}=I_{YY_{CG}}+m(x_{CG}^2+z_{CG}^2) \]</div>
+<div class="math notranslate nohighlight">
+\[ I_{ZZ}=I_{ZZ_{CG}}+m(x_{CG}^2+y_{CG}^2) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(I_{XX_{CG}},I_{YY_{CG}},I_{ZZ_{CG}}\)</span> : Moment of inertia of the body
+about its own CG</em> <br>
+<em>- <span class="math notranslate nohighlight">\(x_{CG},y_{CG},z_{CG}\)</span> : Distance from the reference point O to the CG
+of the body</em> <br></p>
+</div></blockquote>
+<br>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="appendix">
+<h1><em>APPENDIX</em><a class="headerlink" href="#appendix" title="Link to this heading"></a></h1>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

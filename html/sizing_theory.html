@@ -1,0 +1,1299 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sizing Theory Manual &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><strong>Sizing Theory Manual</strong></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sizing_theory.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="sizing-theory-manual">
+<h1><strong>Sizing Theory Manual</strong><a class="headerlink" href="#sizing-theory-manual" title="Link to this heading"></a></h1>
+<p>This is a theory manual for sizing program inside CADE.</p>
+<p>It is written by referring to the books:</p>
+<blockquote>
+<div><p>[1] General Aviation Aircraft Design : Applied Methods and Procedures by Snorri Gudmundsson</p>
+</div></blockquote>
+<blockquote>
+<div><p>[2] Aircraft Design : A Conceptual Approach (6th Edition) by Daniel P. Raymer</p>
+</div></blockquote>
+<blockquote>
+<div><p>[3] VTOL Urban Air Mobility Concept Vehicles for Technology Development by Christopher Silva, AiAA Aviation Forum (2018)</p>
+</div></blockquote>
+<blockquote>
+<div><p>[4] Helicopter Flight Physics by Constantin Rotaru and Michael Todorov (2017)</p>
+</div></blockquote>
+<blockquote>
+<div><p>[5] Generic Design Methodology for Vertical Takeoff and Landing Aircraft with Hybrid-Electric Propulsion by Donguk Lee, Daejin Lim, and Kwanjung Yee, Journal of Aircraft (2022)</p>
+</div></blockquote>
+<blockquote>
+<div><p>[6] An Initial Sizing Methodoligy for Hybrid-Electric Light Aircraft by D. Felix. Finger, Carsten Braun, and Cees Bil, AIAA Aviation Forum (2018)</p>
+</div></blockquote>
+<br>
+<section id="sizing">
+<h2><strong>Sizing</strong><a class="headerlink" href="#sizing" title="Link to this heading"></a></h2>
+<p>During the aircraft’s initial and conceptual design phase, the sizing module aims not only to <span style="color:rgb(24, 80, 145);">determine the aircraft’s shape and dimensions</span> but also to <span style="color:rgb(24, 80, 145);">derive the propulsion system’s size and required performance, as well as to predict the aircraft’s expected weight.</span></p>
+<p>This sizing program can be used for sizing of Regional Air Mobility (RAM) and Urban Air Mobility (UAM) vehicles equipped with electric propulsion systems.</p>
+<p>RAM is based on a Conventional Takeoff and Landing system, while UAM is based on a Vertical Takeoff and Landing system. Furthermore, UAM can be broadly classified into Lift+Cruise (LC), Tilting, and Partial Tilting types.</p>
+<br>
+<section id="goal-of-sizing-module">
+<h3>Goal of Sizing Module<a class="headerlink" href="#goal-of-sizing-module" title="Link to this heading"></a></h3>
+<p>As written above, the goal of CADE-Sizing module will be as following :</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Estimate aircraft’s initial size and weight without any specific configuration parameters</p></li>
+<li><p>Estimate and predict required performance or spec of aircraft’s propulsion system</p></li>
+</ol>
+</div></blockquote>
+<br>
+</section>
+<section id="sizing-module-structure">
+<h3>Sizing Module Structure<a class="headerlink" href="#sizing-module-structure" title="Link to this heading"></a></h3>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/ram_uam_sizing_data_flow.png" alt="Sizing Program Data Flow" width="600">
+    <figcaption>Sizing Program Data Flow</figcaption>
+  </figure>
+</div>
+<br>
+<p>Sizing program is divided into two main loop: 1)Analysis loop and 2)Sizing loop. Analysis loop is introduced considering the further development for various fidelity integration(Low/Mid/High Fidelity).
+Sizing program includes aircraft configuration and aerodynamic processing, performance analysis, propulsion system mass calcualtion, mission analysis, energy mass calculation and maximum takeoff mass calcualtion. In addition, cost can also be estimated.</p>
+<ul class="simple">
+<li><p><strong>Config/Aero Processing</strong></p>
+<ul>
+<li><p>Configuration Processing</p>
+<ul>
+<li><p>Correction for Unconventional Configuration</p>
+<ul>
+<li><p>Tandem Wing, Box Wing</p></li>
+<li><p>Blended Wing body, Blended wing body with Tandem Wing</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Aerodynamics Processing</p></li>
+</ul>
+</li>
+<li><p><strong>Performance Analysis</strong></p>
+<ul>
+<li><p>Conventional Flight Mode</p>
+<ul>
+<li><p>Cruise Performance</p>
+<ul>
+<li><p>Maximum Speed Calculation</p></li>
+<li><p>Maximum Endurance Speed Calculation</p></li>
+<li><p>Maximum Range Speed Calculation</p></li>
+</ul>
+</li>
+<li><p>Climb Performance</p>
+<ul>
+<li><p>Maximum Rate of Climb</p></li>
+<li><p>Service Ceiling</p></li>
+</ul>
+</li>
+<li><p>Descent Performance</p></li>
+<li><p>One Engine Inoperative (OEI) Climb</p></li>
+<li><p>Field Performance</p>
+<ul>
+<li><p>Take-Off Field Length</p></li>
+<li><p>Landing Field Length</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Vertical Flight Mode</p>
+<ul>
+<li><p>Hover</p>
+<ul>
+<li><p>Hover with Control Margin</p></li>
+</ul>
+</li>
+<li><p>Vertical Climb</p></li>
+<li><p>Vertical Descent</p></li>
+<li><p>One Engine Inoperative (OEI) in Vertical Flight</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Propulsion System Mass Calculation</strong></p>
+<ul>
+<li><p>Rotor and Propeller Sizing</p>
+<ul>
+<li><p>Rotor Sizing</p></li>
+<li><p>Propeller Sizing</p></li>
+</ul>
+</li>
+<li><p>Motor Sizing</p></li>
+<li><p>Controller Sizing</p></li>
+</ul>
+</li>
+<li><p><strong>Mission Analysis</strong></p>
+<ul>
+<li><p>Energy Module</p></li>
+</ul>
+</li>
+<li><p><strong>Energy System Mass Calculation</strong></p>
+<ul>
+<li><p>Battery Sizing</p></li>
+<li><p>Fuel Cell Sizing</p></li>
+<li><p>Tank Sizing</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum Take-Off Mass Calculation</strong></p>
+<ul>
+<li><p>Mass Convergence</p></li>
+</ul>
+</li>
+<li><p><strong>Optimization</strong></p></li>
+<li><p><strong>Appendix</strong></p>
+<ul>
+<li><p>Result</p>
+<ul>
+<li><p>Payload Range Diagram</p>
+<ul>
+<li><p>Payload Range Diagram for Battery</p></li>
+<li><p>Payload Range Diagram for Hydrogen Fuel Cell</p></li>
+<li><p>Payload Range Diagram for Hybrid</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+</section>
+</section>
+<section id="config-aero-processing">
+<h2><strong>Config/Aero Processing</strong><a class="headerlink" href="#config-aero-processing" title="Link to this heading"></a></h2>
+<section id="configuration-processing">
+<h3>Configuration Processing<a class="headerlink" href="#configuration-processing" title="Link to this heading"></a></h3>
+<p>The configuration module takes input from input file and process module to calculate some of the aircraft configuration parameter(i.e. wingspan, wing area, aspect ratio).</p>
+<div class="math notranslate nohighlight">
+\[ S = W \: W/S \]</div>
+<div class="math notranslate nohighlight">
+\[ b = \sqrt{AR\cdot{S}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(S\)</span> : Wing area</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W/S\)</span> : Wing loading</em> <br>
+<em>- <span class="math notranslate nohighlight">\(b\)</span> : Wingspan</em> <br>
+<em>- <span class="math notranslate nohighlight">\(AR\)</span> : Aspect ratio</em></p>
+</div></blockquote>
+<br>
+<section id="correction-for-unconventional-configuration">
+<h4>Correction for Unconventional Configuration<a class="headerlink" href="#correction-for-unconventional-configuration" title="Link to this heading"></a></h4>
+<br>
+<p><span style="color:rgb(6, 137, 170);"><strong>Tandem Wing , Box Wing</strong></span></p>
+<p><code class="docutils literal notranslate"><span class="pre">Box</span> <span class="pre">Wing</span> <span class="pre">Fundamentals</span> <span class="pre">-</span> <span class="pre">An</span> <span class="pre">Aircraft</span> <span class="pre">Design</span> <span class="pre">Perspective</span></code></p>
+<p>An equivalent assumption for tandem wing, and box wing is shwon in below figure.
+Aerodynamics parameters of tandem and box-wing will be estimated as same configuraitons.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/Tandem.png" alt="Tandem Wing Geometry Calculation" width="400">
+    <figcaption>Tandem Wing Aircraft Assumption</figcaption>
+  </figure>
+</div>
+<br>
+<p>For the aspect ration of the box wing, it can be calculated as below :</p>
+<div class="math notranslate nohighlight">
+\[AR = \frac{b^2}{S_{front}+ S_{rear}} = \frac{b^2}{S}\]</div>
+<p>The empty fraction of tandem wing and box-wing increases about 23% compared to conventional configurtion aircraft.</p>
+<div class="math notranslate nohighlight">
+\[\frac{m_{w,box}}{m_{w_{ref}}}=2^{0.3} = 1.23\]</div>
+<div class="math notranslate nohighlight">
+\[MF_{struct_{box/tandem}} = MF_{struct_{ref}} (1 + 0.23)\]</div>
+<p>Oswald efficiency of tandem and box-wing can be estimated as,</p>
+<div class="math notranslate nohighlight">
+\[ e_{box/tandem} = e_{ref}\frac{0.44+2.219\cdot{h/b}}{0.44+0.9594\cdot{h/b}} \]</div>
+<div class="math notranslate nohighlight">
+\[ C_{l_{total}} = C_{L_{front}}\cdot{s_1} + C_{L_{rear}}\cdot{s_2} \]</div>
+<div class="math notranslate nohighlight">
+\[ s_1 = \frac{S_{front}}{S_{front} + S_{rear}} \]</div>
+<div class="math notranslate nohighlight">
+\[ s_2 = \frac{S_{rear}}{S_{front} + S_{rear}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(e_{ref}\)</span> : Reference oswlad efficiency of conventional aircraft</em> <br>
+<em>- <span class="math notranslate nohighlight">\(h/b\)</span> : Ratio of gap bewteen two wings and span</em></p>
+</div></blockquote>
+<br>
+<p><span style="color:rgb(6, 137, 170);"><strong>Blended Wing Body , Blended Wing Body with Tandem Wing</strong></span></p>
+<p>An equivalent assumption for blended wing body configuration is shown in below figure :</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/BWB_Tandem.png" alt="BWB and BWB + Tandem Wing Geometry Calculation" width="400">
+    <figcaption>Blended Wing Body Aircraft Assumption</figcaption>
+  </figure>
+</div>
+<br>
+<p>For Blended Wing Body (BWB) configurations, <span class="math notranslate nohighlight">\(b_{out}\)</span> is outer wing span and <span class="math notranslate nohighlight">\(w_{body}\)</span> is the body width. The total wingspan can be calculated by the combination of those two parameters.</p>
+<p>The area ratio is implimented, assuming that total ratio value of area should be unity.</p>
+<div class="math notranslate nohighlight">
+\[ s_{body} + s_{out_{1}} + s_{out_{2}} = 1 \]</div>
+<p>In addition, for the simiplicity of user input, the area_ratio_wing (<span class="math notranslate nohighlight">\(s_{out}\)</span>) as input and the outer wing area ratio are re-calculated.</p>
+<div class="math notranslate nohighlight">
+\[ s_{out_{1}} + s_{out_{2}} = 1 - s_{body} \]</div>
+<p>The area of two outer wing is assumed to have the same ratio, therefore, the area ratio for two different wing are calculated as below :</p>
+<div class="math notranslate nohighlight">
+\[ s_{out_{1}} = s_{out_{2}} = (1-s_{body})/2 \]</div>
+<p>The body area ratio (<span class="math notranslate nohighlight">\(s_{body}\)</span>) is re-calculated as,</p>
+<div class="math notranslate nohighlight">
+\[s_{body} = 1- 2 s_{out} \]</div>
+<p>span of outer wing can be calculated based on the area of outer wing and aspect ratio.</p>
+<div class="math notranslate nohighlight">
+\[b_{out} = \sqrt{AR_{wing} S_{out}}\]</div>
+<p>If the (area_ratio_wing (<span class="math notranslate nohighlight">\(s_{out}\)</span>)) is not given in the input file for BWB configuration, the default values will be assumed as <span class="math notranslate nohighlight">\(s_{body} = 0.4\)</span>, <span class="math notranslate nohighlight">\(s_{out_{1}} = 0.3\)</span> and <span class="math notranslate nohighlight">\(s_{out_{2}} = 0.3\)</span>.</p>
+<br>
+</section>
+</section>
+<section id="aerodynamics-processing">
+<h3>Aerodynamics Processing<a class="headerlink" href="#aerodynamics-processing" title="Link to this heading"></a></h3>
+<p>Aerodynamics module analyze the drag polar, lift and drag at given flight condition. Induced factor <span class="math notranslate nohighlight">\(k\)</span> is calculated as below and it is used to calculate drag coefficient.</p>
+<div class="math notranslate nohighlight">
+\[ k = \frac{1}{\pi\cdot{e}\cdot{AR}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(k\)</span> : Induced factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(e\)</span> : Oswald efficienft</em> <br>
+<em>- <span class="math notranslate nohighlight">\(AR\)</span> : Aspect ratio</em></p>
+</div></blockquote>
+<br>
+<p>For the clean configuration airccraft, drag coefficient can be calculated from given lift coefficient value :</p>
+<div class="math notranslate nohighlight">
+\[ C_{D} = C_{D_{0}}\ + \ k \ C_{L}^2 \]</div>
+<p>Above equation is used for calculating clean configuration drag polar.</p>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(k\)</span> : Induced factor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(e\)</span> : Oswald efficiency</em> <br>
+<em>- <span class="math notranslate nohighlight">\(AR\)</span> : Aspect ratio</em></p>
+</div></blockquote>
+<br>
+</section>
+</section>
+<section id="performance-analysis">
+<h2><strong>Performance Analysis</strong><a class="headerlink" href="#performance-analysis" title="Link to this heading"></a></h2>
+<section id="conventional-flight-mode">
+<h3>Conventional Flight Mode<a class="headerlink" href="#conventional-flight-mode" title="Link to this heading"></a></h3>
+<section id="cruise-performance">
+<h4>Cruise Performance<a class="headerlink" href="#cruise-performance" title="Link to this heading"></a></h4>
+<p>A cruise performance is analyze based on the equation of motion.
+First, lift required is calculated based on the weight of aircraft. Then, the lift coefficient is calculated using cruise speed and flight altitude.</p>
+<div class="math notranslate nohighlight">
+\[ L = W \]</div>
+<div class="math notranslate nohighlight">
+\[ C_{L_{req}} = \frac{2L}{\rho{S}V}\]</div>
+<p>The <span class="math notranslate nohighlight">\(C_{L_{req}}\)</span> is used to estimated the required thrust, based on the calculated drag from the aerodynamics module. Resulting aerodynamics drag is imported to the propulsion module as thrust required which satisfy the steady flight equation.</p>
+<div class="math notranslate nohighlight">
+\[ C_D = C_{D_0}+k\cdot{C_{L}^2} \]</div>
+<div class="math notranslate nohighlight">
+\[ D = qSC_D \]</div>
+<div class="math notranslate nohighlight">
+\[ T_{req} = D \]</div>
+<div class="math notranslate nohighlight">
+\[ P_{req} = \frac{T_{req}V}{\eta_{p_{cruise}}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(\rho\)</span> : Dynamic Pressure</em> <br></p>
+</div></blockquote>
+<p><span class="math notranslate nohighlight">\(\eta_{p_{cruse}}\)</span> is typically assume between <span class="math notranslate nohighlight">\(0.8-0.9\)</span> for all type of propellers.</p>
+<br>
+<p><span style="color:rgb(6, 137, 170);"><strong>Maximum Speed Calculation</strong></span></p>
+<p>Maximum speed is solved numarically by finding the root of equation with the design varaible of airspeed by giving below condition.</p>
+<div class="math notranslate nohighlight">
+\[ P_{req}(V) = P_{avl}(V) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(P_{avl}\)</span> is calculated from <span class="math notranslate nohighlight">\(P/W\)</span></em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_{req}\)</span> is calculated based on <span class="math notranslate nohighlight">\(W/S\)</span> and aerodynamics coefficeint</em></p>
+</div></blockquote>
+<br>
+<p><span style="color:rgb(6, 137, 170);"><strong>Maximum Endurance Speed Calculation</strong></span></p>
+<p>Maximum endurance speed for propeller aircraft can be found at minimum power consumption condition.</p>
+<div class="math notranslate nohighlight">
+\[ V_{E_{max}} = \sqrt{\frac{2}{\rho}\cdot{\frac{W}{S}}\sqrt{\frac{k}{3C_{D_0}}}} \]</div>
+<p><small><em>*Ref.레퍼런스 표기</em></small></p>
+<br>
+<p><span style="color:rgb(6, 137, 170);"><strong>Maximum Range Speed Calculation</strong></span></p>
+<p>Maximum range speed for propeller aircraft can be found at minimum drag condition.</p>
+<div class="math notranslate nohighlight">
+\[ V_{R_{max}} = \sqrt{\frac{2}{\rho}\cdot{\frac{W}{S}}\sqrt{\frac{k}{C_{D_0}}}} \]</div>
+<p><small><em>*Ref.레퍼런스 표기</em></small></p>
+<br>
+</section>
+<section id="climb-performance">
+<h4>Climb Performance<a class="headerlink" href="#climb-performance" title="Link to this heading"></a></h4>
+<p>Climb performance is also analyzed based on the equation of motion. First, required lift is calcuated based on the aircraft weight and then, aerodynamics drag is estimated based on the requied lift. After that, rate of climb is calculated with the input power setting.</p>
+<p>Propeller efficiency at the climb condition for typical values are,</p>
+<p><span class="math notranslate nohighlight">\(0.65-0.70\)</span> for fixed-pitch “climb” propeller,<br />
+<span class="math notranslate nohighlight">\(0.55-0.65\)</span> for fixed-pitch “cruise” propeller,<br />
+<span class="math notranslate nohighlight">\(0.65-0.70\)</span> for constant-speed propeller.<br />
+<span class="math notranslate nohighlight">\(T\)</span> is set as 100% power setting as initial condition.</p>
+<p><small><em>*Ref.레퍼런스 표기</em></small></p>
+<div class="math notranslate nohighlight">
+\[ T = \frac{P/W\cdot{\eta_{p_{climb}}}}{V} \]</div>
+<div class="math notranslate nohighlight">
+\[ L = W\cos\theta \]</div>
+<div class="math notranslate nohighlight">
+\[ C_{L_{req}} = \frac{2L}{\rho{SV}}\]</div>
+<div class="math notranslate nohighlight">
+\[ C_D = C_{D_0}+k\cdot{C_{L}^2} \]</div>
+<div class="math notranslate nohighlight">
+\[ D = qSC_{D} \]</div>
+<div class="math notranslate nohighlight">
+\[ ROC_{max} = \frac{(T-D)V}{W} \]</div>
+<div class="math notranslate nohighlight">
+\[ \theta = \sin^{-1}(ROC_{max}) \]</div>
+<div class="math notranslate nohighlight">
+\[ G = \tan\theta \]</div>
+<p><em>Where,</em></p>
+<p>Above equations are solve numerically until <span class="math notranslate nohighlight">\(\theta\)</span> is convergenced by newton-rapson method.</p>
+<br>
+<p><span style="color:rgb(6, 137, 170);"><strong>Maximum Rate of Climb</strong></span></p>
+<p>Maximum climb condition can be found, at maximum excess power condition and the airspeed at that condidtion is given as,</p>
+<div class="math notranslate nohighlight">
+\[ V_{ROC_{max}} = \sqrt{\frac{2}{\rho}\cdot{\frac{W}{S}}\sqrt{\frac{k}{3C_{D_0}}}}\]</div>
+<p><span style="color:rgb(6, 137, 170);"><strong>Service Ceiling</strong></span></p>
+<p>Service ceiling is the altitude when the maximum rate of climb is equal to 0.5 m/s.</p>
+<p><small><em>*Ref.레퍼런스 표기</em></small></p>
+<p>Therefore, altitude is increase until the rate of climb is become 0.5 m/s by running maximum rate of climb condition.</p>
+<div class="math notranslate nohighlight">
+\[ h_{service} = f_{roc_{max}}(V_{ROC_{max}}=0.5) \]</div>
+<br>
+</section>
+<section id="descent-performance">
+<h4>Descent Performance<a class="headerlink" href="#descent-performance" title="Link to this heading"></a></h4>
+<p>Descent performance is also solve the same manar as the climb performance but the power setting is set as 10% of idle thrust but in most paper, descent performance is assume to be glide condition meaning the no power is using at the descent condition.</p>
+<br>
+</section>
+<section id="one-engine-inoperative-oei-climb">
+<h4>One Engine Inoperative (OEI) Climb<a class="headerlink" href="#one-engine-inoperative-oei-climb" title="Link to this heading"></a></h4>
+<p>One engine incoperative climb is solve the same with the climb analysis, but just multiplying one OEI factor,</p>
+<div class="math notranslate nohighlight">
+\[ P/W_{OEI} = \frac{N}{N-1}{P/W} \]</div>
+<br>
+</section>
+<section id="field-performance">
+<h4>Field Performance<a class="headerlink" href="#field-performance" title="Link to this heading"></a></h4>
+<p>Field performance include take-off and landing performance. Take-off and landing performance is the most critical part and it is also related with certification requirements.</p>
+<br>
+<p><span style="color:rgb(6, 137, 170);"><strong>Take-Off Field Length</strong></span></p>
+<p>Take-off distance can be divided into four segments, ground roll, rotation, transition, and climb out segments.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/takeoff_distance.jpg" alt="Take-Off Distance" width="400">
+    <figcaption>Take-Off Distance</figcaption>
+  </figure>
+</div>
+<br>
+<p>Ground roll segment is calculated as below,</p>
+<div class="math notranslate nohighlight">
+\[ V_{lift-off} = 1.2V_{stall} \]</div>
+<div class="math notranslate nohighlight">
+\[V _{stall_{TO}} = \sqrt{\frac{2(W/S)}{\rho{C_{L_{max}}}}} \]</div>
+<p>During the ground roll, the speed is assumed to as the average speed from <span class="math notranslate nohighlight">\(V=0\)</span> to <span class="math notranslate nohighlight">\(V_{lift-off}\)</span> speed.</p>
+<div class="math notranslate nohighlight">
+\[ V_{field} = \frac{V_{lift-off}}{\sqrt{2}} \]</div>
+<div class="math notranslate nohighlight">
+\[ S_G = \frac{V_{lift-off}^2{W}}{2g(T-D-\mu(W-L))} \]</div>
+<p>Thrust (<span class="math notranslate nohighlight">\(T\)</span>) is estimated from power loading values and the power setting at the take-off condition can be set as 95% of full power or 100% of the full power.</p>
+<div class="math notranslate nohighlight">
+\[ T = P/W\cdot\frac{\eta_{p_{TO}W}}{V} \]</div>
+<p>Propeller efficiency at the take-off condition is,</p>
+<p><span class="math notranslate nohighlight">\(0.45-0.5\)</span> for fixed pitch climb propeller <br />
+<span class="math notranslate nohighlight">\(0.35-0.45\)</span> for fixed pitch cruise propeller <br />
+<span class="math notranslate nohighlight">\(0.45-0.6\)</span> for constant speed propeller.</p>
+<p><small><em>*Ref.레퍼런스 표기</em></small></p>
+<p>Take-off lift (<span class="math notranslate nohighlight">\(L\)</span>) is calculated with the input take-off coefficeint assumption. Ground friction coefficient (<span class="math notranslate nohighlight">\(\mu\)</span>) is depended on ground materials.</p>
+<div class="math notranslate nohighlight">
+\[ L = qSC_{L_{TO}} \]</div>
+<div class="math notranslate nohighlight">
+\[ D = qSC_{D_{TO}} \]</div>
+<p><span class="math notranslate nohighlight">\(C_{L_{TO}}\)</span> and <span class="math notranslate nohighlight">\(C_{D_{TO}}\)</span> calculation is given in (aircraft performance an engineering approach)</p>
+<div class="math notranslate nohighlight">
+\[C_{L_{TO}} = C_{L_{cruise}} + \Delta C_{L_{flap}}\]</div>
+<div class="math notranslate nohighlight">
+\[ C_{L_{cruise}} = \frac{2 W}{\rho \ V^2 \ S}\]</div>
+<p><span class="math notranslate nohighlight">\(\Delta C_{L_{flap}}\)</span> is the lift increasement due to flap deflection, typical value are,</p>
+<p><span class="math notranslate nohighlight">\(0.3-0.5\)</span> for GA aircraft,<br />
+<span class="math notranslate nohighlight">\(0.4-0.7\)</span> for large transport aircraft and<br />
+<span class="math notranslate nohighlight">\(0.4-0.6\)</span> for fighter aircraft.</p>
+<p><small><em>*Ref.레퍼런스 표기</em></small></p>
+<br>
+<div class="math notranslate nohighlight">
+\[ C_{D_{TO}} = C_{D_{0_{TO}}} + k\ C_{L_{TO}}^2 \]</div>
+<div class="math notranslate nohighlight">
+\[ C_{D_{0_{TO}}} = C_{D_0} + \Delta{C_{D_{0_{TO}}}} \]</div>
+<p><span class="math notranslate nohighlight">\(\Delta{C_{D_{0_{TO}}}}\)</span> can be generated from both flap and landing gear but typical value are,</p>
+<p><span class="math notranslate nohighlight">\(0.0005-0.01\)</span> for general aviaion aircraft,<br />
+<span class="math notranslate nohighlight">\(0.014-0.018\)</span> for small transport aircraft, (eg. business jet)<br />
+<span class="math notranslate nohighlight">\(0.02-0.03\)</span> for large transport aircraft.</p>
+<p><small><em>*Ref. Aircraft Performance: An Engineering Approach (pg.374)</em></small></p>
+<br>
+<p>Rotation segment can be calculated from lift-off speed.</p>
+<p>For large aircraft,</p>
+<div class="math notranslate nohighlight">
+\[ S_R = V_{lift-off} \]</div>
+<p>For small aircraft,</p>
+<div class="math notranslate nohighlight">
+\[ S_R = 3V_{lift-off} \]</div>
+<p>Transition segment can be calculated from transition radius and initial climb angle.</p>
+<div class="math notranslate nohighlight">
+\[\theta_{climb} = \sin^{-1}\frac{(T-D_{ab})}{W} \]</div>
+<div class="math notranslate nohighlight">
+\[ S_{TR} = R \sin\theta_{climb} \]</div>
+<div class="math notranslate nohighlight">
+\[ R \approx 0.2156 V_{stall}^2 \]</div>
+<p><span class="math notranslate nohighlight">\(D_{ab}\)</span> is the drag at airbone condition, it can be estimated by,</p>
+<div class="math notranslate nohighlight">
+\[C_{L_{ab}} = \frac{C_{L_{max}}}{1.25^2}\]</div>
+<div class="math notranslate nohighlight">
+\[ C_{D_{ab}} = C_{D_{0_{TO}}} + kC_{L_{ab}}^2 \]</div>
+<p><small><em>*Ref. Aircraft Performance: An Engineering Approach (pg.382)</em></small></p>
+<br>
+<p>Climb out segment can also be calculated from obstacle clearance height and transition height.</p>
+<div class="math notranslate nohighlight">
+\[ h_{TR} = R(1-\cos\theta_{climb}) \]</div>
+<div class="math notranslate nohighlight">
+\[ S_C = \frac{h_{obst} - h_{TR}}{\tan\theta_{climb}} \]</div>
+<p>Finally, total take-off distance is the sum of all segment.</p>
+<div class="math notranslate nohighlight">
+\[ S_{TO} = S_G + S_R + S_{TR} + S_C \]</div>
+<br>
+<p><span style="color:rgb(6, 137, 170);"><strong>Landing Field Length</strong></span></p>
+<p>Landing distance is divided into four segment. Approach distance, flare distance, free roll distance and breaking distance.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/landing_distance.jpg" alt="Landing Distance" width="400">
+    <figcaption>Landing Distance</figcaption>
+  </figure>
+</div>
+<br>
+<p>Approach distance is calculated from descent angle, from powered and unpowered descent.</p>
+<p>For unpowered descent,</p>
+<div class="math notranslate nohighlight">
+\[ \tan\theta_{app} = \frac{D}{L}\]</div>
+<p>For powered descent,</p>
+<div class="math notranslate nohighlight">
+\[ \sin\theta_{app}  = \frac{D}{W} - \frac{T}{W}\]</div>
+<p>Flare height is calculated as,</p>
+<div class="math notranslate nohighlight">
+\[ h_F = R(1-\cos\theta_{app}) \approx 0.1512V_{stall}^2(1-\cos\theta_{app})\]</div>
+<p>The approach distance is calcualted as,</p>
+<div class="math notranslate nohighlight">
+\[ S_A = \frac{h_{obst}-h_{F}}{\tan\theta_{app}} \]</div>
+<p>Flare distance can be approximapely calculated as,</p>
+<div class="math notranslate nohighlight">
+\[ S_F = R\sin\theta_{app} \approx 0.1512V_{stall}^2\sin\theta_{app} \]</div>
+<p>Free-roll segment can be calculated from lift-off speed.</p>
+<p>For large aircraft,</p>
+<div class="math notranslate nohighlight">
+\[ S_{FR} = V_{TD} \]</div>
+<p>For small aircraft,</p>
+<div class="math notranslate nohighlight">
+\[ S_{FR} = 3\ V_{TD} \]</div>
+<p><span class="math notranslate nohighlight">\(V_{TD}\)</span> is <span class="math notranslate nohighlight">\(1.1 V_{stall}\)</span> for all category of aircraft.</p>
+<p>Breaking distance is calculated from breaking speed and landing configurations.</p>
+<p><span class="math notranslate nohighlight">\(V_{BR} = 1.1 V_{stall}\)</span> for all category of aircraft.</p>
+<p>Along the breaking distance, average distance from breaking speed to speed as 0 is used.</p>
+<div class="math notranslate nohighlight">
+\[ V_{field} = \frac{V_{BR}^2}{\sqrt{2}} \]</div>
+<div class="math notranslate nohighlight">
+\[ S_{BR} = \frac{V_{BR}^2{W}}{2g(T_{idle}-D_{ldg}-\mu(W-L))} \]</div>
+<p><span class="math notranslate nohighlight">\(T_{idle}\)</span> is idle thrust of the propulsion system which is,</p>
+<p><span class="math notranslate nohighlight">\(7\%\)</span> of stastic thrust for constant speed and,<br />
+<span class="math notranslate nohighlight">\(5-7\%\)</span> of cruise thrust for fixed-pitch propeller.</p>
+<p><small><em>*Ref. General Aviation Aircraft Design : Applied Methods and Procedure (pg.940)</em></small></p>
+<br>
+</section>
+</section>
+<section id="vertical-flight-mode">
+<h3>Vertical Flight Mode<a class="headerlink" href="#vertical-flight-mode" title="Link to this heading"></a></h3>
+<section id="hover">
+<h4>Hover<a class="headerlink" href="#hover" title="Link to this heading"></a></h4>
+<p>A Hover Performance is analyzed based on the momentum theory. When aircraft is hovering, the equation of motion can be expressed as figure below :</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/hovering_helicopter.png" alt="Hovering Helicopter" width="400">
+    <figcaption>Hovering Helicopter</figcaption>
+  </figure>
+</div>
+<br>
+<p>The well known equation for hovering power can be expressed as below :</p>
+<div class="math notranslate nohighlight">
+\[ P_{hover} = P_{i,Nonideal}+P_0 \]</div>
+<div class="math notranslate nohighlight">
+\[ v_{i_{hover}} = \sqrt{\frac{T}{2\rho A}}\]</div>
+<div class="math notranslate nohighlight">
+\[v_{i_{hover}} = \sqrt{\frac{(T/W)(W/A)}{2\rho}}\]</div>
+<div class="math notranslate nohighlight">
+\[P_{i,Nonideal} = T(k_{i}v_{i})\]</div>
+<p><span class="math notranslate nohighlight">\(k_i\)</span> is induced power correction factor that accounts for any rotor tip losses, non-uniform inflow, wake swirl, non-ideal wake contraction, and the finite number of blades. It has Typical value 1.15 in hovering.</p>
+<p>But for more realistic cases, additional thrust to overcome downwash loss from structure(below rotors) is considered.</p>
+<div class="math notranslate nohighlight">
+\[ \Delta{T} = f_w({S/A})T \]</div>
+<div class="math notranslate nohighlight">
+\[ f_w = k_{wet}(\frac{n^2C_{D_{wet}}}{4}) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(T\)</span> : Rotor thrust</em> <br>
+<em>- <span class="math notranslate nohighlight">\(S\)</span> : Wing area</em> <br>
+<em>- <span class="math notranslate nohighlight">\(n\)</span> is a factor depending on the vertical distance between the wing and the rotor. Varies on 1 to 2.</em> <br>
+<em>- <span class="math notranslate nohighlight">\(C_{D_{wet}}\)</span> : Drag coefficient based on the area wetted by the rotor’s downwash.</em> <br>
+<em>- <span class="math notranslate nohighlight">\(k_{wet}\)</span> : Expected ratio of the wing/fuselage area wetted by the rotor’s downwash to the total wing area in the rotorcraft flight mode.</em> <br>
+<small> <em>This parameter depends on the selected aircraft configuration and can be estimated based on data for similar aircraft. XV-15 has 0.7.</em></small></p>
+</div></blockquote>
+<br>
+<p>Even if there is no wing/fuselage wetted area by the rotor’s downwash, if user want to calculate additional thrust, we can consider <span class="math notranslate nohighlight">\(k_{wet}\)</span> empherically.</p>
+<p>For the simplicity, <span class="math notranslate nohighlight">\(\frac{n^2C_{D_{wet}}}{4}\)</span> can be approximated for a value of 0.7 (hardcoded).</p>
+<p>In hovering case,</p>
+<div class="math notranslate nohighlight">
+\[ T=\frac{W}{1-f_{w}(S/A)} \]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{T}{W}=\frac{W}{1-f_{w}[(W/A)/(W/S)]} \]</div>
+<p>If <span class="math notranslate nohighlight">\(({1-f_{w}[(W/A)/(W/S)]})\)</span> value becomes negative (especially during the optimization process due to the determined values of <span class="math notranslate nohighlight">\(W/A\)</span> and <span class="math notranslate nohighlight">\(W/S\)</span>), you need to adjust parameters such as <span class="math notranslate nohighlight">\(k_{fus}\)</span>, <span class="math notranslate nohighlight">\(k_{diameter}\)</span>, <span class="math notranslate nohighlight">\(k_{clearance}\)</span>, and <span class="math notranslate nohighlight">\(k_{wet}\)</span> to ensure it becomes positive.</p>
+<p>And the Rotor Profile power, <span class="math notranslate nohighlight">\(P_o\)</span>, required to overcome the profile drag of the blades is suggested like below :</p>
+<div class="math notranslate nohighlight">
+\[ P_o = \rho AV^3_{tip}(\frac{\sigma{C_{d_{blade}}}}{8}) \]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{P_o}{W} = \rho V^3_{tip}(\frac{\sigma{C_{d_{blade}}}}{8})/(W/A) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(V_{tip}\)</span> : Rotor tip speed (<span class="math notranslate nohighlight">\(R\Omega\)</span>)</em> <br>
+<small><em>It should be considered about rotor tip stall, drag divergence mach number, etc.</em></small></p>
+</div></blockquote>
+<p>Total hovering power is suggested like <span class="math notranslate nohighlight">\(P_{hover} = P_i + P_o\)</span>. In this design stage, there are no precise data about a value of design parameters. So using figure of merit(FoM) is worth.</p>
+<p>From the upper equations,</p>
+<div class="math notranslate nohighlight">
+\[ \frac{P_{hover}}{W}=\frac{T}{W}(k_{i}v_{i})+\frac{P_o}{W} \]</div>
+<p>The well known rotorcraft’s performance parameter is called FoM (Figure of Merit).</p>
+<div class="math notranslate nohighlight">
+\[ FoM = \frac{(T/W)v_i}{P_{hover}/W} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(W/A\)</span> : Disk loading [<span class="math notranslate nohighlight">\(N/m^2\)</span>]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(W/S\)</span> : Wing loading [<span class="math notranslate nohighlight">\(N/m^2\)</span>]</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\rho\)</span> : Air density</em> <br>
+<em>- <span class="math notranslate nohighlight">\(FoM\)</span> : Figure of merit</em></p>
+</div></blockquote>
+<br>
+<p><span style="color:rgb(6, 137, 170);"><strong>Hover with Control Margin</strong></span></p>
+<p>A control power margin is also consisdered for hover flight condition. Control margin of <span class="math notranslate nohighlight">\(50\%\)</span> is suggested. But user can control this value with modifying input.</p>
+<p><small><em>*Ref. An Efficient and Robust Sizing Method for eVTOL Aircraft Configurations in Conceptual Design</em></small></p>
+<div class="math notranslate nohighlight">
+\[ (\frac{P_{hover}}{W})_{control} = CM\frac{P_{hover}}{W} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(CM\)</span> : Control margin</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="vertical-climb">
+<h4>Vertical Climb<a class="headerlink" href="#vertical-climb" title="Link to this heading"></a></h4>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/climbing_helicopter.png" alt="Climbing Helicopter" width="400">
+    <figcaption>Climbing Helicopter</figcaption>
+  </figure>
+</div>
+<br>
+<p>When rotorcraft moves to upward, vertically, the induced velocity getting bigger than hovering state.</p>
+<p>According to Momentum Theory,</p>
+<div class="math notranslate nohighlight">
+\[ v_i = \frac{-V_y}{2}+\sqrt{(\frac{V_y}{2})^2 + \frac{T}{2\rho{A}}} \]</div>
+<div class="math notranslate nohighlight">
+\[ v_i = \frac{-V_y}{2}+\sqrt{(\frac{V_y}{2})^2 + \frac{(T/W)(W/A)}{2\rho}}\]</div>
+<p>However unlike helicopter, most of the UAM aircrafts has wing, which generates vertical drag. So additional thrust required according to rate of climb is generated as below equations :</p>
+<div class="math notranslate nohighlight">
+\[ \Delta{T_1} = f_{p}S_{wing}V^2_{y} \]</div>
+<div class="math notranslate nohighlight">
+\[ f_p = 0.5\rho_0{k_p}C_{D_p} \]</div>
+<div class="math notranslate nohighlight">
+\[ T = \frac{W+f_{p}S{V^2_y}}{1-f_w(S/A)} \]</div>
+<div class="math notranslate nohighlight">
+\[\frac{T}{W}=\frac{1+f_{p}V_y^2/(W/S)}{1-f_w[(W/A)/(W/S)]} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(k_p = S_{proj_{total}}/S_{wing}\)</span>, depends on aircraft concept, typically tail-sitters=1, transition = 1.2~1.5</em> <br>
+<em>- <span class="math notranslate nohighlight">\(C_{D_p}\)</span> : Vertical drag coefficient based on the aircraft projected area</em> <br></p>
+<ul class="simple">
+<li><p><em>Typically tail-sitters = <span class="math notranslate nohighlight">\(C_{D_{cruise}}\)</span>, transition = approximated as the drag coefficient for a similar size flat plate area (1.17 for low AR, 1.56 for high AR).</em></p></li>
+<li><p><em>By <span class="math notranslate nohighlight">\(k_p\)</span>, the reference area of <span class="math notranslate nohighlight">\(C_{D_P}\)</span> is changed to aircraft area to wing area.</em></p></li>
+</ul>
+</div></blockquote>
+<br>
+<p>Total power for vertical climb is expressed as below.</p>
+<div class="math notranslate nohighlight">
+\[ P_{climb_{total}} = P_{climb} + P_{i,Nonideal} + P_0 = T(V_y+k_{i}v_{i}) + P_0 \]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{P_{climb_{total}}}{W}=\frac{T}{W}(v_{i}k_{i}+V_y)+\frac{P_0}{W} \]</div>
+<p>During the analysis of Climb case, <span class="math notranslate nohighlight">\(k_i\)</span> used same with hover.</p>
+<p>After whole sizing process is finished, the determined motor power and maximum take-off weight (MTOW) are substituted into <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(W\)</span> respectively. Previously utilized inputs are used to calculate the vertical maximum climb rate, OEI vertical maximum climb rate, and the service ceiling, numerically.</p>
+<br>
+</section>
+<section id="vertical-descent">
+<h4>Vertical Descent<a class="headerlink" href="#vertical-descent" title="Link to this heading"></a></h4>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/descent_power.png" alt="Descent Power" width="400">
+    <figcaption>Descent Power</figcaption>
+  </figure>
+</div>
+<br>
+<p>According to the momentum theory, induced velocity is derived as below equation.</p>
+<div class="math notranslate nohighlight">
+\[ v_i = \frac{-V_y}{2}+\sqrt{(\frac{V_y}{2})^2 - \frac{T}{2\rho{A}}} \]</div>
+<p>Assuming that,</p>
+<div class="math notranslate nohighlight">
+\[ \frac{T}{2\rho A} = v_{i_{hover}} \]</div>
+<p>In the range where <span class="math notranslate nohighlight">\(v_i\)</span> has imaginary root, we call ‘Vortex Ring State’.And we use empherical equations to estimate induced velocity in that state.</p>
+<p>If <span class="math notranslate nohighlight">\((V_y &lt; -2v_{i_{hover}})\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[ v_i = -\frac{V_y}{2}-\sqrt{(\frac{V_y}{2})^2-v_{i_{hover}}^2} \]</div>
+<p>The vertical direction drag has negative sign, unlike vertical climb phase.</p>
+<div class="math notranslate nohighlight">
+\[ P_{descent_{total}} = P_{descent} + P_{i,Nonideal} + P_0 = T(V_y+v_i) + P_0 \]</div>
+<div class="math notranslate nohighlight">
+\[ T = \frac{W-f_{p}S{V^2_y}}{1-f_w(S/A)} \]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{T}{W} = \frac{1-f_{p}V_y^2/(W/S)}{1-f_w[(W/A)/(W/S)]} \]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{P_{descent}}{W} = \frac{T}{W}(v_i+V_y)+\frac{P_0}{W} \]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{P_o}{W} = \rho{V}^3_{tip}(\frac{\sigma{C_{d_{blade}}}}{8})/(W/A) \]</div>
+<p>*<span class="math notranslate nohighlight">\(V_y\)</span> is negative value in this equation.</p>
+<br>
+<p>If <span class="math notranslate nohighlight">\((-2v_{i_{hover}} &lt; V_y &lt; 0)\)</span>,</p>
+<p>we can calculate desecent power directly with <span class="math notranslate nohighlight">\(P_{hover}\)</span></p>
+<div class="math notranslate nohighlight">
+\[ x = \frac{V_y}{v_{i_{hover}}} \]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{P_{descent}}{P_{hover}} = 0.974-0.125x-1.372x^2-1.718x^3-0.655x^4 \]</div>
+<div class="math notranslate nohighlight">
+\[ P_{descent}={P_{hover}}(\frac{P_{descent}}{P_{hover}}) \]</div>
+<br>
+</section>
+<section id="one-engine-inoperative-oei-in-vertical-flight">
+<h4>One Engine Inoperative (OEI) in Vertical Flight<a class="headerlink" href="#one-engine-inoperative-oei-in-vertical-flight" title="Link to this heading"></a></h4>
+<p>One engine incoperative climb is solved in same manner with the climb analysis, just by multiplying one OEI factor.</p>
+<div class="math notranslate nohighlight">
+\[ P/W_{i,OEI} = \frac{N}{N-1}{P/W_{i}} \]</div>
+<p><em>Here, <span class="math notranslate nohighlight">\(i\)</span> can be <span class="math notranslate nohighlight">\(Hover\)</span>, <span class="math notranslate nohighlight">\(Climb_{total}\)</span>, or <span class="math notranslate nohighlight">\(Descent\)</span></em></p>
+<br>
+</section>
+</section>
+</section>
+<section id="propulsion-system-mass-calculation">
+<h2><strong>Propulsion System Mass Calculation</strong><a class="headerlink" href="#propulsion-system-mass-calculation" title="Link to this heading"></a></h2>
+<p>Propulsion system sizing include propeller, motor, and controller of the train from the</p>
+<vr>
+<section id="rotor-and-propeller-sizing">
+<h3>Rotor and Propeller Sizing<a class="headerlink" href="#rotor-and-propeller-sizing" title="Link to this heading"></a></h3>
+<p>Propulsion system sizing includes propellers, motors and controllers of the powertrain. And total propulsion system also need to account the installation factor of each components.</p>
+<div class="math notranslate nohighlight">
+\[ mass_{eProp} = f_{install}N_{prop}(mass_{propeller,rotor} + mass_{motor}+ mass_{controller}) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(mass_{eProp}\)</span> : Mass of electric propulsion system</em> <br>
+<em>- <span class="math notranslate nohighlight">\(f_{install}\)</span> : Propulsion installation factor <small>(1.05-1.3 for comprehensive design)</em></small> <br>
+<em>- <span class="math notranslate nohighlight">\(N_{prop}\)</span> : Number of propeller</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{propeller}\)</span> : Propeller mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{motor}\)</span> : Motor mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{controller}\)</span> : Controller mass</em></p>
+</div></blockquote>
+<br>
+<section id="rotor-sizing">
+<h4>Rotor Sizing<a class="headerlink" href="#rotor-sizing" title="Link to this heading"></a></h4>
+<p>Rotor mass is estimated based on diameter of rotor. And the rotor diameter is calculatd by aircraft weight and disk loading.</p>
+<div class="math notranslate nohighlight">
+\[ A = W/(W/A) \]</div>
+<div class="math notranslate nohighlight">
+\[ A_{unit} = A/n_{rotor} \]</div>
+<div class="math notranslate nohighlight">
+\[ D_{rotor} = \sqrt{\frac{4A_{unit}}{\pi}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(A\)</span> : Disk area, [<span class="math notranslate nohighlight">\(m^2\)</span>]</em></p>
+</div></blockquote>
+<br>
+<p>However, the size of the rotor cannot increase infinitely, and it is often constrained by the span as it is attached to the wings. This practical constraint can be considered as shown in the figure below.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/rotor_diameter_constraint.png" alt="Rotor Diameter Constraint" width="400">
+    <figcaption>Rotor Diameter Constraint</figcaption>
+  </figure>
+</div>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/k_diameter.png" alt="K-Diameter" width="500">
+    <figcaption>K-Diameter</figcaption>
+  </figure>
+</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(R\)</span> : Rotor radius</em> <br>
+<em>- <span class="math notranslate nohighlight">\(R_{clearance}\)</span> : Rotor radius margin for each rotor</em> <br>
+<em>- <span class="math notranslate nohighlight">\(R_{out}\)</span> : Length of the rotor that extends beyond the wing tip</em></p>
+</div></blockquote>
+<p>From these values, the actual input parameters are considered.</p>
+<div class="math notranslate nohighlight">
+\[ k_{diameter} = R_{out}/R \]</div>
+<div class="math notranslate nohighlight">
+\[ k_{fuselage} = width_{fus}/span \]</div>
+<div class="math notranslate nohighlight">
+\[ k_{clearance} = R/R_{clearance} \]</div>
+<p>These three parameters are totally dependent with configuration of each concepts. Apart from the definitions of parameters, by adjusting values such as <span class="math notranslate nohighlight">\(k_{fus}\)</span>, the length of the rotor diameter (disk loading) can be controlled.</p>
+<p>Since the parameters for the rotor size is restricted, the disk loading is also restricted as well.</p>
+<div class="math notranslate nohighlight">
+\[ W/A = \frac{k_{clearance}^2[2n_{rotor_{spanwise}}-2k_{diameter}]^2 (W/S)}{{n_{rotor_{spanwise}}}\pi(AR)k_{fuselage}^2} \]</div>
+<p>Rotor mass is divided into three component, blade, hub, spin, and the mass of each part is estimated as below equations:</p>
+<div class="math notranslate nohighlight">
+\[ m_{blade} = 0.0029n_{rotor}n_{blade_{rotor}}^{0.5348}(0.5D_{rotor})^{1.7423}(c_{rotor})^{0.773}V_{tip}^{0.8756}v^{2.5105} \]</div>
+<div class="math notranslate nohighlight">
+\[ m_{hub }= 0.006112n_{rotor}n_{blade_{rotor}}^{0.204}(0.5D_{rotor})^{0.604}V_{tip^{0.528}}v^{1.002}(m_{blade}/n_{rotor})^{0.817} \]</div>
+<div class="math notranslate nohighlight">
+\[ m_{spin}= 7.386(0.5D_{rotor})^{2} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(c_{rotor}\)</span> : Rotor blade chord, = <span class="math notranslate nohighlight">\(A\sigma{D_{rotor}}\)</span></em> <br>
+<em>- <span class="math notranslate nohighlight">\(\sigma\)</span> : Solidity ratio</em> <br>
+<em>- <span class="math notranslate nohighlight">\(v\)</span> : Specific volume of material (hard-coded 1/2700) [<span class="math notranslate nohighlight">\(m^3/kg\)</span>]</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="propeller-sizing">
+<h4>Propeller Sizing<a class="headerlink" href="#propeller-sizing" title="Link to this heading"></a></h4>
+<p>Propeller mass is estimated based on diameter of propeller. Propeller diameter is calculated by Raymer’s method.</p>
+<p><small><em>*Ref. Aircraft Design : A Conceptual Approach (pg.311)</em></small></p>
+<div class="math notranslate nohighlight">
+\[ D_{prop} = k_{p}(\frac{P_{max_{kw}}}{N_{prop}})^{0.25} \]</div>
+<p><em>Here,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(k_{p}\)</span> = 0.56 for 2 blades propeller</em> <br>
+<em>- <span class="math notranslate nohighlight">\(k_{p}\)</span> = 0.52 for 3 blades propeller</em> <br>
+<em>- <span class="math notranslate nohighlight">\(k_{p}\)</span> = 0.49 for propeller’s blades between 3 and 6</em></p>
+</div></blockquote>
+<br>
+<div class="math notranslate nohighlight">
+\[ mass_{prop} = 1.1{(D_{prop}P_{prop_{max}}\sqrt{N_{b}})^{0.52}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(N_b\)</span> : Number of blades of propeller</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{prop}\)</span> : Propeller mass</em></p>
+</div></blockquote>
+<p><small><em>*Ref. Propeller Design for Conceptual Turboprop Aircraft</em></small></p>
+<br>
+</section>
+</section>
+<section id="motor-sizing">
+<h3>Motor Sizing<a class="headerlink" href="#motor-sizing" title="Link to this heading"></a></h3>
+<p>Motor mass is estimated based on maximum motor power required. Motor sizing has two methods, one is based on power density and another one is based on regression model.</p>
+<div class="math notranslate nohighlight">
+\[ P_{motor_{max}} = \frac{P_{prop_{max}}/N_{prop}}{\eta_{motor}} \]</div>
+<p>Motor sizing based on power desnity method,</p>
+<div class="math notranslate nohighlight">
+\[ mass_{motor} = P_{motor_{max}}/N_{prop} / P^*_{motor} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(P^*_{motor}\)</span> : Motor power density</em></p>
+</div></blockquote>
+<br>
+<p>Motor sizing based on regression model. Regression model is developed based on current technology of EMRAX, Joby and Magicall technology.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/motor_regression.jpg" alt="Regression Model for Motor Mass" width="400">
+    <figcaption>Regression Model for Motor Mass</figcaption>
+  </figure>
+</div>
+<br>
+<div class="math notranslate nohighlight">
+\[ mass_{motor} = 0.208P_{motor}/N_{prop}+ 2.23 \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(P_{motor_{max}}\)</span> : Motor maximum power</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{motor}\)</span> : Motor mass</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="controller-sizing">
+<h3>Controller Sizing<a class="headerlink" href="#controller-sizing" title="Link to this heading"></a></h3>
+<p>Controller mass is estimated based on maximum controller power required. Controller includes inveter and converter. Controller sizing has two
+methods, one is based on power density and another is based on regression model.</p>
+<div class="math notranslate nohighlight">
+\[ P_{controller_{max}} = \frac{P_{motor_{max}}/N_{prop}}{\eta_{controller}} \]</div>
+<p>Controller sizing based on power desnity method,</p>
+<div class="math notranslate nohighlight">
+\[ mass_{controller} = P_{controller_{max}}/N_{prop} / P^*_{controller} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(P^*_{controller}\)</span> : Motor power density</em></p>
+</div></blockquote>
+<br>
+<p>Motor sizing based on regression model. Regression model is developed based on current technology of BRUSA, Electrocraft, Emsiso, Fuji technology.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/controller_regression.jpg" alt="Regression Model for Controller Mass" width="400">
+    <figcaption>Regression Model for Controller Mass</figcaption>
+  </figure>
+</div>
+<br>
+<div class="math notranslate nohighlight">
+\[ mass_{controller} = 0.0553 P_{controller}/N_{prop} + 1.721 \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(P_{controller_{max}}\)</span> : Controller maximum power</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{controller}\)</span> : Controller mass</em></p>
+</div></blockquote>
+<br>
+</section>
+</section>
+<section id="mission-analysis">
+<h2><strong>Mission Analysis</strong><a class="headerlink" href="#mission-analysis" title="Link to this heading"></a></h2>
+<p>Mission module estimates the fuel required and the energy required of total flight mission. Mission module is connected to the performance module to estimated the required power for each segment. Each mission segment is analyzed to calculated required powered, fuel, and energy of each segments. The mission module is connected to performance and energy module to estimated the total energy required for the entire mission.</p>
+<p>The mission module analyzes for Vertical climb, hover, climb, crusie, descent, loiter and vertical descent mission segment. Using the same equation from performance analysis.</p>
+<p>Taxing segments can also be analyzed. Taxi-in and Taxi-out analysis is using simple assumption by using power setting. It is used <span class="math notranslate nohighlight">\(10\%\)</span> of maximum power for Taxing segment.</p>
+<p><small><em>*Ref. VTOL Urban Air Mobility Concept Vehicles for Technology Development</em></small></p>
+<p>To analyze the mission, the entire mission should be provided with required informantion.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/uam_mission_profile.png" alt="Example of Mission Profile" width="400">
+    <figcaption>Example of Mission Profile</figcaption>
+  </figure>
+</div>
+<br>
+<section id="energy-module">
+<h3>Energy Module<a class="headerlink" href="#energy-module" title="Link to this heading"></a></h3>
+<p>Total power electrical power required is calculated from mission analysis, but the energy required for each segment is multiply by hybridizaiton factor which can be defined for each mission segment.</p>
+<div class="math notranslate nohighlight">
+\[ P_{batt} = Hp_{p}P_{elec} \]</div>
+<div class="math notranslate nohighlight">
+\[ P_{FC} = (1-Hp_p)P_{FC} \]</div>
+<p><span class="math notranslate nohighlight">\(Hp_{p}\)</span> is the electircal power hybridizaiton factor, which is controlled along the mission analysis. Energy required can be calculated by multipling the electrical power multiplying mission time.</p>
+<div class="math notranslate nohighlight">
+\[ E_{elec} = \sum_{i=1}^n P_{elec_i}{time_i} \]</div>
+<div class="math notranslate nohighlight">
+\[ E_{batt} = \sum_{i=1}^n \frac{P_{batt_i}}{\eta_{batt}}{time_i} \]</div>
+<div class="math notranslate nohighlight">
+\[ E_{H2FC} = \sum_{i=1}^n \frac{P_{FC_i}}{\eta_{FC}}{time_i} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(i\)</span> : Each mission segments from take-off to landing</em> <br>
+<em>- <span class="math notranslate nohighlight">\(E_{elec}\)</span> : Electrical energy required</em> <br>
+<em>- <span class="math notranslate nohighlight">\(E_{batt}\)</span> : Battery energy required</em> <br>
+<em>- <span class="math notranslate nohighlight">\(E_{H2FC}\)</span> : Hydrogen fuel cell energy required</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\eta_{batt}\)</span> : Battery efficiency</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\eta_{FC}\)</span> : Fuel cell efficiency</em> <br>
+<small> <em>- Battery efficiency is typically vary from 0.6-0.75 (Ref. Designing Unmanned Aircraft Design, pg.326). But most of the paper assumes from 0.7-0.9 for battery efficiency.</em></small> <br>
+<small> <em>- Fuel cell efficeincy is typically vary low since the heat energy is also produced and it is around 0.45-0.6 but in UNIFIER19 project, 0.5-0.6 is used.</em></small></p>
+</div></blockquote>
+<p>Hydrogen fuel consumption is also calculate along the mission to estimated the total fuel mass of the mission.</p>
+<div class="math notranslate nohighlight">
+\[ \dot m_{fuel_i} = \frac{P_{FC_i}}{\eta_{FC}LHV},  \forall i \in nMission \]</div>
+<div class="math notranslate nohighlight">
+\[ mass_{fuel} = \dot m_{fuel_i}{time_i},  \forall i \in nMission \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(\dot m_{fuel_{i}}\)</span> : Fuel consumption for mission segment <span class="math notranslate nohighlight">\(i\)</span></em> <br>
+<em>- <span class="math notranslate nohighlight">\(\eta_{FC}\)</span> : Fuel cell efficiency</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{fuel}\)</span> : Fuel mass of all mission</em> <br>
+<em>- <span class="math notranslate nohighlight">\(time_i\)</span> : Time for mission segment <span class="math notranslate nohighlight">\(i\)</span></em></p>
+</div></blockquote>
+<br>
+<p>Sizing loop include electric propulsion system sizing and energy system after the mission analysis.</p>
+<br>
+</section>
+</section>
+<section id="energy-system-mass-calculation">
+<h2><strong>Energy System Mass Calculation</strong><a class="headerlink" href="#energy-system-mass-calculation" title="Link to this heading"></a></h2>
+<p>Energy system include battery, hydrogen fuel and tank components. Since the hybridization factor changes along the mission, the maximum power is varied depending on the hybridization factor. Therefore, sizing of battery and fuel cell are performed after the mission analysis by finding the maximum power of each segment.</p>
+<div class="math notranslate nohighlight">
+\[ P_{elec_{max}} = \max{P_{elec_i}}, \forall i \in nMission \]</div>
+<div class="math notranslate nohighlight">
+\[ P_{batt_{max}} = \max{P_{batt_i}}, \forall i \in nMission \]</div>
+<div class="math notranslate nohighlight">
+\[ P_{FC_{max}} = \max{P_{FC_i}}, \forall i \in nMission \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(nMission\)</span> : Mission segments</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_{elec_{max}}\)</span> : Electrical maximum power</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_{batt_{max}}\)</span> : Battery maximum power</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_{FC_{max}}\)</span> : Fuel cell maximum power</em></p>
+</div></blockquote>
+<br>
+<p>Electrical power calculation is already mentioned in performance and propulsion analysis loop section.</p>
+<br>
+<section id="battery-sizing">
+<h3>Battery Sizing<a class="headerlink" href="#battery-sizing" title="Link to this heading"></a></h3>
+<p>Battery energy system is required to size depending on required energy and maximum energy of required mission. Battery weight is corresponding to both maximum power and energy, therefore, specific power density and specific energy density are required to satisfy. But in this sizing method, three methods are provided, (1) energy density method, (2) power density method and (3) maximum mass method.</p>
+<p><span style="color:rgb(6, 137, 170);"><strong>1. Specific Energy Density Method</strong></span></p>
+<p>Specific energy density method is usually corresponding to the energy required of the flight mission. Which can be calculated as,</p>
+<div class="math notranslate nohighlight">
+\[ mass_{batt_{E^*}} = \frac{E_{batt}}{f_{usable}E^*} \]</div>
+<p><small><em>*Ref. 레퍼런스 제대로 표기</em></small></p>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(mass_{batt_{E^*}}\)</span> : Mass of battery by specific energy density</em> <br>
+<em>- <span class="math notranslate nohighlight">\(E_{batt}\)</span> : Battery mission energy</em> <br>
+<em>- <span class="math notranslate nohighlight">\(f_{usable}\)</span> : Usable battery energy, which is similar to depth of discharge, typically 0.8</em> <br>
+<em>- <span class="math notranslate nohighlight">\(E^*\)</span> : Specific energy density, it can be depending on the technology level</em></p>
+</div></blockquote>
+<br>
+<p><span style="color:rgb(6, 137, 170);"><strong>2. Specific Power Density Method</strong></span></p>
+<p>Specific power density method is used to cover maximum power required of the mission. The mass is calculated as,</p>
+<div class="math notranslate nohighlight">
+\[ mass_{batt_{P^*}} = \frac{P_{batt_{max}}}{P^*} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(mass_{batt_{P^*}}\)</span> : Mass of battery by specific power density</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_{batt_{max}}\)</span> : Maximum battery power of the mission segment</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P^*\)</span> : Specific power density, it is depending on the technology level</em></p>
+</div></blockquote>
+<br>
+<p><span style="color:rgb(6, 137, 170);"><strong>3. Maximum Mass Method</strong></span></p>
+<p>Maximum mass method is proposed not to under or over size the battery depending on the required maximum power and required energy.</p>
+<p><small><em>*Ref. Preliminary Weight Sizing of Light Pure-Electric and Hybrid-Electric Aircraft</em></small></p>
+<div class="math notranslate nohighlight">
+\[ mass_{batt} = \max\{{mass_{batt_{E^*}}, mass_{batt_{P^*}}}\} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(mass_{batt}\)</span> : Mass battery by maximum mass method</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="fuel-cell-sizing">
+<h3>Fuel Cell Sizing<a class="headerlink" href="#fuel-cell-sizing" title="Link to this heading"></a></h3>
+<p>Fuel cell is sized based on the the maximum power of fuel cell.</p>
+<div class="math notranslate nohighlight">
+\[ mass_{FC} = \frac{P_{FC_{max}}}{P^*_{FC}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(mass_{FC}\)</span> : Fuel cell mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_{FC_{max}}\)</span> : Maximum fuel cell power of the mission segment</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P^*_{FC}\)</span> : Specific power density of fuel cell</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="tank-sizing">
+<h3>Tank Sizing<a class="headerlink" href="#tank-sizing" title="Link to this heading"></a></h3>
+<p>Hydrogen tank is sized based on gravimetric index (GI), which is the ratio of fuel mass and total fuel system.</p>
+<p><small><em>*Ref.Performance Analysis of Evolutionary Hydrogen-Powered Aircraft</em></small></p>
+<div class="math notranslate nohighlight">
+\[ GI = \frac{mass_{fuel}}{mass_{fuel}+mass_{tank}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(GI\)</span> : Gravimetric index (0.2-0.6 typical value)</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{fuel}\)</span> : Fuel mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{tank}\)</span> : Tank mass</em></p>
+</div></blockquote>
+<br>
+<p>Considering this gravimetric index, mass of tank is size as below equation, depending on the type of hydrogen.</p>
+<p>For gas hydrogen,</p>
+<div class="math notranslate nohighlight">
+\[ mass_{tank_{GAS}} = \frac{mass_{fuel_{mission}}}{GI} - mass_{fuel_{mission}} \]</div>
+<p>For liquid hydrogen, evaporation of the liquid is accounted as <span class="math notranslate nohighlight">\(7\%\)</span> for the safety of the tank.</p>
+<p><small><em>*Ref.레퍼런스 제대로 표기</em></small></p>
+<div class="math notranslate nohighlight">
+\[ mass_{tank_{LIQUID}} = 1.07({\frac{mass_{fuel_{mission}}}{GI} - mass_{fuel_{mission}}}) \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(mass_{tank_{GAS}}\)</span> : Mass of tank by gas hydrogen</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{tank_{LIQUID}}\)</span> : Mass of tank by liquid hydrogen</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{fuel}\)</span> : Hydrogen mass along the mission.</em></p>
+</div></blockquote>
+<br>
+<p>Finally, the total energy system mass is calcualted by adding up all the mass of each component.</p>
+<div class="math notranslate nohighlight">
+\[ mass_{energy} = mass_{battery} + mass_{fuel} + mass_{FC} + mass_{tank} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(mass_{energy}\)</span> : Energy system total mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{battery}\)</span> : Battery mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{fuel}\)</span> : Fuel mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{FC}\)</span> : Fuel cell mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{tank}\)</span> : Tank mass</em></p>
+</div></blockquote>
+<br>
+</section>
+</section>
+<section id="maximum-take-off-mass-calculation">
+<h2><strong>Maximum Take-Off Mass Calculation</strong><a class="headerlink" href="#maximum-take-off-mass-calculation" title="Link to this heading"></a></h2>
+<p>This module calculates the maximum take-off mass of the aircraft by combining propulsion system, energy system mass and mass fraction assumption values.</p>
+<div class="math notranslate nohighlight">
+\[ MTOM = \frac{mass_{prop} + mass_{energy} + mass_{payload}}{1-(MF_{struct}+MF_{avionics}+MF_{subsys})} \]</div>
+<div class="math notranslate nohighlight">
+\[ MTOW = MTOM *g \]</div>
+<div class="math notranslate nohighlight">
+\[ mass_{empty} = mass_{eProp} + mass_{struct} + mass_{avionics} + mass_{subsys }\]</div>
+<div class="math notranslate nohighlight">
+\[ MF_{empty} = \frac{mass_{empty}}{MTOM} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(MTOM\)</span> : Maximum take-off mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(MTOW\)</span> : Maximum take-off weight</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{prop}\)</span> : Electric propulsion system mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{energy}\)</span> : Energy system mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{payload}\)</span> : Payload mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{empty}\)</span> : Empty mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(MF_{struct}\)</span> : Structural mass fraction</em> <br>
+<em>- <span class="math notranslate nohighlight">\(MF_{avionics}\)</span> : Avionics mass fraction</em> <br>
+<em>- <span class="math notranslate nohighlight">\(MF_{subsys}\)</span> : Subsystem mass fraction</em> <br>
+<em>- <span class="math notranslate nohighlight">\(MF_{empty}\)</span> : Empty mass fraction</em> <br>
+<em>- <span class="math notranslate nohighlight">\(g\)</span> : Graviational acceleration (<span class="math notranslate nohighlight">\(9.81 m/s^2\)</span>)</em></p>
+</div></blockquote>
+<br>
+<section id="mass-convergence">
+<h3>Mass Convergence<a class="headerlink" href="#mass-convergence" title="Link to this heading"></a></h3>
+<p>Mass convergence is finally calculated with the initial guess weight input and calculated MTOW value. If the input and output value are same then, mass convergence will be iteration will be stop and give the all the analysis and sizing data of the convergence mass condition.</p>
+<br>
+</section>
+</section>
+<section id="optimization">
+<h2><strong>Optimization</strong><a class="headerlink" href="#optimization" title="Link to this heading"></a></h2>
+<p>Sizing optimization can be run with the below formulation, the optimizaiton is to find the best combination of wing loading and power loading to minimize the the objective function. Objective function can be the minimization of MTOW or Cost or other user input parameters. Below formulation show the sample formulation of this sizing program.</p>
+<div class="math notranslate nohighlight">
+\[ \min_{P/W, W/S, x} \ MTOW \]</div>
+<p>Subject to:</p>
+<div class="math notranslate nohighlight">
+\[ V_{stall} \leq V_{stall_{req}} \]</div>
+<div class="math notranslate nohighlight">
+\[ V_{cruise} \geq V_{cruise_{req}} \]</div>
+<div class="math notranslate nohighlight">
+\[ G \geq G_{req}\]</div>
+<div class="math notranslate nohighlight">
+\[ ROC_{max} \geq ROC_{max_{req}} \]</div>
+<div class="math notranslate nohighlight">
+\[ S_{TO} \leq S_{TO_{req}} \]</div>
+<div class="math notranslate nohighlight">
+\[ h_{ceiling} \geq h_{ceiling_{req}} \]</div>
+<div class="math notranslate nohighlight">
+\[ g(x)... \]</div>
+<div class="math notranslate nohighlight">
+\[ ... \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(x\)</span> : User define variables</em> <br>
+<em>- <span class="math notranslate nohighlight">\(g(x)\)</span> : User defined constraints</em> <br></p>
+</div></blockquote>
+<p>Other constraints parameters that is defined by user requirements.</p>
+<br>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="appendix">
+<h1><em>APPENDIX</em><a class="headerlink" href="#appendix" title="Link to this heading"></a></h1>
+<p>In the appendix, results for some of the sizing examples are introduced.</p>
+<section id="result">
+<h2><strong>Result</strong><a class="headerlink" href="#result" title="Link to this heading"></a></h2>
+<p>Sizing matrix plot is to see the feasible region of our design point for the varialbe of wing loading and power loading for a objective function.</p>
+<p>Requirements parameters such as stall speed, cruise speed, rate of climb, climb gradient, take-off distance and ceiling are make input and find the power loading and wing loading that are equal to the requirements and make plots for a objective function. The requireed parameters are run from the performacne moddule and sizing the whole sizing loop is run for a range of power loading and wing loading.</p>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/constraint_ram.png" alt="Sizing Matrix Example for RAM Aircraft" width="400">
+    <figcaption>Sizing Matrix Example for RAM Aircraft</figcaption>
+  </figure>
+</div>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/constraint_ctol.png" alt="Constraint Diagram Example for CTOL Flight" width="400">
+    <figcaption>Constraint Diagram Example for CTOL Flight</figcaption>
+  </figure>
+</div>
+<div style="text-align: center;">
+  <figure>
+    <img src="_static/fig/constraint_vtol.png" alt="Constraint Diagram Example for VTOL Flight" width="400">
+    <figcaption>Constraint Diagram Example for VTOL Flight</figcaption>
+  </figure>
+</div>
+<br>
+<!--#TODO change the pics-->
+<p>For the Sizing Matrix(for CTOL aircraft), the sizing process can be examined using only W/S, and it allows verification of whether the design variables meet the requirements, with the MTOW results contour for the given W/S and P/W.</p>
+<p>For the Constraint Diagram(for VTOL aircraft), W/S, W/A, P/W:CTOL, and P/W:VTOL are utilized. While the MTOW contour cannot be checked, the satisfaction of the requirements can be verified.</p>
+<br>
+<section id="payload-range-diagram">
+<h3>Payload Range Diagram<a class="headerlink" href="#payload-range-diagram" title="Link to this heading"></a></h3>
+<p>Payload range diagram shows the aircraft capability for the whole range in terms of payload and range. In conventional fuel powered aircraft, the payload and fuel mass are tradeoff between the harmonic range and maximum fuel range. The harmonic range is the range that is only for the cruise segegment without any segement.Fuel mass at the cruise segment can be differ depending the design.</p>
+<div class="math notranslate nohighlight">
+\[ R = SR * mass_{fuel} \]</div>
+<div class="math notranslate nohighlight">
+\[ SR = V_{cruise}/mass_{fuel_{cruise}} \]</div>
+<br>
+<section id="payload-range-diagram-for-battery">
+<h4>Payload Range Diagram for Battery<a class="headerlink" href="#payload-range-diagram-for-battery" title="Link to this heading"></a></h4>
+<p>For the battery powered aircraft, cruise battery battery weight is set by the mission analysis as,</p>
+<div class="math notranslate nohighlight">
+\[ R = SR\cdot{E_{batt}} = SR\cdot{mass_{batt}}\cdot{f_{usable}}\cdot{E*} \]</div>
+<div class="math notranslate nohighlight">
+\[ SR = V_{cruise}/P_{batt} \]</div>
+<p>Therefore, the mass of battery can be update with the the payload increasement to keep the MTOW as constant.</p>
+<div class="math notranslate nohighlight">
+\[ mass_{batt} = mass_{batt_{init}} \pm \Delta mass_{payload} \]</div>
+<div class="math notranslate nohighlight">
+\[ \Delta mass_{payload} = mass_{payload_{init}} \pm mass_{payload_{new}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(R\)</span> : Cruise range only</em> <br>
+<em>- <span class="math notranslate nohighlight">\(SR\)</span> : Specific air range</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{fuel}\)</span> : Fuel mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_{cruise}\)</span> : Cruise airspeed</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{fuel_{cruise}}\)</span> : Cruise fuel consumption</em> <br>
+<em>- <span class="math notranslate nohighlight">\(E_{batt}\)</span> : Energy at the cruise phase</em> <br>
+<em>- <span class="math notranslate nohighlight">\(E^*\)</span> : Specific energy density of battery</em> <br>
+<em>- <span class="math notranslate nohighlight">\(P_{batt}\)</span> : Battery power at cruise condition</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Delta mass_{payload}\)</span> : Paylaod mass increasement</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{payload_{new}}\)</span> : Mass of new payload</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="payload-range-diagram-for-hydrogen-fuel-cell">
+<h4>Payload Range Diagram for Hydrogen Fuel Cell<a class="headerlink" href="#payload-range-diagram-for-hydrogen-fuel-cell" title="Link to this heading"></a></h4>
+<p>For hydrogen fuel cell power aircraft, hydrogen mass and tank mass should be make trade-off between payload and range diagram. Therfore, the hydrogen tank mass is update depending on the fuel consumption at the crusie flight phase.</p>
+<div class="math notranslate nohighlight">
+\[ R = SR * mass_{fuel} = SR\cdot\frac{mass_{tank}}{f_{safety}(\frac{1}{GI}-1)} \]</div>
+<div class="math notranslate nohighlight">
+\[ SR = V_{cruise}\dot{mass_{fuel}} \]</div>
+<p>Therefore, the mass of tank can be update with the the payload increasement to keep the MTOW as constant.</p>
+<div class="math notranslate nohighlight">
+\[ mass_{tank} = mass_{tank_{init}} \pm \Delta mass_{payload} \]</div>
+<div class="math notranslate nohighlight">
+\[ \Delta mass_{payload} = mass_{payload_{init}} \pm mass_{payload_{new}} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(R\)</span> : Cruise range only</em> <br>
+<em>- <span class="math notranslate nohighlight">\(SR \)</span> : Specific air range</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{fuel}\)</span> : Fuel mass</em> <br>
+<em>- <span class="math notranslate nohighlight">\(V_{cruise}\)</span> : Cruise airspeed</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{fuel_{cruise}}\)</span> : Cruise fuel consumption</em> <br>
+<em>- <span class="math notranslate nohighlight">\(f_{safety}\)</span> : Tank safety factor <small>(1 for gas, 1.07 for liquid)</em></small> <br>
+<em>- <span class="math notranslate nohighlight">\(GI\)</span> : Tank gravimetric index</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\dot{mass_{fuel}}\)</span> : Fuel consumption</em> <br>
+<em>- <span class="math notranslate nohighlight">\(\Delta mass_{payload}\)</span> : Paylaod mass increasement</em> <br>
+<em>- <span class="math notranslate nohighlight">\(mass_{payload_{new}}\)</span> : Mass of new payload</em></p>
+</div></blockquote>
+<br>
+</section>
+<section id="payload-range-diagram-for-hybrid">
+<h4>Payload Range Diagram for Hybrid<a class="headerlink" href="#payload-range-diagram-for-hybrid" title="Link to this heading"></a></h4>
+<p>For the hybrid powerd aircraft, the range calcualtion of battery and hydroen fuel cell powered should be multiply by the hybridization factor.</p>
+<div class="math notranslate nohighlight">
+\[ R_{fc} = SR\cdot{mass_{fuel}} = SR\cdot\frac{mass_{tank}}{f_{safety}(\frac{1}{GI}-1)}\cdot(1-Hp) \]</div>
+<div class="math notranslate nohighlight">
+\[ R_{batt} = SR\cdot{E_{batt}} = SR\cdot{mass_{batt}}\cdot{f_{usable}}\cdot{E^*}\cdot{Hp} \]</div>
+<div class="math notranslate nohighlight">
+\[ R = R_{fc} + R_{batt} \]</div>
+<p><em>Where,</em></p>
+<blockquote>
+<div><p><em>- <span class="math notranslate nohighlight">\(R_{fc}\)</span> : Hydrogen fuel cell powered range</em> <br>
+<em>- <span class="math notranslate nohighlight">\(R_{batt}\)</span> : Battery powered range</em> <br>
+<em>- <span class="math notranslate nohighlight">\(R\)</span> : Total range</em> <br>
+<em>- <span class="math notranslate nohighlight">\(Hp\)</span> : Hybridization factor at the cruise phase</em></p>
+</div></blockquote>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

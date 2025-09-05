@@ -1,0 +1,266 @@
+Available Analysis Runcases
+===========================
+
+This file shows the input parameter for each runcase. 
+The name of subsection is the keyword used in the command CSV file.
+
+
+point-performance
+-----------------
+
+Runs performance modules and calculate all the point performance 
+paramters.
+
+``RUN:point-performance``
+
+Input
+^^^^^
+
+altitude : float, m
+    altitude for point performance analysis
+throttle-max : float, -
+    maximum throttle for maximum speed calculation
+throttle-min : float, -
+    minimum throttle for minimum speed calculation
+drag-model : simplify-drag-model, trim-drag-model
+
+
+Output
+^^^^^^
+
+:math:`V_{max}` : float, m/s
+    maximum speed at given altitude and given throttle-max condition
+:math:`V_{R_{max}}` : float, m/s
+    maximum range speed at given altitude
+:math:`V_{E_{max}}` : float, m/s
+    maximum endurance speed at given altitude
+:math:`R_{max}` : float, km
+    maximum range at given altitude
+:math: `E_{max}` : float, min
+    maximum endurance at given altitude
+:math:`V_{stall}` : float, m/s
+    stall speed at given altitude
+:math:`ROC_{max}` : float, m/s
+    maximum climb rate at given altitude and throttle-max condition
+:math:`\theta_{max}` : float, deg
+    maximum climb angle ate given altitude and throttle-max condition
+:math:`ROD_{min}` : float, m/s
+    minimum sink rate at given altitude 
+:math:`\gamma_{min}` : float, deg
+    minimum glide angle at given altitude
+:math:`ROC_{VTOL_{max}}` : float, m/s
+    maximum vertical rate of climb
+:math:`ROC_{VTOL_{OEI}}` : float, m/s
+    vertical rate of climb at one engine failure
+:math:`h_{service}` : float, m
+    service ceiling at given throttle-max condition 
+:math:`h_{absolute}` : float,m    
+    absolute ceiling at given throttle-max condition
+:math:`h_{OGE}` : float, m
+    out of ground effect ceiling
+
+
+mission-analyze
+---------------
+
+Analyze the aircraft mission of given input mission profile. Calculate 
+mission fuel, mission SOC, mission Energy, mission range, mission time.
+
+``RUN : mission-analyze``
+
+Input
+^^^^^
+
+input-mission: string
+    name of a mission profile to analyze. Available mission profiles 
+    are as follows: simple_mission_eurostar, simple_mission_rtvt,
+    simple_mission_rtvt, maximum_range_mission, 
+    maximum_endurance_mission
+    
+Mission profile can be found in [here](mission_code.rst). 
+Input mission profile consists of mission flight segemnts and 
+it's flight condition.
+
+Output
+^^^^^^
+
+segments: string array,
+    mission segments name of given mission profile
+mission-range: float array, m
+    total distance of given mission profile
+mission-endurance: float array, minutes
+    total time of given mission profile
+mission-SOC : float array, -
+    total SOC consumption at diffent mission flight segments
+mission-energy: float array, Wh
+    total energy consumption at different mission flight segments
+figure: 
+    mission energy plot
+
+
+performance-steady-level-velocity-sweep
+---------------------------------------
+
+Analyze for steady level flight for different velocity at given 
+altitude, this function is especially for plotting and checking details 
+results
+
+``RUN : performance-steady-level-velocity-sweep``
+
+input
+^^^^^
+
+altitude : float, m
+    altitude for analyzing steady level flight condition 
+throttle-max : float, -
+    maximum throttle for calculating maximum power, thrust available
+velocity-min : float, m/s
+    minimum velocity limit for analysis
+velocity-max : float, m/s
+    maximum velocity limit for analysis
+velocity-step : integer,
+    step of the velocity from minimum to maximum velocity
+
+output
+^^^^^^
+
+:math:`V` : float array, m/s
+    velocity for each velocity-step
+:math:`T_{req}` : float array, N
+    required thrust for each velocity step
+:math:`T_{avl}` : float array, N
+    thrust available for each velocity step and throttle-max condition
+:math:`P_{req}` : float array, Watt
+    power required for each velocity step
+:math:`P_{avl}` : float array, Watt
+    power available for each velocity step and throttle-max condition
+:math:`\frac{L}{D}` : float array, -
+    lift-to-drag ration for each velocity step
+:math:`SAR` : float array, m/(Watt sec)
+    specific air range at each velocity step
+:math:`SE` : float array, 1/(Watt)
+    specific endurance at each velocity step
+:math:`P_{s}` : float array,
+    specific excess power at each velocity step
+figures: 
+    plot all of above parameters with velocity limit
+
+
+performance-climb-descent-rate-velocity-sweep
+---------------------------------------------
+
+Analyze for climb and descent for different velocity at given altitude, 
+this function is especially for plotting and checking details results
+
+``RUN : performance-climb-descent-rate-velocity-sweep``
+
+input
+^^^^^
+
+altitude : float, m
+    altitude for analyzing steady level flight condition
+throttle-max : float, -
+    maximum throttle for calculating maximum power, thrust available 
+velocity-min : float, m/s
+    minimum velocity limit for analysis
+velocity-max : float, m/s
+    maximum velocity limit for analysis
+velocity-step : integer,
+    step of the velocity from minimum to maximum velocity
+
+output
+^^^^^^
+
+:math:`V` : float array, m/s
+    velocity for each velocity-step
+:math:`D` : float array, N
+    drag for each velocity step
+:math:`P_{s}` : float array, Watt/N
+    specific excess power at each velocity step
+:math:`\frac{L}{D}` : float array
+    lift-to-drag ration for each velocity step
+:math:`ROC` : float array, m/s
+    rate of climb at each velocity step
+:math:`\theta` : float array, deg
+    climb angle at each velocity step
+:math:`ROD`` : float array, m/s
+    descent rate at each velocity step
+:math:`\gamma` : float array, deg
+    descent angle ate each velociyt step
+figures : 
+    plot all of above parameters with velocity limit
+
+
+
+flight-envelope-speed-altitude
+---------------
+
+Runs performance modules and calculate stall speed and maximum speed at 
+different altitude 
+
+``RUN : flight-envelope-speed-altitude``
+
+
+Input
+^^^^^
+
+throttle-max : float, -
+    maximum throttle to calculate maximum speed [0,1]
+altitude-max : float, m
+    maximum altitude to search the flight envelope 
+altitude-min : float, m
+    minimum altitude of flight envelope, default is zero 
+velocity-min : float, m/s
+    velocity lower bound for optimize search region (to remove in next 
+    version)
+velocity-max : float, m/s
+    velocity upper bound for optimize search region (to remove in next 
+    version)
+
+
+Output
+^^^^^^
+
+:math:`V_{max}` : float array, m/s
+    maximum speed at different altitude for given altitude-max and 
+    altitude-min with the altitude-step
+:math:`V_{min}` : float array, m/s
+    minimum speed at different altitude for given altitude-max and 
+    altitude-min with the altitude-step
+:math:`V_{stall}` : float array, m/s
+    stall speed at different altitude for given altitude-max and 
+    altitude-min with altitude-step 
+altitude : float array, m
+    altitude for given altitude-max and altitude-min with altitude-step
+
+
+
+hover-ceiling
+---------------
+
+Runs performance modules and OGE hover ceiling
+
+``RUN : hover-ceiling``
+
+
+Input
+^^^^^^
+
+throttle-max : float, -
+    maximum throttle to calculate maximum speed [0,1]
+altitude-max : float, m
+    maximum altitude to search the flight envelope 
+altitude-min : float, m
+    minimum altitude of flight envelope, default is zero 
+
+
+Output
+^^^^^^
+
+:math:`h` : float array, m
+    altitude for given altitude-max and altitude-min with altitude-step
+:math:`P_{req}` : float array, kWatt
+    Power required at different altitude for vertical flight with altitude-step
+:math:`P_{max}` : float array, kWatt
+    Power available at different altitude for vertical flight with altitude-step
+

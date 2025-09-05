@@ -1,0 +1,22 @@
+UAM Command input file
+==================
+
+Example of RAM
+------------------
+.. csv-table:: Example of sizing input file
+   :file: sizing/MASTER_RAM.csv
+
+Example of Lift + Cruise
+------------------
+.. csv-table:: Example of sizing input file
+   :file: sizing/MASTER_LIFT_CRUISE.csv
+
+Example of Multicopter
+------------------
+.. csv-table:: Example of sizing input file
+   :file: sizing/MASTER_MULTICOPTER.csv
+
+Example of Tilting
+------------------
+.. csv-table:: Example of sizing input file
+   :file: sizing/MASTER_TILTING.csv

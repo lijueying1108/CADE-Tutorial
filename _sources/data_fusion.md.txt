@@ -1,0 +1,38 @@
+# Data Fusion
+
+This section explains about data fusion(CADE-DF) module inside CADE platform.
+
+
+## What is Data Fusion
+
+- blah-blah
+
+
+## Installation and Setup
+
+- blah-blah
+  
+
+## Program Structure
+
+- blah-blah
+
+
+## Input Files
+
+- Command Input File
+- Aircraft Input File
+
+
+## Available Functions
+
+- blah-blah
+
+
+## Manuals
+
+- blah-blah
+
+
+## First Run and Example Runcase
+- blah-blah

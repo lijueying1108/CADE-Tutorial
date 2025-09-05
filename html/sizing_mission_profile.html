@@ -1,0 +1,432 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sizing mission profile &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sizing mission profile</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sizing_mission_profile.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sizing-mission-profile">
+<h1>Sizing mission profile<a class="headerlink" href="#sizing-mission-profile" title="Link to this heading"></a></h1>
+<section id="convential-takeoff-and-landing-mission-profile">
+<h2>Convential Takeoff and Landing Mission Profile<a class="headerlink" href="#convential-takeoff-and-landing-mission-profile" title="Link to this heading"></a></h2>
+<p>This section will show how mission profile can be made depending on the user requirements.
+A list of mission segements that can be analyzed for this code are
+<code class="docutils literal notranslate"><span class="pre">TAXI-IN</span></code>, <code class="docutils literal notranslate"><span class="pre">TAKEOFF</span></code>, <code class="docutils literal notranslate"><span class="pre">CLIMB</span></code>, <code class="docutils literal notranslate"><span class="pre">CRUISE</span></code>, <code class="docutils literal notranslate"><span class="pre">DESCENT</span></code>, <code class="docutils literal notranslate"><span class="pre">LANDING</span></code>, <code class="docutils literal notranslate"><span class="pre">LOITER</span></code>, <code class="docutils literal notranslate"><span class="pre">TAXI-OUT</span></code> segements.</p>
+<p>A complete mission profile making is shown below.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Sample mission profile.</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>segment</p></td>
+<td><p>start-alt(m)</p></td>
+<td><p>end-alt(m)</p></td>
+<td><p>speed(m/s)</p></td>
+<td><p>climb_rate(m/s)</p></td>
+<td><p>distance(m)</p></td>
+<td><p>duration(sec)</p></td>
+<td><p>hybridization</p></td>
+</tr>
+<tr class="row-even"><td><p>INIT-CONDITIONS</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>TAXI-IN</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>120</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>TAKEOFF</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>840</p></td>
+<td><p>x</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>CLIMB</p></td>
+<td><p>0</p></td>
+<td><p>3000</p></td>
+<td><p>x</p></td>
+<td><p>8</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>CRUISE</p></td>
+<td><p>3000</p></td>
+<td><p>3000</p></td>
+<td><p>115</p></td>
+<td></td>
+<td><p>396000</p></td>
+<td></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>DESCENT</p></td>
+<td><p>3000</p></td>
+<td><p>0</p></td>
+<td><p>x</p></td>
+<td><p>8</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>CLIMB</p></td>
+<td><p>0</p></td>
+<td><p>1000</p></td>
+<td><p>x</p></td>
+<td><p>8</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>CRUISE</p></td>
+<td><p>1000</p></td>
+<td><p>1000</p></td>
+<td><p>82</p></td>
+<td><p>x</p></td>
+<td><p>270000</p></td>
+<td><p>x</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>DESCENT</p></td>
+<td><p>1000</p></td>
+<td><p>500</p></td>
+<td><p>x</p></td>
+<td><p>8</p></td>
+<td><p>x</p></td>
+<td></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>LOITER</p></td>
+<td><p>500</p></td>
+<td><p>500</p></td>
+<td><p>51</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>1800</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>LANDING</p></td>
+<td><p>15.4</p></td>
+<td><p>0</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>650</p></td>
+<td><p>x</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>TAXI-OUT</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>120</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">TAXI-IN</span></code> segment, a <em>duration</em> and <em>hybridiation</em> values need to be provided.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TAKEOFF</span></code> segment, a <em>distance</em> and <em>hybridization</em> values need to be provided.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CLIMB</span></code> segment, a <em>start-alt</em>, <em>end-alt</em> and <em>climb_rate</em> and a <em>hybridization</em> paraemter are required to provide.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CRUISE</span></code> segment, <em>start-alt</em> and <em>end-alt</em> must be set as same value, and <em>start</em> should be also keep as same</p>
+<p>for this sizing stage. <em>distance</em> and <em>hybridization</em> parameter also need to provide.</p>
+<p><code class="docutils literal notranslate"><span class="pre">LOITER</span></code> segment, is as same as cruise segemet, but only <em>duration</em> need to provide and a <em>hybridiation</em> factor.</p>
+<p><code class="docutils literal notranslate"><span class="pre">DESCENT</span></code> segement, is also need to provide for <em>start-alt</em>, <em>end-alt</em> and <em>climb_rate</em> and a <em>hybridization</em> paraemter are required to provide.</p>
+<p><code class="docutils literal notranslate"><span class="pre">LANDING</span></code> segement, a <em>distance</em> and <em>hybridiation</em> parameters are required to provide.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TAXI-OUT</span></code> segment, a <em>duration</em> and <em>hybridiation</em> values need to be provided.</p>
+</section>
+<section id="vertical-takeoff-and-landing-mission-profile">
+<h2>Vertical Takeoff and Landing Mission Profile<a class="headerlink" href="#vertical-takeoff-and-landing-mission-profile" title="Link to this heading"></a></h2>
+<p>This section will show how mission profile can be made depending on the user requirements.
+A list of mission segements that can be analyzed for this code are
+<code class="docutils literal notranslate"><span class="pre">TAXI-IN</span></code>, <code class="docutils literal notranslate"><span class="pre">VTOL-CLIMB</span></code>, <code class="docutils literal notranslate"><span class="pre">HOVER</span></code>, <code class="docutils literal notranslate"><span class="pre">CLIMB</span></code>, <code class="docutils literal notranslate"><span class="pre">CRUISE</span></code>, <code class="docutils literal notranslate"><span class="pre">DESCENT</span></code>, <code class="docutils literal notranslate"><span class="pre">VTOL-DESCENT</span></code>,
+<code class="docutils literal notranslate"><span class="pre">LOITER</span></code>, <code class="docutils literal notranslate"><span class="pre">TAXI-OUT</span></code> segements.</p>
+<p>A complete mission profile making is shown below.</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Sample mission profile.</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>segment</p></td>
+<td><p>start-alt(m)</p></td>
+<td><p>end-alt(m)</p></td>
+<td><p>start-speed(m/s)</p></td>
+<td><p>climb_rate(m/s)</p></td>
+<td><p>distance(m)</p></td>
+<td><p>duration(sec)</p></td>
+<td><p>hybridization</p></td>
+</tr>
+<tr class="row-even"><td><p>INIT-CONDITIONS</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>TAXI-IN</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>120</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>VTOL-CLIMB</p></td>
+<td><p>0</p></td>
+<td><p>15.24</p></td>
+<td><p>x</p></td>
+<td><p>0.508</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>HOVER</p></td>
+<td><p>15.24</p></td>
+<td><p>15.24</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>40</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>CLIMB</p></td>
+<td><p>15.24</p></td>
+<td><p>1219.2</p></td>
+<td><p>x</p></td>
+<td><p>4.572</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>CRUISE</p></td>
+<td><p>1219.2</p></td>
+<td><p>1219.2</p></td>
+<td><p>57.568</p></td>
+<td><p>x</p></td>
+<td><p>55560</p></td>
+<td><p>x</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>DESCENT</p></td>
+<td><p>1219.2</p></td>
+<td><p>15.24</p></td>
+<td><p>x</p></td>
+<td><p>4.572</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>HOVER</p></td>
+<td><p>15.24</p></td>
+<td><p>15.24</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>30</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>VTOL-DESCENT</p></td>
+<td><p>15.24</p></td>
+<td><p>0</p></td>
+<td><p>x</p></td>
+<td><p>0.508</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>VTOL-CLIMB</p></td>
+<td><p>0</p></td>
+<td><p>15.24</p></td>
+<td><p>x</p></td>
+<td><p>0.508</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>CLIMB</p></td>
+<td><p>15.24</p></td>
+<td><p>1219.2</p></td>
+<td><p>x</p></td>
+<td><p>4.572</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>CRUISE</p></td>
+<td><p>1219.2</p></td>
+<td><p>1219.2</p></td>
+<td><p>57.568</p></td>
+<td><p>x</p></td>
+<td><p>55560</p></td>
+<td><p>x</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>DESCENT</p></td>
+<td><p>1219.2</p></td>
+<td><p>15.24</p></td>
+<td><p>x</p></td>
+<td><p>4.572</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>HOVER</p></td>
+<td><p>15.24</p></td>
+<td><p>15.24</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>30</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>VTOL-DESCENT</p></td>
+<td><p>15.24</p></td>
+<td><p>0</p></td>
+<td><p>x</p></td>
+<td><p>0.508</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>TAXI-OUT</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>120</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">TAXI-IN</span></code> segment, a <em>duration</em> and <em>hybridiation</em> values need to be provided.</p>
+<p><code class="docutils literal notranslate"><span class="pre">VTOL-CLIMB</span></code> segment, a <em>start-alt</em>, <em>end-alt</em> and <em>climb_rate</em> and a <em>hybridization</em> paraemter are required to provide.</p>
+<p><code class="docutils literal notranslate"><span class="pre">HOVER</span></code> segment, a <em>start-alt</em>, <em>end-alt</em> and <em>duration</em> paraemter are required to provide.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CLIMB</span></code> segment, a <em>start-alt</em>, <em>end-alt</em> and <em>climb_rate</em> and a <em>hybridization</em> paraemter are required to provide.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CRUISE</span></code> segment, <em>start-alt</em> and <em>end-alt</em> must be set as same value, and <em>start</em> should be also keep as same</p>
+<p>for this sizing stage. <em>distance</em> and <em>hybridization</em> parameter also need to provide.</p>
+<p><code class="docutils literal notranslate"><span class="pre">LOITER</span></code> segment, is as same as cruise segemet, but only <em>duration</em> need to provide and a <em>hybridiation</em> factor.</p>
+<p><code class="docutils literal notranslate"><span class="pre">DESCENT</span></code> segement, is also need to provide for <em>start-alt</em>, <em>end-alt</em> and <em>climb_rate</em> and a <em>hybridization</em> paraemter are required to provide.</p>
+<p><code class="docutils literal notranslate"><span class="pre">VTOL-DESCENT</span></code> segment, a <em>start-alt</em>, <em>end-alt</em> and <em>climb_rate</em> and a <em>hybridization</em> paraemter are required to provide.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TAXI-OUT</span></code> segment, a <em>duration</em> and <em>hybridiation</em> values need to be provided.</p>
+<p>An example simple mission profile is shown below</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

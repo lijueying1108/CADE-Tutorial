@@ -1,0 +1,50 @@
+# LookUpTable Tutorial
+
+This tutorial explains how to use the LookUpTable class to import a .csv file and obtain results based on the input data using radial basis function (RBF) interpolation.
+
+## Step 1: Prepare Data
+
+Prepare a .csv file with input and response variables.
+
+- **The input .csv file should be imported as column vectors!!!**
+
+    |Var 1| Var 2| ...| Res 1| Res 2|
+    |:---:|:---:|:---:|:---:|:---:|
+    |Value 11| Value 12| ...| Value1 R1| Value1 R2|
+    |Value 21| Value 22| ...| Value2 R1| Value2 R2|
+    |...| ...| ...| ...| ...|
+
+## Step 2: Import Input Data 
+
+**file_path, variables and responses have to be declared.**
+
+    file_path = 'D:\\Research\\Code\\mDNN\\DataFusion\\Latest code_matlab\\In developing\\inputDB\\Extrapolation_test\\LF'
+
+    variables = ["Var 1", "Var 2"]
+
+    responses = ["Res 1", "Res 2"]
+
+## Step 3: Run model and obtain results
+- **Single Point Prediction**
+
+Define input values for prediction: 
+
+    var1 = 10 
+
+    var2 = 20
+
+
+Obtain the response:
+
+    response = model(var1, var2)
+
+- **Multiple Point Prediction**
+  
+Define input values for prediction:
+
+    var1 = variables[0, 5, 10] 
+    var2 = variables[-15, -10, -5] 
+
+Obtain the response:
+   
+    response = model(var1, var2)

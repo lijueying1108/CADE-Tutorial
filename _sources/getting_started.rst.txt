@@ -1,0 +1,66 @@
+Getting started
+===============
+
+ADSP is written in Python 3. Currently ADSP is working without 
+installation. The code is provided as a folder (archive). 
+
+Full installation setup is planned for future versions. 
+
+Directory structure
+-------------------
+
+::
+
+    adsp
+    |   .gitignore
+    |   requirements.txt
+    |   README.md
+    +---adsp
+    |   |   analysis_source_codes
+    +---bin
+    +---data
+    |   |   csv databases
+    +---doc
+    |   |   user's manual
+    |   |   theory manual
+    +---output
+    |   |   results of analysis
+    +---temp
+    +---tests
+    |   |   test runcases
+
+The code execution is fully controlled from a single csv (spreadsheet) 
+file. *data* folder contains several examples. Complete structure of 
+the *Command input file* is shown in sections below.
+
+Running the code
+----------------
+
+The easiest way to run the ADSP is shown below
+
+.. code-block:: python
+   :caption: run a script
+
+   import adsp
+
+   # read file from data/sample-cmd.csv
+   cmd_input = adsp.ControlInputFile('sample-cmd.csv')
+
+   # initialize the analysis
+   analysis = adsp.IntegratedAnalysis()
+
+   # set inputs
+   analysis.set_aircraft(cmd_input.aircraft)
+   analysis.set_methodology(cmd_input.methodology)
+
+   # run the analysis
+   analysis.run(cmd_input.runcases)
+
+   # display the results
+   analysis.display_report()
+
+The code will perform full analysis according to inputs in the 
+*sample-cmd.csv*, display the results and save markdown and pdf 
+reports in the *output* folder
+
+More test cases are located in *tests* folder

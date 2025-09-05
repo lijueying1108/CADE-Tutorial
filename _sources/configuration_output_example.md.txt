@@ -1,0 +1,197 @@
+# Example for Configuration Analysis Output
+
+# 1. Aircraft Data
+This is about whole aircraft system's configuration data
+
+## 1.1. Configuration Data
+
+|Parameters |Value |Unit |
+|---|---|---|
+Wing span |3.3020 |m |
+Aspect ratio |10.9557 |  |
+Wing area |0.9952 |m^2 |
+Wing root chord |0.3966 |m |
+Wing tip chord |0.2062 |m |
+Length |1.5500 |m |
+Height |0.2600 |m |
+Width |0.2600 |m |
+Fuselage diameter |0.2600 |m |
+
+# 2. Detail Analysis Outputs
+This is about detail parts of aircraft configuration components.
+
+## 2.1. Configuration Analysis Outputs
+
+
+### 2.1.1. Configurataion Plot
+This is 3-dimensional configuation plotting for the aircraft.
+
+[Isometric View]
+![Isometric view](fig/isometric.png)
+
+[Side View]
+![Side view](fig/side.png)
+
+[Front View]
+![Front view](fig/front.png)
+
+[Top View]
+![Top view](fig/top.png)
+
+### 2.1.2. Configurataion Detail Data
+This is detail configuration parameters for each aircraft configuation components. For wing analysis, as multi-segment wing calculation is performed, the results for each segment(or section) of each wing is reported.
+
+ MAINWING
+
+
+|Parameters |Value |Unit |
+|---|---|---|
+Half-span |1.6510 |m |
+AR |10.9557 |  |
+MAC |0.3114 |m |
+incidence |0.5402 |degree |
+Area |0.9952 |m^2 |
+Area(exposed) |0.3227 |m^2 |
+Thickness |0.1501 |m |
+CS Start Chord |0.0829 |m |
+CS EndChord |0.0660 |m |
+CS Area |0.0984 |m^2 |
+
+ MAINWING (Segment Values)
+
+
+|Segment N |Span(m) |Span Location(%) |Taper Ratio |Sweep-back(LE)(degree) |Dihedral(degree) |
+|---|---|---|---|---|---|
+1 |0.9906 |60.0000 |0.7120 |1.6508 |0.0000 |
+2 |0.6604 |100.0000 |0.7304 |1.6508 |0.0000 |
+
+ MAINWING (Section Values)
+
+
+|Section N |Chord(m) |Twist(degree) |Airfoil |CS Type |CS Chord(m) |
+|---|---|---|---|---|---|
+1 |0.3966 |0.0000 |NACA63(2)-615 |  |0.0000 |
+2 |0.2824 |0.0000 |NACA63(2)-615 |AILERON |0.0829 |
+3 |0.2062 |0.0000 |NACA63(2)-615 |AILERON |0.0660 |
+
+ MAINWING (Equivalent Wing)
+
+
+|Equiv Horizontal Wing |Value |Equiv Vertical Wing |Value |Unit |
+|---|---|---|---|---|
+Half-span |1.6510 |Half-span |1.6510 |m |
+AR |10.9557 |AR |10.9557 |  |
+MAC |0.3114 |MAC |0.3114 |m |
+Root Chord |0.3966 |Root Chord |0.3966 |m |
+Taper Ratio |0.5200 |Taper Ratio |0.5200 |  |
+Sweep-back(LE) |1.6508 |Sweep-back(LE) |1.6508 |degree |
+Area |0.9952 |Area |0.9952 |m^2 |
+Area(exposed) |0.3227 |Area(exposed) |0.3227 |m^2 |
+Thickness |0.1501 |Thickness |0.1501 |m |
+
+ HORIZONTAL
+
+
+|Parameters |Value |Unit |
+|---|---|---|
+Half-span |0.5050 |m |
+AR |8.7861 |  |
+MAC |0.1150 |m |
+incidence |0.0000 |degree |
+Area |0.1161 |m^2 |
+Area(exposed) |0.0929 |m^2 |
+Thickness |0.1193 |m |
+CS Start Chord |0.0327 |m |
+CS EndChord |0.0327 |m |
+CS Area |0.0264 |m^2 |
+
+ HORIZONTAL (Segment Values)
+
+
+|Segment N |Span(m) |Span Location(%) |Taper Ratio |Sweep-back(LE)(degree) |Dihedral(degree) |
+|---|---|---|---|---|---|
+1 |0.1010 |20.0000 |1.0000 |0.0000 |0.0000 |
+2 |0.4040 |100.0000 |1.0000 |0.0000 |0.0000 |
+
+ HORIZONTAL (Section Values)
+
+
+|Section N |Chord(m) |Twist(degree) |Airfoil |CS Type |CS Chord(m) |
+|---|---|---|---|---|---|
+1 |0.1150 |0.0000 |NACA0012 |  |0.0000 |
+2 |0.1150 |0.0000 |NACA0012 |ELEVATOR |0.0327 |
+3 |0.1150 |0.0000 |NACA0012 |ELEVATOR |0.0327 |
+
+ HORIZONTAL (Equivalent Wing)
+
+
+|Equiv Horizontal Wing |Value |Equiv Vertical Wing |Value |Unit |
+|---|---|---|---|---|
+Half-span |0.5050 |Half-span |0.5050 |m |
+AR |8.7861 |AR |8.7861 |  |
+MAC |0.1150 |MAC |0.1150 |m |
+Root Chord |0.1150 |Root Chord |0.1150 |m |
+Taper Ratio |1.0000 |Taper Ratio |1.0000 |  |
+Sweep-back(LE) |0.0000 |Sweep-back(LE) |0.0000 |degree |
+Area |0.1161 |Area |0.1161 |m^2 |
+Area(exposed) |0.0929 |Area(exposed) |0.0929 |m^2 |
+Thickness |0.1501 |Thickness |0.1501 |m |
+
+ VERTICAL
+
+
+|Parameters |Value |Unit |
+|---|---|---|
+Half-span |0.3280 |m |
+AR |3.8097 |  |
+MAC |0.1781 |m |
+incidence |0.0000 |degree |
+Area |0.1129 |m^2 |
+Area(exposed) |0.0849 |m^2 |
+Thickness |0.1193 |m |
+CS Start Chord |0.0620 |m |
+CS EndChord |0.0343 |m |
+CS Area |0.0253 |m^2 |
+
+ VERTICAL (Segment Values)
+
+
+|Segment N |Span(m) |Span Location(%) |Taper Ratio |Sweep-back(LE)(degree) |Dihedral(degree) |
+|---|---|---|---|---|---|
+1 |0.0656 |20.0000 |0.9538 |40.0000 |1.5708 |
+2 |0.2624 |100.0000 |0.5510 |40.0000 |1.5708 |
+
+ VERTICAL (Section Values)
+
+
+|Section N |Chord(m) |Twist(degree) |Airfoil |CS Type |CS Chord(m) |
+|---|---|---|---|---|---|
+1 |0.2187 |0.0000 |NACA0012 |  |0.0000 |
+2 |0.2086 |0.0000 |NACA0012 |RUDDER |0.0620 |
+3 |0.1150 |0.0000 |NACA0012 |RUDDER |0.0343 |
+
+ VERTICAL (Equivalent Wing)
+
+
+|Equiv Horizontal Wing |Value |Equiv Vertical Wing |Value |Unit |
+|---|---|---|---|---|
+Half-span |0.3280 |Half-span |0.3280 |m |
+AR |0.0000 |AR |0.0000 |  |
+MAC |0.1781 |MAC |0.1781 |m |
+Root Chord |0.2187 |Root Chord |0.2187 |m |
+Taper Ratio |0.5255 |Taper Ratio |0.5255 |  |
+Sweep-back(LE) |40.0000 |Sweep-back(LE) |40.0000 |degree |
+Area |0.0000 |Area |0.0000 |m^2 |
+Area(exposed) |0.0000 |Area(exposed) |0.0000 |m^2 |
+Thickness |0.1501 |Thickness |0.1501 |m |
+
+ FUSELAGE
+
+
+|Parameters |Value |Unit |
+|---|---|---|
+length |1.5500 |m |
+height |0.2600 |m |
+width |0.2600 |m |
+diameter |0.2600 |m |
+wettedArea |1.1711 |m^2 |

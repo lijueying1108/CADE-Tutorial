@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Evaluation &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Multi-Disciplinary Design Optimization (MDO)" href="multi_disciplinary_design_optimization.html" />
+    <link rel="prev" title="Multi-Disciplinary Analysis (MDA)" href="multi_disciplinary_analysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Design Evaluation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-design-evaluation">What is Design Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#units-and-reference-frames">Units and Reference Frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#available-vehicles">Available Vehicles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#program-structure">Program Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-files">Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#command-input">Command Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aircraft-input">Aircraft Input</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#databases">Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#available-evaluation-runcases">Available Evaluation Runcases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Design Evaluation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/design_evaluation.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="design-evaluation">
+<h1>Design Evaluation<a class="headerlink" href="#design-evaluation" title="Link to this heading"></a></h1>
+<p>This section explains about aircraft design evaluation module inside CADE platform.</p>
+<br>
+<section id="what-is-design-evaluation">
+<h2>What is Design Evaluation<a class="headerlink" href="#what-is-design-evaluation" title="Link to this heading"></a></h2>
+<br>
+</section>
+<section id="installation-and-setup">
+<h2>Installation and Setup<a class="headerlink" href="#installation-and-setup" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="installation_and_setup.html"><span class="std std-doc">Installation and Setup</span></a></p></li>
+</ul>
+</section>
+<section id="units-and-reference-frames">
+<h2>Units and Reference Frames<a class="headerlink" href="#units-and-reference-frames" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="units_and_reference_frames.html"><span class="std std-doc">Units and Reference Frames Used in CADE</span></a></p></li>
+</ul>
+</section>
+<section id="available-vehicles">
+<h2>Available Vehicles<a class="headerlink" href="#available-vehicles" title="Link to this heading"></a></h2>
+<p>Vehicle types available for CADE Design Evaluation are listed below :</p>
+<ul class="simple">
+<li><p>UAV (Unmanned Aerial Vehicle)</p>
+<ul>
+<li><p>Fixed Wing UAV</p></li>
+<li><p>eVTOL UAV</p></li>
+</ul>
+</li>
+<li><p>AAM (Advanced Air Mobility)</p>
+<ul>
+<li><p>UAM (Urban Air Mobility)</p></li>
+<li><p>RAM (Regional Air Mobility)</p></li>
+</ul>
+</li>
+<li><p>TBD</p>
+<ul>
+<li><p>Electric Multi-Copter</p></li>
+</ul>
+</li>
+</ul>
+<br>
+</section>
+<section id="program-structure">
+<h2>Program Structure<a class="headerlink" href="#program-structure" title="Link to this heading"></a></h2>
+<p>You can find program structure at the link below :</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="program_structure.html"><span class="std std-doc">Program Structure of CADE-MDA</span></a></p></li>
+</ul>
+<br>
+</section>
+<section id="input-files">
+<h2>Input Files<a class="headerlink" href="#input-files" title="Link to this heading"></a></h2>
+<p>There are two main input files to run CADE Design Evaluation, same as CADE-MDA.</p>
+<section id="command-input">
+<h3>Command Input<a class="headerlink" href="#command-input" title="Link to this heading"></a></h3>
+<p>The first one is <strong>‘Command Input File’</strong>, which controls the whole analysis :</p>
+<ul class="simple">
+<li><p>Which <span style="color:rgb(24, 80, 145);">’AIRCRAFT’</span> will be analyzed ?</p></li>
+<li><p>Which engineering <span style="color:rgb(24, 80, 145);">’DISCIPLINE’</span> is considered in the multi-disciplinary analysis ?</p></li>
+<li><p>Which type of <span style="color:rgb(24, 80, 145);">’ANALYSIS’</span> is performed within each discipline ?</p></li>
+<li><p>How are the analysis <span style="color:rgb(24, 80, 145);">’CONDITIONS’</span> defined ?</p></li>
+</ul>
+<p>You can find more detailed explanations and examples of the command input file at the link below :</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="cmd_input.html"><span class="std std-doc">Command Input File to Run CADE-MDA</span></a></p></li>
+</ul>
+</section>
+<section id="aircraft-input">
+<h3>Aircraft Input<a class="headerlink" href="#aircraft-input" title="Link to this heading"></a></h3>
+<p>Another input file required for the analysis is the <strong>‘Aircraft Input File’</strong>, which contains detailed information and data about the target aircraft to be analyzed.</p>
+<p>This file contains information on the aircraft’s <span style="color:rgb(24, 80, 145);">geometry, internal components, and propulsion system.</span></p>
+<p>You can find more detailed explanations and examples of the aircraft input file at the link below :</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="config_input.html"><span class="std std-doc">Aircraft Input File to Run CADE-MDA</span></a></p></li>
+</ul>
+<br>
+</section>
+</section>
+<section id="databases">
+<h2>Databases<a class="headerlink" href="#databases" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="component_databases.html"><span class="std std-doc">Database Stored inside CADE</span></a></p></li>
+<li><p><a class="reference internal" href="mission_profile.html"><span class="std std-doc">Mission Profile example stepup and file location</span></a></p></li>
+</ul>
+<br>
+</section>
+<section id="available-evaluation-runcases">
+<h2>Available Evaluation Runcases<a class="headerlink" href="#available-evaluation-runcases" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="available_analysis.html"><span class="std std-doc">Available Runcases in CADE-DE</span></a></p></li>
+</ul>
+<br>
+</section>
+<section id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="performance_theory.html"><span class="std std-doc">Aircraft Performance Analysis Theory Manual</span></a></p></li>
+<li><p><a class="reference internal" href="performance_user.html"><span class="std std-doc">CADE Performance Analysis User Manual</span></a></p></li>
+<li><p><a class="reference internal" href="performance_output_example.html"><span class="std std-doc">Output Example of Design Evaluation</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="multi_disciplinary_analysis.html" class="btn btn-neutral float-left" title="Multi-Disciplinary Analysis (MDA)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multi_disciplinary_design_optimization.html" class="btn btn-neutral float-right" title="Multi-Disciplinary Design Optimization (MDO)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

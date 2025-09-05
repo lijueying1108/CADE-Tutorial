@@ -1,0 +1,539 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Command Input File &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Command Input File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cmd_input.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="command-input-file">
+<h1>Command Input File<a class="headerlink" href="#command-input-file" title="Link to this heading"></a></h1>
+<p>This page describes the command input file required to perform the Multi-Disciplinary
+Analysis (MDA) and Design Evaluation modules inside CADE.</p>
+<p>Command input file is a single CSV file that controls the whole analysis.
+Command input files by default are located in <code class="docutils literal notranslate"><span class="pre">cade/input/analysis</span></code> directory.</p>
+<p>The file is divided into three main sections and subsections.
+CADE performs search by the section header, so it is important to write
+them correctly.</p>
+<p>Example of the command input file is shown below:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Example of command input file</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>AIRCRAFT</p></td>
+<td><p>KP2A-UAM-VP</p></td>
+</tr>
+<tr class="row-even"><td><p>METHODOLOGY</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>DISCIPLINE</p></td>
+<td><p>configuration</p></td>
+</tr>
+<tr class="row-even"><td><p>DISCIPLINE</p></td>
+<td><p>weight-and-balance</p></td>
+</tr>
+<tr class="row-odd"><td><p>analysis method</p></td>
+<td><p>Raymer</p></td>
+</tr>
+<tr class="row-even"><td><p>DISCIPLINE</p></td>
+<td><p>aerodynamics</p></td>
+</tr>
+<tr class="row-odd"><td><p>lift-analysis</p></td>
+<td><p>AVL</p></td>
+</tr>
+<tr class="row-even"><td><p>drag-analysis</p></td>
+<td><p>friction</p></td>
+</tr>
+<tr class="row-odd"><td><p>CL_curve_plot</p></td>
+<td><p>Raymer</p></td>
+</tr>
+<tr class="row-even"><td><p>DISCIPLINE</p></td>
+<td><p>propulsion</p></td>
+</tr>
+<tr class="row-odd"><td><p>propeller analysis</p></td>
+<td><p>BEMT</p></td>
+</tr>
+<tr class="row-even"><td><p>DISCIPLINE</p></td>
+<td><p>performance</p></td>
+</tr>
+<tr class="row-odd"><td><p>drag-model</p></td>
+<td><p>simplify-drag-model</p></td>
+</tr>
+<tr class="row-even"><td><p>ANALYSIS</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>RUN</p></td>
+<td><p>configuration</p></td>
+</tr>
+<tr class="row-even"><td><p>RUN</p></td>
+<td><p>weight-table</p></td>
+</tr>
+<tr class="row-odd"><td><p>RUN</p></td>
+<td><p>propulsion-vp-velocity-sweep-throttle</p></td>
+</tr>
+<tr class="row-even"><td><p>system</p></td>
+<td><p>CTOL</p></td>
+</tr>
+<tr class="row-odd"><td><p>throttle</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>velocity-min</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>velocity-max</p></td>
+<td><p>110</p></td>
+</tr>
+<tr class="row-even"><td><p>velocity-step</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-even"><td><p>RUN</p></td>
+<td><p>propulsion-vp-throttle-sweep-velocity</p></td>
+</tr>
+<tr class="row-odd"><td><p>system</p></td>
+<td><p>CTOL</p></td>
+</tr>
+<tr class="row-even"><td><p>velocity</p></td>
+<td><p>70</p></td>
+</tr>
+<tr class="row-odd"><td><p>throttle-min</p></td>
+<td><p>0.1</p></td>
+</tr>
+<tr class="row-even"><td><p>throttle-max</p></td>
+<td><p>0.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>throttle-step</p></td>
+<td><p>0.1</p></td>
+</tr>
+<tr class="row-even"><td><p>altitude</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-odd"><td><p>RUN</p></td>
+<td><p>propulsion-vp-velocity-sweep-thrust</p></td>
+</tr>
+<tr class="row-even"><td><p>system</p></td>
+<td><p>CTOL</p></td>
+</tr>
+<tr class="row-odd"><td><p>thrust</p></td>
+<td><p>2500</p></td>
+</tr>
+<tr class="row-even"><td><p>velocity-min</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>velocity-max</p></td>
+<td><p>110</p></td>
+</tr>
+<tr class="row-even"><td><p>velocity-step</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-even"><td><p>RUN</p></td>
+<td><p>propulsion-vp-velocity-sweep-rpm</p></td>
+</tr>
+<tr class="row-odd"><td><p>system</p></td>
+<td><p>CTOL</p></td>
+</tr>
+<tr class="row-even"><td><p>throttle</p></td>
+<td><p>0.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>RPM</p></td>
+<td><p>1500</p></td>
+</tr>
+<tr class="row-even"><td><p>velocity-min</p></td>
+<td><p>30</p></td>
+</tr>
+<tr class="row-odd"><td><p>velocity-max</p></td>
+<td><p>130</p></td>
+</tr>
+<tr class="row-even"><td><p>velocity-step</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-even"><td><p>RUN</p></td>
+<td><p>trim</p></td>
+</tr>
+<tr class="row-odd"><td><p>velocity</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-even"><td><p>altitude</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-odd"><td><p>loadfactor</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>cg-location</p></td>
+<td><p>front</p></td>
+</tr>
+<tr class="row-odd"><td><p>aileron</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p>RUN</p></td>
+<td><p>aero-single-point</p></td>
+</tr>
+<tr class="row-odd"><td><p>velocity</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-even"><td><p>altitude</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-odd"><td><p>alpha</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>beta</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>elevator</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>aileron</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>rudder</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>flap</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p>cg-location</p></td>
+<td><p>aft</p></td>
+</tr>
+<tr class="row-even"><td><p>loadfactor</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>RUN</p></td>
+<td><p>snc-trim</p></td>
+</tr>
+<tr class="row-even"><td><p>velocity</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-even"><td><p>loadfactor</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>cg-location</p></td>
+<td><p>front</p></td>
+</tr>
+<tr class="row-even"><td><p>aileron</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p>RUN</p></td>
+<td><p>snc-single-point</p></td>
+</tr>
+<tr class="row-even"><td><p>velocity</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-even"><td><p>alpha</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>beta</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>elevator</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>aileron</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>rudder</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>flap</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>cg-location</p></td>
+<td><p>aft</p></td>
+</tr>
+<tr class="row-odd"><td><p>loadfactor</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>RUN</p></td>
+<td><p>point-performance</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-even"><td><p>throttle-max</p></td>
+<td><p>0.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>throttle-min</p></td>
+<td><p>0.2</p></td>
+</tr>
+<tr class="row-even"><td><p>RUN</p></td>
+<td><p>mission-analyze</p></td>
+</tr>
+<tr class="row-odd"><td><p>mission-name</p></td>
+<td><p>mission_uam</p></td>
+</tr>
+<tr class="row-even"><td><p>RUN</p></td>
+<td><p>performance-steady-level-velocity-sweep</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-even"><td><p>throttle-max</p></td>
+<td><p>0.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>velocity-min</p></td>
+<td><p>30</p></td>
+</tr>
+<tr class="row-even"><td><p>velocity-max</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-odd"><td><p>velocity-step</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>RUN</p></td>
+<td><p>performance-climb-descent-rate-velocity-sweep</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-even"><td><p>throttle-max</p></td>
+<td><p>0.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>velocity-min</p></td>
+<td><p>30</p></td>
+</tr>
+<tr class="row-even"><td><p>velocity-max</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-odd"><td><p>velocity-step</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>RUN</p></td>
+<td><p>flight-envelope-speed-altitude</p></td>
+</tr>
+<tr class="row-odd"><td><p>throttle-max</p></td>
+<td><p>1.0</p></td>
+</tr>
+<tr class="row-even"><td><p>altitude-min</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude-max</p></td>
+<td><p>10000</p></td>
+</tr>
+<tr class="row-even"><td><p>velocity-min</p></td>
+<td><p>30</p></td>
+</tr>
+<tr class="row-odd"><td><p>velocity-max</p></td>
+<td><p>200</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<section id="aircraft">
+<h2>AIRCRAFT<a class="headerlink" href="#aircraft" title="Link to this heading"></a></h2>
+<p>The first line always contains the <code class="docutils literal notranslate"><span class="pre">AIRCRAFT</span></code> keyword and the file name
+of the aircraft to be analyzed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AIRCRAFT</span> <span class="p">:</span> <span class="n">KP2A</span><span class="o">-</span><span class="n">UAM</span><span class="o">-</span><span class="n">VP</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="methodology">
+<h2>METHODOLOGY<a class="headerlink" href="#methodology" title="Link to this heading"></a></h2>
+<p>One of the key priorities of CADE is to keep zero control parameters
+hidden inside the source code. User should be able to control everything
+without code modification.</p>
+<p>CADE uses <code class="docutils literal notranslate"><span class="pre">data/defaults.csv</span></code> file to store all the analysis settings.
+The file contains names of analysis methods, assumptions, and
+other required parameters.</p>
+<p><code class="docutils literal notranslate"><span class="pre">METHODOLOGY</span></code> section of the command input file can overwrite any
+parameters from the defaults. This section also definds and initializes
+the analysis methodology to be executed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">METHODOLOGY</span>
+</pre></div>
+</div>
+<p>Below <code class="docutils literal notranslate"><span class="pre">METHODOLOGY</span></code> list all the <code class="docutils literal notranslate"><span class="pre">DISCIPLINE</span></code> to be analyzed.</p>
+<section id="discipline">
+<h3>DISCIPLINE<a class="headerlink" href="#discipline" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">DISCIPLINE</span></code> section of the command input file defines the analysis</p>
+<p><code class="docutils literal notranslate"><span class="pre">DISCIPLINE</span></code> keyword is followed by a name of discipline. This section
+setups the analysis methodology of each discipline to be executed. For
+example <code class="docutils literal notranslate"><span class="pre">aerodynamics</span></code> or <code class="docutils literal notranslate"><span class="pre">weight-and-balance</span></code>. The following
+lines contain parameter to be overwritten.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DISCIPLINE</span> <span class="p">:</span> <span class="n">configuration</span>
+<span class="n">DISCIPLINE</span> <span class="p">:</span> <span class="n">weight</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">balance</span>
+<span class="n">DISCIPLINE</span> <span class="p">:</span> <span class="n">aerodynamics</span>
+<span class="n">DISCIPLINE</span> <span class="p">:</span> <span class="n">propulsion</span>
+</pre></div>
+</div>
+<p>Simple low-fidelity analysis is used by default. However if user has
+a more accurate look-up-table (LUT) data, it can be used instead for
+selected types of analyses, for example propeller.</p>
+<ul class="simple">
+<li><p>To run the ‘Configuration Analysis’, the <code class="docutils literal notranslate"><span class="pre">DISCIPLINE</span></code> must be set to include the <code class="docutils literal notranslate"><span class="pre">configuration</span></code></p></li>
+<li><p>To run the ‘Weight and Balance Analysis’, the <code class="docutils literal notranslate"><span class="pre">DISCIPLINE</span></code> must be set to include the <code class="docutils literal notranslate"><span class="pre">weight-and-balance</span></code></p></li>
+<li><p>To run the ‘Aerodynamics and Stability &amp; Control Analysis’, the <code class="docutils literal notranslate"><span class="pre">DISCIPLINE</span></code> must be set to include the <code class="docutils literal notranslate"><span class="pre">aerodynamics</span></code></p></li>
+<li><p>To run the ‘Electric Propulsion Analysis’, the <code class="docutils literal notranslate"><span class="pre">DISCIPLINE</span></code> must be set to include the <code class="docutils literal notranslate"><span class="pre">propulsion</span></code></p></li>
+</ul>
+<p>You can find more information about the analysis methodology in <span class="xref std std-doc">available_analysis`</span>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analysis">
+<h2>ANALYSIS<a class="headerlink" href="#analysis" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ANALYSIS</span></code> section of the command input file defines the actual runcases to
+executed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ANALYSIS</span>
+</pre></div>
+</div>
+<p>Below <code class="docutils literal notranslate"><span class="pre">ANALYSIS</span></code> list all the RUNCASE (<code class="docutils literal notranslate"><span class="pre">RUN</span></code>)to be analyzed.</p>
+<section id="run">
+<h3>RUN<a class="headerlink" href="#run" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">RUN</span></code> keyword is followed by a name of runcases of each discipline.
+This section of the input file specifies analysis runcase to be executed and
+its parameters. Each runcase starts with the <code class="docutils literal notranslate"><span class="pre">RUN</span></code> keyword followed
+by name of a runcase. For example: <code class="docutils literal notranslate"><span class="pre">configuration</span></code>, <code class="docutils literal notranslate"><span class="pre">weight-table</span></code>,
+<code class="docutils literal notranslate"><span class="pre">performance-service-ceiling</span></code>. Complete list of available runcases
+and parameters is available in <a class="reference internal" href="available_analysis.html"><span class="doc">Available Analysis Runcases</span></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RUN</span> <span class="p">:</span> <span class="n">configuration</span>
+<span class="n">RUN</span> <span class="p">:</span> <span class="n">weight</span><span class="o">-</span><span class="n">table</span>
+<span class="n">RUN</span> <span class="p">:</span> <span class="n">VLM</span><span class="o">-</span><span class="n">trim</span><span class="o">-</span><span class="n">analysis</span>
+</pre></div>
+</div>
+<p>Each runcase is independent and does not use any data from the
+previously executed case. Results of analysis are saved to the
+<code class="docutils literal notranslate"><span class="pre">output</span></code> directory.</p>
+<p>Some runcases does not require additional parameters. For example
+specifying <code class="docutils literal notranslate"><span class="pre">RUN,</span> <span class="pre">configuration</span></code> the CADE will perform detailed
+analysis of configuration and save it to the report.</p>
+<p>Other runcases may require many parameters. These parameters are
+listed between multiple <code class="docutils literal notranslate"><span class="pre">RUN</span></code> rows. For example, <code class="docutils literal notranslate"><span class="pre">trim</span></code> analysis
+requires flight speed, altitude, load factor, and location of CG. Below is an example of
+<code class="docutils literal notranslate"><span class="pre">VLM-trim-analysis</span></code> runcase.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RUN</span> <span class="p">:</span> <span class="n">VLM</span><span class="o">-</span><span class="n">trim</span><span class="o">-</span><span class="n">analysis</span>
+<span class="n">altitude</span> <span class="p">:</span> <span class="mi">600</span>
+<span class="n">velocity</span> <span class="p">:</span> <span class="mf">66.6</span>
+<span class="p">(</span><span class="n">aileron</span><span class="p">)</span> <span class="p">:</span> <span class="mi">10</span>
+<span class="p">(</span><span class="n">loadfactor</span><span class="p">)</span> <span class="p">:</span> <span class="mf">1.5</span>
+<span class="p">(</span><span class="n">cg</span><span class="o">-</span><span class="n">location</span><span class="p">)</span> <span class="p">:</span> <span class="n">aft</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Here, () means optional setting inputs</p></li>
+</ul>
+<p>You can find more information about the analysis runcases in <a class="reference internal" href="available_analysis.html"><span class="doc">Available Analysis Runcases</span></a>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

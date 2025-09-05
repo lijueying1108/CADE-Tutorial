@@ -1,0 +1,79 @@
+# Sizing
+
+This section explains about aircraft sizing module inside CADE platform.
+
+<br>
+
+## What is Aircraft Sizing
+
+**Aircraft Sizing** is one of the early design processes that make conceptual sketch of aircraft to be parameterized. After Concept Development Stage, aircraft has its only sketch, without any dimensional parameter such as size of Wing(Area, Span, etc.), Rotor(Radious, Chord, etc.), Weight(Structural, Motor, Battery, etc.). With some non-dimensional and technical assumption value, aircraft's early specification can be determinined. After Sizing process, aircraft can be developed from conceptual level to early design level.
+
+<br>
+
+## Installation and Setup
+
+- [Installation and Setup for CADE-Sizing](installation_and_setup.md)
+
+<br>
+
+## Available Vehicles
+
+Vehicle types available for CADE Sizing are listed below :
+
+**Power Train Type**
+- Battery
+- Hydrogen Fuel Cell
+- Hybrid (Battery + Hydrogen Fuelcell)
+
+**Flight Mode Type**
+- VTOL (Vertical Take-Off and Landing)
+    - Multicopter Type
+    - Tilting Type (All rotor Tilt, Portion of Rotor Tilted)
+    - Lift + Cruise Type
+- CTOL (Conventional Take-Off and Landing)
+
+<br>
+
+## Program Structure
+
+You can find program structure at the link below:
+
+- [Program Structure of CADE-Sizing](sizing_program_structure.md)
+
+<br>
+
+## Input Files
+
+There are two main input files to run CADE Sizing.
+
+### > Sizing Input
+
+The first one is **'Sizing Input File'**, which contains information about conceptual and technological informations.
+
+- How the **'Conceptual layout'** looks like?
+- How good is the **'Assumed Aerodynamic characteristic'**?
+- How good is the **'Assumed technology of Propulsion components'**?
+- How good is the **'Assumed technology of Energy components'**?
+- How heavy are the **'Payload mass and Assumed portion of aircraft'**?
+
+You can find more detailed explanations and examples of sizing input files at the link below :
+
+- [Sizing Input examples](sizing_input_example.rst)
+
+### > Mission Profile
+
+Another input file required for the sizing is the **'Mission Profile'**, which contains information about expected mission of aircraft.
+
+This file include the <span style="color:rgb(24, 80, 145);">(1) type of mission segment, (2) altitude, (3) speed, (4) time and (5) degree of hybridization.</span>
+
+You can find more detailed explanations and examples of mission profile input files at the link below :
+
+- [Mission Input examples](sizing_mission_profile.rst)
+
+<br>
+
+## Manuals
+
+You can check more detailed explanations about the theoretical backgrounds (Theory Manual) and how to run the analysis (User Manual) of CADE Sizing program at the link below :
+
+- [Sizing Theory Manual](sizing_theory.md)

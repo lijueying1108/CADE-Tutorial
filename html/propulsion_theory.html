@@ -1,0 +1,979 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Propulsion Theory Manual &mdash; ADSP 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Performance and Mission Analysis Theory Manual" href="performance_theory.html" />
+    <link rel="prev" title="Weight and Balance Theory Manual" href="weight_and_balance_theory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ADSP
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="vehicles.html">Vehicles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation_and_setup.html">Installation and Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first_run.html">First Run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program_structure.html">Program structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cmd_input.html">Command input file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config_input.html">Aircraft Configuration Input File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_databases.html">Component Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="available_analysis.html">Available Analysis Runcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="configuration_theory.html">Configuration Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weight_and_balance_theory.html">Weight and Balance Theory Manual</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Propulsion Theory Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#goal-of-propulsion-analysis">Goal of Propulsion Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#propeller-analysis">Propeller Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#electic-speed-controller-esc">Electic Speed Controller(ESC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#motor-analysis">Motor Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#battery">Battery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hydrogen-fuel-cell-modeling">Hydrogen Fuel Cell Modeling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gibbs-energy-enthalpy-entropy-relation">Gibbs Energy, Enthalpy, Entropy Relation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hydrogen-fuel-cell-performance-analysis">Hydrogen Fuel Cell Performance Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uav-propulsion-system-analysis">UAV Propulsion System Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uam-propulsion-system-introduction">UAM Propulsion System Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#propeller-model">Propeller Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction-to-blade-element-momentum-theory-bemt">Introduction to Blade Element Momentum Theory (BEMT)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#blade-element-theory-bet">Blade Element Theory (BET)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#momentum-theory">Momentum Theory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combining-bet-and-momentum-theory">Combining BET and Momentum Theory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-prediction">Performance Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mathematical-formulation-of-blade-element-theory">Mathematical Formulation of Blade Element Theory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Momentum Theory</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#motor">Motor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#motor-modeling">Motor Modeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#motor-model-validation">Motor Model Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validated-data">Validated data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#inverter">Inverter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#inverter-modeling">Inverter Modeling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#converter">Converter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#converter-model">Converter Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Battery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#battery-model">Battery Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#battery-chemistry-model-and-parameter">Battery Chemistry Model and Parameter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#battery-parameters">Battery Parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="performance_theory.html"><strong>Performance and Mission Analysis Theory Manual</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance_theory.html#performance-analysis-module-flight-segment-analysis-and-point-performance-optimization"><strong>Performance Analysis Module/Flight Segment Analysis and Point Performance Optimization</strong></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ADSP</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Propulsion Theory Manual</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/propulsion_theory.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="propulsion-theory-manual">
+<h1>Propulsion Theory Manual<a class="headerlink" href="#propulsion-theory-manual" title="Link to this heading"></a></h1>
+<section id="goal-of-propulsion-analysis">
+<h2>Goal of Propulsion Analysis<a class="headerlink" href="#goal-of-propulsion-analysis" title="Link to this heading"></a></h2>
+<p>This is the theory manual for Electrical Propulsion System and Mission
+analysis.</p>
+<p>We analyze components in EPS System. You can be see can be seen in</p>
+<p><img alt="Propulsion in ADSP" src="../_images/eps.png" />
+Propulsion Analysis Module is calculated based on below.</p>
+<ol class="arabic simple">
+<li><p>Flight Condition</p></li>
+<li><p>User Control(Throttle)</p></li>
+<li><p>Use Wind Tunnel Data</p></li>
+</ol>
+<p><img alt="System analysis Fidelity" src="../_images/system_analysis.jpg" /></p>
+</section>
+<section id="propeller-analysis">
+<h2>Propeller Analysis<a class="headerlink" href="#propeller-analysis" title="Link to this heading"></a></h2>
+<p>Propeller Analysis’s purpose is calculating generate various forces
+from the rotatory power. In this analysis module, there are three
+parameters which can be calculated.</p>
+<p>First, Thrust: propulsive force.</p>
+<p>Second, Torque: opposing force to the rotating motion.</p>
+<p>Third, Mechanical Power  (Power : work per unit of time)</p>
+<ul class="simple">
+<li><p>Theory</p>
+<ol class="arabic simple">
+<li><p>Blade element theory + momentum theory</p></li>
+<li><p>Calculate characteristics of the thin strip of blade</p></li>
+<li><p>Derive total blade performance by summation</p></li>
+<li><p>Iterative method for the BEMT analysis</p></li>
+</ol>
+</li>
+</ul>
+<p><img alt="BEMT_flowchart" src="../_images/bemt_analysis.jpg" /></p>
+<ul class="simple">
+<li><p>Propeller Analysis Progress</p></li>
+</ul>
+<p>BEMT analysis Flow is below.</p>
+<ol class="arabic simple">
+<li><p>Set Blade Advance Ratio</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[J=V/nD\]</div>
+<p>Where,</p>
+<p>n   :    Rotate velocity per second</p>
+<p>J   :    Advance Ratio</p>
+<p>V   :   Velocity(<span class="math notranslate nohighlight">\(m/s\)</span>)</p>
+<p>D   :   Propeller Diameter(<span class="math notranslate nohighlight">\(inch\)</span>)</p>
+<ol class="arabic simple" start="2">
+<li><p>Calculate Inflow Angle and relative velocity.</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\phi = \beta-\alpha\]</div>
+<div class="math notranslate nohighlight">
+\[W=\pi xnD/cos\phi\]</div>
+<p>Where,</p>
+<p><span class="math notranslate nohighlight">\(\beta\)</span>    :    Pitch Angle(deg)</p>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span>   :    AOA of Blade Element(deg)</p>
+<p><span class="math notranslate nohighlight">\(\phi\)</span>   :   Inflow Angle(rad)</p>
+<p><span class="math notranslate nohighlight">\(W\)</span>    :   relative Velocity(<span class="math notranslate nohighlight">\(m/s\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(r\)</span>    :   distance from center of disk to propeller to be analyzed(<span class="math notranslate nohighlight">\(inch\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(x\)</span>   :     <span class="math notranslate nohighlight">\(r\)</span> / (<span class="math notranslate nohighlight">\(0.5*D\)</span>)</p>
+<ol class="arabic simple" start="3">
+<li><p>Calculate lift, drag coefficient and Directional Force of Blades.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Using C81 Table</p>
+<ul>
+<li><p>Propeller geometry(thickness,camber), <span class="math notranslate nohighlight">\(x\)</span>, Mach</p></li>
+<li><p>Method   :   Ansys fluent</p></li>
+<li><p>Get information about <span class="math notranslate nohighlight">\(C_l\)</span>, <span class="math notranslate nohighlight">\(C_d\)</span></p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\lambda_{t}=C_{l}cos(\phi)-C_{d}sin(\phi)\]</div>
+<div class="math notranslate nohighlight">
+\[\lambda_{p}=C_{l}sin(\phi)+C_{d}cos(\phi)\]</div>
+<p>Where,</p>
+<p><span class="math notranslate nohighlight">\(C_l\)</span> = Lift Coefficient</p>
+<p><span class="math notranslate nohighlight">\(C_d\)</span> = Drag Coefficient</p>
+<p><span class="math notranslate nohighlight">\(\lambda_{t}\)</span>   :   Vertical Force Coefficient(On Blade Cross Section)</p>
+<p><span class="math notranslate nohighlight">\(\lambda_{p}\)</span>   :   Horizontal Force Coefficient(On Blade Cross Section)</p>
+<ol class="arabic simple" start="4">
+<li><p>Calculate blade Element force.</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[dT=0.5\rho W^2\lambda_{t}cB\]</div>
+<div class="math notranslate nohighlight">
+\[dQ=0.5\rho W^2\lambda_{p}cBr\]</div>
+<p>Where,</p>
+<p><span class="math notranslate nohighlight">\(\rho\)</span>  :   Density(<span class="math notranslate nohighlight">\(kg/m^3\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(c\)</span>   :   Chord(<span class="math notranslate nohighlight">\(inch\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(B\)</span>  :   Number of Blades</p>
+<ol class="arabic simple" start="5">
+<li><p>Calculate solidity ratio.</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\sigma=cB/2\pi r\]</div>
+<p>Where,</p>
+<p><span class="math notranslate nohighlight">\(\sigma\)</span>   :    Solidity Ratio(Propeller disk area to actual blade area ratio)</p>
+<ol class="arabic simple" start="6">
+<li><p>Calculate Prandtl loss Factor F.</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[f = B(1/x -1)/2sin{\phi}\]</div>
+<div class="math notranslate nohighlight">
+\[F = 2cos^{-1}(e^{-f})/\pi\]</div>
+<p>Where,</p>
+<p>f     :    Prandtl Tip Loss parameters</p>
+<p>F    :    Prandtl Tip Loss Factor(the reduction in efficiency that occurs near the tips of the blades)</p>
+<ol class="arabic simple" start="7">
+<li><p>Calculate advance ratio(<span class="math notranslate nohighlight">\(J\)</span>).</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[J=\pi x(4Fsin^{2}\phi-\lambda_{t}\sigma)/(4Fsin{\phi}cos{\phi}+\lambda_{p}\sigma)\]</div>
+<ol class="arabic simple" start="8">
+<li><p>Compare Process 1-(setting <span class="math notranslate nohighlight">\(J\)</span>) and 7-(calculate <span class="math notranslate nohighlight">\(J\)</span>).</p></li>
+</ol>
+<ul class="simple">
+<li><p>If Values(<span class="math notranslate nohighlight">\(J\)</span>) are same, Calculate Performance Parameters</p></li>
+<li><p>If Values(<span class="math notranslate nohighlight">\(J\)</span>) are different, Return Process 2</p></li>
+</ul>
+<ol class="arabic simple" start="9">
+<li><p>Continue Next Blade Element.</p></li>
+</ol>
+<p>Go back to Process 1 and repeat execution.</p>
+<div class="math notranslate nohighlight">
+\[T=\int_{r_{start}}^{r_{tip}}dTdr\]</div>
+<div class="math notranslate nohighlight">
+\[Q=\int_{r_{start}}^{r_{tip}}dQdr\]</div>
+<div class="math notranslate nohighlight">
+\[ P = 2\pi nQ\]</div>
+<div class="math notranslate nohighlight">
+\[ C_T = T/\rho n^2d^4\]</div>
+<div class="math notranslate nohighlight">
+\[ C_P= Q/\rho n^3d^5\]</div>
+<div class="math notranslate nohighlight">
+\[ C_Q = Q/\rho n^2d^5\]</div>
+<div class="math notranslate nohighlight">
+\[\eta_{prop} = (C_t/C_p)*J \]</div>
+<p>Where,</p>
+<p><span class="math notranslate nohighlight">\(C_T\)</span>    :   Thrust Coefficient</p>
+<p><span class="math notranslate nohighlight">\(C_P\)</span>     :    Power Coefficient</p>
+<p><span class="math notranslate nohighlight">\(C_Q\)</span>   :   Torque Coefficient</p>
+<p><span class="math notranslate nohighlight">\(\eta_{prop}\)</span>  :   Propeller Efficiency(%)</p>
+<p>T   :  Thrust(N)</p>
+<p>P   :   Power(W)</p>
+<p>Q   :   Torque(Nm)</p>
+</section>
+<section id="electic-speed-controller-esc">
+<h2>Electic Speed Controller(ESC)<a class="headerlink" href="#electic-speed-controller-esc" title="Link to this heading"></a></h2>
+<p>ESC analysis’s purpose is calculating voltage through ESC.ESC transfers
+the battery voltage to the phased wave form. First, Enables to control
+the rotation of the motor. Second, Send the current that the motor
+requires. The average voltage according to the PWM duty cycle.
+Based on the input battery voltage, calculate the ESC output voltage.</p>
+<ul class="simple">
+<li><p>ESC Analysis Equation</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[I_{mot} = I_{esc}\]</div>
+<div class="math notranslate nohighlight">
+\[V_{ESC}=(V_{battery}-I_{mot}*R_{ESC})*throttle\]</div>
+<p>Where,</p>
+<p><span class="math notranslate nohighlight">\(V_{batt}\)</span>  :   Battery Voltage(V)</p>
+<p><span class="math notranslate nohighlight">\(I_{mot}\)</span>   :   Motor Current(A)</p>
+<p><span class="math notranslate nohighlight">\(I_{ESC}\)</span>   :   ESC Output Voltage (V)</p>
+<p><span class="math notranslate nohighlight">\(R_{ESC}\)</span>   :    ESC Resistance(<span class="math notranslate nohighlight">\(\Omega\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(throttle\)</span>   :   Specific throttle value(%/100)</p>
+<p><span class="math notranslate nohighlight">\(V_{ESC}\)</span>    :    ESC Output Voltage(V)</p>
+</section>
+<section id="motor-analysis">
+<h2>Motor Analysis<a class="headerlink" href="#motor-analysis" title="Link to this heading"></a></h2>
+<p>Motor analysis module’s purpose is calculating Electrical motor converts
+electrical power into mechanical power. We use “electrical circuit
+model” for motor analysis. With Motor &amp; Propeller Torque Matching,
+Calculate the amount of the current that the motor requires to rotate.
+Due to the RPM and torque equilibrium, these parameters of motor and
+propeller are the same. Derive the motor RPM based on the
+specifications, motor required current, and voltage from the ESC.</p>
+<p><img alt="Motor_Equivalent Circuit Model" src="../_images/motor_ecm.jpg" />
+<img alt="Motor_Torque Matching" src="../_images/motor_propeller_torque.jpg" /></p>
+<ul class="simple">
+<li><p>Motor Analysis Equation</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[I_{mot} =  Q /(60/2\pi K_V) + I_0\]</div>
+<div class="math notranslate nohighlight">
+\[RPM = K_V *(V_{ESC}-R_{mot}I_{mot})\]</div>
+<p>Where,</p>
+<p><span class="math notranslate nohighlight">\(K_V\)</span>   :   Velocity Constant of Motor(<span class="math notranslate nohighlight">\(RPM/V\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(K_t\)</span>    :   Torque Constant of Motor(<span class="math notranslate nohighlight">\(V/(rad/s)\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(I_0\)</span>    :   Idle current of Motor(A)</p>
+<p>Q   :   Torque(Nm)</p>
+<p><span class="math notranslate nohighlight">\(R_{mot}\)</span>   :   Motor Resistance (<span class="math notranslate nohighlight">\(\Omega\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(RPM\)</span>    :   Motor Rotate Per Minute</p>
+</section>
+<section id="battery">
+<h2>Battery<a class="headerlink" href="#battery" title="Link to this heading"></a></h2>
+<p>Battery is the energy source of the propulsion system which provides the electrical energy to the system from the chemical energy. We can cosider voltage drop of battery that each cell of the electric battery has tendency of decreasing output cell voltage according to the SOC. Below picture is for LiPo Battery Voltage Drop. First, We calculate Drain. Second, calculate SOC</p>
+<p><img alt="Li-Po Battery Voltage Drop" src="../_images/battery_Vsoc_drop.jpg" /></p>
+<ul class="simple">
+<li><p>Battery analysis equation</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[Drain = I_{batt}*\Delta t\]</div>
+<div class="math notranslate nohighlight">
+\[SOC = ({Q_{batt} - Drain})/{Q_{batt}}\]</div>
+<p><img alt="Battery Analysis Process" src="../_images/Battery_scheme.jpg" /></p>
+<p>Where,</p>
+<p>SOC(%)   :    State of Charge(%)</p>
+<p><span class="math notranslate nohighlight">\(I_{batt}\)</span>  :   Current(A)</p>
+<p>t   : Time(s)</p>
+<p><span class="math notranslate nohighlight">\(Q_{batt}\)</span>  :   Current Capacity(<span class="math notranslate nohighlight">\(Ah\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(R_{batt}\)</span>  :   Battery Resistance(<span class="math notranslate nohighlight">\(\Omega\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(V_{cutoff}\)</span>   :   Cutoff Voltage(V)</p>
+<p><span class="math notranslate nohighlight">\(V_{cell}\)</span>   :   Cell Voltage(V)</p>
+<p><span class="math notranslate nohighlight">\(R_{batt}\)</span>    :   Resistance(<span class="math notranslate nohighlight">\(\Omega\)</span>)</p>
+</section>
+<section id="hydrogen-fuel-cell-modeling">
+<h2>Hydrogen Fuel Cell Modeling<a class="headerlink" href="#hydrogen-fuel-cell-modeling" title="Link to this heading"></a></h2>
+<p>Hydrogen fuel cell is the energy source of the propulsion system.It Provides the electrical energy to the system from the chemical energy. First, we calculate Open Circuit voltage of Hydrogen Fuel Cell based on thermaldynamic equation. Second, we use Nernst equation of Hydrogen fuel cell for calculating fuel cell’s voltage drop(Resistance).Finally,To calculate Voltage Losses which have a role of  Resistance of Fuel Cell.To Find Stack Voltage which satisfies <span class="math notranslate nohighlight">\(𝑃_{FC}^{req}\)</span> from Propulsion Analysis</p>
+<p><img alt="HFC Analysis Process" src="../_images/hfc_analysis.jpg" /></p>
+<ul class="simple">
+<li><p>Hydrogen Fuel Cell Modeling Equation</p></li>
+</ul>
+<section id="gibbs-energy-enthalpy-entropy-relation">
+<h3>Gibbs Energy, Enthalpy, Entropy Relation<a class="headerlink" href="#gibbs-energy-enthalpy-entropy-relation" title="Link to this heading"></a></h3>
+<p>Entropy
+<span class="math notranslate nohighlight">\(s_T=s_{Air,temp}+\int_{air,temp}^Tc_p/TdT\)</span></p>
+<p>Enthalpy
+<span class="math notranslate nohighlight">\(h_T=h_{Air,temp}+\int_{air,temp}^Tc_p/TdT\)</span></p>
+<p>Gibss Energy
+<span class="math notranslate nohighlight">\(\Delta g_f=\Delta h_f-T\Delta s_f\)</span></p>
+<p>Production(Water)
+<span class="math notranslate nohighlight">\(\Delta g_f - \Delta g_f{Reactant(Hydrogen,Oxygen)}\)</span></p>
+<p>Open Circuit Voltage
+<span class="math notranslate nohighlight">\(V_{OCV} = -\Delta g_f/(2*F) + \Delta V_{pressure}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Delta V_{pressure} = R*T/(2*F)\ln(a_{O_2}^{0.5}*a_{H_2}/a_{H_2O})\)</span></p>
+<p>Nernst Equation
+<span class="math notranslate nohighlight">\(V_{cell}=V_{OCV}-V_{activation}-V_{ohmic}-V_{mass}\)</span></p>
+<p>Activation Loss
+<span class="math notranslate nohighlight">\(V_{activation} = A*\ln{(i_{density}+i_n)/i_0}\)</span></p>
+<p>Resistance Loss
+<span class="math notranslate nohighlight">\(V_{ohmic} = i_{density}*r_{cell}\)</span></p>
+<p>Mass Transportation Loss
+<span class="math notranslate nohighlight">\(V_{mass} = -B*\ln (1-i_{density}/i_l)\)</span></p>
+<p><img alt="Polarization curve from Nernst Equation" src="../_images/Nenst_equation.jpg" /></p>
+<p><img alt="Polarization curve from Nernst Equation" src="../_images/voltage_power_matching.jpg" /></p>
+<p>Where,</p>
+<p><span class="math notranslate nohighlight">\(P_{FC}\)</span>    :   Electrical Power(<span class="math notranslate nohighlight">\(W\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(T_{operate}\)</span>    :   FC Operating Temperature(<span class="math notranslate nohighlight">\(K\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(n_{cell}\)</span>   :    Number of Cells</p>
+<p><span class="math notranslate nohighlight">\(A_{active}\)</span>    :    Active Area(<span class="math notranslate nohighlight">\(cm^2\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(A\)</span>   :     Tafel Constant(V)</p>
+<p><span class="math notranslate nohighlight">\(i_n\)</span>     :     Exchange Current Density(<span class="math notranslate nohighlight">\(mA/cm^2\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(i_{density}\)</span>    :    Current Density(<span class="math notranslate nohighlight">\(mA/cm^2\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(i_0\)</span>     :    Inner Current Density (<span class="math notranslate nohighlight">\(mA/cm^2\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(i_l\)</span>   : Limiting Current Density (<span class="math notranslate nohighlight">\(mA/cm^2\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(R_{ohmic}\)</span>     :    Ohmic Resistance(<span class="math notranslate nohighlight">\(\Omega\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(B\)</span>    :    Mass-transport parameters</p>
+<p><span class="math notranslate nohighlight">\(m\)</span>    :    Mass Transport Constant 1 (V)</p>
+<p><span class="math notranslate nohighlight">\(n\)</span>    :    Mass Transport Constant 2 (<span class="math notranslate nohighlight">\(cm^2/mA\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(p_{O_2}\)</span>   :    FC Operating Oxygen Pressure(bar)</p>
+<p><span class="math notranslate nohighlight">\(p_{H_2}\)</span>    :    FC Operating Hydrogen Pressure(bar)</p>
+<p><span class="math notranslate nohighlight">\(\dot m_{H_2}\)</span>    :    Hydrogen Consumption Rate(<span class="math notranslate nohighlight">\(g/s\)</span>)</p>
+</section>
+</section>
+<section id="hydrogen-fuel-cell-performance-analysis">
+<h2>Hydrogen Fuel Cell Performance Analysis<a class="headerlink" href="#hydrogen-fuel-cell-performance-analysis" title="Link to this heading"></a></h2>
+<p>To Calculate Hydrogen Consumption Rate, we use “Stoichiometric Theory”. Convert Electric &amp; Chemical parameters to Quantative Parameters by using Stoichiometric.</p>
+<ul class="simple">
+<li><p>HFC Performance Analysis Equation</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(H_2\)</span> Consumption Rate(g/s)
+<span class="math notranslate nohighlight">\(\dot m_{H_2} = P_{FC}/(2 *V_{cell}* F) =  1.05*10^{-5}*P_{FC}^{req}/V_{cell}\)</span></p>
+</section>
+<section id="uav-propulsion-system-analysis">
+<h2>UAV Propulsion System Analysis<a class="headerlink" href="#uav-propulsion-system-analysis" title="Link to this heading"></a></h2>
+<p>In system analysis, we integrate all analysis module and calculate propulsion analysis parameters.</p>
+<p><img alt="System Analysis Flow" src="../_images/system_analysis_flow.jpg" /></p>
+<ul class="simple">
+<li><p>System Analysis Equation</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Set Initial Value</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[RPM_i,I_{batt},I_{mot}\]</div>
+<ol class="arabic simple" start="2">
+<li><p>Calculate Battery Voltage</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[V_{batt}=N_{cell}V_{cell}-I_{batt}R_{cell}\]</div>
+<ol class="arabic simple" start="3">
+<li><p>Calculate ESC Voltage</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[V_{esc}=(V_{batt}-I_{mot}R_{esc})throttle\]</div>
+<ol class="arabic simple" start="4">
+<li><p>Calculate Propeller Torque</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[P=C_p(\rho n^3D^3)\]</div>
+<div class="math notranslate nohighlight">
+\[Q=P/\omega\]</div>
+<ol class="arabic simple" start="5">
+<li><p>Calculate Motor required Current</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[I_{mot}=Q/(60/2\pi K_V)+I_0\]</div>
+<ol class="arabic simple" start="6">
+<li><p>Calculate Motor RPM</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[RPM_{i+1}=K_V*(V_{esc}-R_{mot}I_{mot})\]</div>
+<ol class="arabic simple" start="7">
+<li><p>Calcultate Battery Current</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[I_{batt}=(N_{mot}*(I_{mot}V_{esc})+P_{sub})/V_{batt}\]</div>
+<ol class="arabic simple" start="8">
+<li><p>If</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[RPM_{i+1}=RPM_{i}\]</div>
+<p>Iteration stops, save the current analysis result</p>
+<ol class="arabic simple" start="9">
+<li><p>If not,</p></li>
+</ol>
+<ul class="simple">
+<li><p>Go back to 1)</p></li>
+<li><p>Update <span class="math notranslate nohighlight">\(RPM,I_{batt},I_{mot}\)</span></p></li>
+</ul>
+<p>Where,</p>
+<p><span class="math notranslate nohighlight">\(N_{mot}\)</span>   :   Motor Number connected with Electric Battery</p>
+</section>
+<section id="uam-propulsion-system-introduction">
+<h2>UAM Propulsion System Introduction<a class="headerlink" href="#uam-propulsion-system-introduction" title="Link to this heading"></a></h2>
+<p>The propulsion system for a typical Urban Air Mobility(UAM) vehicle is shown below. The  system starts with a battery that supplies DC Power. A converter converts DC power to a suitable voltage level before feeding it to an inverter. The inverter’s role is to transform the DC in to AC power, which the motor requires. A controller oversees this process, adjusting the inverter’s output through a control signal to manage the duty cycle and ensure the motor operates correctly. It also receives feedback from the motor to make real-time adjustments, optimizing performance and efficiency. The Motor, driven by AC power, generates torque transmitted through a gearbox (if needed). The gearbox adjusts the motor torque and RPM to the optimal levels for the propeller. The propeller, driven by the adjusted RPM and Torque, creates the necessary thrust to lift and propel the UAM vehicle. This complex integration ensures the UAM system operates with high efficiency, precision, and reliability which are vital for the demands of Urban Air Transportation.</p>
+<p><img alt="UAM Propulsion System" src="../_images/prop-uam.png" /></p>
+<p>Distributed Electric Propulsion (DEP) is the system designed for efficient and reliable operation in electric aircraft. The DEP System distributes the propulsion power across multiple units, which can improve efficiency, redundancy, and control. This design allows for more precise thrust management and can enhance the aircraft safety and performance by providing multiple propulsion sources. If one unit fails, the others can continue to operate, ensuring continued flight capabilities. This setup is especially beneficial for electric aircraft, where maximizing efficiency and reliability is crucial.</p>
+<p><img alt="Distributed Electric Propulsion" src="../_images/prop-all-electric.png" /></p>
+</section>
+<section id="propeller-model">
+<h2>Propeller Model<a class="headerlink" href="#propeller-model" title="Link to this heading"></a></h2>
+<p>The Propeller performance is estimated using a physics-based approach, viz., Blade Element Momentum Theory.</p>
+<section id="introduction-to-blade-element-momentum-theory-bemt">
+<h3>Introduction to Blade Element Momentum Theory (BEMT)<a class="headerlink" href="#introduction-to-blade-element-momentum-theory-bemt" title="Link to this heading"></a></h3>
+<p>Blade Element Momentum Theory (BEMT) is a fundamental method used in aerodynamics and propeller analysis to predict the performance of propellers, wind turbines, and other rotary wings. It combines the principles of blade element theory and momentum theory to provide a comprehensive understanding of the forces and moments acting on each blade of a propeller. BEMT is widely used due to its balance between accuracy and computational efficiency, making it suitable for preliminary design and detailed performance analysis.</p>
+<section id="blade-element-theory-bet">
+<h4>Blade Element Theory (BET)<a class="headerlink" href="#blade-element-theory-bet" title="Link to this heading"></a></h4>
+<p>Blade Element Theory divides the propeller blade into small, discrete elements along its span. Each blade element is analyzed independently to determine the local aerodynamic forces acting on it. The key steps include:</p>
+<ul class="simple">
+<li><p>Dividing the Blade: The blade is segmented into several small elements, each with its own local chord length, twist angle, and airfoil properties.</p></li>
+<li><p>Calculating Local Forces: For each blade elements, the lift and drag forces are calculated based on the local angle of attack and relative wind speed. These forces are resolved into thrust and torque components.</p></li>
+</ul>
+</section>
+<section id="momentum-theory">
+<h4>Momentum Theory<a class="headerlink" href="#momentum-theory" title="Link to this heading"></a></h4>
+<p>Momentum Theory applies mass and momentum conservation principles to the airflow through the propeller disk. it considers the propeller and actuator disk that imparts momentum to the air, resulting in thrust. The key aspects include:</p>
+<ul class="simple">
+<li><p>Axial Momentum: The change in axial momentum of the airflow is used to determine the thrust generated by the propeller.</p></li>
+<li><p>Angular Momentum: The change in angular momentum is used to calculate the torque required to rotate the propeller.</p></li>
+</ul>
+</section>
+<section id="combining-bet-and-momentum-theory">
+<h4>Combining BET and Momentum Theory<a class="headerlink" href="#combining-bet-and-momentum-theory" title="Link to this heading"></a></h4>
+<p>BEMT combines the local blade element forces with the overall momentum changes to provide a complete picture of the propeller’s performance. The integration process involves:</p>
+<ul class="simple">
+<li><p>Iterative Process: An iterative approach matches the local inflow angles and induced velocities predicted by momentum theory with those calculated from BET</p></li>
+<li><p>Induced Velocity Correction: The theory accounts for the induced velocity (downwash) caused by the propeller, which affects the angle of attack and, consequently, the lift and drag forces on each blade element.</p></li>
+</ul>
+</section>
+<section id="performance-prediction">
+<h4>Performance Prediction<a class="headerlink" href="#performance-prediction" title="Link to this heading"></a></h4>
+<p>By integrating the forces and moments across all blade elements, BEMT provides critical performance parameters of the propeller, such as:</p>
+<ul class="simple">
+<li><p>Thrust: The total axial force generated by the propeller.</p></li>
+<li><p>Torque: The total rotational force required to drive the propeller.</p></li>
+<li><p>Efficiency: The ratio of useful power output (thrust power) to mechanical power input.</p></li>
+</ul>
+</section>
+</section>
+<section id="mathematical-formulation-of-blade-element-theory">
+<h3>Mathematical Formulation of Blade Element Theory<a class="headerlink" href="#mathematical-formulation-of-blade-element-theory" title="Link to this heading"></a></h3>
+<p>This approach involves the blade element analysis, where the propeller blade is divided into numerous sections. For each section, lift and drag forces are calculated based on their unique airfoil characteristics and the prevailing operational conditions, similar to the force dynamics on an aircraft wing. These forces are then resolved along the propeller axis to determine the propeller’s resultant thrust and torque.</p>
+<p><img alt="Propeller Analysis using blade element model" src="../_images/bem.png" /></p>
+<p>The forces generated by an elemental blade section are mathematically represented as axial force (<span class="math notranslate nohighlight">\(dT\)</span>) and angular force (<span class="math notranslate nohighlight">\(dQ\)</span>). These forces, acting in a plane perpendicular to the blade, are derived from the differential lift (<span class="math notranslate nohighlight">\(dL\)</span>) and drag (<span class="math notranslate nohighlight">\(dD\)</span>) forces, considering the inflow angle (<span class="math notranslate nohighlight">\(\phi\)</span>)</p>
+<div class="math notranslate nohighlight">
+\[dT = dL cos\phi - dD sin\phi\]</div>
+<div class="math notranslate nohighlight">
+\[dQ = dL sin\phi + dD cos\phi\]</div>
+<p>We further express them in terms of the local resultant wind speed (<span class="math notranslate nohighlight">\(V_{R}\)</span>), chord length (<span class="math notranslate nohighlight">\(c_{r}\)</span>), air density (<span class="math notranslate nohighlight">\(\rho\)</span>) and aerodynamic coefficient (<span class="math notranslate nohighlight">\(C_{l},C_{d}\)</span>)</p>
+<div class="math notranslate nohighlight">
+\[dT = 0.5\rho V_{R}^2 c_{r} dr[C_{l}(\alpha) cos\phi - C_{d}(\alpha) sin\phi]\]</div>
+<div class="math notranslate nohighlight">
+\[dQ = 0.5\rho V_{R}^2 c_{r} dr[C_{l}(\alpha) sin\phi + C_{d}(\alpha) cos\phi]\]</div>
+<p><span class="math notranslate nohighlight">\(V_{R}\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> are calculated using the free stream velocity (<span class="math notranslate nohighlight">\(V_{\infty}\)</span>), rotational speed (<span class="math notranslate nohighlight">\(\Omega\)</span>), and the axial and angular induction factor (<span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(a^{\prime}\)</span>)</p>
+<div class="math notranslate nohighlight">
+\[V_{R} = \sqrt{[V_{\infty}(1+a)]^2 + [\Omega r (1-a^{\prime})]^2}\]</div>
+<div class="math notranslate nohighlight">
+\[\phi = \tan^{-1} \left[ \frac{V_\infty (1 + a)}{\Omega r (1 - a')} \right]\]</div>
+<p>The differential thrust (<span class="math notranslate nohighlight">\(dT\)</span>) and torque (<span class="math notranslate nohighlight">\(d\tau\)</span>) are computed as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    dT = \sigma_{r} \frac{(1+a)^2}{\sin^2 \phi}\left[C_l(\alpha) \cos \phi - C_d(\alpha) \sin \phi\right] V_{\infty}^2 \rho \pi r dr \\
+    d\tau = \sigma_{r} \frac{(1+a)^2}{\sin^2 \phi}\left[C_l(\alpha) \sin \phi + C_d(\alpha) \cos \phi\right] V_{\infty}^2 \rho \pi r^2 dr \
+\end{aligned}\end{split}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\sigma_{r} = \frac{B c_{r}}{2 \pi r}\)</span> represents the blade solidity, with <span class="math notranslate nohighlight">\(B\)</span> being the number of propeller blades.</p>
+<section id="id1">
+<h4>Momentum Theory<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<p>Momentum theory is based on conceptualizing the propeller as an actuator disk. This idealization represents the propeller as an infinitely thin disk that induces a minor velocity increment (<span class="math notranslate nohighlight">\(u\)</span>) in the flow direction.</p>
+<p><img alt="Propeller analysis using momentum theory" src="../_images/disk.png" /></p>
+<p>The analysis assumes that energy states before and after the propeller remain conserved. Applying Bernoulli’s theorem, we can express the pressure difference across the actuator disk.</p>
+<div class="math notranslate nohighlight">
+\[\Delta p = 0.5 \rho V_{\infty}^2 4a(1+a)\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(\Delta p\)</span>    :   Pressure difference</p>
+<p><span class="math notranslate nohighlight">\(\rho\)</span>    :    Air Density</p>
+<p><span class="math notranslate nohighlight">\(a\)</span>     :    Axial Induction Factor</p>
+<p>Considering the pressure difference over a small area <span class="math notranslate nohighlight">\(dA = 2\pi r dr\)</span> of the disk, the incremental thrust is derived as:</p>
+<div class="math notranslate nohighlight">
+\[dT = 0.5 \rho V_{\infty}^2 4a(1+a) dA\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(r\)</span> : Radial position on the disk</p>
+<p>For the propeller’s rotational effects, the incremental torque (<span class="math notranslate nohighlight">\(d\tau\)</span>) is linked to the change in angular momentum for an elemental annulus of the disk.</p>
+<div class="math notranslate nohighlight">
+\[ d\tau = \rho V_{d} r^2 \omega dA\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(\omega\)</span> : Induced angular velocity</p>
+<p>The angular induction factor , <span class="math notranslate nohighlight">\(a^{\prime}\)</span> can be derived as:</p>
+<div class="math notranslate nohighlight">
+\[ a^{\prime} = \frac{\omega}{2\Omega}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(\Omega\)</span> : Propeller disk angular velocity</p>
+<p>The induced velocity (<span class="math notranslate nohighlight">\(V_{d}\)</span>) through the disk, influenced by <span class="math notranslate nohighlight">\(a\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[ V_{d} = V_{\infty}(1+a)\]</div>
+<p>Integrating the incremental torque over the entire disk yields the total torque:</p>
+<div class="math notranslate nohighlight">
+\[ d\tau = 2a^{\prime}(1+a) \rho V_{\infty} \Omega r^3 \pi dr\]</div>
+<p>To enhance the accuracy of momentum theory, we incorporate corrections as suggested by Glauert, aligning theoretical predictions with empirical data.</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{F}_{T}=\frac{2}{\pi}\cos^{-1}\left[e^{-{\frac{B}{2}\left(\frac{R-r}{r |{\sin\phi}|}\right)}}\right]\]</div>
+<div class="math notranslate nohighlight">
+\[\mathcal{F}_{H}=\frac{2}{\pi}\cos^{-1}\left[e^{-{\frac{B}{2}\left(\frac{r - R_{H}}{R_{H} |{\sin\phi}|}\right)}}\right]\]</div>
+<div class="math notranslate nohighlight">
+\[\mathcal{F} = \mathcal{F}_{T} \mathcal{F}_{H}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{F}_{T}\)</span> : Tip loss correction factor</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{F}_{H}\)</span> : Hub loss correction factor</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{F}\)</span> : Glauert tip-hub loss correction factor</p>
+<p><span class="math notranslate nohighlight">\(B\)</span> : Number of Blade</p>
+<p><span class="math notranslate nohighlight">\(R\)</span> : Propeller Radius</p>
+<p><span class="math notranslate nohighlight">\(r\)</span> : Radial location of a blade element</p>
+<p><span class="math notranslate nohighlight">\(R_{H}\)</span> : Hub radius</p>
+<p><span class="math notranslate nohighlight">\(\phi\)</span> : Inflow angle</p>
+<p>The combined effect is applied to the disk loading equations to align with Blade Element Momentum theory solutions. This yields:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    &amp; \frac{a}{1+a}=\frac{\sigma_r \left[C_l \cos \phi - C_d \sin \phi\right]}{4 \mathcal{F} \sin ^2 \phi} \\
+    &amp; \frac{a^{\prime}}{1+a}=\frac{\sigma_r\left[C_l \sin \phi + C_d \cos \phi\right]}{4 \mathcal{F} \lambda_r \sin ^2 \phi}
+\end{aligned}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\lambda_{r} = \frac {\Omega r}{V_{\infty}}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(\lambda_{r}\)</span> : Tip speed ratio</p>
+<p>we utilize XFOIL for pre-stall aerodynamic coefficients estimation and the Viterna method for post-stall extrapolation:</p>
+<div class="math notranslate nohighlight">
+\[C_{l} = \frac {C_{d_{max}}}{2} sin2\alpha  + k_{l} \frac{cos^2\alpha}{sin\alpha} \]</div>
+<div class="math notranslate nohighlight">
+\[C_{d} = C_{d_{max}}sin^2\alpha + k_{d} cos\alpha\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}C_{d_{max}}= \begin{cases}
+    1.11 + 0.018 \, AR, &amp; \text{if } AR \leq 50 \\
+    2.01, &amp; \text{otherwise}
+\end{cases}\end{split}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(C_{d_{max}}\)</span> : Drag coefficient at <span class="math notranslate nohighlight">\(\alpha\)</span> = 90<span class="math notranslate nohighlight">\(^\circ\)</span></p>
+<p><span class="math notranslate nohighlight">\(k_{l}\)</span> : Correction factor for lift</p>
+<p><span class="math notranslate nohighlight">\(k_{d}\)</span> : Correction factor for drag</p>
+<p><span class="math notranslate nohighlight">\(AR\)</span> : Aspect Ratio</p>
+<p>The coefficient <span class="math notranslate nohighlight">\(k_{l}\)</span> and <span class="math notranslate nohighlight">\(k_{d}\)</span> are calculated using stall coefficients:</p>
+<div class="math notranslate nohighlight">
+\[k_{l} = (C_{l{s}} - C_{d_{max}}sin\alpha_{s}cos\alpha_{s}) \frac {sin\alpha_{s}}{cos^2\alpha_{s}}\]</div>
+<div class="math notranslate nohighlight">
+\[k_d=\frac{C_{d_s}-C_{d_{max}} \sin ^2 \alpha_s}{\cos \alpha_s}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(C_{l_{s}}\)</span> : Lift Coeffcient at stall condition</p>
+<p><span class="math notranslate nohighlight">\(C_{d_{s}}\)</span> : Drag Coeffcient at stall condition</p>
+<p><span class="math notranslate nohighlight">\(\alpha_{s}\)</span> : Stall angle of attack</p>
+<p>To quickly predict <span class="math notranslate nohighlight">\(C_{l},C_{d}\)</span> across various <span class="math notranslate nohighlight">\(Re\)</span> and <span class="math notranslate nohighlight">\(\alpha\)</span>, use kringing-based surrogate model and coupled it to the propeller model. Once the values of <span class="math notranslate nohighlight">\(a,a^{\prime}\)</span> are determined, <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> can be estimated by summing <span class="math notranslate nohighlight">\(dT\)</span> and <span class="math notranslate nohighlight">\(d\tau\)</span> across the entire blade, respectively.</p>
+<div class="math notranslate nohighlight">
+\[C_{T} = \frac {T}{\rho n^2 D^4}\]</div>
+<div class="math notranslate nohighlight">
+\[C_{P} = \frac {P}{\rho n^3 D^5}\]</div>
+<div class="math notranslate nohighlight">
+\[P = 2\pi n \tau\]</div>
+<div class="math notranslate nohighlight">
+\[J = \frac {V}{nD}\]</div>
+<div class="math notranslate nohighlight">
+\[\eta = J \frac {C_{T}}{C_{P}}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(n\)</span> : Propeller speed in rotations per second</p>
+<p><span class="math notranslate nohighlight">\(D\)</span> : Propeller diameter</p>
+<p><span class="math notranslate nohighlight">\(\eta\)</span> : Efficiency</p>
+<p><span class="math notranslate nohighlight">\(J\)</span> : Advanced Ratio</p>
+<p><span class="math notranslate nohighlight">\(P\)</span> : Power</p>
+<p><span class="math notranslate nohighlight">\(T\)</span> : Thrust</p>
+</section>
+</section>
+</section>
+<section id="motor">
+<h2>Motor<a class="headerlink" href="#motor" title="Link to this heading"></a></h2>
+<section id="motor-modeling">
+<h3>Motor Modeling<a class="headerlink" href="#motor-modeling" title="Link to this heading"></a></h3>
+<p>For eVTOL aircraft propulsion, Permanent Magnet Synchronous Motors (PMSM) is more suitable than Brushless DC Motors (BLDC) due to superior compactness, high torque density and rapid response to load changes. PMSM offer greater efficiency, lower noise and improved power density, despite their higher cost and complex control requirements. These features make PMSM the optimal choice for achieving the performance goals of eVTOL aircraft design, ensuring it meets the high standards required for efficient and effective propulsion.</p>
+<p>We use a simplified equivalent circuit model of a PMSM. The stator resistance and synchronous inductance are parameters obtained from motor manufacturers. For analyzing the motor performance, phasor analysis within the d-q reference frame is employed. The rotor magnetic field establishes the d-axis as the reference axis.</p>
+<p><img alt="Phase-Wise equivalent circuit of a PMSM" src="../_images/motor_circuit.png" /></p>
+<div class="math notranslate nohighlight">
+\[E_{\phi,mot(q)} = K_{e} \cdot  \omega_{rotor} = \frac {\omega_{rotor}}{K_{v}}\]</div>
+<div class="math notranslate nohighlight">
+\[Q_{nl} = \frac {P_{mech}}{\omega_{rotor}}\]</div>
+<div class="math notranslate nohighlight">
+\[Q_{em} = Q_{rotor} + Q_{nl}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(E_{\phi,mot(q)}\)</span> : Back electromotive force</p>
+<p><span class="math notranslate nohighlight">\(K_{e}\)</span> : Back EMF constant (<span class="math notranslate nohighlight">\(Vs/rad\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(K_{v}\)</span> : Motor constant (<span class="math notranslate nohighlight">\(rpm/V\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(Q_{nl}\)</span> : No-load torque</p>
+<p><span class="math notranslate nohighlight">\(Q_{rotor}\)</span> : Load torque from the propeller</p>
+<p><span class="math notranslate nohighlight">\(Q_{em}\)</span> : Electromechanical torque</p>
+<p><span class="math notranslate nohighlight">\(P_{mech}\)</span> : Mechanical Power loss of the Motor</p>
+<p>When field weakening is not applied(<span class="math notranslate nohighlight">\(I_{\phi,mot(d)} = 0\)</span>), the magnitude of the phase current is estimated as:</p>
+<div class="math notranslate nohighlight">
+\[|I_{\phi,mot}| = I_{\phi,mot(q)} = \frac{Q_{em}}{3 \cdot K_e} = \frac{Q_{em} \cdot K_v}{3}\]</div>
+<div class="math notranslate nohighlight">
+\[V_{\phi,mot(d)} = -\omega_{rotor} \cdot n_{pp} \cdot L_s \cdot I_{\phi,mot(q)}\]</div>
+<div class="math notranslate nohighlight">
+\[V_{\phi,mot(q)} = E_{\phi,mot(q)} + R_s \cdot I_{\phi,mot(q)}\]</div>
+<div class="math notranslate nohighlight">
+\[|V_{\phi,mot}| = \sqrt{V_{\phi,mot(d)}^2 + V_{\phi,mot(q)}^2}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(V_{\phi,mot(d)}\)</span> : Voltage at d-axis of the motor</p>
+<p><span class="math notranslate nohighlight">\(V_{\phi,mot(q)}\)</span> : Voltage at q-axis of the motor</p>
+<p><span class="math notranslate nohighlight">\(n_{pp}\)</span> : The number of pole pairs</p>
+<p><span class="math notranslate nohighlight">\(L_{s}\)</span> : The synchronous inductance of the motor</p>
+<p><span class="math notranslate nohighlight">\(R_{s}\)</span> : The stator resistance of the motor</p>
+<p><span class="math notranslate nohighlight">\(V_{\phi,mot}\)</span> : The overall voltage magnitude</p>
+<p>The total power loss and input power are given by:</p>
+<div class="math notranslate nohighlight">
+\[P_{cu} = 3 \cdot R_{s} \cdot |I_{\phi,mot}|^2\]</div>
+<div class="math notranslate nohighlight">
+\[P_{loss} = P_{cu} + P_{mech}\]</div>
+<div class="math notranslate nohighlight">
+\[P_{in,mot} = P_{loss} + Q_{rotor} \cdot \omega_{rotor}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(P_{cu}\)</span> : The copper loss</p>
+<p><span class="math notranslate nohighlight">\(P_{loss}\)</span> : Total power loss</p>
+<p><span class="math notranslate nohighlight">\(P_{in,mot}\)</span> : Input power</p>
+<p>The modulation index is defined as:</p>
+<div class="math notranslate nohighlight">
+\[m_{a} = 2\sqrt2 \cdot \frac {|V_{\phi,mot}|}{V_{DC}}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(V_{DC}\)</span> : DC bus voltage</p>
+<p>In this, mechanical losses like windage, friction, and stray losses, which generally account for a minor portion of total power losses, were deemed negligible in line with existing literature. Consequently, we equated mechanical losses to copper losses when assessing efficiency. In this, we focused on copper losses due to their substantial role in total losses.</p>
+</section>
+<section id="motor-model-validation">
+<h3>Motor Model Validation<a class="headerlink" href="#motor-model-validation" title="Link to this heading"></a></h3>
+<p>Conduct a validation of motor model against the EMRAX 208, an axial flux motor.
+It renowned for its compact and efficient design, making it ideal for electric aircraft applications.</p>
+<p><img alt="EMRAX 208" src="../_images/emrax_208.png" /></p>
+<p><a class="reference external" href="https://emrax.com/e-motors/emrax-208/#1510843023693-0e55cf66-6528">EMRAX 208 Datasheet</a></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parameters</strong></p></th>
+<th class="head"><p><strong>Values</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Continuous Power (<span class="math notranslate nohighlight">\({P}_{\mathrm{cont}}\)</span>), [kW]</p></td>
+<td><p>25-40</p></td>
+</tr>
+<tr class="row-odd"><td><p>Peak Power (<span class="math notranslate nohighlight">\({P}_{\mathrm{peak}}\)</span>), [kW]</p></td>
+<td><p>80</p></td>
+</tr>
+<tr class="row-even"><td><p>Continuous Torque (<span class="math notranslate nohighlight">\({Q}_{\mathrm{cont}}\)</span>), [Nm]</p></td>
+<td><p>80</p></td>
+</tr>
+<tr class="row-odd"><td><p>Peak Torque (<span class="math notranslate nohighlight">\({Q}_{\text{peak}}\)</span>), [Nm]</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-even"><td><p>Continuous Current (<span class="math notranslate nohighlight">\({I}_{\mathrm{cont}}\)</span>), [A]</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-odd"><td><p>Peak Current (<span class="math notranslate nohighlight">\({I}_{\text{peak}}\)</span>), [A]</p></td>
+<td><p>200</p></td>
+</tr>
+<tr class="row-even"><td><p>Rated Speed (<span class="math notranslate nohighlight">\({ \omega }_{ \mathrm{rated} }\)</span>), [RPM]</p></td>
+<td><p>4500</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maximum Speed (<span class="math notranslate nohighlight">\({ \omega }_{ \mathrm{max} }\)</span>), [RPM]</p></td>
+<td><p>6000</p></td>
+</tr>
+<tr class="row-even"><td><p>Torque Constant (<span class="math notranslate nohighlight">\({ K }_{ \mathrm{t} }\)</span>), [Nm/A]</p></td>
+<td><p>0.83</p></td>
+</tr>
+<tr class="row-odd"><td><p>Poles (<span class="math notranslate nohighlight">\({ n_{pole} }\)</span>), [-]</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-even"><td><p>Resistance (<span class="math notranslate nohighlight">\({ R_s }\)</span>), [m<span class="math notranslate nohighlight">\(\Omega\)</span>]</p></td>
+<td><p>125</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inductance (<span class="math notranslate nohighlight">\({ L_s }\)</span>), [<span class="math notranslate nohighlight">\(\mu\)</span>H]</p></td>
+<td><p>130</p></td>
+</tr>
+<tr class="row-even"><td><p>Flux Linkage (<span class="math notranslate nohighlight">\({ \psi }_{ \mathrm{m} }\)</span>), [Vs]</p></td>
+<td><p>0.0393</p></td>
+</tr>
+<tr class="row-odd"><td><p>Back EMF (<span class="math notranslate nohighlight">\({ K }_{ \mathrm{e} }\)</span>), [Vs/rad]</p></td>
+<td><p>15</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="validated-data">
+<h3>Validated data<a class="headerlink" href="#validated-data" title="Link to this heading"></a></h3>
+<p>Graph illustrates the EMRAX 208 motor’s performance, showcasing peak power and torque over varying speeds. The motor operates efficiently within its Maximum Torque per Ampere (MTPA) range and Flux-Weakening (FW) regimes for optimal power. Manufacturer data are plotted alongside our model’s performance curves. Notably, peak torque (orange) diminishes with increasing speed, while peak power (blue) rises to a plateau. Power loss (green) escalates with speed. The close alignment between the model and empirical data assures that the model is acceptable for use case.</p>
+<p><img alt="Peak power, torque, power loss validated with EMRAX 208 manufacturer data" src="../_images/motor_valid_emrax208.png" /></p>
+</section>
+</section>
+<section id="inverter">
+<h2>Inverter<a class="headerlink" href="#inverter" title="Link to this heading"></a></h2>
+<section id="inverter-modeling">
+<h3>Inverter Modeling<a class="headerlink" href="#inverter-modeling" title="Link to this heading"></a></h3>
+<p>A three-phase inverter is used to convert DC into AC for powering a Permanent Magnet Synchronous Motor (PMSM). For Gallium Nitride (GaN) Metal-Oxide-Semiconductor Field-Effect Transistors (MOSFETs), these are high efficiency, low on-state resistance and higher switching speed.</p>
+<p>A critical factor in inverter efficiency is the conduction losses of GaN-MOSFETs, which constitute a significant portion of total power losses. The conduction losses are quantified using the phase current and the MOSFET’s on-state resistance. Additionally, the modulation index and the phase angle are crucial to the calculation, representing the inverter’s operating conditions and the power factor of the load.</p>
+<div class="math notranslate nohighlight">
+\[P_{M,inv} = I_{\phi,inv}^2 \cdot R_{ds(on)} \cdot (\frac{1}{8} + \frac {m_{a} \cdot cos(\phi)}{8})\]</div>
+<div class="math notranslate nohighlight">
+\[P_{D,inv} = I_{\phi,inv} \cdot V_{fw} \cdot (\frac{1}{2\pi} - \frac {m_{a} \cdot cos(\phi)}{8}) + I_{\phi,inv} ^2 (\frac{1}{8} + \frac {m_{a} \cdot cos(\phi)}{3\pi}) \cdot R_{d}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(P_{M,inv}\)</span> : Power loss associated with the switching devices in the inverter, typically due to conduction losses in the MOSFETs</p>
+<p><span class="math notranslate nohighlight">\(P_{D,inv}\)</span> : Power loss associated with the diodes in the inverter</p>
+<p><span class="math notranslate nohighlight">\(I_{\phi,inv}\)</span> : Phase current in the inverter</p>
+<p><span class="math notranslate nohighlight">\(R_{ds(on)}\)</span> : On-Resistance of the switching devices (MOSFET) when they are conducting</p>
+<p><span class="math notranslate nohighlight">\(m_{a}\)</span> : Modulation Index, which is a measure of the amplitude modulation in the inverter</p>
+<p><span class="math notranslate nohighlight">\(cos(\phi)\)</span> : The phase angle between the voltage and the current</p>
+<p><span class="math notranslate nohighlight">\(V_{fw}\)</span> : The forward voltage drop across the diodes in the inverter</p>
+<p><span class="math notranslate nohighlight">\(R_{d}\)</span> : The dynamic resistance of the diodes in the inverter</p>
+<p>The Total conduction losses within the inverter obtained by summing the losses from the MOSFETs and diodes. Input power and current to the inverter can be determined to provide insight into the overall efficiency of the power conversion process. The analytical approach enables the quick estimate of the inverter’s efficiency.</p>
+<div class="math notranslate nohighlight">
+\[P_{loss,inv} = 6 \cdot (P_{M,inv} + P_{D,inv})\]</div>
+<div class="math notranslate nohighlight">
+\[P_{in,inv} = P_{loss,inv} + P_{out,inv} \]</div>
+<div class="math notranslate nohighlight">
+\[ I_{in,inv} = \frac {P_{in,inv}}{V_{DC}}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(P_{loss,inv}\)</span> : Total conduction losses</p>
+<p><span class="math notranslate nohighlight">\(P_{in,inv}\)</span> : Input power to the inverter</p>
+<p><span class="math notranslate nohighlight">\(P_{out,inv}\)</span> : Output power from the inverter</p>
+<p><span class="math notranslate nohighlight">\(I_{in,inv}\)</span> : Input current to the inverter</p>
+<p><span class="math notranslate nohighlight">\(V_{DC}\)</span> : DC link(bus) voltage supplied to the inverter</p>
+</section>
+</section>
+<section id="converter">
+<h2>Converter<a class="headerlink" href="#converter" title="Link to this heading"></a></h2>
+<section id="converter-model">
+<h3>Converter Model<a class="headerlink" href="#converter-model" title="Link to this heading"></a></h3>
+<p>A DC-DC converter is an integral component in power supply applications, serving to adapt the voltage level of a DC source to meet the requirements of various devices. We focused on buck converters due to their relevance in electric propulsion systems, particularly in eVTOLs. High-voltage batteries or fuel cells employed in eVTOLs necessitate buck converters to step down the voltage to suitable levels for motors, avionics, and other electric devices.</p>
+<p>The efficiency of a buck converter is a critical aspect directly influenced by the power losses occurring within its component, namely the MOSFET, diode and inductors.
+The duty cycle is instrumental in calculating the power losses in both the MOSFET and the diode.</p>
+<div class="math notranslate nohighlight">
+\[D = \frac {V_{in,conv}}{V_{out,conv}}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(D\)</span> : Duty Cycle of the converter</p>
+<p><span class="math notranslate nohighlight">\(V_{in,conv}\)</span> : Input voltage</p>
+<p><span class="math notranslate nohighlight">\(V_{out,conv}\)</span> : Output voltage</p>
+<div class="math notranslate nohighlight">
+\[P_{M,conv} = I_{out,conv}^2 \cdot R_{ds(on)} \cdot D\]</div>
+<div class="math notranslate nohighlight">
+\[P_{D,conv} = I_{out,conv} \cdot (1-D) \cdot V_{fw} + I_{out,conv}^2 \cdot (1-D) \cdot R_{d}\]</div>
+<div class="math notranslate nohighlight">
+\[P_{L,conv} = I_{out,conv}^2 \cdot R_{L}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(P_{L,conv}\)</span> : Inductor power loss</p>
+<p><span class="math notranslate nohighlight">\(I_{out,conv}\)</span> : Output current of the converter</p>
+<p><span class="math notranslate nohighlight">\(R_{L}\)</span> : Inductance of the converter</p>
+<p>The cumulative loss within the converter aggregates the losses from the MOSFET, diode, and inductor components.</p>
+<div class="math notranslate nohighlight">
+\[P_{loss,conv} = P_{M,conv} + P_{D,conv}+ P_{L,conv}\]</div>
+<div class="math notranslate nohighlight">
+\[I_{in,conv} = \frac {P_{out,conv} + P_{loss,conv}}{V_{in,conv}}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(I_{in,conv}\)</span> : Input current to the converter</p>
+<p><span class="math notranslate nohighlight">\(P_{out,conv}\)</span> : Power output of the converter</p>
+<p><span class="math notranslate nohighlight">\(P_{loss,conv}\)</span> : Total Power loss in converter</p>
+<p>It is essential to account for all types of losses to ensure the accurate prediction of the converter’s performance. These losses directly impact the efficiency and thermal management of the converter, which are crucial for the reliable operation of the eVTOLs.</p>
+</section>
+</section>
+<section id="id2">
+<h2>Battery<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="battery-model">
+<h3>Battery Model<a class="headerlink" href="#battery-model" title="Link to this heading"></a></h3>
+<p>Equivalent Circuit Model (ECM)-based models offer an optimal balance between complexity and accuracy, making them preferred choices for real-world applications. While Thevenin and other battery models provide higher accuracy, around <span class="math notranslate nohighlight">\(\pm\)</span> 1%, then our framework utilized a modified version of the ECM. This model is selected for its speed, robustness and reasonable accuracy. It simplifies the parameterization process using inputs derived from discharge characteristics or manufacturer data and is adaptable to a variety of battery chemistries and configurations. The modular nature of our framework also allows for easy integration of alternative models, offering the flexibility needed to adapt to different scenarios.</p>
+<p><img alt="Battery Model Equivalent circuit diagram" src="../_images/battery.png" /></p>
+<p>Below graph presents the typical discharge curve of a Li-ion battery, capturing three distinct regions. Rapid voltage drop, termed the exponential region, followed by the nominal region, where voltage stabilizes, offering consistent power output. Finally, the voltage sharply decreases to the cut-off point, indicating the battery’s minimum usable limit to prevent damage.</p>
+<p><img alt="Li-ion Battery Typical Discharge curve" src="../_images/battery_discharge_curve.png" /></p>
+<p>In here, we use a model incorporating polarization voltage as a time-dependent state variable, accounting for variations in output voltage. The discharge voltage is estimated:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    V_{\mathrm{B}} = &amp; \underbrace{V_{\mathrm{C}}-R_{\mathrm{B}} I_{\mathrm{B}}}_{\text{Equivalent circuit}} \notag \\
+    &amp; - \underbrace{K \frac{Q_{\mathrm{N}}}{Q_{\mathrm{N}}-\int_{L_{\mathrm{1}}}^{t_2} \frac{I_{\mathrm{B}}}{3600} \mathrm{d} t}\left(\int_{t_1}^{t_2} \frac{I_{\mathrm{B}}}{3600} \mathrm{d} t+I_{\mathrm{F}}\right)}_{\text{Polarization}}  \notag \\
+    &amp; + \underbrace{A \exp \left(-B \int_{t_1}^{t_2} \frac{I_{\mathrm{B}}}{3600} \mathrm{d} t\right)}_{\text{Exponential}}
+\end{aligned}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[A=V_{\mathrm{F}}-V_{\mathrm{C}}+R_{\mathrm{B}} I_{\mathrm{B}}, \quad B=\frac{3}{Q_{\mathrm{E}}}\]</div>
+<div class="math notranslate nohighlight">
+\[K = -\frac{\left(Q_{\max} - Q_{\mathrm{N}}\right) \left[V_{\mathrm{N}} - V_{\mathrm{C}} + R_{\mathrm{B}} I_{\mathrm{B}} - A \exp \left(-B Q_{\mathrm{N}}\right)\right]}{Q_{\max} \left(Q_{\mathrm{N}} + I_{\mathrm{B}}\right)}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(V_{B}\)</span> : Battery Terminal Voltage (V)</p>
+<p><span class="math notranslate nohighlight">\(V_{C}\)</span> : Battery constant voltage (V)</p>
+<p><span class="math notranslate nohighlight">\(V_{F}\)</span> : Filtered battery voltage (V)</p>
+<p><span class="math notranslate nohighlight">\(V_{N}\)</span> : Battery nominal voltage (V)</p>
+<p><span class="math notranslate nohighlight">\(K\)</span> : Polarization constant(<span class="math notranslate nohighlight">\(V/Ah\)</span>) or Polarisation resistance (<span class="math notranslate nohighlight">\(\Omega\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(Q_{N}\)</span> : Nominal zone Battery Capacity (Ah)</p>
+<p><span class="math notranslate nohighlight">\(Q_{max}\)</span> : Maximum Battery Capacity (Ah)</p>
+<p><span class="math notranslate nohighlight">\(Q_{E}\)</span> : Exponential zone Battery Capacity (Ah)</p>
+<p><span class="math notranslate nohighlight">\(I_{F}\)</span> : Filtered battery current(A)</p>
+<p><span class="math notranslate nohighlight">\(I_{B}\)</span> : Actual Battery Current(A)</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> : Amplitude of the exponential zone (V)</p>
+<p><span class="math notranslate nohighlight">\(B\)</span> : Exponential zone time constant inverse (<span class="math notranslate nohighlight">\(Ah^{-1}\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(R_{B}\)</span> : Internal resistance (<span class="math notranslate nohighlight">\(\Omega\)</span>)</p>
+<p>For estimating the State of Charge (SOC):</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{SoC} = \frac{Q_{\max} - \int_{t_1}^{t_2} \frac{I_{\mathrm{B}}}{3600} \mathrm{d} t}{Q_{\max}} \times 100%\]</div>
+<p>Regarding the physical arrangement of batteries, they can be configured in series-parallel connections to achieve the desired pack voltage and current. The total pack voltage and current can be calculated by the numbers of series and parallel connections.</p>
+<div class="math notranslate nohighlight">
+\[ V_{pack} = V_{B} N_{S}\]</div>
+<div class="math notranslate nohighlight">
+\[ I_{pack} = I_{B} N_{P}\]</div>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(V_{pack}\)</span> : Total battery pack voltage</p>
+<p><span class="math notranslate nohighlight">\(I_{pack}\)</span> : Total battery pack current</p>
+<p><span class="math notranslate nohighlight">\(N_{S}\)</span> : The number of series connections</p>
+<p><span class="math notranslate nohighlight">\(N_{P}\)</span> : The number of parallel connections</p>
+</section>
+<section id="battery-chemistry-model-and-parameter">
+<h3>Battery Chemistry Model and Parameter<a class="headerlink" href="#battery-chemistry-model-and-parameter" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Chemistry</strong></p></th>
+<th class="head"><p><strong>Voltage (<span class="math notranslate nohighlight">\(V_B\)</span>)</strong></p></th>
+<th class="head"><p><strong>Model</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Li-Ion</strong></p></td>
+<td><p><strong>Discharge</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(V_{\mathrm{EC}} - K \frac{Q_{\mathrm{N}}}{Q_{\mathrm{N}} - Q_B}\left(Q_B + I_{\mathrm{F}}\right) + A \exp \left(-B Q_B\right)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><strong>Charge</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(V_{\mathrm{EC}} - K \frac{Q_{\mathrm{N}}}{Q_{\mathrm{B}} - 0.1 \cdot Q_N}I_{\mathrm{F}} - K \frac{Q_{\mathrm{N}}}{Q_{\mathrm{N}} - Q_{\mathrm{B}}}Q_{\mathrm{B}} + A \exp \left(-B Q_B\right)\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="battery-parameters">
+<h3>Battery Parameters<a class="headerlink" href="#battery-parameters" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Li-Ion</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Parameters</p></td>
+<td><p>3.3V, 2.3Ah</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(V_C\)</span> [V]</p></td>
+<td><p>3.366</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(R_B\)</span> [<span class="math notranslate nohighlight">\(\Omega\)</span>]</p></td>
+<td><p>0.01</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(K\)</span> [<span class="math notranslate nohighlight">\(\Omega\)</span>]</p></td>
+<td><p>0.0076</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A\)</span> [V]</p></td>
+<td><p>0.26422</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(B\)</span> [<span class="math notranslate nohighlight">\(Ah^{-1}\)</span>)]</p></td>
+<td><p>26.5487</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="weight_and_balance_theory.html" class="btn btn-neutral float-left" title="Weight and Balance Theory Manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="performance_theory.html" class="btn btn-neutral float-right" title="Performance and Mission Analysis Theory Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

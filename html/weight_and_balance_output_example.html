@@ -1,0 +1,651 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example for Weight and Balance Analysis Output &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_and_reference_frames.html">Units and Reference Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Example for Weight and Balance Analysis Output</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/weight_and_balance_output_example.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="example-for-weight-and-balance-analysis-output">
+<h1>Example for Weight and Balance Analysis Output<a class="headerlink" href="#example-for-weight-and-balance-analysis-output" title="Link to this heading"></a></h1>
+<section id="weight-analysis-outputs">
+<h2>2.2. Weight Analysis Outputs<a class="headerlink" href="#weight-analysis-outputs" title="Link to this heading"></a></h2>
+<section id="weight-data">
+<h3>2.2.1. Weight Data<a class="headerlink" href="#weight-data" title="Link to this heading"></a></h3>
+<p>MTOW         = 21.6200   kg<br />
+Empty Weight = 16.1560   kg<br />
+Payload Weight = 1.2500    kg<br />
+Aircraft CGx = 2.3980    m<br />
+Aircraft CGy = 0.0000    m<br />
+Aircraft CGz = 0.3970    m</p>
+</section>
+<section id="weight-table-empty-group">
+<h3>2.2.2. Weight Table(Empty Group)<a class="headerlink" href="#weight-table-empty-group" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Mass</p></th>
+<th class="head"><p>CGx,m</p></th>
+<th class="head"><p>CGy,m</p></th>
+<th class="head"><p>CGz,m</p></th>
+<th class="head"><p>Ixx,kg*m2</p></th>
+<th class="head"><p>Iyy,kg*m2</p></th>
+<th class="head"><p>Izz,kg*m2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MAINWING</p></td>
+<td><p>1.9670</p></td>
+<td><p>2.4327</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.5000</p></td>
+<td><p>1.5668</p></td>
+<td><p>0.0341</p></td>
+<td><p>1.5661</p></td>
+</tr>
+<tr class="row-odd"><td><p>HORIZONTAL</p></td>
+<td><p>0.1605</p></td>
+<td><p>3.4575</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.9280</p></td>
+<td><p>0.0557</p></td>
+<td><p>0.2247</p></td>
+<td><p>0.1929</p></td>
+</tr>
+<tr class="row-even"><td><p>VERTICAL</p></td>
+<td><p>0.1093</p></td>
+<td><p>3.2023</p></td>
+<td><p>0.0000</p></td>
+<td><p>1.3502</p></td>
+<td><p>0.1594</p></td>
+<td><p>0.2316</p></td>
+<td><p>0.0739</p></td>
+</tr>
+<tr class="row-odd"><td><p>FUSELAGE</p></td>
+<td><p>3.4418</p></td>
+<td><p>2.4250</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3500</p></td>
+<td><p>0.0661</p></td>
+<td><p>0.8352</p></td>
+<td><p>0.8244</p></td>
+</tr>
+<tr class="row-even"><td><p>T-Motor-AT-115A</p></td>
+<td><p>0.1820</p></td>
+<td><p>3.0550</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.4500</p></td>
+<td><p>0.0004</p></td>
+<td><p>0.0795</p></td>
+<td><p>0.0792</p></td>
+</tr>
+<tr class="row-odd"><td><p>T-MotorFlame-100A-HV</p></td>
+<td><p>0.1390</p></td>
+<td><p>2.3956</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.5120</p></td>
+<td><p>0.0016</p></td>
+<td><p>0.0017</p></td>
+<td><p>0.0001</p></td>
+</tr>
+<tr class="row-even"><td><p>T-MotorFlame-100A-HV</p></td>
+<td><p>0.1390</p></td>
+<td><p>2.3956</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.5120</p></td>
+<td><p>0.0016</p></td>
+<td><p>0.0017</p></td>
+<td><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td><p>T-MotorFlame-100A-HV</p></td>
+<td><p>0.1390</p></td>
+<td><p>2.3956</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.5120</p></td>
+<td><p>0.0016</p></td>
+<td><p>0.0017</p></td>
+<td><p>0.0001</p></td>
+</tr>
+<tr class="row-even"><td><p>T-MotorFlame-100A-HV</p></td>
+<td><p>0.1390</p></td>
+<td><p>2.3956</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.5120</p></td>
+<td><p>0.0016</p></td>
+<td><p>0.0017</p></td>
+<td><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td><p>T-Motor-AT-5330</p></td>
+<td><p>0.6850</p></td>
+<td><p>3.1450</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.4200</p></td>
+<td><p>0.0001</p></td>
+<td><p>0.3844</p></td>
+<td><p>0.3843</p></td>
+</tr>
+<tr class="row-even"><td><p>T-Motor-V605-KV210</p></td>
+<td><p>0.3200</p></td>
+<td><p>1.9336</p></td>
+<td><p>0.5250</p></td>
+<td><p>0.5000</p></td>
+<td><p>0.0910</p></td>
+<td><p>0.0712</p></td>
+<td><p>0.1566</p></td>
+</tr>
+<tr class="row-odd"><td><p>T-Motor-V605-KV210</p></td>
+<td><p>0.3200</p></td>
+<td><p>1.9336</p></td>
+<td><p>-0.5250</p></td>
+<td><p>0.5000</p></td>
+<td><p>0.0910</p></td>
+<td><p>0.0712</p></td>
+<td><p>0.1566</p></td>
+</tr>
+<tr class="row-even"><td><p>T-Motor-V605-KV210</p></td>
+<td><p>0.3200</p></td>
+<td><p>3.0336</p></td>
+<td><p>0.5250</p></td>
+<td><p>0.5000</p></td>
+<td><p>0.0910</p></td>
+<td><p>0.1329</p></td>
+<td><p>0.2183</p></td>
+</tr>
+<tr class="row-odd"><td><p>T-Motor-V605-KV210</p></td>
+<td><p>0.3200</p></td>
+<td><p>3.0336</p></td>
+<td><p>-0.5250</p></td>
+<td><p>0.5000</p></td>
+<td><p>0.0910</p></td>
+<td><p>0.1329</p></td>
+<td><p>0.2183</p></td>
+</tr>
+<tr class="row-even"><td><p>Cylinder_13L</p></td>
+<td><p>5.4700</p></td>
+<td><p>2.2500</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3500</p></td>
+<td><p>0.0121</p></td>
+<td><p>0.1319</p></td>
+<td><p>0.1198</p></td>
+</tr>
+<tr class="row-odd"><td><p>Avionics_Box</p></td>
+<td><p>1.1650</p></td>
+<td><p>1.8500</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3780</p></td>
+<td><p>0.0004</p></td>
+<td><p>0.3503</p></td>
+<td><p>0.3499</p></td>
+</tr>
+<tr class="row-even"><td><p>Control_board</p></td>
+<td><p>0.2500</p></td>
+<td><p>1.8500</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3700</p></td>
+<td><p>0.0002</p></td>
+<td><p>0.0753</p></td>
+<td><p>0.0751</p></td>
+</tr>
+<tr class="row-odd"><td><p>regulator</p></td>
+<td><p>0.2820</p></td>
+<td><p>2.5850</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3500</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0105</p></td>
+<td><p>0.0099</p></td>
+</tr>
+<tr class="row-even"><td><p>solenoid_valve_front</p></td>
+<td><p>0.3040</p></td>
+<td><p>2.7750</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3900</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0432</p></td>
+<td><p>0.0432</p></td>
+</tr>
+<tr class="row-odd"><td><p>solenoid_valve_rear</p></td>
+<td><p>0.3040</p></td>
+<td><p>3.1500</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3900</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.1719</p></td>
+<td><p>0.1719</p></td>
+</tr>
+<tr class="row-even"><td><p>Total</p></td>
+<td><p>16.1560</p></td>
+<td><p>2.3960</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.4060</p></td>
+<td><p>2.2390</p></td>
+<td><p>2.9910</p></td>
+<td><p>4.6360</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="weight-table-energy-group">
+<h3>2.2.3. Weight Table(Energy Group)<a class="headerlink" href="#weight-table-energy-group" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Mass</p></th>
+<th class="head"><p>CGx,m</p></th>
+<th class="head"><p>CGy,m</p></th>
+<th class="head"><p>CGz,m</p></th>
+<th class="head"><p>Ixx,kg*m2</p></th>
+<th class="head"><p>Iyy,kg*m2</p></th>
+<th class="head"><p>Izz,kg*m2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Nexcoms1kW</p></td>
+<td><p>3.0000</p></td>
+<td><p>2.8550</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3900</p></td>
+<td><p>0.0016</p></td>
+<td><p>0.2566</p></td>
+<td><p>0.2563</p></td>
+</tr>
+<tr class="row-odd"><td><p>PT-B6300-KP45_12S</p></td>
+<td><p>1.2140</p></td>
+<td><p>1.8550</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.4100</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.6181</p></td>
+<td><p>0.6180</p></td>
+</tr>
+<tr class="row-even"><td><p>Total</p></td>
+<td><p>4.2140</p></td>
+<td><p>2.5670</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3960</p></td>
+<td><p>0.0030</p></td>
+<td><p>0.8750</p></td>
+<td><p>0.8740</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="weight-table-payload-group">
+<h3>2.2.4. Weight Table(Payload Group)<a class="headerlink" href="#weight-table-payload-group" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Mass</p></th>
+<th class="head"><p>CGx,m</p></th>
+<th class="head"><p>CGy,m</p></th>
+<th class="head"><p>CGz,m</p></th>
+<th class="head"><p>Ixx,kg*m2</p></th>
+<th class="head"><p>Iyy,kg*m2</p></th>
+<th class="head"><p>Izz,kg*m2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>external_payload</p></td>
+<td><p>1.2500</p></td>
+<td><p>1.8500</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.2900</p></td>
+<td><p>0.0143</p></td>
+<td><p>0.3897</p></td>
+<td><p>0.3754</p></td>
+</tr>
+<tr class="row-odd"><td><p>Total</p></td>
+<td><p>1.2500</p></td>
+<td><p>1.8500</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.2900</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0000</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="weight-table-total-group">
+<h3>2.2.5. Weight Table(Total Group)<a class="headerlink" href="#weight-table-total-group" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Mass</p></th>
+<th class="head"><p>CGx,m</p></th>
+<th class="head"><p>CGy,m</p></th>
+<th class="head"><p>CGz,m</p></th>
+<th class="head"><p>Ixx,kg*m2</p></th>
+<th class="head"><p>Iyy,kg*m2</p></th>
+<th class="head"><p>Izz,kg*m2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MAINWING</p></td>
+<td><p>1.9670</p></td>
+<td><p>2.4327</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.5000</p></td>
+<td><p>1.5703</p></td>
+<td><p>0.0373</p></td>
+<td><p>1.5659</p></td>
+</tr>
+<tr class="row-odd"><td><p>HORIZONTAL</p></td>
+<td><p>0.1605</p></td>
+<td><p>3.4575</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.9280</p></td>
+<td><p>0.0572</p></td>
+<td><p>0.2255</p></td>
+<td><p>0.1922</p></td>
+</tr>
+<tr class="row-even"><td><p>VERTICAL</p></td>
+<td><p>0.1093</p></td>
+<td><p>3.2023</p></td>
+<td><p>0.0000</p></td>
+<td><p>1.3502</p></td>
+<td><p>0.1613</p></td>
+<td><p>0.2332</p></td>
+<td><p>0.0736</p></td>
+</tr>
+<tr class="row-odd"><td><p>FUSELAGE</p></td>
+<td><p>3.4418</p></td>
+<td><p>2.4250</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3500</p></td>
+<td><p>0.0629</p></td>
+<td><p>0.8316</p></td>
+<td><p>0.8240</p></td>
+</tr>
+<tr class="row-even"><td><p>T-Motor-AT-115A</p></td>
+<td><p>0.1820</p></td>
+<td><p>3.0550</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.4500</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0792</p></td>
+<td><p>0.0787</p></td>
+</tr>
+<tr class="row-odd"><td><p>T-MotorFlame-100A-HV</p></td>
+<td><p>0.1390</p></td>
+<td><p>2.3956</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.5120</p></td>
+<td><p>0.0019</p></td>
+<td><p>0.0019</p></td>
+<td><p>0.0001</p></td>
+</tr>
+<tr class="row-even"><td><p>T-MotorFlame-100A-HV</p></td>
+<td><p>0.1390</p></td>
+<td><p>2.3956</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.5120</p></td>
+<td><p>0.0019</p></td>
+<td><p>0.0019</p></td>
+<td><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td><p>T-MotorFlame-100A-HV</p></td>
+<td><p>0.1390</p></td>
+<td><p>2.3956</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.5120</p></td>
+<td><p>0.0019</p></td>
+<td><p>0.0019</p></td>
+<td><p>0.0001</p></td>
+</tr>
+<tr class="row-even"><td><p>T-MotorFlame-100A-HV</p></td>
+<td><p>0.1390</p></td>
+<td><p>2.3956</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.5120</p></td>
+<td><p>0.0019</p></td>
+<td><p>0.0019</p></td>
+<td><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td><p>T-Motor-AT-5330</p></td>
+<td><p>0.6850</p></td>
+<td><p>3.1450</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.4200</p></td>
+<td><p>0.0004</p></td>
+<td><p>0.3826</p></td>
+<td><p>0.3822</p></td>
+</tr>
+<tr class="row-even"><td><p>T-Motor-V605-KV210</p></td>
+<td><p>0.3200</p></td>
+<td><p>1.9336</p></td>
+<td><p>0.5250</p></td>
+<td><p>0.5000</p></td>
+<td><p>0.0916</p></td>
+<td><p>0.0724</p></td>
+<td><p>0.1572</p></td>
+</tr>
+<tr class="row-odd"><td><p>T-Motor-V605-KV210</p></td>
+<td><p>0.3200</p></td>
+<td><p>1.9336</p></td>
+<td><p>-0.5250</p></td>
+<td><p>0.5000</p></td>
+<td><p>0.0916</p></td>
+<td><p>0.0724</p></td>
+<td><p>0.1572</p></td>
+</tr>
+<tr class="row-even"><td><p>T-Motor-V605-KV210</p></td>
+<td><p>0.3200</p></td>
+<td><p>3.0336</p></td>
+<td><p>0.5250</p></td>
+<td><p>0.5000</p></td>
+<td><p>0.0916</p></td>
+<td><p>0.1327</p></td>
+<td><p>0.2175</p></td>
+</tr>
+<tr class="row-odd"><td><p>T-Motor-V605-KV210</p></td>
+<td><p>0.3200</p></td>
+<td><p>3.0336</p></td>
+<td><p>-0.5250</p></td>
+<td><p>0.5000</p></td>
+<td><p>0.0916</p></td>
+<td><p>0.1327</p></td>
+<td><p>0.2175</p></td>
+</tr>
+<tr class="row-even"><td><p>Nexcoms1kW</p></td>
+<td><p>3.0000</p></td>
+<td><p>2.8550</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3900</p></td>
+<td><p>0.0017</p></td>
+<td><p>0.6344</p></td>
+<td><p>0.6340</p></td>
+</tr>
+<tr class="row-odd"><td><p>PT-B6300-KP45_12S</p></td>
+<td><p>1.2140</p></td>
+<td><p>1.8550</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.4100</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.3606</p></td>
+<td><p>0.3605</p></td>
+</tr>
+<tr class="row-even"><td><p>Cylinder_13L</p></td>
+<td><p>5.4700</p></td>
+<td><p>2.2500</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3500</p></td>
+<td><p>0.0121</p></td>
+<td><p>0.1319</p></td>
+<td><p>0.1198</p></td>
+</tr>
+<tr class="row-odd"><td><p>Avionics_Box</p></td>
+<td><p>1.1650</p></td>
+<td><p>1.8500</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3780</p></td>
+<td><p>0.0004</p></td>
+<td><p>0.3503</p></td>
+<td><p>0.3499</p></td>
+</tr>
+<tr class="row-even"><td><p>Control_board</p></td>
+<td><p>0.2500</p></td>
+<td><p>1.8500</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3700</p></td>
+<td><p>0.0002</p></td>
+<td><p>0.0753</p></td>
+<td><p>0.0751</p></td>
+</tr>
+<tr class="row-odd"><td><p>regulator</p></td>
+<td><p>0.2820</p></td>
+<td><p>2.5850</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3500</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0105</p></td>
+<td><p>0.0099</p></td>
+</tr>
+<tr class="row-even"><td><p>solenoid_valve_front</p></td>
+<td><p>0.3040</p></td>
+<td><p>2.7750</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3900</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0432</p></td>
+<td><p>0.0432</p></td>
+</tr>
+<tr class="row-odd"><td><p>solenoid_valve_rear</p></td>
+<td><p>0.3040</p></td>
+<td><p>3.1500</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3900</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.1719</p></td>
+<td><p>0.1719</p></td>
+</tr>
+<tr class="row-even"><td><p>external_payload</p></td>
+<td><p>1.2500</p></td>
+<td><p>1.8500</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.2900</p></td>
+<td><p>0.0143</p></td>
+<td><p>0.3897</p></td>
+<td><p>0.3754</p></td>
+</tr>
+<tr class="row-odd"><td><p>Total</p></td>
+<td><p>21.6200</p></td>
+<td><p>2.3980</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.3970</p></td>
+<td><p>2.2580</p></td>
+<td><p>4.3740</p></td>
+<td><p>6.0050</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

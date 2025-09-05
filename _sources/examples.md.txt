@@ -1,0 +1,14 @@
+# Examples
+
+Provide examples of complete analysis for different configurations
+
+## Hydrogen Powered eVTOL
+
+- aircraft specs
+- link to input file(s)
+- example of out or link to report (generate md and put in this folder)
+
+## Other vehicles
+
+- create one good example for every configuration available
+- write in which version the test file is available

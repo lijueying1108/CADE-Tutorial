@@ -1,0 +1,1184 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Import &amp; Export &mdash; CADE 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CADE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Look Inside CADE Platform</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concept_dev.html">Concept Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">Sizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_analysis.html">Multi-Disciplinary Analysis (MDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_evaluation.html">Design Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_disciplinary_design_optimization.html">Multi-Disciplinary Design Optimization (MDO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_fusion.html">Data Fusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_history.html">Development History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_naming.html">Variable Names</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CADE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Import &amp; Export</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/propulsion_user_uam.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="import-export">
+<h1>Import &amp; Export<a class="headerlink" href="#import-export" title="Link to this heading"></a></h1>
+<section id="data-objects-import-and-export">
+<h2>Data Objects Import and Export<a class="headerlink" href="#data-objects-import-and-export" title="Link to this heading"></a></h2>
+<p>In this program, we import the propulsion system components database in <code class="docutils literal notranslate"><span class="pre">.csv</span></code> format by default. The propulsion system component data is located in the <code class="docutils literal notranslate"><span class="pre">adsp&gt;data</span></code> folder, and each component is defined under the same name as the component within this folder.</p>
+</section>
+<section id="data-structure">
+<h2>Data Structure<a class="headerlink" href="#data-structure" title="Link to this heading"></a></h2>
+<p>For analysis, the <code class="docutils literal notranslate"><span class="pre">propulsion_set</span></code> is entered from the cmd file lodated in the <code class="docutils literal notranslate"><span class="pre">adsp&gt;input</span></code> folder. This <code class="docutils literal notranslate"><span class="pre">propulsion_set</span></code> is located in the <code class="docutils literal notranslate"><span class="pre">adsp&gt;data&gt;propulsion</span></code> folder, and it represents the highest scale file used to configrate each component set. All data from <code class="docutils literal notranslate"><span class="pre">energy_source_set</span></code> to <code class="docutils literal notranslate"><span class="pre">propeller_set</span></code> is individually store in the <code class="docutils literal notranslate"><span class="pre">adsp&gt;data&gt;propulsion</span></code> folder, allowing users to easily modify the desired data at any time.</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>name_propulsion,    propulsion_set03
+propulsion_type,    test01
+energy_source_set,  energy_set01
+converter_set,  converter_set01
+inverter_set,   inverter_set01
+controller_set, controller_set01
+motor_set,  motor_set01
+propeller_set,  propeller_set03
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="integrated-individual-analysis">
+<h1>Integrated &amp; Individual Analysis<a class="headerlink" href="#integrated-individual-analysis" title="Link to this heading"></a></h1>
+<p>This program consists of individually configured modules for analyzing each component, allowing users to conduct separate tests or perform an integrated analysis of all modules.
+For individual tests, each component can be manually analyzed in the <code class="docutils literal notranslate"><span class="pre">adsp&gt;test_demo&gt;propulsion</span></code> folder. Integrated analysis can be performed by executing <code class="docutils literal notranslate"><span class="pre">adsp&gt;test_demo</span></code>, and the input for this process can be configured in the <code class="docutils literal notranslate"><span class="pre">adsp&gt;input</span></code> file with appropriate execution commands.</p>
+<p><strong>Constant-Pitch-Mode</strong></p>
+<ul class="simple">
+<li><p>Velocity Sweep</p></li>
+<li><p>Throttle Sweep</p></li>
+</ul>
+<p><strong>Variable-Pitch-Mode</strong></p>
+<ul class="simple">
+<li><p>Fix Throttle - Velocity Sweep</p></li>
+<li><p>Fix Velocity - Throttle Sweep</p></li>
+<li><p>Fix Thrust - Velocity Sweep</p></li>
+<li><p>Fix Throttle &amp; RPM - Velocity Sweep</p></li>
+</ul>
+<p><strong>FORMAT</strong></p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>RUN, &quot;Mode_Name&quot;
+System, &quot;CTOL or VTOL&quot;
+[Constraints]
+(Velocity,RPM,Throttle ...)
+[Sweep Steps]
+Altitude
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="energy-source">
+<h1>Energy Source<a class="headerlink" href="#energy-source" title="Link to this heading"></a></h1>
+<section id="input-file">
+<h2>Input File<a class="headerlink" href="#input-file" title="Link to this heading"></a></h2>
+<p>For the Energy Source, the input file is set as <code class="docutils literal notranslate"><span class="pre">energy_set0x.csv</span></code> located in <code class="docutils literal notranslate"><span class="pre">adsp&gt;data&gt;propulsion</span></code>, and the configuration is as follows:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>source-type | power-source-name | power-source-loc-x | power-source-loc-y | power-source-loc-z | mass | connection-type
+battery         battery01               2.855                   0                   0.39         150         Series
+battery         battery01               1.855                   0                   0.41         150         Series
+</pre></div>
+</div>
+<p>In source_type, specify the type of energy source to be used (e.g., Battery, Fuel Cell), and in <strong>power_source_name</strong>, enter the name of the source to be analyzed.</p>
+<section id="battery">
+<h3>Battery<a class="headerlink" href="#battery" title="Link to this heading"></a></h3>
+<p>This manual provides detailed instructions for setting up and running a battery model test and analysis. The code integrates battery parameters from a database (DB), processes them using a battery model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.</p>
+<section id="components">
+<h4>Components<a class="headerlink" href="#components" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Database (DB)</strong>: Contains battery parameters.</p></li>
+<li><p><strong>Battery Model</strong>: Selects and analyzes the battery model based on provided parameters.</p></li>
+<li><p><strong>Test Case</strong>: Defines test conditions and input parameters.</p></li>
+<li><p><strong>Data Saved in PCB</strong>: Stores the test results.</p></li>
+</ol>
+</section>
+<section id="files-and-scripts">
+<h4>Files and Scripts<a class="headerlink" href="#files-and-scripts" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Battery Parameters CSV File</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;data&gt;energy&gt;battery01.csv</span></code></p></li>
+<li><p><strong>Battery Model Script</strong>: <code class="docutils literal notranslate"><span class="pre">adsp&gt;adsp&gt;propulsion&gt;energy&gt;battery.py</span></code></p></li>
+<li><p><strong>Test Script</strong>: <code class="docutils literal notranslate"><span class="pre">adsp&gt;test</span> <span class="pre">demo&gt;propulsion&gt;01_test_battery.py</span></code></p></li>
+</ol>
+</section>
+<section id="battery-parameters-csv">
+<h4>Battery Parameters CSV<a class="headerlink" href="#battery-parameters-csv" title="Link to this heading"></a></h4>
+<p>The CSV file contains key parameters for the battery model. Below is an example of the battery parameters used:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>source_type,battery
+type,Li-Po
+current_filtered,2.5
+capacity_nominal,20.0
+voltage_fullcharged,4.3
+voltage_out_nominal,3.61
+voltage_constant,3.2
+capacity_exponential,5.0
+capacity_max,26.136
+energy,96.0
+resistance_internal,0.006
+</pre></div>
+</div>
+<p>Description of Parameters</p>
+<ul class="simple">
+<li><p>type: The type of battery, in this case, Li-Po (Lithium Polymer).</p></li>
+<li><p>current_filtered: The filtered current value, which is 2.5A.</p></li>
+<li><p>capacity_nominal: The nominal capacity of the battery, which is 20.0Ah.</p></li>
+<li><p>voltage_fullcharged: The voltage when the battery is fully charged, which is 4.3V.</p></li>
+<li><p>voltage_out_nominal: The nominal output voltage of the battery, which is 3.61V.</p></li>
+<li><p>voltage_constant: The constant voltage level, which is 3.2V.</p></li>
+<li><p>capacity_exponential: The capacity in the exponential zone, which is 5.0Ah.</p></li>
+<li><p>capacity_max: The maximum capacity of the battery, which is 26.136Ah.</p></li>
+<li><p>energy: The total energy stored in the battery, which is 96.0Wh.</p></li>
+<li><p>resistance_internal: The internal resistance of the battery, which is 0.006 ohms.</p></li>
+</ul>
+</section>
+<section id="main-battery-model-script-battery-py">
+<h4>Main Battery Model Script (<code class="docutils literal notranslate"><span class="pre">battery.py</span></code>)<a class="headerlink" href="#main-battery-model-script-battery-py" title="Link to this heading"></a></h4>
+<p>The file is located in <code class="docutils literal notranslate"><span class="pre">propulsion&gt;energy&gt;battery.py</span></code>. This script contains <code class="docutils literal notranslate"><span class="pre">get_battery</span></code>, <code class="docutils literal notranslate"><span class="pre">Battery</span></code> and <code class="docutils literal notranslate"><span class="pre">BatteryModel</span></code> class. They are responsible for loading battery parameters and performing the model analysis.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_battery</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get_energy_csv_path</span><span class="p">(</span><span class="n">name_battery</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+        <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+        <span class="nb">next</span><span class="p">(</span><span class="n">csv_reader</span><span class="p">)</span>
+        <span class="n">cell_type</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">csv_reader</span><span class="p">)</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">cell_type</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;Li-Po&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">BatteryModel</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">BatteryModel</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">BatteryModel</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Battery</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span> <span class="o">=</span> <span class="n">pcb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_battery</span> <span class="o">=</span> <span class="n">pcb</span><span class="o">.</span><span class="n">data_battery</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name_battery</span> <span class="o">=</span> <span class="n">name_battery</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">paths</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get_energy_csv_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name_battery</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name_battery</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_battery</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_battery</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_battery</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BatteryModel</span><span class="p">(</span><span class="n">Battery</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="test-code">
+<h4>Test Code<a class="headerlink" href="#test-code" title="Link to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.energy.battery</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_battery</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.print.align</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_aligned_data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">pcb</span> <span class="o">=</span> <span class="n">PCB</span><span class="p">()</span>
+    <span class="n">name_battery</span> <span class="o">=</span> <span class="s2">&quot;test_battery01&quot;</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="mi">300</span>
+    <span class="n">duration_passed</span> <span class="o">=</span> <span class="mi">3600</span>
+
+    <span class="n">battery</span> <span class="o">=</span> <span class="n">get_battery</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">)</span>
+    <span class="n">battery</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+    <span class="n">battery</span><span class="o">.</span><span class="n">run_model</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">duration_passed</span><span class="p">)</span>
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_battery</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="running-the-test">
+<h4>Running the Test<a class="headerlink" href="#running-the-test" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Prepare the CSV File: Ensure test_battery01.csv is in the ADSP&gt;data&gt;battery directory.</p></li>
+<li><p>Update Parameters: Modify battery parameters in the CSV as needed.</p></li>
+<li><p>Execute the Test Script:
+Open a terminal or command prompt.
+Navigate to the directory containing 01_test_battery.py.</p></li>
+</ul>
+<p>Run the script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>01_test_battery.py
+</pre></div>
+</div>
+<p>Output
+The results of the battery model analysis are saved in the pcb.data_battery object and printed using print_aligned_data. The output includes detailed information about the battery performance based on the test conditions.</p>
+</section>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="controller">
+<h1>Controller<a class="headerlink" href="#controller" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>Input File<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>For the Controller, the input file is set as <code class="docutils literal notranslate"><span class="pre">controller_set0x.csv</span></code> located in <code class="docutils literal notranslate"><span class="pre">adsp&gt;data&gt;propulsion</span></code>, and the configuration is as follows:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>Mode| controller-name| loc-x| loc-y| loc-z| mass
+VTOL    KP21INV	       1.9336 0.525   0.5    5
+VTOL    KP21INV        1.9336 -0.525  0.5    5
+CTOL    KP21INV	       3.0336 0.525   0.5    5
+CTOL    KP21INV	       3.0336 -0.525  0.5    5
+</pre></div>
+</div>
+<section id="id2">
+<h3>Controller<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>This manual provides detailed instructions for setting up and running a controller model test and analysis. The code integrates controller parameters from a database (DB), processes them using a controller model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.</p>
+<section id="id3">
+<h4>Components<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Database (DB)</strong>: Contains controller parameters.</p></li>
+<li><p><strong>Controller Model</strong>: Selects and analyzes the controller model based on provided parameters.</p></li>
+<li><p><strong>Test Case</strong>: Defines test conditions and input parameters.</p></li>
+<li><p><strong>Data Saved in PCB</strong>: Stores the test results.</p></li>
+</ol>
+</section>
+<section id="id4">
+<h4>Files and Scripts<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Controller Parameters CSV File</strong>: <code class="docutils literal notranslate"><span class="pre">adsp&gt;adsp&gt;data&gt;controller&gt;KP21INV.csv</span></code></p></li>
+<li><p><strong>Controller Model Script</strong>: <code class="docutils literal notranslate"><span class="pre">adsp&gt;propulsion&gt;electrical&gt;controller.py</span></code></p></li>
+<li><p><strong>Test Script</strong>: <code class="docutils literal notranslate"><span class="pre">adsp&gt;test</span> <span class="pre">demo&gt;propulsion&gt;04_test_controller.py</span></code></p></li>
+</ol>
+</section>
+<section id="controller-parameters-csv-kp21inv-csv">
+<h4>Controller Parameters CSV (<code class="docutils literal notranslate"><span class="pre">KP21INV.csv</span></code>)<a class="headerlink" href="#controller-parameters-csv-kp21inv-csv" title="Link to this heading"></a></h4>
+<p>The CSV file contains key parameters for the controller model. Below is an example of the controller parameters used:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>Controller,KP21INV
+type,unknown
+current_max,2000
+current_cont,400
+voltage_max,1500
+voltage_min,20
+mass,0.35
+length,0.02
+width,0.15
+height,0.63
+shape,rectangular
+resistance,0
+</pre></div>
+</div>
+</section>
+<section id="description-of-parameters">
+<h4>Description of Parameters<a class="headerlink" href="#description-of-parameters" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>type: The type of controller, in this case, unknown.</p></li>
+<li><p>current_max: The maximum current the controller can handle, which is 2000A.</p></li>
+<li><p>current_cont: The continuous current rating, which is 400A.</p></li>
+<li><p>voltage_max: The maximum voltage rating, which is 1500V.</p></li>
+<li><p>voltage_min: The minimum voltage rating, which is 20V.</p></li>
+<li><p>mass: The mass of the controller, which is 0.35kg.</p></li>
+<li><p>length: The length of the controller, which is 0.02m.</p></li>
+<li><p>width: The width of the controller, which is 0.15m.</p></li>
+<li><p>height: The height of the controller, which is 0.63m.</p></li>
+<li><p>shape: The shape of the controller, which is rectangular.</p></li>
+<li><p>resistance: The internal resistance of the controller, which is 0 ohms.</p></li>
+<li><p>Controller Model Script (controller.py)</p></li>
+<li><p>This script defines the ControllerModel class, which is responsible for loading controller parameters and performing the model analysis.</p></li>
+</ul>
+<div class="highlight-Code notranslate"><div class="highlight"><pre><span></span>Imports```
+python
+Copy code
+from adsp.paths import get_controller_csv_path
+from adsp.utils.csv_reader import csv_reader
+ControllerModel Class
+python
+Copy code
+class ControllerModel:
+    def __init__(self, pcb, name_controller):
+        self.pcb = pcb
+        self.name_controller = name_controller
+
+    def load_data(self):
+        file = paths.db.get_controller_csv_path(self.name_controller)
+        data = csv_reader(file)
+        for parameter, value in data.items():
+            setattr(self.pcb.data_controller, parameter, value)
+
+    def run_model(self, throttle):
+        # Perform analysis here, for example:
+        voltage_out = self.pcb.data_controller.voltage_max * throttle
+        self.pcb.data_controller.voltage_out = voltage_out
+        # Additional analysis and model computation
+</pre></div>
+</div>
+</section>
+<section id="test-script-04-test-controller-py">
+<h4>Test Script (<code class="docutils literal notranslate"><span class="pre">04_test_controller.py</span></code>)<a class="headerlink" href="#test-script-04-test-controller-py" title="Link to this heading"></a></h4>
+<p>This script runs the controller model using predefined test conditions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.electrical.controller</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_controller</span><span class="p">,</span>
+    <span class="n">ControllerModel</span><span class="p">,</span>
+    <span class="n">Controller</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.pcb</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.utils.print_align</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_aligned_data</span>
+
+<span class="n">pcb</span> <span class="o">=</span> <span class="n">PCB</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">name_controller</span> <span class="o">=</span> <span class="s2">&quot;KP21INV&quot;</span>
+    <span class="n">throttle</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+    <span class="n">power_peak</span> <span class="o">=</span> <span class="mi">230000</span>
+    <span class="n">current_peak</span> <span class="o">=</span> <span class="mi">570</span>
+    
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_controller</span><span class="o">.</span><span class="n">power_peak</span> <span class="o">=</span> <span class="n">power_peak</span>
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_controller</span><span class="o">.</span><span class="n">current_peak</span> <span class="o">=</span> <span class="n">current_peak</span>
+    <span class="n">controller</span> <span class="o">=</span> <span class="n">get_controller</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_controller</span><span class="p">)</span>
+    <span class="n">controller</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+    <span class="n">controller</span><span class="o">.</span><span class="n">run_model</span><span class="p">(</span><span class="n">throttle</span><span class="p">)</span>
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_controller</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h4>Running the Test<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Prepare the CSV File: Ensure KP21INV.csv is in the ADSP&gt;data&gt;controller directory.</p></li>
+<li><p>Update Parameters: Modify controller parameters in the CSV as needed.</p></li>
+<li><p>Execute the Test Script:</p></li>
+<li><p>Open a terminal or command prompt.</p></li>
+<li><p>Navigate to the directory containing 04_test_controller.py.</p></li>
+<li><p>Run the script:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>04_test_controller.py
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="converter">
+<h1>Converter<a class="headerlink" href="#converter" title="Link to this heading"></a></h1>
+<section id="id6">
+<h2>Input File<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>For the Converter, the input file is set as <code class="docutils literal notranslate"><span class="pre">converter_set0x.csv</span></code> located in <code class="docutils literal notranslate"><span class="pre">adsp&gt;data&gt;propulsion</span></code>, and the configuration is as follows:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>Mode| converter-name| loc-x |loc-y |loc-z |mass
+VTOL    converter     1.9336  0.525   0.5    2
+VTOL    converter     1.9336  0.525   0.5    2
+VTOL    converter     1.9336  0.525   0.5    2
+VTOL    converter     1.9336  0.525   0.5    2
+</pre></div>
+</div>
+<section id="id7">
+<h3>Converter<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>This manual provides detailed instructions for setting up and running a converter model test and analysis. The code integrates converter parameters from a database (DB), processes them using a converter model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.</p>
+<section id="id8">
+<h4>Components<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Database (DB)</strong>: Contains converter parameters.</p></li>
+<li><p><strong>Converter Model</strong>: Selects and analyzes the converter model based on provided parameters.</p></li>
+<li><p><strong>Test Case</strong>: Defines test conditions and input parameters.</p></li>
+<li><p><strong>Data Saved in PCB</strong>: Stores the test results.</p></li>
+</ol>
+</section>
+<section id="id9">
+<h4>Files and Scripts<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Converter Parameters CSV File</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;data&gt;converter&gt;converter.csv</span></code></p></li>
+<li><p><strong>Converter Model Script</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;propulsion&gt;electrical&gt;converter.py</span></code></p></li>
+<li><p><strong>Test Script</strong>: <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">demo&gt;propulsion&gt;05_test_converter.py</span></code></p></li>
+</ol>
+</section>
+<section id="converter-parameters-csv-converter-csv">
+<h4>Converter Parameters CSV (<code class="docutils literal notranslate"><span class="pre">converter.csv</span></code>)<a class="headerlink" href="#converter-parameters-csv-converter-csv" title="Link to this heading"></a></h4>
+<p>The CSV file contains key parameters for the converter model. Below is an example of the converter parameters used:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>Converter,Unknown
+type,unknown
+resistance_mosfet,0.08
+resistance_diode,0.02
+inductance,0.07
+voltage_drop_diode,0.57
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h4>Description of Parameters<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>type: The type of converter, in this case, unknown.</p></li>
+<li><p>resistance_mosfet: The resistance of the MOSFET, which is 0.08 ohms.</p></li>
+<li><p>resistance_diode: The resistance of the diode, which is 0.02 ohms.</p></li>
+<li><p>inductance: The inductance value, which is 0.07 H.</p></li>
+<li><p>voltage_drop_diode: The voltage drop across the diode, which is 0.57V.</p></li>
+</ul>
+</section>
+<section id="converter-model-script-converter-py">
+<h4>Converter Model Script (converter.py)<a class="headerlink" href="#converter-model-script-converter-py" title="Link to this heading"></a></h4>
+<p>This script defines the ConverterModel class, which is responsible for loading converter parameters and performing the model analysis.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ConverterModel</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pcb</span><span class="p">,</span> <span class="n">name_converter</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span> <span class="o">=</span> <span class="n">pcb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name_converter</span> <span class="o">=</span> <span class="n">name_converter</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">paths</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get_converter_csv_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name_converter</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">csv_reader</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="p">):</span>
+        <span class="c1"># Perform analysis here, for example:</span>
+        <span class="n">voltage_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="o">.</span><span class="n">voltage_inp</span> <span class="o">*</span> <span class="n">duty_cycle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="o">.</span><span class="n">voltage_out</span> <span class="o">=</span> <span class="n">voltage_out</span>
+        <span class="c1"># Additional analysis and model computation</span>
+</pre></div>
+</div>
+</section>
+<section id="test-script-05-test-converter-py">
+<h4>Test Script (05_test_converter.py)<a class="headerlink" href="#test-script-05-test-converter-py" title="Link to this heading"></a></h4>
+<p>This script runs the converter model using predefined test conditions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.electrical.converter</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_converter</span><span class="p">,</span>
+    <span class="n">ConverterModel</span><span class="p">,</span>
+    <span class="n">Converter</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.pcb</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.utils.print_align</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_aligned_data</span>
+
+<span class="n">pcb</span> <span class="o">=</span> <span class="n">PCB</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">name_converter</span> <span class="o">=</span> <span class="s2">&quot;converter&quot;</span>
+    <span class="n">duty_cycle</span> <span class="o">=</span> <span class="mf">0.90</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="mi">216</span>
+    <span class="n">voltage</span> <span class="o">=</span> <span class="mi">500</span>
+
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="o">.</span><span class="n">current_out</span> <span class="o">=</span> <span class="n">current</span>
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="o">.</span><span class="n">voltage_out</span> <span class="o">=</span> <span class="n">voltage</span>
+    <span class="n">converter</span> <span class="o">=</span> <span class="n">get_converter</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_converter</span><span class="p">)</span>
+    <span class="n">converter</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+    <span class="n">converter</span><span class="o">.</span><span class="n">run_model</span><span class="p">(</span><span class="n">duty_cycle</span><span class="p">)</span>
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h4>Running the Test<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Prepare the CSV File: Ensure converter.csv is in the ADSP&gt;data&gt;converter directory.</p></li>
+<li><p>Update Parameters: Modify converter parameters in the CSV as needed.</p></li>
+<li><p>Execute the Test Script:</p></li>
+<li><p>Open a terminal or command prompt.</p></li>
+<li><p>Navigate to the directory containing 05_test_converter.py.</p></li>
+<li><p>Run the script:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>05_test_converter.py
+</pre></div>
+</div>
+</section>
+<section id="output">
+<h4>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h4>
+<p>The results of the converter model analysis are saved in the pcb.data_converter object and printed using print_aligned_data. The output includes detailed information about the converter performance based on the test conditions.</p>
+</section>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="inverter">
+<h1>Inverter<a class="headerlink" href="#inverter" title="Link to this heading"></a></h1>
+<section id="id12">
+<h2>Input File<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<p>For the Inverter, the input file is set as <code class="docutils literal notranslate"><span class="pre">inverter_set0x.csv</span></code> located in <code class="docutils literal notranslate"><span class="pre">adsp&gt;data&gt;propulsion</span></code>, and the configuration is as follows:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>Mode| inverter-name| loc-x| loc-y| loc-z |mass
+VTOL GaN-NTP8G206N   1.9336 0.525   0.5    2
+VTOL GaN-NTP8G206N   1.9336 -0.525  0.5    2
+CTOL GaN-NTP8G206N   3.0336 0.525   0.5    2
+CTOL GaN-NTP8G206N   3.0336 -0.525  0.5    2
+</pre></div>
+</div>
+<section id="id13">
+<h3>Inverter<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<p>This manual provides detailed instructions for setting up and running an inverter model test and analysis. The code integrates inverter parameters from a database (DB), processes them using an inverter model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.</p>
+<section id="id14">
+<h4>Components<a class="headerlink" href="#id14" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Database (DB)</strong>: Contains inverter parameters.</p></li>
+<li><p><strong>Inverter Model</strong>: Selects and analyzes the inverter model based on provided parameters.</p></li>
+<li><p><strong>Test Case</strong>: Defines test conditions and input parameters.</p></li>
+<li><p><strong>Data Saved in PCB</strong>: Stores the test results.</p></li>
+</ol>
+</section>
+<section id="id15">
+<h4>Files and Scripts<a class="headerlink" href="#id15" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Inverter Parameters CSV File</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;data&gt;inverter&gt;GaN-NTP8G206N.csv</span></code></p></li>
+<li><p><strong>Inverter Model Script</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;propulsion&gt;electrical&gt;inverter.py</span></code></p></li>
+<li><p><strong>Test Script</strong>: <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">demo&gt;propulsion&gt;06_test_inverter.py</span></code></p></li>
+</ol>
+</section>
+<section id="inverter-parameters-csv-gan-ntp8g206n-csv">
+<h4>Inverter Parameters CSV (<code class="docutils literal notranslate"><span class="pre">GaN-NTP8G206N.csv</span></code>)<a class="headerlink" href="#inverter-parameters-csv-gan-ntp8g206n-csv" title="Link to this heading"></a></h4>
+<p>The CSV file contains key parameters for the inverter model. Below is an example of the inverter parameters used:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>Inverter,GaN-NTP8G206N
+type,unknown
+resistance_mosfet,0.29
+resistance_diode,0.14
+inductance,0.07
+power_factor,0.97
+voltage_drop_diode,2.2
+</pre></div>
+</div>
+</section>
+<section id="id16">
+<h4>Description of Parameters<a class="headerlink" href="#id16" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>type: The type of inverter, in this case, unknown.</p></li>
+<li><p>resistance_mosfet: The resistance of the MOSFET, which is 0.29 ohms.</p></li>
+<li><p>resistance_diode: The resistance of the diode, which is 0.14 ohms.</p></li>
+<li><p>inductance: The inductance value, which is 0.07 H.</p></li>
+<li><p>power_factor: The power factor, which is 0.97.</p></li>
+<li><p>voltage_drop_diode: The voltage drop across the diode, which is 2.2V.</p></li>
+</ul>
+</section>
+<section id="inverter-model-script-inverter-py">
+<h4>Inverter Model Script (inverter.py)<a class="headerlink" href="#inverter-model-script-inverter-py" title="Link to this heading"></a></h4>
+<p>This script defines the InverterModel class, which is responsible for loading inverter parameters and performing the model analysis.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">InverterModel</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pcb</span><span class="p">,</span> <span class="n">name_inverter</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span> <span class="o">=</span> <span class="n">pcb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name_inverter</span> <span class="o">=</span> <span class="n">name_inverter</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">paths</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get_inverter_csv_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name_inverter</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">csv_reader</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_inverter</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modulation_ratio</span><span class="p">):</span>
+        <span class="c1"># Perform analysis here, for example:</span>
+        <span class="n">voltage_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_inverter</span><span class="o">.</span><span class="n">voltage_inp</span> <span class="o">*</span> <span class="n">modulation_ratio</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_inverter</span><span class="o">.</span><span class="n">voltage_out</span> <span class="o">=</span> <span class="n">voltage_out</span>
+        <span class="c1"># Additional analysis and model computation</span>
+</pre></div>
+</div>
+</section>
+<section id="test-script-06-test-inverter-py">
+<h4>Test Script (<code class="docutils literal notranslate"><span class="pre">06_test_inverter.py</span></code>)<a class="headerlink" href="#test-script-06-test-inverter-py" title="Link to this heading"></a></h4>
+<p>This script runs the inverter model using predefined test conditions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.electrical.inverter</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_inverter</span><span class="p">,</span> <span class="n">InverterModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.pcb</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.utils.print_align</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_aligned_data</span>
+
+<span class="n">pcb</span> <span class="o">=</span> <span class="n">PCB</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">name_inverter</span> <span class="o">=</span> <span class="s2">&quot;GaN-NTP8G206N&quot;</span>
+    <span class="n">modulation_ratio</span> <span class="o">=</span> <span class="mf">0.90</span>
+    <span class="n">current_out</span> <span class="o">=</span> <span class="mi">216</span>
+    <span class="n">voltage_out</span> <span class="o">=</span> <span class="mi">500</span>
+
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_inverter</span><span class="o">.</span><span class="n">current_out</span> <span class="o">=</span> <span class="n">current_out</span>
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_inverter</span><span class="o">.</span><span class="n">voltage_out</span> <span class="o">=</span> <span class="n">voltage_out</span>
+    <span class="n">inverter</span> <span class="o">=</span> <span class="n">get_inverter</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_inverter</span><span class="p">)</span>
+    <span class="n">inverter</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+    <span class="n">inverter</span><span class="o">.</span><span class="n">run_model</span><span class="p">(</span><span class="n">modulation_ratio</span><span class="p">)</span>
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_inverter</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id17">
+<h4>Running the Test<a class="headerlink" href="#id17" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Prepare the CSV File: Ensure GaN-NTP8G206N.csv is in the ADSP&gt;data&gt;inverter directory.</p></li>
+<li><p>Update Parameters: Modify inverter parameters in the CSV as needed.</p></li>
+<li><p>Execute the Test Script:</p></li>
+<li><p>Open a terminal or command prompt.</p></li>
+<li><p>Navigate to the directory containing 06_test_inverter.py.</p></li>
+</ul>
+</section>
+<section id="run-the-script">
+<h4>Run the script:<a class="headerlink" href="#run-the-script" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>06_test_inverter.py
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h4>Output<a class="headerlink" href="#id18" title="Link to this heading"></a></h4>
+<p>The results of the inverter model analysis are saved in the pcb.data_inverter object and printed using print_aligned_data. The output includes detailed information about the inverter performance based on the test conditions.</p>
+</section>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="motor">
+<h1>Motor<a class="headerlink" href="#motor" title="Link to this heading"></a></h1>
+<section id="id19">
+<h2>Input File<a class="headerlink" href="#id19" title="Link to this heading"></a></h2>
+<p>For the Motor, the input file is set as <code class="docutils literal notranslate"><span class="pre">motor_set0x.csv</span></code> located in <code class="docutils literal notranslate"><span class="pre">adsp&gt;data&gt;propulsion</span></code>, and the configuration is as follows:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>Mode| motor-name    | loc-x |loc-y |loc-z |mass | diameter | length
+VTOL EMRAX348-LV-AC  1.9336  0.525   0.5    20      0.1       0.3
+VTOL EMRAX348-LV-AC  1.9336 -0.525   0.5    20      0.1       0.3
+CTOL EMRAX348-LV-AC  3.0336  0.525   0.5    20      0.1       0.3
+CTOL EMRAX348-LV-AC  3.0336 -0.525   0.5    20      0.1       0.3
+</pre></div>
+</div>
+<section id="id20">
+<h3>Motor<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<p>This manual provides detailed instructions for setting up and running an motor model test and analysis. The code integrates Motor parameters from a database (DB), processes them using an motor model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.</p>
+<section id="id21">
+<h4>Components<a class="headerlink" href="#id21" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Database (DB)</strong>: Contains motor parameters.</p></li>
+<li><p><strong>Motor Model</strong>: Selects and analyzes the motor model based on provided parameters.</p></li>
+<li><p><strong>Test Case</strong>: Defines test conditions and input parameters.</p></li>
+<li><p><strong>Data Saved in PCB</strong>: Stores the test results.</p></li>
+</ol>
+</section>
+<section id="id22">
+<h4>Files and Scripts<a class="headerlink" href="#id22" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Motor Parameters CSV File</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;data&gt;motor&gt;EMRAX348-LV-AC.csv</span></code></p></li>
+<li><p><strong>Motor Model Script</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;propulsion&gt;electrical&gt;motor.py</span></code></p></li>
+<li><p><strong>Test Script</strong>: <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">demo&gt;propulsion&gt;07_test_motor.py</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">demo&gt;propulsion&gt;08_test_motor_analysis.py</span></code></p></li>
+</ol>
+</section>
+<section id="motor-parameters-csv-emarx348-lv-ac-csv">
+<h4>Motor Parameters CSV (<code class="docutils literal notranslate"><span class="pre">EMARX348-LV-AC.csv</span></code>)<a class="headerlink" href="#motor-parameters-csv-emarx348-lv-ac-csv" title="Link to this heading"></a></h4>
+<p>The CSV file contains key parameters for the motor model. Below is an example of the motor parameters used:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>motor, EMRAX348-LV-AC
+type, pmsm
+kv,10.58
+kt,0.72
+ke,0.94
+kv_noload,13.11
+resistance,0.0042
+inductance,0.0000285
+num_polepairs,10
+radius,0.174
+height,0.112
+friction_coefficient,0.3
+power_factor,0.97
+current_continous,600
+power_peak,400000
+current_peak,1500
+rpm_limit, 4000
+</pre></div>
+</div>
+</section>
+<section id="id23">
+<h4>Description of Parameters<a class="headerlink" href="#id23" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>type: The type of motor, in this case, PMSM(Permanent Magnet Synchronous Motor).</p></li>
+<li><p>kv: Speed Constant, Indicates voltage required per RPM , which is 10.58 RPM/V</p></li>
+<li><p>kt: Torque Constant, Represents torque per unit of current, which is 0.72 Nm/A</p></li>
+<li><p>ke: Back EMF Constant, relates peak voltage induced by the permanent magnet in the per-unit rotational speed of each phase ,which is 0.94 V/rad/s</p></li>
+<li><p>kv_noload: Speed Constant at no Load, which is 13.29 RPM/V</p></li>
+<li><p>resistance : Internal Phase resistance at 25 celcius, which is 0.0042 ohms</p></li>
+<li><p>inductance : Inductance of 1 phase, which is 0.0000285 H</p></li>
+<li><p>num_polepairs : Number of Pole pairs, which is 10EA</p></li>
+<li><p>radius : Motor Radius, which is 0.174 m</p></li>
+<li><p>height : Motor Height, which is 0.112 m</p></li>
+<li><p>friction_coefficient : Motor Friction coefficient(Torque / Motor Inertia * (angular velocity^2)) ,which is 0.3</p></li>
+<li><p>power_factor : power factor, whcih is 0.97</p></li>
+<li><p>current_continuous : Continuous Current, which is 600 A</p></li>
+<li><p>power_peak : Peak power, which is 400000 W</p></li>
+<li><p>current_peak: Peak Current, which is 1500 A</p></li>
+<li><p>rpm_limit: Limit RPM, which is 4000</p></li>
+</ul>
+</section>
+<section id="motor-model-script-motor-py">
+<h4>Motor Model Script (motor.py)<a class="headerlink" href="#motor-model-script-motor-py" title="Link to this heading"></a></h4>
+<p>This script defines the Motor Model class, which is responsible for loading motor parameters and performing the model analysis.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MotorModel</span><span class="p">(</span><span class="n">Motor</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pcb</span><span class="p">,</span> <span class="n">name_motor</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_motor</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">paths</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get_motor_csv_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name_motor</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name_motor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_motor</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_motor</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_motor</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rpm</span><span class="p">,</span> <span class="n">power_out</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_motor</span><span class="o">.</span><span class="n">power_out</span> <span class="o">=</span> <span class="n">power_out</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_motor</span><span class="o">.</span><span class="n">rpm</span> <span class="o">=</span> <span class="n">rpm</span>
+                    <span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="test-script-07-test-motor-py">
+<h4>Test Script (<code class="docutils literal notranslate"><span class="pre">07_test_motor.py</span></code>)<a class="headerlink" href="#test-script-07-test-motor-py" title="Link to this heading"></a></h4>
+<p>This script runs the motor model using predefined test conditions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.electrical.motor</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_motor</span><span class="p">,</span> <span class="n">MotorModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.pcb</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.utils.print_align</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_aligned_data</span>
+
+<span class="n">pcb</span> <span class="o">=</span> <span class="n">PCB</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">name_motor</span> <span class="o">=</span> <span class="s2">&quot;EMRAX348-LV-AC&quot;</span>
+
+    <span class="n">rpm</span> <span class="o">=</span> <span class="mi">4000</span>
+    <span class="n">power_out</span> <span class="o">=</span> <span class="mi">400000</span>
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">rpm</span> <span class="o">=</span> <span class="n">rpm</span>
+    <span class="n">motor</span> <span class="o">=</span> <span class="n">get_motor</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_motor</span><span class="p">)</span>
+    <span class="n">motor</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+    <span class="n">motor</span><span class="o">.</span><span class="n">run_model</span><span class="p">(</span><span class="n">rpm</span><span class="p">,</span> <span class="n">power_out</span><span class="p">)</span>
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_motor</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id24">
+<h4>Running the Test<a class="headerlink" href="#id24" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Prepare the CSV File: Ensure EMRAX348_LV_AC.csv is in the ADSP&gt;data&gt;motor directory.</p></li>
+<li><p>Update Parameters: Modify motor parameters in the CSV as needed.</p></li>
+<li><p>Execute the Test Script:</p></li>
+<li><p>Open a terminal or command prompt.</p></li>
+<li><p>Navigate to the directory containing 07_test_motor.py.</p></li>
+</ul>
+</section>
+<section id="id25">
+<h4>Run the script:<a class="headerlink" href="#id25" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>07_test_motor.py
+python<span class="w"> </span>08_test_motor_analysis.py
+</pre></div>
+</div>
+</section>
+<section id="id26">
+<h4>Output<a class="headerlink" href="#id26" title="Link to this heading"></a></h4>
+<p>The results of the motor model analysis are saved in the pcb.data_motor object and printed using print_aligned_data. The output includes detailed information about the motor performance based on the test conditions.</p>
+</section>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="propeller">
+<h1>Propeller<a class="headerlink" href="#propeller" title="Link to this heading"></a></h1>
+<section id="id27">
+<h2>Input File<a class="headerlink" href="#id27" title="Link to this heading"></a></h2>
+<p>For the Propeller, the input file is set as <code class="docutils literal notranslate"><span class="pre">propeller_set0x.csv</span></code> located in <code class="docutils literal notranslate"><span class="pre">adsp&gt;data&gt;propulsion</span></code>, and the configuration is as follows:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>Mode | propeller-name | loc-x (m) |loc-y (m) |loc-z (m) |mass (kg)
+VTOL    x57cruise        1.9336     0.525      0.5        2
+VTOL    x57cruise        1.9336     -0.525     0.5        2
+CTOL    x57cruise        3.0336     0.525      0.5        2
+CTOL    x57cruise        3.0336     -0.525     0.5        2
+</pre></div>
+</div>
+<section id="proopeller">
+<h3>Proopeller<a class="headerlink" href="#proopeller" title="Link to this heading"></a></h3>
+<p>This manual provides detailed instructions for setting up and running an propeller model test and analysis. The code integrates propeller parameters from a database (DB), processes them using an propeller model, and saves the resulting data in a printed circuit board (PCB). The entire flow is depicted in the accompanying diagram.</p>
+<section id="id28">
+<h4>Components<a class="headerlink" href="#id28" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Database (DB)</strong>: Contains Propeller parameters.</p></li>
+<li><p><strong>Propeller Model</strong>: Selects and analyzes the Propeller model based on provided parameters.</p></li>
+<li><p><strong>Test Case</strong>: Defines test conditions and input parameters.</p></li>
+<li><p><strong>Data Saved in PCB</strong>: Stores the test results.</p></li>
+</ol>
+</section>
+<section id="id29">
+<h4>Files and Scripts<a class="headerlink" href="#id29" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Propeller Parameters CSV File</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;data&gt;propeller&gt;x57cruise.csv</span></code></p></li>
+<li><p><strong>Propeller Model Script</strong>: <code class="docutils literal notranslate"><span class="pre">ADSP&gt;propulsion&gt;mechanical&gt;propeller_vp&gt;propeller.py</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">ADSP&gt;propulsion&gt;mechanical&gt;propeller_cp&gt;propeller.py</span></code></p></li>
+<li><p><strong>Test Script</strong>: <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">demo&gt;propulsion&gt;10_test_propeller_vp.py</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">demo&gt;propulsion&gt;11_test_propeller_db_generator.py</span></code></p></li>
+</ol>
+</section>
+<section id="propeller-parameters-csv-x57cruise-csv">
+<h4>Propeller Parameters CSV (<code class="docutils literal notranslate"><span class="pre">x57cruise.csv</span></code>)<a class="headerlink" href="#propeller-parameters-csv-x57cruise-csv" title="Link to this heading"></a></h4>
+<p>The CSV file contains key parameters for the Propeller model. Below is an example of the motor parameters used:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>radius_tip_real,0.98
+radius_hub_base,0.15
+redius_tip_base,0.75
+blades,3
+pitch_base,0.0
+pitch_min,0.0
+pitch_max,60.0
+r_loc(m),chord(m),twist(deg),airfoil 
+0.1605,0.1131,64.29,MH117 
+0.1856,0.1306,62.42,MH117 
+0.2094,0.1443,60.19,MH117 
+0.2338,0.1492,57.79,MH117 
+0.2575,0.1517,55.50,MH117 
+0.2820,0.1504,53.39,MH117 
+0.3051,0.1478,51.396,MH117 
+0.3295,0.1453,49.46,MH117 
+0.3539,0.1402,47.70,MH117 
+0.3777,0.1339,45.94,MH117 
+0.4015,0.1314,44.30,MH117 
+0.4259,0.1276,42.78,MH117 
+0.4497,0.1225,41.37,MH117 
+0.4735,0.1175,40.02,MH117 
+0.4979,0.1137,38.61,MH117 
+0.5223,0.1111,37.32,MH117 
+0.5454,0.1086,36.09,MH117 
+0.5699,0.1023,34.91,MH117 
+0.5936,0.0997,33.74,MH117 
+0.6174,0.0972,32.63,MH117 
+0.6418,0.0934,31.57,MH117 
+0.6656,0.0896,30.45,MH117 
+0.6894,0.0858,29.397,MH117 
+0.7144,0.0807,28.107,MH117 
+0.7376,0.0732,26.58,MH117 
+</pre></div>
+</div>
+</section>
+<section id="id30">
+<h4>Description of Parameters<a class="headerlink" href="#id30" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>radius_tip_real : actual tip radius of propeller (distance from the propeller hub to the outer tip of the blade), which is 0.98 m</p></li>
+<li><p>radius_hub_base : base radius of the hub, which is 0.15 m</p></li>
+<li><p>radius_tip_base : base radius of the propeller tip for the design which is 0.75 m</p></li>
+<li><p>blades : Number of the blade</p></li>
+<li><p>pitch_base : Basicall pitch angle when running</p></li>
+<li><p>pitch_min : Minimum constraint of the pitch angle when running</p></li>
+<li><p>pitch_max : Maximum constraint of the pitch angle when running</p></li>
+<li><p>r_loc : propeller location at the section</p></li>
+<li><p>chord : propeller sections’ chord length</p></li>
+<li><p>twist : propeller sections’ twist angle</p></li>
+<li><p>airfoil : propeller sections’ airfoil</p></li>
+</ul>
+</section>
+<section id="propeller-model-script-propeller-py">
+<h4>Propeller Model Script (propeller.py)<a class="headerlink" href="#propeller-model-script-propeller-py" title="Link to this heading"></a></h4>
+<p>This script defines the Propeller Model class, which is responsible for loading propeller parameters and performing the propeller analysis.
+For the Constant Pitch(propeller_cp), estimate rpm to match thrust / for the Variable Pitch(propeller_vp), using <code class="docutils literal notranslate"><span class="pre">airfoil's</span> <span class="pre">surrogate</span> <span class="pre">model-&gt;</span> <span class="pre">optimize</span> <span class="pre">pitch</span> <span class="pre">angle</span> <span class="pre">and</span> <span class="pre">RPM</span> <span class="pre">for</span> <span class="pre">high</span> <span class="pre">efficiency</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">PropellerModel</span><span class="p">(</span><span class="n">Propeller</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pcb</span><span class="p">,</span> <span class="n">name_propeller</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_propeller</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rpm</span><span class="p">,</span> <span class="n">velocity</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">altitude</span><span class="o">=</span><span class="mf">10.0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read specific propeller database file and by interpolation,</span>
+<span class="sd">        calculate propeller performance.</span>
+<span class="sd">        This analysis does not use BEMT.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">rpm</span> <span class="o">=</span> <span class="n">rpm</span>
+        <span class="n">rps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">rpm</span> <span class="o">/</span> <span class="mf">60.0</span>  <span class="c1"># rps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">omega</span> <span class="o">=</span> <span class="n">rps</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">velocity</span><span class="p">)</span>
+                        <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_init_rpm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">velocity</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">velocity</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rpmMax</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">rpmMin</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">velocity</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="n">Jmean</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Jmax</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">Jmin</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">velocity</span> <span class="o">/</span> <span class="p">(</span><span class="n">Jmean</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">diameter</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wrong velocity input!!&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">estimate_rpm_to_match_thrust</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">thrust_req</span><span class="p">,</span> <span class="n">altitude</span><span class="o">=</span><span class="mf">10.0</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">rpm</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">run_model</span><span class="p">(</span><span class="n">rpm</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">altitude</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">thrust</span> <span class="o">-</span> <span class="n">thrust_req</span>
+
+        <span class="n">rpm_req</span> <span class="o">=</span> <span class="n">brentq</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_model</span><span class="p">(</span><span class="n">rpm_req</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">altitude</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">PropellerModel</span><span class="p">(</span><span class="n">Propeller</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extends the Propeller class with methods for aerodynamic force calculations.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pcb</span><span class="p">,</span> <span class="n">name_propeller</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_propeller</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_pitch_for_target_thrust</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rpm</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">altitude</span><span class="p">,</span> <span class="n">target_thrust</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Getting pitch for given thrust...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_pitch</span> <span class="o">=</span> <span class="mf">60.0</span>
+        <span class="n">pitch_bounds</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pitch_min</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pitch_max</span><span class="p">,</span>
+        <span class="p">)</span>  <span class="c1"># Assuming max_pitch is the upper limit for pitch</span>
+
+        <span class="c1"># Define the objective function to maximize efficiency (negative for minimization)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">objective</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="n">pitch</span> <span class="o">=</span> <span class="n">x</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">run_model</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">rpm</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">altitude</span><span class="p">)</span>
+
+            <span class="n">thrust</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">thrust</span>
+            <span class="n">efficiency</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">efficiency</span>
+            <span class="n">pitch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">pitch</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;PITCH: </span><span class="si">{</span><span class="n">pitch</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, EFF: </span><span class="si">{</span><span class="n">efficiency</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, THRUST: </span><span class="si">{</span><span class="n">thrust</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+            <span class="k">return</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">efficiency</span>
+</pre></div>
+</div>
+</section>
+<section id="test-script-10-test-propeller-vp-py">
+<h4>Test Script (<code class="docutils literal notranslate"><span class="pre">10_test_propeller_vp.py</span></code>)<a class="headerlink" href="#test-script-10-test-propeller-vp-py" title="Link to this heading"></a></h4>
+<p>This script runs the variable pitch propeller model using predefined test conditions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">adsp.propulsion.mechanical.mechanical</span><span class="w"> </span><span class="kn">import</span> <span class="n">MechanicalModule</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adsp.utils.print_align</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_aligned_data</span>
+
+<span class="n">pcb</span> <span class="o">=</span> <span class="n">PCB</span><span class="p">()</span>
+
+
+<span class="n">name_propeller</span> <span class="o">=</span> <span class="s2">&quot;x57cruise&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_optimal_pitch</span><span class="p">():</span>
+    <span class="n">mechanical_module</span> <span class="o">=</span> <span class="n">MechanicalModule</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_propeller</span><span class="p">)</span>
+    <span class="n">rpm</span> <span class="o">=</span> <span class="mi">2200</span>
+    <span class="n">velocity</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">altitude</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">mechanical_module</span><span class="o">.</span><span class="n">get_optimal_pitch</span><span class="p">(</span><span class="n">rpm</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">altitude</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">pitch</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">efficiency</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">thrust</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">rpm</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">get_optimal_pitch</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id31">
+<h4>Running the Test<a class="headerlink" href="#id31" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Prepare the CSV File: Ensure x57cruise.csv is in the ADSP&gt;data&gt;propeller&gt;geometry directory.</p></li>
+<li><p>Update Parameters: Modify propeller parameters in the CSV as needed.</p></li>
+<li><p>Execute the Test Script:</p></li>
+<li><p>Open a terminal or command prompt.</p></li>
+<li><p>Navigate to the directory containing 10_test_propeller_vp.py.</p></li>
+</ul>
+</section>
+<section id="id32">
+<h4>Run the script:<a class="headerlink" href="#id32" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>10_test_propeller_vp.py
+</pre></div>
+</div>
+</section>
+<section id="id33">
+<h4>Output<a class="headerlink" href="#id33" title="Link to this heading"></a></h4>
+<p>The results of the propeller model analysis are saved in the pcb.data_propeller object and printed using print_aligned_data. The output includes detailed information about the propeller performance based on the test conditions.</p>
+</section>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="integrated-propulsion-test">
+<h1>Integrated Propulsion Test<a class="headerlink" href="#integrated-propulsion-test" title="Link to this heading"></a></h1>
+<section id="test-script-12-test-propulsion-py">
+<h2>Test Script (<code class="docutils literal notranslate"><span class="pre">12_test_propulsion.py</span></code>)<a class="headerlink" href="#test-script-12-test-propulsion-py" title="Link to this heading"></a></h2>
+<p>Test for Electrical-Energy Source &amp; Test for Mechanical Only</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_electrical_and_energy</span><span class="p">():</span>
+    <span class="n">rpm</span> <span class="o">=</span> <span class="mf">1744.53</span>
+    <span class="n">torque</span> <span class="o">=</span> <span class="mf">1094.7694</span>
+
+    <span class="n">name_converter</span> <span class="o">=</span> <span class="s2">&quot;converter&quot;</span>
+    <span class="n">name_inverter</span> <span class="o">=</span> <span class="s2">&quot;GaN-NTP8G206N&quot;</span>
+    <span class="n">name_controller</span> <span class="o">=</span> <span class="s2">&quot;KP21INV&quot;</span>
+    <span class="n">name_motor</span> <span class="o">=</span> <span class="s2">&quot;EMRAX348-LV-AC&quot;</span>
+
+    <span class="n">throttle</span> <span class="o">=</span> <span class="mf">0.60</span>
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_motor</span><span class="o">.</span><span class="n">rpm</span> <span class="o">=</span> <span class="n">rpm</span>
+    <span class="n">pcb</span><span class="o">.</span><span class="n">data_motor</span><span class="o">.</span><span class="n">torque</span> <span class="o">=</span> <span class="n">torque</span>
+
+    <span class="n">electrical_module</span> <span class="o">=</span> <span class="n">ElectricalModule</span><span class="p">(</span>
+        <span class="n">pcb</span><span class="p">,</span> <span class="n">name_converter</span><span class="p">,</span> <span class="n">name_inverter</span><span class="p">,</span> <span class="n">name_controller</span><span class="p">,</span> <span class="n">name_motor</span>
+    <span class="p">)</span>
+    <span class="n">electrical_module</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">(</span><span class="n">throttle</span><span class="p">,</span> <span class="n">rpm</span><span class="p">)</span>
+
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_controller</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; === Motor Data === &quot;</span><span class="p">)</span>
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_motor</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; === Inverter Data === &quot;</span><span class="p">)</span>
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_inverter</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; === Converter Data === &quot;</span><span class="p">)</span>
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="p">)</span>
+
+    <span class="n">current</span> <span class="o">=</span> <span class="n">pcb</span><span class="o">.</span><span class="n">data_converter</span><span class="o">.</span><span class="n">current_inp</span>
+    <span class="n">duration_passed</span> <span class="o">=</span> <span class="mi">1200</span>
+    <span class="n">name_battery</span> <span class="o">=</span> <span class="s2">&quot;test_battery01&quot;</span>
+    <span class="n">battery</span> <span class="o">=</span> <span class="n">get_battery</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">name_battery</span><span class="p">)</span>
+    <span class="n">battery</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+    <span class="n">battery</span><span class="o">.</span><span class="n">run_model</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">duration_passed</span><span class="p">)</span>
+    <span class="n">print_aligned_data</span><span class="p">(</span><span class="n">pcb</span><span class="o">.</span><span class="n">data_battery</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">mechanical</span><span class="p">():</span>
+
+    <span class="n">propulsion</span> <span class="o">=</span> <span class="n">PropulsionAnalysisUAM</span><span class="p">(</span><span class="n">combus</span><span class="p">,</span> <span class="n">pcb</span><span class="p">,</span> <span class="n">name_propulsion</span><span class="p">)</span>
+    <span class="n">propulsion</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+
+    <span class="n">throttle</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">power</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">efficiency</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">rpm</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">pitch</span> <span class="o">=</span><span class="p">[]</span>
+    <span class="n">velocity_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">target_thrust</span> <span class="o">=</span> <span class="mf">2500.0</span>
+    <span class="n">altitude</span> <span class="o">=</span> <span class="mi">500</span>
+
+    <span class="k">for</span> <span class="n">velocity</span> <span class="ow">in</span> <span class="n">velocity_range</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">propulsion</span><span class="o">.</span><span class="n">get_throttle_for_target_thrust</span><span class="p">(</span><span class="n">velocity</span><span class="p">,</span> <span class="n">altitude</span><span class="p">,</span> <span class="n">target_thrust</span><span class="p">)</span>
+            <span class="n">throttle_value</span> <span class="o">=</span> <span class="n">pcb</span><span class="o">.</span><span class="n">data_controller</span><span class="o">.</span><span class="n">throttle</span>
+            <span class="n">power_value</span> <span class="o">=</span> <span class="n">pcb</span><span class="o">.</span><span class="n">data_motor</span><span class="o">.</span><span class="n">power_out</span>
+            <span class="n">efficiency_value</span> <span class="o">=</span> <span class="n">pcb</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">efficiency</span>
+            <span class="n">rpm_value</span> <span class="o">=</span> <span class="n">pcb</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">rpm</span>
+            <span class="n">pitch_value</span> <span class="o">=</span> <span class="n">pcb</span><span class="o">.</span><span class="n">data_propeller</span><span class="o">.</span><span class="n">pitch</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error obtaining data for target thrust </span><span class="si">{</span><span class="n">target_thrust</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">throttle_value</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">power_value</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">efficiency_value</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">rpm_value</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">pitch_value</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">throttle</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">throttle_value</span><span class="p">)</span>
+        <span class="n">power</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">power_value</span><span class="p">)</span>
+        <span class="n">efficiency</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">efficiency_value</span><span class="p">)</span>
+        <span class="n">rpm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rpm_value</span><span class="p">)</span>
+        <span class="n">pitch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pitch_value</span><span class="p">)</span>
+    
+    <span class="n">efficiency_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">arr</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">arr</span> <span class="ow">in</span> <span class="n">efficiency</span><span class="p">]</span>
+    <span class="n">rpm_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">arr</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">arr</span> <span class="ow">in</span> <span class="n">rpm</span><span class="p">]</span>
+    <span class="n">pitch_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">arr</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">arr</span> <span class="ow">in</span> <span class="n">pitch</span><span class="p">]</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">velocity_range</span><span class="p">,</span> <span class="n">rpm_list</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;RPM&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;RPM&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Velocity&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4000</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">velocity_range</span><span class="p">,</span> <span class="n">efficiency_list</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Efficiency&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Efficiency&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+
+    <span class="n">ax3</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s1">&#39;outward&#39;</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span> 
+    <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">velocity_range</span><span class="p">,</span> <span class="n">pitch_list</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Pitch&#39;</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Pitch&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KADA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

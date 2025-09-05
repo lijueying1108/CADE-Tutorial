@@ -1,0 +1,652 @@
+# **Weight and Balance Theory Manual**
+
+This is a theory manual for weight and balance analysis inside CADE-MDA.  
+It is written by referring to the books:
+
+> [1] "Weight and Balance Handbook" by U.S. Department of Transportation  Federal Aviation Administrantion(FAA)
+
+> [2] "Aircraft Design : A Conceptual Approach (6th Edition)" by Daniel P. Raymer
+
+> [3] "GENERAL AVIATION AIRCRAFT DESIGN: APPLIED METHODS AND PROCEDURE"S by Snorri Gudmundsson
+
+> [4] "NDARC (NASA Design and Analysis of Rotorcraft) Theory,"by Wayne Johnson
+
+> [5] "ADVANCED AIRCRAFT DESIGN" by Egbert Torenbeek 
+
+<br>
+
+## **Weight and Balance**
+
+Weight and Balance analysis estimates the weight of aircraft components to calculate maximum takeoff weight (MTOW) and structural mass. It then computes the center of gravity (CG) to ensure the aircraft remains within its safe operational range. Moments of inertia (MoI) are calculated to quantitatively assess the aircraft’s stability and control characteristics. These results streamline the design process and support effective management of aircraft stability and performance.  
+
+
+<br>
+
+### Goal of Weight and Balance
+The objective of the aircraft weight and balance analysis is to predict the aircraft’s maximum takeoff weight (MTOW), structural mass, center of gravity (CG), and moment of inertia (MoI).
+
+> 1. Predict component weights to verify safe operational limits.  
+> 2. Calculate the aircraft’s center of gravity (CG) to ensure it remains within its operational range.  
+> 3. Compute moments of inertia (MoI) to assess stability and control characteristics.  
+
+
+<br>
+
+### Weight and Balance Analysis Module Structure
+- **Aircraft Weight**
+  - Weight Breakdown and Weight Estimation Methods
+    - Weight Breakdown for Different Types of Aircraft
+    - Raymer Weight Estimation
+    - Torenbeek Weight Estimation
+    - USAF Weight Estimation
+    - AFDD Weight Estimation
+    - Wetted-Area Structural Weight Estimation
+- **Aircraft Center of Gravity**
+  - Basic Center of Gravity Equations
+  - Basic Weight and Balance Equations
+- **Aircraft Moment of Inertia**
+  - Basic Theory for Aircraft Arms and Moment
+  - Moment Of Inertia
+  - Parallel-Axis Theorem
+
+
+<br>
+
+## Aircraft Weight
+Aircraft weight calculation is the process of computing the mass of each component—structure, propulsion, systems—and summing them to determine the total aircraft weight.  
+This total weight directly influences key performance metrics such as takeoff and landing distances, rate of climb, and cruise speed.  
+Moreover, increases in weight necessitate stronger structures and higher-thrust engines, raising manufacturing and operational costs.  
+Therefore, accurate weight calculation and optimized mass management from design through operation and maintenance are essential.
+<br>
+
+### **Weight Breakdown and Weight Estimation Methods**
+This section is organized into two complementary chapters.  
+The **Weight Breakdown** chapter explains how to identify and classify the primary components contributing to aircraft weight.  
+The **Weight Estimation Methods** chapter outlines the weight calculation procedures using empirical and physics-based methodologies such as Raymer, Torenbeek, and AFDD.  
+
+
+#### **Weight Breakdown for Different Types of Aircraft**
+
+This section divides the aircraft’s weight components into five groups—structure, propulsion, energy, payload, and miscellaneous systems—and outlines the primary elements and functions of each group.
+
+Aircraft Components:
+
+| Group | Typical Items | Notes |
+|-------|---------------|-------|
+| **Structure** | Wing, Fuselage, Empennage, Landing Gear | Primary load-paths |
+| **Propulsion** | Motors, Propellers, Inverters, Converters | *Energy source excluded* |
+| **Energy** | Battery, Fuel, Thermal-Management System | Swappable packs possible |
+| **Payload** | Passengers, Cargo, Sensors | Mission-dependent |
+| **Misc. Systems** | Avionics, Flight-Controls, Installation | Often shifts CG aft |
+
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/Evtol_Components.jpg" alt="Evtol Components" width="500">
+  <figcaption> eVTOL weight-component breakdown </figcaption>
+</div>
+
+<br>
+
+Empty Weight ($W_e$) is defined as:
+
+$$
+W_e = W_{\mathrm{structure}} + W_{\mathrm{propulsion,fixed}} + W_{\mathrm{battery}} + W_{\mathrm{Misc, Systems}}
+$$
+<span style="color:rgb(24, 80, 145);">**Note:** For conventional (fuel-based) aircraft, omit $W_{\mathrm{battery}}$.
+> 
+Operating Empty Weight ($W_{OE}$) is defined as:
+
+$$
+W_{OE} = W_e + W_{\mathrm{crew}}   + W_{\mathrm{unusable\ energy}}
+$$
+
+- $W_{\mathrm{unusable\,energy}}$: the residual fuel, oil, or battery charge that cannot be used.  
+
+> 
+Maximum takeoff weight ($W_{TO}$) is defined as:
+
+$$
+W_0 = W_{OE}  + W_{payload} +W_{\mathrm{operational\ fluids}} \quad(+\ \text{additional mission equipment})
+$$
+- $W_{OE}$: operating empty weight (structure, propulsion, systems)  
+- $W_b$: battery (energy) weight  
+- $W_p$: payload weight (passengers, cargo, sensors)  
+  
+<span style="color:rgb(24, 80, 145);">**Note:** For electric aircraft, $W_{\mathrm{operational\,fluids}} = 0$.
+<br>
+
+
+
+#### **Weight Estimation Methods**
+Weight estimation models use geometric parameters (for example, wing area and fuselage length) together with design inputs (such as material density and design gross weight) to calculate the mass of each aircraft component and the complete vehicle through a combination of empirical correlations and mathematical relations. 
+
+1. **Raymer Weight Estimation Method**  
+   - **Feature:** Quickly predicts the total airframe mass range using key geometric variables (e.g., wing area, fuselage length).  
+   - **Applicable to:** <span style="color:rgb(24, 80, 145);">General aviation aircraft  
+
+2. **Torenbeek Weight Estimation Method**  
+   - **Feature:** Specialized for large transport aircraft, delivering high accuracy through detailed component breakdown based on shape and design parameters.  
+   - **Applicable to:** <span style="color:rgb(24, 80, 145);">Transport-category airplanes  
+
+3. **USAF Weight Estimation Method**  
+   - **Feature:** Uses military-specific correlations to account for armament, avionics, and other mission equipment in component-level weight calculations.  
+   - **Applicable to:** <span style="color:rgb(24, 80, 145);">Light,utility aircraft  
+
+4. **AFDD Weight Estimation Method (NASA NDARC)**  
+   - **Feature:** Tailored for rotorcraft, tiltrotor, and tiltwing configurations by incorporating rotor-specific components and dynamic load factors.  
+   - **Applicable to:** <span style="color:rgb(24, 80, 145);">Tiltrotor and tiltwing aircraft  
+
+5. **Wetted-Area Structural Weight Method**
+     - **Feature:** Computes primary structure (skin, fittings, frame) mass directly from wetted area and empirically derived density/thickness factors.
+     - **Applicable to**: <span style="color:rgb(24, 80, 145);">Small, skin-dominant airframes and UAV fuselages
+
+#### Weight Estimation Correction Factors
+
+- **Raymer, Torenbeek & USAF Methods**  
+  Component weights are first calculated using their respective empirical formulas, then adjusted by a **fudge factor** to account for unmodeled structure, fittings, and manufacturing tolerances.  
+  Refer to the image below for the recommended fudge factor values and apply them accordingly.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/fudge_factor.jpg" alt="fudge factor" width="400">
+  <figcaption> Fudge Factor </figcaption>
+</div>
+
+- **AFDD Method (NASA NDARC)**  
+  Rather than a single multiplier, each component (rotor blades, gearboxes, hubs, etc.) is scaled by a specific **technology correction factor** based on material and subsystem maturity.  
+  Consult the image below for the individual correction factors and multiply them into your component weight calculations.  
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/technology_factor.jpg" alt="technology factor" width="400">
+  <figcaption> Technology Factor </figcaption>
+</div>
+
+<br>
+
+#### **Raymer Weight Estimation**
+
+Raymer’s method applies regression formulas to key geometric (e.g., wing area) and loading (e.g., design gross weight) parameters for rapid estimation of component and total aircraft weight.  
+It provides fast, reliable predictions of the total weight range during the conceptual design phase of general aviation (GA) aircraft.  
+This module uses the<span style="color:rgb(24, 80, 145);"> GA-specific </span>Raymer weight estimation formula.  
+
+#### Main Wing Weight Formula
+
+$$
+W_{\mathrm{wing}}
+= 0.036\,S_w^{0.758}\,W_{\mathrm{fuel}}^{0.0035}\,
+  \Bigl(\tfrac{AR}{\cos^2\Lambda_{c/4}}\Bigr)^{0.6}
+  q^{0.006}\,\lambda^{0.04}\,
+  \Bigl(\tfrac{100\,t_c}{\cos\Lambda_{c/4}}\Bigr)^{-0.3}
+  (N_z\,W_{dg})^{0.49}
+$$
+
+*Where,*  
+> *- $S_w$ : Wing planform area [ft²]* <br>
+> *- $W_{\mathrm{fuel}}$ : Fuel weight in wing [lb]* <br>
+> *- $AR$ : Wing aspect ratio* <br>
+> *- $\Lambda_{c/4}$ : Quarter-chord sweep angle* <br>
+> *- $q$ : Dynamic pressure at cruise [lb/ft²]* <br>
+> *- $\lambda$ : Taper ratio* <br>
+> *- $t_c$ : Thickness-to-chord ratio* <br>
+> *- $N_z$ : Ultimate load factor* <br>
+> *- $W_{dg}$ : Design gross weight [lb]* <br>
+
+<br>
+
+#### Horizontal & Vertical Tail Weight Formulas
+
+$$
+W_{\mathrm{horizontal\_tail}}
+= 0.016\,(N_z W_{dg})^{0.414}\,q^{0.168}\,S_{ht}^{0.896}
+  \Bigl(\tfrac{100\,t_c}{\cos\Lambda_{ht}}\Bigr)^{-0.12}
+  \Bigl(\tfrac{AR}{\cos^2\Lambda_{ht}}\Bigr)^{0.043}
+  \lambda_{ht}^{-0.02}
+$$
+
+$$
+W_{\mathrm{vertical\_tail}}
+= 0.073\Bigl(1 + 0.2\,\tfrac{H_t}{H_v}\Bigr)\,(N_z W_{dg})^{0.376}\,q^{0.122}\,S_{vt}^{0.873}
+  \Bigl(\tfrac{100\,t_c}{\cos\Lambda_{vt}}\Bigr)^{-0.49}
+  \Bigl(\tfrac{AR}{\cos^2\Lambda_{vt}}\Bigr)^{0.357}
+  \lambda_{vt}^{0.039}
+$$
+
+*Where,*
+> *- $N_z$ : Ultimate load factor* <br>
+> *- $W_{dg}$ : Design gross weight [lb]* <br>
+> *- $q$ : Dynamic pressure at cruise [lb/ft²]* <br>
+> *- $S_{ht}$ : Horizontal tail area [ft²]* <br>
+> *- $S_{vt}$ : Vertical tail area [ft²]* <br>
+> *- $\Lambda_{ht}$ : Horizontal tail sweep at 25% MAC* <br>
+> *- $\Lambda_{vt}$ : Vertical tail sweep at 25% MAC* <br>
+> *- $t_c$ : Thickness-to-chord ratio* <br>
+> *- $AR$ : Aspect ratio* <br>
+> *- $\lambda_{ht}$ : Horizontal tail taper ratio* <br>
+> *- $\lambda_{vt}$ : Vertical tail taper ratio* <br>
+> *- $H_t/H_v$ : Tail configuration factor (0.0 conv.; 1.0 T-tail)* <br>
+
+<br>
+
+#### Fuselage Weight Formula
+
+$$
+W_{\mathrm{fuselage}}
+= 0.052\,S_f^{1.086}\,(N_z\,W_{dg})^{0.177}\,L_{fus}^{-0.051}
+  \Bigl(\tfrac{L_{fus}}{W_{fus}}\Bigr)^{-0.072}\,q^{0.241}
+  + W_{press}
+$$
+
+*Where,*
+> *- $S_f$ : Fuselage wetted area [ft²]* <br>
+> *- $N_z$ : Ultimate load factor* <br>
+> *- $L_{fus}$ : Fuselage length [ft]* <br>
+> *- $W_{fus}$ : Fuselage width [ft]* <br>
+> *- $q$ : Dynamic pressure at cruise [lb/ft²]* <br>
+> *- $W_{press}$ : Pressurization weight penalty [lb]* <br>
+
+<br>
+
+#### **Torenbeek Weight Estimation**
+
+The Torenbeek weight estimation method, taken from *Synthesis of Subsonic Airplane Design*, targets subsonic transport aircraft—especially light transport types with metallic airframes.  
+This module applies the Torenbeek formulas for <span style="color:rgb(24, 80, 145);">light transport-category</span> weight estimation.  
+
+
+
+#### Main Wing Weight Formula
+
+$$
+W_{\mathrm{wing}}
+= 0.00125\,W_{dg}\,
+  \Bigl(\tfrac{b}{\cos\Lambda_{c/2}}\Bigr)^{0.75}
+  \Bigl(1 + \sqrt{\tfrac{6.3\,\cos\Lambda_{c/2}}{b}}\Bigr)
+  N_z^{0.55}\,
+  \Bigl(\tfrac{b\,S_w}{t_{\max}\,W_{dg}\,\cos\Lambda_{c/2}}\Bigr)^{0.3}
+$$
+
+*Where,*  
+> *- $b$ : Wing span [ft]* <br>
+> *- $\Lambda_{c/2}$ : Half-chord sweep angle* <br>
+> *- $S_w$ : Wing planform area [ft²]* <br>
+> *- $t_{\max}$ : Maximum thickness [ft]* <br>
+> *- $N_z$ : Ultimate load factor* <br>
+> *- $W_{dg}$ : Design gross weight [lb]* <br>
+
+#### Horizontal & Vertical Tail Weight Formula
+
+$$
+W_{\mathrm{tailwing}}
+= 0.04\,(N_z\,S_{stab}^2)^{0.75}
+$$
+
+*Where,*
+> *- $N_z$ : Ultimate load factor* <br>
+> *- $S_{stab}$ : Stabilizer planform area [ft²]* <br>
+
+<br>
+
+#### Fuselage Weight Formula 
+
+$$
+W_{\mathrm{fuselage}}
+= 0.021 \times 1.07
+  \times \sqrt{\frac{V_d \,L_{fus}}{W_{fus} + H_{fus}}}
+  \times S_f^{1.2}
+$$
+*Where,*
+> *- $V_d$ : Design dive speed [kt]* <br>
+> *- $L_{fus}$ : Fuselage length [ft]* <br>
+> *- $W_{fus}$ : Fuselage width [ft]* <br>
+> *- $H_{fus}$ : Fuselage height [ft]* <br>
+> *- $S_f$ : Fuselage wetted area [ft²]* <br>
+
+<br>
+
+#### **USAF Weight Estimation**
+
+The USAF weight estimation method uses U.S. Air Force operational and maintenance data to empirically predict the mass of fighter and light/utility fixed-wing aircraft.  
+This module applies the USAF formulas for<span style="color:rgb(24, 80, 145);">  light/utility aircraft </span>weight estimation.  
+
+
+#### Main Wing Weight Formula
+
+$$
+W_{\mathrm{wing}}
+= 96.948\,
+  \Bigl(\tfrac{N_z\,W_{dg}}{10^5}\Bigr)^{0.65}
+  \Bigl(\tfrac{AR}{\cos\Lambda_{c/4}}\Bigr)^{0.57}
+  \Bigl(\tfrac{S_w}{100}\Bigr)^{0.61}
+  \Bigl(1 + \tfrac{\lambda}{2\,t_c}\Bigr)^{0.36}
+  \Bigl(1 + \tfrac{V_H}{500}\Bigr)^{0.5}
+\Bigr)^{0.993}
+$$
+
+*Where,*  
+> *- $AR$ : Wing aspect ratio* <br>
+> *- $\Lambda_{c/4}$ : Quarter-chord sweep angle* <br>
+> *- $S_w$ : Wing planform area [ft²]* <br>
+> *- $\lambda$ : Taper ratio* <br>
+> *- $t_c$ : Thickness-to-chord ratio* <br>
+> *- $V_H$ : Horizontal tail volume coefficient* <br>
+> *- $N_z$ : Ultimate load factor* <br>
+> *- $W_{dg}$ : Design gross weight [lb]* <br>
+
+<br>
+
+#### Horizontal & Vertical Tail Weight Formula ####
+$$
+W_{hstab}
+= 71.927\,
+  \Bigl(\tfrac{N_z\,W_{dg}}{10^5}\Bigr)^{0.87}
+  \Bigl(\tfrac{S_{ht}}{100}\Bigr)^{1.2}
+  \Bigl(\tfrac{l_{ht}}{10}\Bigr)^{0.483}
+  \sqrt{\tfrac{b_{ht}}{t_c}}
+\Bigr)^{0.458}
+$$
+
+$$
+W_{vstab}
+= 55.786\,
+  \Bigl(1 + 0.2\,F_{tail}\Bigr)
+  \Bigl(\tfrac{N_z\,W_{dg}}{10^5}\Bigr)^{0.87}
+  \Bigl(\tfrac{S_{vt}}{100}\Bigr)^{1.2}
+  \sqrt{\tfrac{b_{vt}}{t_c}}
+\Bigr)^{0.458}
+$$
+
+*Where,*
+> *- $N_z$ : Ultimate load factor* <br>
+> *- $W_{dg}$ : Design gross weight [lb]* <br>
+> *- $S_{ht}$ : Horizontal tail area [ft²]* <br>
+> *- $S_{vt}$ : Vertical tail area [ft²]* <br>
+> *- $l_{ht}$ : Horizontal stabilizer arm length [ft]* <br>
+> *- $b_{ht}$ : Horizontal stabilizer span [ft]* <br>
+> *- $b_{vt}$ : Vertical stabilizer span [ft]* <br>
+> *- $t_c$ : Thickness-to-chord ratio* <br>
+> *- $F_{tail}$ : Tail fin factor* <br>
+
+<br>
+
+#### Fuselage Weight Formula 
+
+$$
+W_{\mathrm{fuselage}}
+= 200 \,
+  \Bigl(
+    \bigl(\tfrac{N_z\,W_{dg}}{10^5}\bigr)^{0.286}
+    \,(L_{fus}/10)^{0.857}
+    \,\tfrac{W_{fus} + H_{fus}}{10}
+    \,\bigl(\tfrac{V_H}{100}\bigr)^{0.338}
+  \Bigr)^{1.1}
+$$
+
+*Where,*
+> *- $N_z$ : Ultimate load factor* <br>
+> *- $W_{dg}$ : Design gross weight [lb]* <br>
+> *- $L_{fus}$ : Fuselage length [ft]* <br>
+> *- $W_{fus}$ : Fuselage width [ft]* <br>
+> *- $H_{fus}$ : Fuselage height [ft]* <br>
+> *- $V_H$ : Cruise speed [kt]* <br>
+
+<br>
+
+#### **AFDD Weight Estimation**
+
+The AFDD weight estimation method, part of NASA’s NDARC toolkit, uses rotorcraft‐specific regression formulas and technology correction factors to predict component and total mass for helicopters, tiltrotors, and tiltwing VTOL configurations.  
+This module applies the AFDD formulas for <span style="color:rgb(24, 80, 145);">tiltrotor and tiltwing aircraft</span> weight estimation.  
+
+
+#### Main Wing Weight Formula
+
+$$
+W_{\mathrm{wing}}
+= 5.66411\,
+  \Bigl(\tfrac{W_{sdg}\,\mathrm{lift\_factor}}{1000\,\cos\Lambda_{c/2}}\Bigr)^{0.847}
+  N_z^{0.39579}\,S_w^{0.12754}\,AR^{0.50016}
+  \Bigl(\tfrac{1+\lambda}{t_c}\Bigr)^{0.09359}
+  (1 - b_{fold})^{-0.14356}
+$$
+
+*Where,*  
+> *- $W_{sdg}$ : Structural design weight [lb]* <br>
+> *- $\mathrm{lift\_factor}$ : Rotorcraft lift multiplier* <br>
+> *- $\Lambda_{c/2}$ : Half-chord sweep angle* <br>
+> *- $N_z$ : Ultimate load factor* <br>
+> *- $S_w$ : Wing planform area [ft²]* <br>
+> *- $AR$ : Wing aspect ratio* <br>
+> *- $\lambda$ : Taper ratio* <br>
+> *- $t_c$ : Thickness-to-chord ratio* <br>
+> *- $b_{fold}$ : Foldable-span fraction (0–1)* <br>
+
+<br>
+
+#### Horizontal & Vertical Tail Weight Formula ####
+$$
+W_{hstab}
+= 0.7176\,S_{ht}^{1.1881}\,AR_{ht}^{0.3173}
+$$
+
+$$
+W_{vstab}
+= 1.0460\,f_{tr}\,S_{vt}^{0.9441}\,AR_{vt}^{0.5332}
+$$
+
+*Where,*
+> *- $S_{ht}$ : Horizontal stabilizer area [ft²]* <br>
+> *- $S_{vt}$ : Vertical stabilizer area [ft²]* <br>
+> *- $AR_{ht}$ : Horizontal stabilizer aspect ratio* <br>
+> *- $AR_{vt}$ : Vertical stabilizer aspect ratio* <br>
+> *- $f_{tr}$ : Tail fin factor* <br>
+> *- $N_z$ : Ultimate load factor* <br>
+> *- $W_{dg}$ : Design gross weight [lb]* <br>
+> *- $F_{tail}$ : Tail fin factor (USAF)* <br>
+> *- $S_{stab}$ : Stabilizer planform area* <br>
+
+#### Fuselage Weight Formula
+
+$$
+W_{\mathrm{fuselage}}
+= 5.896\,f_{ramp}\,
+  \Bigl(\tfrac{W_{dg}}{1000}\Bigr)^{0.4908}
+  \,N_z^{0.1323}\,S_f^{0.2544}\,L_{fus}^{0.6100}
+$$
+
+*Where,*
+> *- $f_{ramp}$ : Ramp factor* <br>
+> *- $W_{dg}$ : Design gross weight [lb]* <br>
+> *- $N_z$ : Ultimate load factor* <br>
+> *- $S_f$ : Fuselage wetted area [ft²]* <br>
+> *- $L_{fus}$ : Fuselage length [ft]* <br>
+
+<br>
+
+#### **Wetted-Area Structural Weight Estimation**
+
+The Wetted-Area Structural Weight Estimation method calculates the fuselage’s primary structure mass directly from its wetted surface area, using average skin density and total thickness, then applies empirically derived fractions for fittings and frame.  
+This module applies these formulas to <span style="color:rgb(24, 80, 145);">small, skin-dominant airframes (e.g., UAV fuselages)</span> for concept-level sizing.
+
+$$
+W_{\mathrm{struct}}
+= \rho_{\mathrm{avg}}\;t_{\mathrm{skin,avg}}\;S_{\mathrm{wetted}}\;\bigl(1 + f_{\mathrm{fitting}} + f_{\mathrm{frame}}\bigr)
+$$
+*Where,*
+> *- $rho_{\mathrm{avg}}$: average skin density [lb/ft³]* <br>
+> *- $t_{\mathrm{skin,avg}}$: average skin thickness [in]* <br>
+> *- $S_{\mathrm{wetted}}$: wetted area of the specific structure [ft²]* <br>
+> *- $f_{\mathrm{fitting}}$: fitting weight fraction (e.g., 0.15)* <br>
+> *- $f_{\mathrm{frame}}$: frame weight fraction (e.g., 0.25)* <br>
+
+<span style="color:rgb(24, 80, 145);">**Note:** Use the corresponding $S_{\mathrm{wetted}}$ for each structural element (fuselage, wing, empennage, etc.) when applying this formula.  
+
+## Aircraft Center of Gravity
+Weight and balance in aircraft follow the lever principle: each mass multiplied by its arm about the balance point (CG) produces a moment. Equilibrium is achieved when the algebraic sum of all moments about the CG equals zero, so that nose-up and nose-down moments exactly counterbalance.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/Effect_of_Aft_CG.jpg" alt="Aft_CG" width="450">
+  <figcaption> Effect of aft CG: insufficient elevator nose‐down authority when CG shifts rearward </figcaption>
+</div>
+
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/Effect_of_Forward_CG.jpg" alt="Forward_CG" width="450">
+    <figcaption>Effect of forward CG: insufficient elevator nose‐up authority when CG shifts forward</figcaption>
+  </figure>
+</div>
+
+### Basic Center of Gravity Equation
+
+<span style="color:rgb(24, 80, 145);">The balance point can be determined by dividing the total moment by the total weight.</span> This balance point is equal to the CG, and can be mathematically expressed as:
+
+$$ CG = \frac{total\;moment}{total\;weight} $$
+The center of gravity (CG) is found by dividing the sum of all weight‐induced moments by the total weight. To calculate it:
+
+1. Measure each weight’s arm from the datum.
+2. Multiply each arm by its corresponding weight to obtain each moment.
+3. Sum all weights and sum all moments (ignore the lever’s own weight).
+4. Divide the total moment by the total weight to locate the CG along the lever.
+   
+
+Example:
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/CG_calculation.webp" alt="CG Calculation" width="500">
+    <figcaption>CG calculation example using a lever‐model setup</figcaption>
+  </figure>
+</div>
+
+<br>
+
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/CG_calculation_table.webp" alt="CG Calculation Table" width="500">
+    <figcaption>CG calculation results in weight–arm–moment table</figcaption>
+  </figure>
+</div>
+
+<br>
+
+Weight A is 100 pounds and is located 50 inches from the datum; weight B is 100 pounds and is located 90 inches from the datum; and weight C is 200 pounds and is located 150 inches from the datum. The total weight is therefore 400 pounds, and the total moment about the datum is 5,000 + 9,000 + 30,000 = 44,000 lb·in. The balance point (CG) is found by dividing the total moment by the total weight, giving 44,000 ÷ 400 = 110 in from the datum.
+
+<br>
+
+These formulas calculate how far a given weight must move to achieve a specified CG shift. By rearranging them, you can also determine the necessary weight, movement distance, or total aircraft weight to produce the desired CG change.
+
+
+$$ \frac{W_{shifted}}{MTOW}=\frac{\Delta\;CG}{\Delta\;d}$$
+
+$$ MTOW=\frac{W_{shifted}\times\Delta\;d }{\Delta\;CG} $$
+
+$$ W_{shifted}=\frac{MTOW \times\Delta\;CG}{\Delta\;d} $$
+
+$$ \Delta\;CG=\frac{W_{shifted}\times\;\Delta\;d}{MTOW} $$
+
+$$ \Delta\;d=\frac{MTOW\times\;\Delta\;CG}{W_{shifted}} $$
+
+*Where,*
+
+> *- $W_{shifted}$ : Weight shifted [lbs]* <br>
+> *- $MTOW$ : Maximum Take-Off Weight [lbs]* <br>
+> *- $\Delta\;CG$ : Change in aircraft center of gravity location [in.]* <br>
+> *- $\Delta\;d$ : Distance of the weight shifted [in.]*
+
+<br>
+
+## **Moment of Inertia**
+
+
+### Basic Theory for Aircraft Arm & Moment
+
+#### **Arm & Moment**
+
+Arm is the distance between a component’s CG and the datum—negative when forward/left and positive when aft/right. During design, the datum is placed ahead of the aircraft so all arms remain positive, and maximum weight and allowable CG range are defined from that datum in inches or as a percentage of MAC.
+
+
+Moment is the product of a weight (lb) and its arm (in), expressed in pound-inches (lb·in), and represents the tendency to rotate about the datum. Moments carry a sign—positive when they pitch the airplane up and negative when they pitch it down—based on the direction of the arm relative to the pivot.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/aircraft_moment.png" alt="Aircraft Moment" width="400">
+    <figcaption>Sign conventions for weight, arm and moment, and resulting nose-up/down rotation</figcaption>
+  </figure>
+</div>
+
+<br>
+
+### **Moment Of Inertia**
+
+
+A rotating body resists changes in its angular motion according to its mass and the square of its distance from the axis, analogous to how mass governs linear momentum. The mass moment of inertia quantifies this resistance.
+
+For a point mass $m$ at a distance $r$ from the axis:
+$$
+I = m\,r^2
+$$
+
+For a continuous body around the roll axis:
+$$
+I_{xx} = \int (y^2 + z^2)\,dm
+$$
+where $I_{xx}$, $I_{yy}$, and $I_{zz}$ are the moments about the roll, pitch, and yaw axes, respectively.  
+
+Accurate MOI values are essential for dynamic stability analysis, control response prediction, flight‐control system design, and high‐fidelity simulation—<span style="color:rgb(24, 80, 145);">especially in eVTOLs with distributed propulsion and complex transition modes. </span> 
+
+
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/aircraft_moi.png" alt="Aircraft MoI" width="400">
+    <figcaption>Point-mass moment of inertia</figcaption>
+  </figure>
+</div>
+
+<br>
+
+### Parallel-Axis Theorem
+Refer to the figure below, which depicts a rigid body rotating about an axis that does not pass through its center of gravity (CG).
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/aircraft_moi_parallel_axis.png" alt="Aircraft MoI Parallel Axis" width="400">
+    <figcaption>Parallel-axis theorem illustration</figcaption>
+  </figure>
+</div>
+
+<br>
+
+In this setup, let $r_{CG}$ be the distance from the body’s center of gravity to the rotation axis $O$, $r$ the distance from $O$ to an infinitesimal mass element $dm$, and $r'$ the distance from $dm$ to the CG. The moment of inertia about $O$ is then
+
+$$ I_O=mr_{CG}^2+\int_Br^{'}dm=mr_{CG}^2 +I_{CG} $$
+
+*Where,*
+
+> *- $I_{CG}$ : Moment of inertia of the body about its own CG* <br>
+> *- $r^{'}$ : Distance from CG to an infinitesimal mass $dm$* <br>
+> *- $r_{CG}$ : Distance from the reference point O to the CG of the body* <br>
+> *- $m$ : The mass of the body* <br>
+
+<br>
+
+This is the **parallel‐axis theorem**, which enables calculation of a body’s moment of inertia about any axis $O$ by adding $m\,r_{CG}^2$ to its CG-based inertia $I_{CG}$, and translation of component MOIs from their CG to any desired axis without re‐integrating.
+
+
+$$ I_{XX}=I_{XX_{CG}}+m(y_{CG}^2+z_{CG}^2) $$
+$$ I_{YY}=I_{YY_{CG}}+m(x_{CG}^2+z_{CG}^2) $$
+$$ I_{ZZ}=I_{ZZ_{CG}}+m(x_{CG}^2+y_{CG}^2) $$
+
+*Where,*
+
+> *- $I_{XX_{CG}},I_{YY_{CG}},I_{ZZ_{CG}}$ : Moment of inertia of the body
+about its own CG* <br>
+> *- $x_{CG},y_{CG},z_{CG}$ : Distance from the reference point O to the CG
+of the body* <br>
+
+<br>
+
+
+# *APPENDIX*

@@ -1,0 +1,884 @@
+# **Aerodynamics and SnC Theory Manual**
+
+This is a theory manual for Aerodynamics and Stability & Control (SnC) analysis inside CADE-MDA.
+It is written by referring to the books:
+
+> [1] Fundamentals of Aerodynamics by John D. Anderson
+
+> [2] Aircraft Design: A Conceptual Approach by Daniel P.Raymer
+
+> [3] USAF Stability and Control DATCOM Theory Manual
+
+> [4] "The Effect of Flat Plate Theory Assumption in Post-Stall Lift and Drag Coefficients Extrapolation with Viterna Method", Faisal Mahmuddin, Journal of Subsea and Offshore, Science and Engineering, Vol. 6, 2016
+
+> [5] Software for Aerodynamics and Aircraft Design (W.H. Mason, VirginiaTech)
+
+> [6] Flávio Silvestre, Mauricio V. Donadon and Alessandro Guimarães, "A Finite Element Model for Aeroelastic Analysis of Elongated Composite Plate-Like Wings", Gefferson Silva, January 2019
+
+> [7] "INTRODUCTION TO THE AERODYNAMICS OF FLIGHT", Theodore A. Talay,  Langley Research Center, 1975
+
+> [8] "Aerodynamics for engineering students Chapter 7 - Wing Theory", E.L. Houghton, P.W. Carpenter, Steven H. Collicott, Daniel T. Valentine
+
+
+> [9] "Aerodynamic Analysis with Athena Vortex Lattice (AVL)", Kinga Budziak, 2015
+
+> [10] Theoretical and Experimental Power From Large Horizontal-Axis Wind Turbines. Cleveland: NASA Technical Report No. DOE/NASA/20320-41; Viterna LA, Janetzke DC, 1982.
+Viterna LA, Janetzke DC. 
+
+> [11] USAF Stability and control DATCOM theory manual
+
+> [12] FRICTION - from the Virginia Tech Aerodynamics and Design Software Collection
+
+> [13] AVL. https://web.mit.edu/drela/Public/web/avl/
+
+> [14] 항공기 개념설계 by 항공기설계교육연구회
+
+<br>
+
+## **Aerodynamics and SnC**
+The Aerodynamics and Stability & Control (SnC) module provides a comprehensive evaluation of an aircraft’s aerodynamic performance as well as its stability and control characteristics. It integrates methods such as potential flow analysis (using VLM), airfoil performance prediction (via X-FOIL and JavaFoil), and high angle-of-attack extrapolation (using the Viterna and flat plate methods) to ensure that critical aerodynamic parameters are computed accurately and passed on to other design modules.
+
+<br>
+
+### Goal of Aerodynamics and SnC Analysis Modules
+---
+The objective of the aircraft aerodynamics and stability & control analysis is to accurately calculate and predict the aircraft's aerodynamic characteristics as well as the flight stability and control characteristics.
+
+1. Interface with other modules
+2. Calculate aerodynamic forces and moments
+3. Calculate stability and control parameters of aircraft
+4. Deliver the required aerodynamic parameters to other analysis modules
+
+<br>
+
+### Aerodynamics and SnC Analysis Module Structure
+---
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/Aero_Architecture.png" alt="Aerodynamic Analysis Flow" width="500">
+    <figcaption>Aerodynamic and SnC Analysis Flowchart</figcaption>
+  </figure>
+</div>
+
+<br>
+
+### Reason for Separating Low and High AOA Analysis.  
+
+The aerodynamic analysis in this software is divided into Low Angle of Attack and High Angle of Attack sections to accurately model extensive flight envelope of Urban Air Mobility aircraft. Unlike conventional airplanes, a UAM's mission profile includes vertical takeoff, transition to forward flight, cruise, and vertical landing, as shown in the mission profile diagram. This requires a comprehensive analysis over a much wider range of angles of attack than a traditional aircraft.
+
+#### Low Angle of Attack Analysis.  
+- This section focuses on the linear aerodynamic regime, which corresponds to conventional flight phases like climb, cruise, and descent.  
+
+#### High Angle of Attack Analysis  
+- This section is critical for modeling the unique operational phases of UAM aircraft, such as vertical takeoff, landing, and the transition phase between hover and forward flight.  
+ 
+By splitting the analysis, we use the most appropriate tool for each flight condition, ensuring a comprehensive and accurate aerodynamic model across the UAM's entire operational envelope.
+
+<br>
+
+### **Aerodynamics and SnC Analysis Modules**
+---
+- **Parasite Drag Analysis**
+  - Friction2K
+- **Airfoil Analysis**
+  - X-FOIL Analysis
+  - JavaFoil Analysis
+- **Low Angle-Of-Attack Analysis - (Analysis range : Linear)**
+  - Aero-VLM Analysis - Linear
+    - Eigenmode Analysis
+  - Lift-Curve Plot - Stall region
+      - Lift Curve Slope Calculation
+      - Maximum Lift Coefficient($C_{L_{max}}$) and AOA at Maximum Lift Coefficient($\alpha_{C_{L_{max}}}$) Calculation
+        - High Aspect Ratio Method
+        - Low Aspect Ratio Method
+      - Overall Lift Curve of Aircraft
+  - Wing Strip Analysis (HETLAS) - Stall region
+- **High Angle-Of-Attack Analysis - (Analysis range : Non linear)**
+  - Viterna Analysis - After stall
+  - Flat Plate Analysis - After stall
+    - Conventional (Horizontal) Type
+    - Vertical Type
+    - Dihedral (Anhedral) Type
+    - Combined Total Analysis
+
+<br>
+
+## **Parasite Drag Analysis**
+In CADE-MDA Aerodynamic Analysis Module, AVL Program is used to perform VLM analysis. However, since the AVL program neglects viscous effects, the parasite drag coefficient $(C_{D_0})$ must be provided separately. To account for the viscous drag effects-specifically, **skin friction** and **form   drag** that are not captured by inviscid methods such as VLM, **Friction2k** method (based on the FRICTION code by Virginia Tech) is used. It computes $(C_{D_0})$ each component wise, using flat-plate skin friction formulas and empirical form factors.
+
+is used to estimate the parasite drag (arising from skin friction and form drag) which are not captured by inviscid methods such as VLM. The friction2K method is then employed to calculate the parasite drag coefficient $(C_{D_0})$ for each aircraft component.
+
+<br>
+
+### Friction2K
+---
+**Friction2K** provides an estimate the parasite coefficient **$(C_{D_0})$**, which was developed by **Professor W. H. Mason** at **Virginia Tech** as part of the *Applied Computational Aerodynamics* curriculum.  
+It is designed to provide a **rapid and reasonably accurate estimation of parasite drag** during the **preliminary design phase** of aircraft development, particularly for speeds up to approximately **Mach 3**.
+
+### Key Components of Parasite Drag Modeled :
+
+#### Skin Friction Drag
+- Arises from **viscous shear forces** within the boundary layer over aircraft surfaces.
+- Estimated using **empirical correlations** based on **flat-plate theory** and **compressibility corrections**.
+
+#### Form Drag (Pressure Drag)
+- Results from **pressure differences** around 3D bodies.
+- Calculated using **empirical form factors** that account for the **shape and geometry** of each aircraft component.
+
+#### Component-by-Component Analysis Includes :
+- **Wing**
+- **Horizontal and Vertical Tail**
+- **Fuselage (Body)**
+- **Motor**
+- **Propeller**
+  
+The basic formula is as follows :
+
+$$ {C_{D_0}} =  \sum_{j=1}^{N} \frac{FF_j\cdot{C_{F_j}}\cdot{S_{wet_j}}}{S_{ref}} $$
+
+*Where,*
+> *- $C_{D_0}$ : Parasite drag coefficient* <br>
+> *- $C_{F_j}$ : Skin friction coefficient* <br>
+> *- $FF_j$ : Form Factor* <br>
+> *- $j$ : Index for input component (e.g., wing, fuselage, tail, etc.)*  
+> *- $S_{wetted_j}$ : Wetted area* $[m^2]$ <br> 
+> *- $S_{ref}$ : Reference area* $[m^2]$ <br>
+
+- Reference Area $( S_{ref} )$  
+  → The area of the **trapezoidal reference wing planform**.  
+
+- Wetted Area $( S_{wetted} )$  
+  → The total **external surface area** of the component that would be wet if the aircraft were submerged in water.  
+  Unlike $S_{ref}$, which is a 2D planform areas, $S_{wetted}$ is a **3D surface area**.
+
+<br>
+
+Trim analysis is performed with AVL program following trim condition:
+
+**Operating Variables**
+- Angle of Attack($\alpha$), Side-Slip Angle($\beta$)
+- Control Deflections
+
+**Constraints**
+- Direct constraints on variables
+- Indirect constraints via specified CL, moments
+
+**Trim Setup of Constraints**
+- level or banked  horizontal flight
+- steady pitch rate (looping) flight
+
+**Trim Condition**
+-  $C_m = 0 $
+ - $C_L = {C}_{L_{req}}$
+
+<br>
+
+## **Airfoil Analysis**
+Wingstrip analysis and empirical-based analysis requires aerodynamic analysis data of the airfoil. Airfoil Analysis is focused on predicting the aerodynamic performance (lift, drag, and moment coefficients) of the airfoil.
+
+Two primary tools are used : <span style="color:rgb(24, 80, 145);">X-FOIL</span> and <span style="color:rgb(24, 80, 145);">JavaFoil.</span>
+
+
+In order to perform **wing strip analysis** and **empirical-based aerodynamic estimation**,  
+accurate aerodynamic data of the airfoil is required. The airfoil analysis focuses on estimating the aerodynamic performance,  
+including **lift coefficient** $(C_l)$, **drag coefficient** $(C_d)$, and **pitching moment coefficient** $(C_m)$,  
+as functions of angle of attack and flow conditions.
+
+Two primary tools are used : <span style="color:rgb(24, 80, 145);">X-FOIL</span> and <span style="color:rgb(24, 80, 145);">JavaFoil.</span>
+
+
+
+<br>
+
+
+
+### X-FOIL Analysis
+---
+XFOIL is a subsonic airfoil design and analysis tool developed by **Mark Drela** at **MIT**, written in FORTRAN. It employs a **linear-strength panel method** to solve potential flow, combined with a boundary layer solver to include viscous effects.   
+XFOIL is capable of predicting aerodynamic performance **up to and slightly beyond the maximum lift coefficient** ($C_{L_{max}}$)  
+under subsonic conditions.
+
+The main features are as follows :  
+- Viscous or inviscid analysis of specified airfoil shapes  
+- Options for **free** or **forced transition** along the surface  
+- Prediction of **laminar separation bubbles** (also called **transitional separation bubbles**)  
+- Handling of **limited trailing-edge boundary layer separation**  
+- Compressibility correction using **Karman-Tsien** method for moderate subsonic $(M)$  
+- Analysis with fixed or varying **Reynolds number** $(Re)$ and/or **Mach number** $(M)$
+
+<br>
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/XFOIL.png" alt="X-FOIL" width="400">
+    <figcaption>X-FOIL</figcaption>
+  </figure>
+</div>
+
+<br>
+
+### JavaFoil Analysis
+---
+JavaFoil is a Java-based panel method tool for 2D airfoil analysis.  
+Although less comprehensive in boundary layer modeling compared to XFOIL, it is widely used for educational and conceptual design purposes.
+
+**Key features include:**
+
+- Geometric definition and visualization of airfoil shapes  
+- Inviscid potential flow solution using vortex panels  
+- Viscous correction using integral boundary layer equations  
+- Fast $(C_l)$, $(C_d)$, $(C_m)$ computation for varying angles of attack  
+
+JavaFoil is particularly useful when lightweight, platform-independent analysis is required during preliminary design.
+
+<br>
+
+## **Low Angle-Of-Attack Analysis**
+Low Angle-of-Attack analysis targets the linear aerodynamic regime where the wing operates at low angles of attack. It primarily involves VLM analysis and lift curve plotting.
+
+<br>
+
+### Aero-VLM Analysis
+Aero-VLM Analysis uses the AVL program to calculate the lift distribution, induced drag, and fundamental stability derivatives by representing the wing as an assembly of horseshoe vortices.    
+
+Since AVL is based on inviscid potential flow, it cannot directly calculate parasite drag ($CD_0$). Therefore, the friction2K program is used separately to estimate the $CD_0$ value. This value is then integrated with the VLM analysis results to determine the aircraft's total drag.
+
+
+- **Biot-Savart Law**  
+   Each vortex line of a certain circulation induces a velocity field
+
+  <div style="text-align: center;">
+    <figure>
+    <img src="static/fig/biot_savart_law.png" alt="Biot Savart Law" width="400">
+    <figcaption>Biot Savart Law</figcaption>
+    </figure>
+  </div>
+
+  <br>
+
+   $$ V = \frac{\Gamma}{4\pi} \int \frac{d\mathbf{l} \times \mathbf{r}}{|\mathbf{r}|^3} $$
+
+   *Where,*
+
+   > *- $dl$ : Infinitely small part of the filament* $[m]$ <br>
+   > *- $r$ : Radius from point P to the point on the filament* $[m]$ <br> 
+   > *- $V$ : Induced velocity* $[m/s]$ <br>
+   > *- ${\Gamma}$ : Strength of the vortex (Circulation) $[m^2/s]$*
+
+<br>   
+
+- **Kutta-Joukovsky Theorem**  
+   A vortex of certain circulation moving with velocity V experiences force. It is a bound vortex fixed within the flow of velocity $V_{\infty}$ that produces lift.  
+
+   $$ L = {\rho}V_{\infty}{\Gamma} $$
+
+  *Where,*
+
+  > *- $L$ : Lift* <br>
+  > *- $V_{\infty}$ : Freestream velocity* <br>
+  > *- ${\rho}$ : Air density* <br>
+
+<br>
+
+- **Hermann von Helmholtz Theory**  
+   This describes principles of vortex filament behaviour. It must form a close path like vortex ring. Circulation along one vortex filament is constant.
+
+<br>
+
+- **Prandtl Lifting-Line Theory**
+
+  <div style="text-align: center;">
+    <figure>
+    <img src="static/fig/vortex_lattice_system.png" alt="Vortex Lattice System" width="400">
+    <figcaption>Vortex Lattice System</figcaption>
+    </figure>
+  </div>
+
+  <br>
+
+   Horseshoe vortex idea comes from this theory. A surface of a wing is divided into panels in spanwise and chordwise. On each of the panels there is as horseshoe vortex like below figure. There are as many horseshoe vortices as there are panels, each of its own constant circulation. To get the whole aerodynamic force, contribution from all the panels must be summarized.
+
+<br>
+
+### **AVL Model Elements**
+---
+#### **Aerodynamic Components**
+- Lifting surfaces (wings, stabilizers)
+- Slender bodies
+
+
+#### **Configuration Definition**
+- Keyword-driven input file (AVL .avl format)
+- Airfoil shape from NACA series or custom file
+- Section-wise control surface definition (flaps, elevator)
+- Profile drag polars as parabolic $(C_d = C_{d_0} + k C_l^2)$
+- Optional scaling, translation, rotation of surfaces
+
+#### **Control Deflections**
+- Control deflections via surface vector tilt
+- Supports both trailing-edge and leading-edge flaps
+- Independent of panel discretization
+
+#### **Freestream and Flow Definition**
+- Angle of attack($\alpha$), side-slip angle($\beta$) flow angles
+- p,q,r aircraft rotation components
+- Subsonic Prandtl-Glauert compressibility treatment
+
+#### **Aerodynamic Outputs**
+- Aerodynamic forces and moments, in body or stability axes
+- Trefftz-plane induced drag analysis
+- Force and moment derivatives w.r.t. angles, rotations, controls
+
+<br>
+
+### Eigenmode Analysis
+---
+- Predicts flight stability characteristics
+- Rigid-body, quasi-steady aero model
+- Eigenvalue root progression with a parameter
+- Display of eigenmode motion in real time
+- Output of dynamic system matrices
+
+AVL can perform linearized stability analysis (eigenvalue analysis) of flight dynamics using a **Quasi-steady aerodynamic model**
+
+  $$U(t) = Uo + u(t)$$
+  $$D(t) = Do + d(t)$$
+
+- $U(t)$ : State variables
+- $U_0$: The steady state flight condition of the aircraft
+- $u(t)$: A small perturbation or deviation from the steady state
+- $D(t)$ : Total control vector 
+- $D_0$: The nominal or baseline control input
+- $d(t)$: A small control input perturbation
+- Eigenmodes and damping ratios computed from system matrix  
+- Real-time visualization of mode shapes available
+
+<br>
+
+### Lift-Curve Plot
+Lift Curve Plot method is based on AVL Program and USAF Digital DATCOM's method. To draw a lift coefficient curve graph, we need to know the following values :
+
+1. Lift curve slope
+2. Maximum lift coefficient
+3. The angle of attack at zero lift coefficient
+4. The angle of attack at maximum lift coefficient
+5. The angle of attack at end of linear region
+
+<br>
+  
+#### Lift Curve Slope Calculation
+The lift coefficient curve for the entire aircraft is estimated using the method proposed by Raymer. This method utilizes the lift curve slope for the whole aircraft, derived from a AVL program, and the aerodynamic coefficient information of the airfoil, derived from the X-foil program.    
+However, to compute the maximum lift coefficient, the lift curve slope of each individual wing is required. In subsonic conditions ($Re=1×10^6$, $M<0.3$), the wing lift curve slope is calculated using the following equation.
+
+
+$$ {(C_{L_{\alpha}})_W} = \frac {2\pi {AR}}
+{2+\sqrt{4+ \frac{AR^2 \cdot \beta^2}{\eta^2} (1+\frac{\tan^2{\Lambda_{max,t}}}{\beta^2})}} (\frac{S_{exp}}{S_{ref}}) $$
+
+$$ \beta^2 = 1 - M^2 $$
+
+$$ \eta = \frac{C_{l_{\alpha}}}{2\pi/\beta} $$
+
+*Where,*
+
+> *- $Λ$ : Sweep angle* $[{deg}]$ <br>
+> *- $AR$ : Aspect ratio* <br> 
+> *- $S_{exposed}$ : Exposed Area* $[m^2]$ <br>
+> *- $S_{ref}$ : Reference area* $[m^2]$ <br>
+> *- $\beta$ : Compressibility effect correction* <br>
+> *- $M$ : Mach number* <br>
+> *- $\eta$ : 2D airfoil data's compressibility effect correction* <br>
+> *- ${C_{l_{\alpha}}}$ : Airfoil's lift curve slope*
+
+### **Note**
+> * Exposed Area($S_{exposed}$) : The area of the wing that is actually exposed outside of the fuselage.
+
+<br>
+
+In above equation, the airfoil's lift curve slope is required. To calculate these values, the aerodynamic coefficients for each angle of attack are obtained using the X-FOIL program, and then these coefficients are used to calculate the airfoil's lift curve slope.
+
+<br>
+
+#### Maximum Lift Coefficient($C_{L_{max}}$) and AOA at Maximum Lift Coefficient($\alpha_{C_{L_{max}}}$) Calculation
+The maximum lift coefficient and the corresponding angle of attack are determined using empirical methods (e.g., DATCOM), with different formulations applied for high and low aspect ratio wings.
+
+$$ {AR_{LOW}} = \frac {3}{({C_1}+1)\cos {\Lambda_{LE}}}$$
+
+*Where,*
+
+> *- ${\Lambda_{LE}}$ : Sweep angle of Leading Edge* <br>
+> *- ${\lambda}$ : Taper ratio* <br> 
+> *- ${C_1}$ : Coefficient of Taper ratio*
+
+Here, ${C_1}$ is calculated from taper ratio's function and is derived from following figure :
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/low_AR_correction_factor.png" alt="Low AR Correction Factor" width="300">
+    <figcaption>Low AR Correction Factory</figcaption>
+  </figure>
+</div>
+
+<br>
+
+**High Aspect Ratio Method**
+
+$$ A > {A_{LOW}} $$
+
+When aspect ratio is more than ${A_{LOW}}$, maximum lift coefficient is derived from following equation.
+
+$$ {C_{L_{max}}} = (\frac{C_{L_{max}}}{C_{l_{max}}})C_{l_{max}} + \Delta C_{L_{max}} $$
+
+*Where,*
+
+> *- $A$ : Aspect ratio* <br> 
+> *- ${C_{l_{max}}}$ : Airfoil's maximum lift coefficient at M=0.2* <br>
+> *- $\Delta {C_{L_{max}}}$ : Increment in maximum lift coefficient*
+
+<br>
+
+${C_{l_{max}}}$ is calculated using the aerodynamic coefficients for each angle of attack obtained from the X-FOIL program.  
+${C_{L_{max}}}/{C_{l_{max}}}$ is calculated by using following equation :
+
+$$ \frac{C_{L_{max}}}{C_{l_{max}}} = A - B \cdot \Delta y' $$
+
+In here,
+
+$$ A = 0.895 + 0.0028 {\Lambda_{LE}} + 6.57 \times 10^{-5}({\Lambda_{LE}})^2 $$
+$$ B = 0.0011 + 0.0053 {\Lambda_{LE}} + 0.00011({\Lambda_{LE}})^2 $$
+
+$$ \Delta y' \quad = 0 \qquad \qquad  \qquad :
+\quad \Delta y < 1.4 \qquad \qquad \quad $$
+$$ \quad\;\; = \Delta y-1.4 \quad \quad \;\;:
+\quad  1.4 \le \Delta y \le 2.5 \quad $$
+$$ = 1.1 \qquad \qquad  \quad: \quad \Delta y > 2.5 \qquad $$
+
+*Where,*
+
+> *- $\Delta y$ : Airfoil's leading edge sharpness parameter* <br>
+<small> This parameter is derived from the configuration module, and this parameter is represented as shown in the figure</small>
+
+<br>
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/Leading_Edge_Sharpness_Parameter.png" alt="Leading Edge Sharpness Parameter" width="400">
+    <figcaption>Leading Edge Sharpness Parameter</figcaption>
+  </figure>
+</div>
+
+<br>
+
+$\Delta {C_{L_{max}}}$ depends on leading edge sweep angle (${\Lambda_{LE}}$), Mach Number (M) and airfoil's Leading Edge Sharpness Parameter (${\Delta}y$). The value derived from following figure :
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/Mach_number_correction.png" alt="Mach Number Correction" width="400">
+    <figcaption>Mach Number Correction</figcaption>
+  </figure>
+</div>
+
+<br>
+
+The angle of attack at maximum lift coefficient is derived from follwing equation :
+
+$$ {\alpha_{max}} = \frac {C_{L_{max}}}{C_{L_{\alpha}}} + {\alpha_{L=0}} + \Delta {\alpha_{max}} $$
+
+*Where,*
+
+> *- ${\alpha_{L=0}}$ : Zero lift angle of attack* $[\text{deg}]$ <br>
+> *- $\Delta {\alpha_{max}}$ : Increment in maximum lift angle of attack*
+
+<br>
+
+${\alpha_{L=0}}$ is calculated using the aerodynamic coefficients for each angle of attack obtained from the X-FOIL program. For $\Delta {\alpha_{max}}$, this value depends on leading edge sweep (${\Lambda_{LE}}$) and airfoil's leading edge sharpness parameter (${\Delta}y$). This value derived from following figure.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/Angle_of_attack_increment_subsonic_high_AR.png" alt="Increment in AOA at Subsonic High Aspect Ratio" width="400">
+    <figcaption>Increment in AOA at Subsonic High Aspect Ratio</figcaption>
+  </figure>
+</div>
+
+<br>
+
+**Low Aspect Ratio Method**
+
+$$ A < {A_{LOW}} $$
+   
+In this case, maximum lift coefficient ($C_{L_{max}}$) is
+derived from following equation.
+
+$$ {C_{L_{max}}} = {({C_{L_{max}}})_{base}} + \Delta {C_{L_{max}}} $$
+
+In here, 
+
+${({C_{L_{max}}})_{base}}$ depends on correction factor ${C_1}$, ${C_2}$, Aspect Ratio $A$, leading edge sweep $\Lambda_{LE}$, airfoil's Leading Edge Sharpness Parameter ($\Delta y$) and
+$\beta = \sqrt {1-M^2}$. This value is derived from following figure :
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/Maximum_lift_increment_low_AR.png" alt="Increment in AOA at Subsonic High Aspect Ratio" width="400">
+    <figcaption>Increment in AOA at Subsonic Low Aspect Ratio</figcaption>
+  </figure>
+</div>
+
+<br>
+
+In figure, ${C_2}$ is expressed from taper ratio's function and is derived from following figure :
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/Taper_ratio_correction_factor_low_AR.png" alt="Taper Ratio Correction Factor at Low Aspect Ratio" width="300">
+    <figcaption>Taper Ratio Correction Factor at Low Aspect Ratio</figcaption>
+  </figure>
+</div>
+
+<br>
+
+The angle of attack at maximum lift coefficient is
+
+$$ {\alpha_{max}} = {(\alpha_{max})_{base}} + \Delta {\alpha_{max}} $$
+
+${(\alpha_{max})_{base}}$ depends on correction factor ${C_1}$, Aspect ratio $A$, factor $\beta$, leading edge sweep $\Lambda_{LE}$. This value is derived from following figure :
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/AOA_maximum_lift_low_AR.png" alt="AOA at Maximum Lift Coefficient for Low Aspect Ratio" width="400">
+    <figcaption>AOA at Maximum Lift Coefficient for Low Aspect Ratio</figcaption>
+  </figure>
+</div>
+
+<br>
+
+$\Delta {\alpha_{max}}$ depends on correction factor ${C_2}$, Aspect ratio $A$, leading edge sweep $\Lambda_{LE}$, taper ratio $\lambda$ and Mach number $M$. This value is derived from following figure :
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/Angle_of_attack_increment_subsonic_low_AR.png" alt="Increment in AOA at Subsonic Low Aspect Ratio" width="400">
+    <figcaption>Increment in AOA at Subsonic Low Aspect Ratio</figcaption>
+  </figure>
+</div>
+
+<br>
+
+Maximum lift coefficient of aircraft is obtained by sum of wing's maximum lift coefficient and increment of tail's maximum lift coefficient.
+
+$$ {C_{L_{max}}} = {(C_{L_{max}})_w} + {(\Delta {C_{L_{max}}})_T} $$
+
+*Where,*
+
+> *- ${(C_{L_{max}})_w}$ : Maximum lift coefficient for main wing* <br>
+> *- ${(\Delta {C_{L_{max}}})_T}$ : Increment in maximum lift coefficient due to tail wing*
+
+<br>
+
+Increment of tail's maximum lift coefficient ${(\Delta {C_{L_{max}}})_T}$ is derived from following equation :
+
+$$ {(\Delta {C_{L_{max}}})_T} = {(C_{L_{\alpha}})_T} \cdot \sin
+{\alpha_{max}} \cdot \cos ^2 {\alpha_{max}} $$
+
+${(C_{L_{\alpha}})_T}$ is lift curve slope of tail and can be obtained in the same way as the method of obtaining ${(C_{L_{\alpha}})_W}$.
+
+<br>
+
+#### Overall Lift Curve of Aircraft
+A complete lift curve is generated by combining the linear (pre-stall) and non-linear (post-stall) segments, ensuring a smooth transition through the entire range of angles of attack.
+
+1. Derive lift curve slope ${C_{L_{\alpha}}}$ of aircraft at flight
+   - Condition where you want to derive such as cruise condition.
+   - In here, this value is derived from AVL result.
+2. Estimate zero lift angle of attack ($\alpha_{L=0}$).
+For conceptual design process, this is estimated from airfoil's
+zero lift angle of attack.
+3. Find the angle of attack at the end of linear region ($\alpha ^{\star}$).
+Next, draw a straight line between $\alpha_{L=0}$ and $\alpha ^{\star}$
+which slope is ${C_{L_{\alpha}}}$.
+     - $\alpha ^{\star}$ is estimated from airfoil's linear end angle of attack.
+4. Derive maximum lift coefficient ${C_{L_{max}}}$ and angle of attack
+at that ${\alpha_{max}}$. This segment is non-linear, so curve fit
+between $\alpha ^{\star}$ and ${\alpha_{max}}$ so that the lift
+curve is smooth.
+
+<br>
+
+### Wing Strip Analysis (HETLAS)
+Aerodynamic Wing Strip Analysis is conducted using the HETLAS (Helicopter Trim, Linearization, and Simulation) program's wing module. HETLAS program is written in Fortran code.  
+The HETLAS program's wing module is based on wing strip theory and has the following features :
+
+- Wing modeling (considering sweep, twist, etc.)
+
+- Slices the wing in the span direction  
+  The wing is divided into multiple sections as shown in the following figure, and each section is analyzed individually.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/wing_strip_model.png" alt="Wing Strip" width="400">
+    <figcaption>Wing Strip Model</figcaption>
+  </figure>
+</div>
+
+<br>
+  
+- Calculates induced velocity for each node of the sliced wing  
+  The induced velocity is calculated for each node, and as shown in the following figure, the effective velocity, effective angle of attack, and induced angle of attack for each node can be determined using the induced velocity and free stream velocity. Using these parameters, the lift and drag acting on each node can be calculated.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/induced_velocity.jpg" alt="Induced Velocity" width="400">
+    <figcaption>Induced Velocity</figcaption>
+  </figure>
+</div>
+
+*Where,*
+
+> *- $l_{eff}$ : Local effective lift* <br>
+> *- $d_{eff}$ : Local effective drag* <br>
+> *- ${\alpha}_i$ : Induced angle of attack* <br> 
+> *- ${\alpha}_{eff}$ : Effective angle of attack* <br>
+> *- $V_{eff}$ : Effective velocity*
+
+<br>
+
+- Performs vortex calculations for each node of the sliced wing (iterations performed)  
+  The vortex is categorized into bound vortex, tip vortex, and starting vortex, as shown in the figure below. In this program, the core radius of the bound vortex is set to 0.1, the core radius of the tip vortex is set to 0.01, and the core radius of the free vortex width is set to 2.1 by default.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/Complete_wing_vortex_system.png" alt="Wing Vortex System" width="400">
+    <figcaption>Wing Vortex System</figcaption>
+  </figure>
+</div>
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/vortex_system.png" alt="Wing Vortex System" width="400">
+    <figcaption>Wing Vortex System</figcaption>
+  </figure>
+</div>
+
+<br>
+
+- Transforms the Aerodynamic Center at each node to the overall wing Aerodynamic Center  
+  
+- Uses Biot-Savart vortex  
+  The Biot-Savart law originally described the relationship between the strength of an electric current and the resulting magnetic field in electromagnetism. In fluid dynamics, velocity and vorticity (circulation) correspond to magnetic field strength and electric current, respectively, with vortex filaments replacing conductors. Therefore, the Biot-Savart law can be interpreted as describing the relationship between the velocity induced by a vortex filament and the strength (circulation) of that filament.
+
+   Each vortex line of certain circulation induce velocity field
+
+   $$V = \frac{\Gamma}{4\pi} \int \frac{d\mathbf{l} \times \mathbf{r}}{|\mathbf{r}|^3}$$
+
+  *Where,*
+
+  > *- $dl$ : Infinitely small part of the filament* $[𝑚]$  <br>
+  > *- $r$ : Radius from point P to the point on the filament* $[𝑚]$<br>
+  > *- $V$ : Induced velocity* $[m/s]$ <br>
+  > *- ${\Gamma}$ : Strength of the vortex (Circulation)* $[m^2/s]$
+
+<br>
+
+- Reads airfoil lookup tables to calculate Lift, Drag, Moment, etc.  
+  The HETLAS program's wing module analyze each wing strip as an airfoil, reading the aerodynamic lookup table for the airfoil to calculate lift, drag, moment.
+
+- Control surface model  
+  In the wing module of the HETLAS program, analysis of control surface deflection is also possible, providing methods such as Wolowicz, Torenbeek, and DATCOM. In this program, the default method for calculation is set to the DATCOM method.
+
+As previously mentioned, the wing module of the HETLAS program uses the aerodynamic coefficient look up table as input. The aerodynamic coefficients of the airfoil are obtained from lookup tables generated by the X-FOIL analysis program developed by MIT and are used as input for the HETLAS program.
+
+X-FOIL is a program initially developed by Mark Drela at MIT and written in the FORTRAN language. X-FOIL is a program for the design and analysis of subsonic airfoils. Given the coordinates specifying the configuration of a 2D airfoil, Reynolds number, and Mach number, X-FOIL can calculate the pressure distribution on the airfoil and hence determine the lift and drag characteristics.
+
+<br>
+
+## **High Angle-Of-Attack Analysis**
+This module is designed for full-range aerodynamic analysis, capable of predicting aerodynamic coefficients over the entire angle-of-attack range, including the high angle-of-attack region where nonlinear effects become significant.
+
+### Viterna Analysis
+The Viterna method extrapolates $C_{L}$ and $C_{D} curves into the high-angle-of-attack region by fitting a simple trigonometric empirical model to pre-stall XFOIL data. It skips detailed pressure and skin-friction integrations, relies only on stall data, and provides a rapid first-order estimate.
+
+Procedure :
+
+1. Run the X-FOIL program for the airfoil of the wing to be analyzed.
+2. Analyze the aerodynamic information of the airfoil from the X-FOIL analysis results.
+     - ${C_{l_{max}}}, {C_{l_{min}}}, {\alpha}_{linear_{first}}, {\alpha}_{linear_{end}}, {\alpha}_{L=0}, {C_{l_{\alpha}}}$
+3. Calculate $C_{L_{max}}$, $C_{L_{min}}$, ${\alpha}_{max}$, ${\alpha}_{min}, {C_{L_{\alpha}}}$
+    - Using DATCOM method
+    - For detail analysis method, see Lift Curve Plot part
+4. Calculate $C_{D_0}$, $e$, $K$, $C_{D^+_{stall+}}$, $C_{D^-_{stall+}}$
+    - This method is based on Aircraft Design: A Conceptual Approach by Daninel P. Raymer
+    - **Skin Friction Coefficient**
+  
+    $$ C_{f0} = \frac{0.455}{(\log_{10}(\text{Re}))^{2.58}} $$
+
+    *Where,*
+    
+    > *- $Re$ : Reynold's number*
+
+    <br>
+
+    - **Form Factor**
+
+    $${FF} = \left(1 + \frac{0.6}{(x/c)_m} \frac{t}{c} + 100 \left(\frac{t}{c}\right)^4\right) \left(1.34 \text{M}^{0.18} (\cos({\Lambda_{max}}))^{0.28}\right)$$
+
+    *Where,* 
+
+    > *- ${(x/c)_m}$ : Chordwise location of the airfoil maximum thickness point* <br>
+    > *- $\frac{t}{c}$ : Thickness to chord ratio* <br>
+    > *- $M$ : Mach number* <br>
+    > *- $\Lambda_{max}$ : Sweep of the maximum-thickness line*
+
+    <br>
+
+    - **Zero-lift Drag Coefficient**
+
+    $$ C_{D_0} = C_{f0} \times FF \times IF \times \frac {S_{wet}}{S_{ref}}$$
+
+    *Where,*
+
+    > *- $S_{wetted}$ : Wetted area* <br>
+    > *- $S_{ref}$ : Reference area* <br>
+    > *- $IF$ :  Interference factor*  
+
+    <br>
+
+    - **Oswald Factor ($e$)**
+
+    If $|{\Lambda}|$ < 30 $^\circ$ :
+
+    $$ e = 1.78(1-0.045AR^{0.68}) - 0.64 $$
+
+    Else :
+
+    $$ e = 4.61(1-0.045AR^{0.68})(cos(\Lambda_{max}))^{0.15} - 3.1 $$
+
+    <br>
+
+    - **Oswald Efficiency Factor ($K$)**
+
+    $$ k = \frac {1}{\pi AR e} $$
+
+    *Where,*
+    
+    > *- $AR$ : Aspect Ratio* <br>
+    > *- $k$ : Induced factor* <br>
+    > *- $e$ : Oswald efficienft* <br>
+
+
+
+    - **Drag Coefficient at Stall Angle**
+
+    $$C_{D^+_{stall}} = C_{D_0} + k C_{L_{\text{max}}}^2$$
+
+    $$C_{D^-_{stall}} = C_{D_0} + k C_{L_{\text{min}}}^2$$
+
+5. Calculate $C_L$ and $C_D$ for each angle of attack in the pre-stall region
+   - Using DATCOM method
+   - For detail analysis method, see Lift Curve Plot part
+  
+6. Calculate $C_L$ and $C_D$ for each angle of attack in the post-stall region
+     - Using Viterna method
+  
+    $$ C_{L, \text{Viterna}} = \frac{C_{D_{\text{max}}}}{2} \sin(2\alpha) + \left( C_{L_{\text{stall}}} - C_{D_{\text{max}}} \sin(\alpha_{\text{stall}}) \cos(\alpha_{\text{stall}}) \right) \frac{\sin(\alpha_{\text{stall}}) \cos^2(\alpha)}{\cos^2(\alpha_{\text{stall}}) \sin(\alpha)} $$
+
+    $$ C_{D, \text{Viterna}} = C_{D_{\text{max}}} \sin^2(\alpha) + \left( \frac{C_{D_{\text{stall}}} - C_{D_{\text{max}}} \sin^2(\alpha_{\text{stall}})}{\cos(\alpha_{\text{stall}})} \right) \cos(\alpha) $$
+
+7. Convert to $C_X, C_Y, C_Z, C_l, C_m, C_n$
+8. Repeat steps 1-7 for each wing
+9. Estimate the aerodynamic coefficients of the entire wing assembly
+
+<br>
+
+### Flat Plate Analysis
+In this part, the whole range aero database like aerodynamic forces and coefficients ($C_L, C_D, C_X, C_Y, C_Z, C_l, C_m, C_n$) is obtained from flat plate method.
+
+In normal flat plate theory, one plate's lift coefficient (${C_L}$)
+and drag coefficient (${C_D}$) are derived from following equation :
+
+$$ C_L = 2 \sin{\alpha}\cos{\alpha} $$
+
+$$ C_D = 2 \sin^2{\alpha} $$
+
+Using these equations, We calculate whole range analysis including whole angle of attack and side slip angle for total aircraft. When analysing the entire aircraft, it is calculated by considering only the wings and dividing them into two cases.
+And also here, $C_L, C_D$ are calculated in wind axis and $C_X,C_Y,C_Z,C_l, C_m, C_n$ are calculated in body axis.
+
+*Where,*
+
+> *- $C_L$ : Lift coefficient* <br>
+> *- $C_D$ : Drag coefficient* <br>
+> *- $C_{D_0}$ : Parasite drag coefficient* <br>
+> *- $C_X, C_Y, C_Z$ : X, Y, Z-direction force coefficient* <br>
+> *- $C_l$ : Rolling moment coefficient* <br>
+> *- $C_m$ : Pitching moment coefficient* <br>
+> *- $C_n$ : Yawing moment coefficient*
+
+<br>
+
+#### Conventional (Horizontal) Type
+Conventional type means horizontal wing like conventional aircraft's main wing or horizontal tail. The equation for calculating the aerodynamic coefficient for the horizontal wing is as follows :
+
+$$ C_{L_H} = 2\sin{\alpha}\cos{\alpha}\cos{\beta} $$
+
+$$ C_{D_H} = 2\sin^2{\alpha}\cos{\beta} $$
+
+$$ C_{X_H} = (C_{L_H}\sin{\alpha}\cos{\beta} - C_{D_H}\cos{\alpha}\cos{\beta})\cdot{S_n}/{S_{ref}} $$
+
+$$ C_{Y_H} = (C_{L_H}\sin{\alpha}\sin{\beta} - C_{D_H}\cos{\alpha}\sin {\beta})\cdot{S_n}/{S_{ref}} $$
+
+$$ C_{Z_H} = (C_{L_H}\cos{\alpha} - C_{D_H}\sin{\alpha})\cdot {S_n}/{S_{ref}} $$
+
+*Where,*
+
+> *- STA (stations) : Position in the x-axis direction, based on the wing's mean aerodynamic center* <br>
+> *- BL (Buttock Line) : Position in the y-axis direction, based on each wing's mean aerodynamic center* <br>
+> *- WL (Water Line) : Position in the z-axis direction, based on wing's height* <br>
+> *- ${S_n}$ : Area of each wing* <br>
+> *- $\alpha$ : Angle of attack* <br>
+> *- $\beta$ : Side-slip angle*
+
+<br>
+
+#### Vertical Type
+Vertical type means vertical wing like conventional aircraft's vertical tail. The equation for calculating the aerodynamic coefficient for the vertical wing is as follows.
+
+$$ C_{L_V} = 2\sin{\beta}\cos{\beta}\cos{\alpha} $$
+
+$$ C_{D_V} = 2\sin^2{\beta}\cos {\alpha} $$
+
+$$ C_{X_V} = (C_{L_V}\cos{\alpha}\sin{\beta} - C_{D_V}\cos{\alpha}\cos {\beta})\cdot{S_n}/S_{ref} $$
+
+$$ C_{Y_V} = (-C_{L_V}\cos{\alpha}\cos{\beta} - C_{D_V}\cos{\alpha}\sin {\beta})\cdot{S_n}/S_{ref} $$
+
+$$ C_{Z_V} = (C_{L_V}\sin{\alpha} + C_{D_V}\sin{\alpha})\cdot{S_n}/S_{ref} $$
+
+<br>
+
+#### Dihedral (Anhedral) Type
+For configurations combining horizontal and vertical effects (e.g., V-Tail, dihedral wings), the aerodynamic coefficients are computed as a weighted sum of the conventional and vertical types.
+
+$$ C_X = C_{X_H}\times(90-|\Gamma_{dihedral}|)/90 + C_{X_V}\times(|\Gamma_{dihedral}|/90) $$
+
+$$ C_Y = C_{Y_H}\times (90-|\Gamma_{dihedral}|)/90 + C_{Y_V}\times(|\Gamma_{dihedral}|/90) $$
+
+$$ C_Z = C_{Z_H}\times (90-|\Gamma_{dihedral}|)/90 + C_{Z_V}\times(|\Gamma_{dihedral}|/90) $$
+
+$$ C_l = C_Y(WL_i-{CG_{WL}}) + C_Z({CG_{BL}}-BL_i) $$
+
+$$ C_m =-C_X(WL_i-{CG_{WL}}) + C_Z({CG_{STA}}-STA_i) $$
+
+$$ C_n = -C_X(BL_i-{CG_{BL}}) + C_Y({CG_{STA}}-STA_i) $$
+
+*Where,*
+
+> *- $\Gamma_{dihedral}$ : Dihedral angle (or anhedral angle)*
+
+<br>
+
+#### Combined Total analysis
+In the three types above, all of the wing configurations can be expressed. After calculating the aerodynamic coefficient for each wing, the final static aerodynamic coefficient can be obtained as shown in below equation.
+
+$$ C_L = (\Sigma{C_X})\sin{\alpha} + (\Sigma{C_Z})\cos{\alpha} $$
+
+$$ C_D = (-\Sigma{C_X})\cos{\alpha}\cdot\cos{\beta} - (\Sigma{C_Y})\sin{\beta} + (\Sigma{C_Z})\sin{\alpha}\cdot\cos{\beta} $$
+
+$$ C_i = (\Sigma{C_i}) \qquad \quad for  \;   i = X, Y, Z, l, m, n $$
+
+<br>
+
+# *APPENDIX*

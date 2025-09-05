@@ -1,0 +1,747 @@
+# **Performance and Mission Theory Manual**
+
+This is the theory manual for performance and mission analysis inside CADE-MDA.
+
+It is written by referring to the books:
+
+> [1] Aircraft Design: A Conceptual Approach(Six Edition) by Daniel P. Raymer
+
+> [2] General Aviation Aircraft Design: Applied Methods and Procedures by Snorri Gudmundsson
+
+> [3] Aircraft Performance: An Engineering Approach by Mohammad H. Sadraey
+
+> [4] Principle of Helicopter Aerodynamics by J. Gordon Leishman
+
+> [5] Aircraft Performance and Design by John D. Anderson
+
+<br>
+
+## **Performance and Mission**
+Performance is one discipline that indicates an aircraft’s capability by considering numerous disciplines together. A simplification to a 3-DOF, point-mass-based equation of motion is used for predicting performance, and it lies between the handbook methods and full 6-DOF simulations. The 3-DOF equation of motion is used to predict flight performance depending on the flight mode, such as forward flight, hovering, transition, or vertical flight modes.
+
+<br>
+
+### Goal of Performance and Mission Analysis
+The objective of the aircraft performance analysis is to accurately calculate the aircraft's performance during each mission segment, and the objective of the mission analysis is to accurately estimate the expected mission performance for the given mission.
+  
+> 1. Analyzes point performance, mission performance, and field performance for converntional aircraft
+> 2. Mission performance calculation for SoC required, fuel required, energy required for given mission
+> 3. Point performance calculaiton for different point performance parameters such as maximum speed, stall speed, and so on
+> 4. Transition performance analysis for the aircraft that have different flight modes
+> 5. Field performance analysis for conventional take-off distance and landing distance
+
+<br>
+
+### Performance and Mission Analysis Module Structure
+The performance program consists of 3 main analyses: <span style="color:rgb(24, 80, 145);">(1) flight segment analysis, (2) point performance optimizer, and (3) mission run calculation module.</span> The analysis program data flow is shown in the [figure](#Performance_and_Mission_Analysis_Module). 
+
+The flight segment analysis module solves the equations of motion depending on the flight modes. It calculates parameters such as power, thrust, and specific air range for a given flight condition and adds them to the reports. The optimizer attempts to optimize based on the input of lower and upper bounds to find parameters such as maximum speed, max range, and so on.
+
+The mission fuel calculation module analyzes the mission for a given mission profile by calling the flight segment analysis module to determine the energy required for the mission. The analysis results can generate various performance curves, maximum performance parameters, and time histories along the mission profile.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/performance_and_mission.png" alt="Performance and Mission Analysis Module" width="600">
+    <figcaption>Performance and Mission Analysis Module</figcaption>
+  </figure>
+</div>
+
+<br>
+
+- **Steady Level Flight**
+  - Steady Level Flight at Any Given Condition
+  - Maximum True Air Speed
+  - Maximum Specific Air Range
+  - Maximum Specific Endurance
+  - Stall Speed
+- **Climb and Descent**
+  - Rate of Climb at Any Given Condition
+  - Fastest Climb
+  - Steepest Climb
+  - Most Economic Climb
+  - Rate of Descent at Any Given Condition
+  - Minimum Sink Rate
+  - Minimum Glide Angle
+  - Ceiling for Any Given Climb Rate
+- **Ceilings**
+  - Absolute Ceiling
+  - Service Ceiling
+  - Cruise Ceiling
+  - OGE Ceiling, IGE Ceiling
+- **Axial Flight**
+  - Hovering
+  - Axial Climb and Descent
+  - OGE and IGE Ceiling
+- **Transition**
+  - Altitude Hold Transition
+    - Forward Transition
+  - Tilt Corridor
+- **Flight Envelope**
+  - Flight Envelope for Tilting Aircraft
+
+<br>
+  
+Mission analysis module includes, 
+
+- **Mission Profile Analysis**
+- **Mission Segment Computation**
+  - Cruise
+    - *cruise_distance_at_altitude_and_speed*
+  - Loiter  
+    - *loiter_time_at_altitude_and_speed*
+  - Climb
+    - *climb_at_altitude_and_speed*
+    - *climb_at_altitude_and_climb_rate*
+  - Descent
+    - *descent_at_altitude_and_speed*
+    - *descent_at_altitude_and_descent_rate*
+  - Hover
+    - *hover_time_at_altitude*
+  - Axial Climb
+    - *axial_climb_at_altitude_and_speed*
+  - Axial Descent
+    - *axial_descent_at_altitude_and_speed*
+  - Transition
+    - *transition_at_constant_altitude_and_constant_acceleration*
+- **Mission Analysis**
+  - Mission Analysis for Given Mission Profile
+  - Maximum Endurance Mission
+    - Mission Analysis for Endurance Optimization
+  - Maximum Range Mission
+    - Mission Analysis for Range Optimization
+  
+<br>
+
+## **Performance Analysis Module: Flight Segment Analysis and Point Performance Optimization**
+
+In this program, flight segment analysis/performance analysis is used to solve the equations of motion based on the flight segments. The results of flight segment analysis are used in the point performance optimizer to find the optimum airspeed, altitude, and throttle by using an optimizer. Explainations about each flight segment as well as the point performance optimization for each design variable will be described in here.
+
+<br>
+
+### Steady Level Flight
+
+When the aircraft is in a steady state (unaccelerated flight), the sum of forces must be zero. For steady-level flight, a trim condition is considered to predict performance in a practical approach. The equations of motion at the steady climb condition (with no acceleration) can be written as:
+
+$$ Tcos\alpha_{trim} - D_{trim} = 0 $$
+$$ Tsin\alpha_{trim} + L_{trim} - W = 0$$
+
+*Where,*
+
+> *- $T$ : Thrust* <br>
+> *- $\alpha_{trim}$ : Angle of attack at trim condition* <br>
+> *- $D_{trim}$ : Drag at trim condition* <br>
+> *- $L_{trim}$ : Lift at trim condition* <br>
+> *- $W$ : Weight*
+
+<br>
+
+The above trim condition can be solved by a fixed-point iteration method, by calling the trim analysis and propulsion analysis modules. The resultant analysis data are stored in the point performance output table to be called by other modules. The analysis will be solved for the steady-level-flight trim condition, and the airspeed is optimized according to the objective function.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/STL.png" alt="Steady Level Flight Analysis Flow Chart" width="300">
+    <figcaption>Steady Level Flight Analysis Flow Chart</figcaption>
+  </figure>
+</div>
+
+<br>
+
+#### Maximum True Airspeed
+
+Maximum true airspeed is the highest airspeed the aircraft can achieve while using full throttle (i.e., full thrust). The condition can be solved by matching the maximum thrust available and the thrust required at a given flight condition by calling the steady-level-flight module. It is solved numerically to find the airspeed that satisfies the condition below by giving a full throttle setting:
+
+$$ \delta_{t}=100 \%$$
+$$ T_{avl_{max}}(V,h,\delta_{t}) = T_{req}(V,h) $$
+
+*Where,*
+
+> *- $\delta_{t}$ : Throttle setting* <br>
+> *- $T_{avl_{max}}$ : Maximum thrust available* <br>
+> *- $T_{req}$ : Thrust required* <br>
+> *- $V$ : Airspeed* <br>
+> *- $h$ : Flight altitude*
+
+<br>
+
+#### Maximum Specific Air Range
+
+Maximum Specific Air Range is a function used to optimize the airspeed that achieves the maximum range. Specific air range $(SAR)$ is the distance the aircraft can achieve per unit of fuel mass or battery charge. This objective is called from the steady-level-flight module.
+
+For the <span style="color:rgb(24, 80, 145);">fueled</span> aircraft, $(SAR)$ is
+
+$$ SAR = \frac{V}{\dot{m}_{f}} $$
+
+For <span style="color:rgb(24, 80, 145);">battery</span> aircraft, ($SAR$) is
+
+$$ SAR = \frac{V}{P_{elec}} $$
+
+*Where,*
+
+> *- $SAR$ : Specific air range* <br>
+> *- $V$ : Airspeed* <br>
+> *- $\dot{m}_{f}$ : Fuel flow* <br>
+> *- $P_{elec}$ : Electrical power*
+
+<br>
+
+The optimization formulation for maximimizing specific range can be written as below.
+
+$$ \max_{V} SAR $$
+$$ \textrm{subject to.} $$
+$$ V_{stall}\leq V\leq V_{max_{prop}} $$
+
+*Where,*
+
+> *- $V_{stall}$ : Stall speed* <br>
+> *- $V_{max_{prop}}$ : Maximum speed for propeller* 
+
+<br>
+
+#### Maximum Specific Endurance
+
+Maximum specific endurance is found by optimizing the airspeed to achieve maximum endurance. Specific endurance $(SE)$ is the time the aircraft can remain aloft per unit of fuel mass or battery charge. This objective is also called from the steady-level-flight module.
+
+For the <span style="color:rgb(24, 80, 145);">fueled</span> aircraft, $(SE)$ is
+
+$$ SE = \frac{1}{\dot{m}_{f}} $$
+
+For <span style="color:rgb(24, 80, 145);">battery</span> aircraft, ($SE$) is
+
+$$ SE = \frac{1}{P_{elec}} $$
+
+*Where,*
+
+> *- $SE$ : Specific endurance* <br>
+> *- $V$ : Airspeed* <br>
+> *- $\dot{m}_{f}$ : Fuel flow* <br>
+> *- $P_{elec}$ : Electrical power*
+
+<br>
+
+The optimization formulation for maximimizing specific endurance can be written as below.
+
+$$ \max_{V} SE $$
+$$ \textrm{subject to.} $$
+$$ V_{stall}\leq V\leq V_{max_{prop}} $$
+
+*Where,*
+
+> *- $V_{stall}$ : Stall speed* <br>
+> *- $V_{max_{prop}}$ : Maximum speed for propeller
+
+<br>
+
+#### Stall Speed
+
+Stall speed is the minimum speed limit for level flight. It can be calculated based on $C_{L_{max}}$ and wing loading:
+
+$$ V_{stall} = \sqrt{\frac{2W}{\rho S C_{L_{max}}} }$$
+
+*Where,*
+
+> *- $V_{stall}$ : Stall speed* <br>
+> *- $W$ : Weight* <br>
+> *- $\rho$ : Density* <br>
+> *- $S$ : Aircraft reference area* <br>
+> *- $C_{L_{max}}$ : Maximum lift coefficient*
+
+<br>
+
+### Climb and Descent
+
+Climb is the rate at which the aircraft gains altitude, and descent is the rate at which the aircraft loses altitude.
+The climb and descent analysis equilibrium conditions can be written as:
+
+$$ T\cos\alpha_{trim} - D_{trim} = W\sin\theta $$
+
+$$ T\sin\alpha_{trim} + L = W\cos\theta $$
+
+*Where,*
+
+> *- $T$ : Thrust* <br>
+> *- $\alpha_{trim}$ : Angle of attack at trim condition* <br>
+> *- $D_{trim}$ : Drag at trim condition* <br>
+> *- $L_{trim}$ : Lift at trim condition* <br>
+> *- $\theta$ : Climb angle*
+
+<br>
+
+The above trim condition can be solved by a fixed-point iteration method, by calling the trim analysis and propulsion analysis modules. The resultant analysis data are stored in the point performance output table to be used by other modules.
+
+The throttle setting is given as $100\%$ to achieve the maximum thrust available for the climb condition and $0\%$ is given for the descent condition by default. This analysis will be solved for steady climb \& descent trim conditions, and the airspeed is optimized according to the objective function.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/clb.drawio.png" alt="Climb and Descent Flight Analysis Flow Chart" width="300">
+    <figcaption>Climb and Descent Flight Analysis Flow Chart</figcaption>
+  </figure>
+</div>
+
+<br>
+
+#### Fastest Climb
+
+Fastest climb is the climb condition in which the aircraft <span style="color:rgb(24, 80, 145);">achieves the maximum climb rate at a given throttle setting</span>. The climb rate is maximized subject to the airspeed:
+
+$$ \max_{V} ROC $$
+$$ \textrm{subject to.} $$
+$$ V_{stall}\leq V\leq V_{max} $$
+
+*Where,*
+
+> *- $ROC$ : Rate of climb* <br>
+> *- $V_{stall}$ : Stall speed* <br>
+> *- $V_{max}$ : Maximum speed*
+
+<br>
+
+#### Steepest Climb
+
+The steepest climb is the condition in which the aircraft <span style="color:rgb(24, 80, 145);">climbs with the maximum climb angle.</span> It is solved by maximizing the climb angle subject to the airspeed:
+
+$$ \max_{V} \theta $$
+$$ \textrm{subject to.} $$
+$$ V_{stall}\leq V\leq V_{max} $$
+
+*Where,*
+
+> *- $\theta$ : Climb angle* <br>
+> *- $V_{stall}$ : Stall speed* <br>
+> *- $V_{max}$ : Maximum speed*
+
+<br>
+
+#### Most Economic Climb
+
+The most economic climb condition is one in which the aircraft <span style="color:rgb(24, 80, 145);">climbs with minimum fuel consumption.</span> This climb condition is solved by maximizing $ROC/\dot{m}_{f}$ subject to the airspeed:
+
+$$ \max_{V} \frac{ROC}{\dot{m}_{f}} $$
+$$ \textrm{subject to.} $$
+$$ V_{stall}\leq V\leq V_{max_{prop}} $$
+
+*Where,*
+
+> *- $ROC$ : Rate of climb* <br>
+> *- $\dot{m}_{f}$ : Fuel flow* <br>
+> *- $V_{stall}$ : Stall speed* <br>
+> *- $V_{max}$ : Maximum speed*
+
+<br>
+
+#### Minimum Sink Rate
+
+Minimum sink rate is the condition in which the aircraft <span style="color:rgb(24, 80, 145);">glides with the minimum descent rate, effectively maximizing glide time.</span> This descent condition is solved by minimizing the descent rate subject to the airspeed:
+
+$$ \min_{V} ROD $$
+$$ \textrm{subject to.} $$
+$$ V_{stall}\leq V\leq V_{max} $$
+
+*Where,*
+
+> *- $ROD$ : Rate of descent* <br>
+> *- $V_{stall}$ : Stall speed* <br>
+> *- $V_{max}$ : Maximum speed*
+
+<br>
+
+#### Minimum Descent Angle
+
+Minimum descent angle is the glide condition at which the aircraft <span style="color:rgb(24, 80, 145);">glides with the minimum descent angle, effectively maximizing glide distance.</span> This descent condition is solved by minimizing the descent angle subject to the airspeed:
+
+$$ \min_{V} \gamma $$
+$$ \textrm{subject to.} $$
+$$ V_{stall}\leq V\leq V_{max} $$
+
+*Where,*
+
+> *- $\gamma$ : Angle of descent* <br>
+> *- $V_{stall}$ : Stall speed* <br>
+> *- $V_{max}$ : Maximum speed*
+
+<br>
+
+### Ceiling
+
+Ceiling performance is the analysis of the aircraft’s maximum flight altitude that can be maintained. The figure below illustrates this:
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/ceiling.jpg" alt="Ceiling Flight Analysis Flow Chart" width="600">
+    <figcaption>Ceiling Flight Analysis Flow Chart</figcaption>
+  </figure>
+</div>
+
+<br>
+
+#### Absoulte ceiling
+
+Absolute ceiling is the altitude at which the aircraft can maintain steady, level flight with a rate of climb approaching zero.
+
+<br>
+
+#### Service ceiling
+
+Service ceiling is the altitude at which the aircraft is capable of a 100 ft/min (or 0.5 m/s) rate of climb.
+
+<br>
+
+#### Cruise Ceiling
+
+Cruise ceiling is the altitude at which the aircraft can climb at 300 ft/min (or 1.5 m/s).
+
+<br>
+
+### Axial Flight
+
+When the aircraft is in a steady state (unaccelerated flight), the sum of forces must be zero. For steady axial flight, weight, drag, and thrust are the three force components. The equations of motion at the steady axial condition, with no acceleration, are considered. An axial flight analysis flow chart is shown in the figure below:
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/VTOLAnalysis.png" alt="Axial Flight Analysis Flow Chart" width="400">
+    <figcaption>Axial Flight Analysis Flow Chart</figcaption>
+  </figure>
+</div>
+
+<br>
+
+$$ T = W \pm D$$
+
+*Where,*
+
+> *- $T$ : Thrust* <br>
+> *- $W$ : Weight* <br>
+> *- $D$ : Drag*
+
+<br>
+
+#### Hovering
+
+For hover, the required power setting must match the available thrust with the weight:
+
+$$ T = W $$
+
+*Where,*
+> *- $T$ : Thrust* <br> 
+> *- $W$ : Weight*
+
+<br>
+
+#### Axial Climb and Descent
+
+For axial climb, the maximum climb rate can be found based on the given input throttle setting by solving the equation of motion:
+
+$$ T(\delta) = W + D(V) $$
+
+*Where,*
+
+> *- $\delta$ : Throttle setting* <br>
+> *- $V$ : Climb rate*
+
+<br>
+
+For axial descent, the minimum climb (descent) rate can be found based on the given input throttle setting by solving the equation of motion:
+
+$$ T(\delta) = W - D(V) $$
+
+*Where,*
+
+> *- $\delta$ : Throttle setting* <br>
+> *- $V$ : Descent rate*
+
+<br>
+
+#### OGE and IGE Ceiling
+
+For vertical take-off and landing aircraft, OGE (Out of Ground Effect) and IGE (In Ground Effect) ceilings are two key parameters for hovering to determine the minimum and maximum altitudes. The hovering ceiling is divided into two ceilings, OGE and IGE. These parameters are solved by the method shown in the figure below:
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/OGE_IGE_ceiling.png" alt="OGE and IGE Hover Ceiling" width="400">
+    <figcaption>OGE and IGE Hover Ceiling</figcaption>
+  </figure>
+</div>
+
+<br>
+
+**Out of Ground Effect (OGE) ceiling** is the altitude for the maximum hovering capability. It can be achieved when the power required for hovering equals the maximum power available.
+
+**In Ground Effect (IGE) ceiling** is the altitude for the minimum hovering altitude. Due to the downward movement of slipstream near the ground, the vortex effect strongly impacts the blades. A minimum altitude for hovering must be analyzed. An empirical equation is used in this module.
+
+<br>
+
+### Transition
+
+The Transition Analysis module derives performance indicators unique to an aircraft’s transition flights, specifically the **tilt corridor** and the **flight envelope** that accounts for the transition phase.
+
+These two indicators are particularly relevant for aircraft such as UAM (Urban Air Mobility) vehicles, which operate in both VTOL (Vertical Takeoff and Landing) mode and wing-based flight.
+
+#### Tilt-Corridor
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/tilt_corridor_example.png" alt="Example of Tilt Corridor" width="400">
+    <figcaption>Example of Tilt Corridor</figcaption>
+  </figure>
+</div>
+
+<br>
+
+The above figure is an example of the tilt corridor, where the red, black, and blue points represent the stall speed, minimum speed, and maximum speed at a given altitude and tilt angle, respectively.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/transition_FBD.png" alt="Free Body Diagram of Transition State" width="400">
+    <figcaption>Free Body Diagram of Transition State</figcaption>
+  </figure>
+</div>
+
+<br>
+
+The figure above illustrates the free body diagram used to derive the Tilt Corridor. The rear rotor is fixed in the vertical direction, generating thrust exclusively in that direction. Meanwhile, the tilt rotor varies its tilt angle during transition flight, producing both forward thrust and vertical thrust simultaneously.
+
+The aerodynamic forces and aircraft weight, indicated by the yellow rectangle, must counterbalance each other so that the net force acting on the aircraft sums to zero, as shown in the diagram. In this section, these two conditions are referred to as Condition A and Condition B, respectively.
+
+$$ L+T_{rear}+T_{tilt}sin{\theta}-W \geq 0 $$
+$$ T_{tilt}cos{\theta}-D \geq 0 $$
+
+At this point, thrust is expressed as a function of altitude, incoming velocity, and throttle. To assess the aircraft’s extreme performance, the throttle for both the tilt and rear rotors is set to 1.0 (maximum power).
+
+$$ T = f(h,v_{inflow},\delta_{thr}=1.0) $$
+
+*Where,*
+
+> *- $v_{inflow_{rear}}= 0 $* <br>
+> *- $v_{inflow_{tilt}}= Vcos\theta$*
+
+<br>
+
+<span style="color:rgb(24, 80, 145);">The Stall Line</span>, marked in red in the example, is calculated based on the maximum thrust available for a given tilt angle ($\theta$).
+
+In this calculation, the lift condition assumes $C_{L_{max}}$, and the minimum speed that satisfies Condition A is determined. If Condition A can be satisfied solely by thrust at a given speed and tilt angle, the required Stall Speed becomes zero.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/transition_TvsD.png" alt="Minimum and Maximum Speed Line" width="300">
+    <figcaption>Minimum and Maximum Speed Line</figcaption>
+  </figure>
+</div>
+
+<br>
+
+<span style="color:rgb(24, 80, 145);">The minimum speed line and maximum speed line</span> represent the minimum and maximum speeds that satisfy both Condition A and Condition B for a given altitude and Tilt Angle.
+
+These speeds correspond to the two intersection points on the graph where Thrust Available and Drag (required thrust) curves meet.
+
+<span style="color:rgb(7, 156, 241);">**Examples**</span>
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/tilt_corridor_examples.png" alt="Altitude Sweep Tilt Corridor" width="600">
+    <figcaption>Altitude Sweep Tilt Corridor</figcaption>
+  </figure>
+</div>
+
+The figures above illustrate the Tilt Corridor at various altitudes.
+
+At lower altitudes, flight at zero speed (Hovering) is possible. However, from approximately 5000 m, hovering becomes impossible, and the flight envelope gradually shrinks. By 25000 m, the practical flight capability is completely lost, indicating that no feasible flight region exists at this altitude.
+
+<br>
+
+### Flight Envelope
+
+The flight envelope is the speed band at a given altitude where steady-state flight is possible. The flight envelope is one of several ways to demonstrate performance in terms of minimum and maximum airspeed with altitude. It shows the aircraft’s capability over its entire altitude range. It is determined by finding the stall speed and maximum TAS for different flight altitudes until reaching the absolute ceiling, which is the altitude at which the aircraft can maintain level flight.
+
+- Calculate stall speed by increasing the flight altitude from sea level to the absolute ceiling
+- Calculate maximum TAS by increasing the flight altitude from sea level to the absolute ceiling
+
+<br>
+
+#### Flight Envelope for Tilting Aircraft
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/transition_flight_envelope.jpg" alt="Concept of Transition Flight Envelope" width="400">
+    <figcaption>Concept of Transition Flight Envelope</figcaption>
+  </figure>
+</div>
+
+<br>
+
+The conceptual diagram of the Flight Envelope considering the Transition Mode is shown in the figure above. For a typical rotary-wing aircraft (red region), hovering is possible, and the flight envelope extends to lower speeds compared to a fixed-wing aircraft.
+For a typical fixed-wing aircraft (blue region), there is a stall speed, but it can achieve higher speeds and altitudes compared to a rotary-wing aircraft.
+However, transition-capable aircraft combine both of these flight characteristics. As shown in the green region, they possess an extended Flight Envelope that blends and mitigates the limitations of both rotary-wing and fixed-wing aircraft.
+
+The Flight Envelope represents the minimum and maximum speeds at which an aircraft can fly at a given altitude, identifying the feasible altitude–speed range for flight.
+
+For transition-capable aircraft, the Flight Envelope is derived by extending the Tilt Corridor across different altitudes.
+
+At each given altitude, the maximum and minimum speeds are determined by considering all possible tilt angles. These two speed limits define the aircraft's Flight Envelope.
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/expansion_of_tilt_corridor.png" alt="Expansion of Tilt Corridor" width="400">
+    <figcaption>Expansion of Tilt Corridor</figcaption>
+  </figure>
+</div>
+
+<br>
+
+The figure above illustrates a portion of the Tilt Corridor used to derive the Flight Envelope. At a given speed and altitude, it depicts the Stall Speed, Minimum Speed, and Maximum Speed, which help define the practical Flight Envelope (shown in green).
+
+<br>
+
+## **Mission Analysis Module**
+
+Mission performance consists of three parts: (1) maximum range mission, (2)maximum endurance mission, and (3) a given flight mission profile (also known as mission fuel calculation).
+
+Mission fuel calculation looks at the entire mission profile, which results in the range and endurance capability for a given payload and given fuel or SoC (State of Charge) amount. Mission performance is calculated for climb, cruise, descent, hovering, transition, and vertical take-off and landing conditions. For calculating mission fuel or SoC required, the input must be provided from the mission profile. An example of a mission profile is explained in the following section.
+
+<br>
+
+### Mission Profile Analysis
+
+A **mission profile** can be imported in a *.csv format. The mission.xls mission profile is also shown in the figure below. An example mission profile can be seen in the figure:
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/mission_inputprof.png" alt="Mission Profile" width="600">
+    <figcaption>Mission Profile</figcaption>
+  </figure>
+</div>
+
+<br>
+
+Mission profile analysis calculates the mission fuel required, SoC, mission range, and mission endurance at a given mission profile input. A fixed-point iteration is implemented to estimate the required fuel mass to complete the mission defined by the mission profile. It provides the output for each mission segment and for the entire mission profile. A detailed mission analysis is shown in the figure below:
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/MissionProfileAnalysis.drawio.png" alt="Mission Analysis Flow Chart" width="400">
+    <figcaption>Mission Analysis Flow Chart</figcaption>
+  </figure>
+</div>
+
+<br>
+
+### Mission Segment Analysis
+
+Each mission is composed of several mission segments. Each mission profile segment is defined by several parameters listed below. Total fuel mass is the sum of the fuel mass required for each segment. The mission starts with full fuel, and burned fuel is subtracted at each segment.
+
+Discrete segments are used to analyze each of the mission segments to obtain accurate data for each discipline, as well as range and endurance. Linear interpolation is used between the start and end points of the given mission input. The linear interpolation is shown in the figure below:
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/liner_segments.png" alt="Linear Interpolation" width="400">
+    <figcaption>Linear Interpolation</figcaption>
+  </figure>
+</div>
+
+<br>
+
+$Y$ value is the input value depending on the mission profile input. It will break the segment into discrete segments based on a given $n_{seg}$.
+
+<br>
+
+#### Cruise Segment
+
+Cruise segment analysis methodology examines a given speed, altitude, and distance from the input mission profile and provides the required fuel, SoC, energy, range, and endurance. In addition, all the analysis data are stored according to the time history for mission simulation. For the cruise segment, it is assumed that the aircraft is in steady-level flight.
+
+<br>
+
+#### Loiter Segment
+
+Loiter segment analysis calculates the required fuel for a given loiter time. It is also assumed that loitering operates in a steady-level-flight condition.
+
+<br>
+
+#### Climb and Descent Segment
+
+Climb and descent segment analysis methodology calculates the fuel required at a given altitude and speed from the mission profile.
+For climb analysis, the default input throttle setting $\delta_{t}$ is set as 100\%.
+For descent analysis, the default input throttle setting $\delta_{t}$ is set as 0\%.
+
+<br>
+
+#### Vertical Take-Off and Landing Segment
+
+VTOL takeoff and landing segment analysis methodology calculates the SoC and energy required at a given altitude and speed from the mission profile.
+
+<br>
+
+#### Hover Segment
+
+Hovering segment analysis follows the same logic as the loiter analysis. It calculates the required SoC and energy for a given altitude and hover time.
+
+<br>
+
+#### Transition Segment
+
+Transition segments for forward transition and backward transition are analyzed at a given altitude, as an altitude-hold transition, and calculate the required SoC and energy for that altitude.
+
+<br>
+
+### Mission Analysis
+
+Mission range and endurance are optimized by accounting for climb, cruise, and descent segments. An example mission profile can be seen in the figure below:
+
+<div style="text-align: center;">
+  <figure>
+    <img src="static/fig/cruise_mission.png" alt="Example of Cruise Mission" width="400">
+    <figcaption>Example of Cruise Mission</figcaption>
+  </figure>
+</div>
+
+<br>
+
+#### Maximum Endurance Mission
+
+A maximum endurance mission is calculated as the endurance the aircraft can achieve by cruising at maximum specific endurance conditions. To achieve the maximum endurance, the aircraft <span style="color:rgb(24, 80, 145);">climbs with the most economical climb condition, cruises with maximum specific endurance, and then descends with the minimum sink rate condition.</span>
+
+For fuel powered aircraft,
+
+$$ E_{max}=\int_{m_{f_{init}}}^{m_{f_{final}}} SE_{max} \,dm_{f} $$
+
+For battery powered aircraft,
+
+$$ E_{max}=\int_{SOC_{f_{init}}}^{m_{SOC_{final}}} SE_{max} \,dSOC $$
+
+*Where,*
+
+> *- $E_{max}$ : Maximum endurance* <br>
+> *- $m_{f_{init}}$ : Initial fuel mass* <br>
+> *- $m_{f_{final}}$ : Final fuel mass* <br>
+> *- $SE{max}$ : Maximum specific endurance* <br>
+> *- $m_{f}$ : Fuel mass* <br>
+> *- $SOC$ : State of charge of battery
+
+- Climb from sea level to cruise altitude with most economical climb condition
+- Cruise at given altitude with maximum SE condtion until fuel mass is becomes 5\% of initial fuel
+- Descent from cruise altitude to sea level with minimum sink rate condition
+
+<br>
+
+#### Maximum Range Mission
+
+A maximum range mission is calculated as the range that an aircraft can cover by cruising at maximum specific air range conditions. To achieve the maximum range, the aircraft <span style="color:rgb(24, 80, 145);">climbs with the steepest climb condition, cruises with maximum specific air range, and descends with the minimum glide angle condition.</span>
+
+For fuel powered aircraft,
+
+$$ R_{max}=\int_{m_{f_{init}}}^{m_{f_{final}}} SAR_{max} \,dm_{f} $$
+
+For battery powered aircraft,
+
+$$ R_{max}=\int_{SOC_{f_{init}}}^{m_{SOC_{final}}} SAR_{max} \,dSOC $$
+
+*Where,*
+
+> *- $R_{max}$ : Maximum range* <br>
+> *- $m_{f_{init}}$ : Initial fuel mass* <br>
+> *- $m_{f_{final}}$ : Final fuel mass* <br>
+> *- $SAR_{max}$ : Maximum specific air range* <br>
+> *- $m_{f}$ : Fuel mass* <br>
+> *- $SOC$ : State of charge of battery
+
+- Climb from sea level to cruise altitude with steepest climb condition
+- Cruise at given altitude with maximum SAR condtion until fuel mass is becomes 5\% of initial fuel
+- Descent from cruise altitude to sea level with minimum descent angle condition
+
+<br>

@@ -1,0 +1,647 @@
+Aircraft Input File
+=================================
+
+This page describes the aircraft input file required to perform the Multi-Disciplinary
+Analysis (MDA) and Design Evaluation modules inside CADE.
+
+Aircraft input file is a single CSV file that contains detailed information and data
+about the target aircraft to be analyzed : (1) Design Quantities, (2) Aircraft Configuration,
+(3) Internal Weight Components, (3) Propulsion System
+Aircraft input files by default are located in ``cade/data/aircraft`` directory.
+
+The file is divided into four main sections and subsections. 
+CADE performs search by the section header, so it is important to write 
+them correctly.
+
+Example of the aircraft input file is shown below:
+
+.. csv-table:: Example of aircraft input file
+   :file: aircraft-input-example.csv
+   :widths: 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20
+   :header-rows: 0
+
+-----------------
+
+DESIGN QUANTITIES
+This page describes the aircraft input file required to perform the Multi-Disciplinary
+Analysis (MDA) and Design Evaluation modules inside CADE.
+
+Aircraft input file is a single CSV file that contains detailed information and data
+about the target aircraft to be analyzed : (1) Design Quantities, (2) Aircraft Configuration,
+(3) Internal Weight Components, (3) Propulsion System
+Aircraft input files by default are located in ``cade/data/aircraft`` directory.
+
+The file is divided into four main sections and subsections. 
+CADE performs search by the section header, so it is important to write 
+them correctly.
+
+Example of the aircraft input file is shown below:
+
+.. csv-table:: Example of aircraft input file
+   :file: aircraft-input-example.csv
+   :widths: 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20
+   :header-rows: 0
+
+-----------------
+
+DESIGN QUANTITIES
+-----------------
+
+``DESIGN QUANTITIES`` section provides information on the type of aircraft to be analyzed
+and the associated design conditions.
+
+``DESIGN QUANTITIES`` section provides information on the type of aircraft to be analyzed
+and the associated design conditions.
+
+aircraft-type : string
+    type of aircraft (e.g. UAV, UAM, etc.)
+    type of aircraft (e.g. UAV, UAM, etc.)
+
+design-gross-mass : float, kg
+    design mass
+
+design-speed : float, m/s
+    design cruise speed
+
+design-altitude : float, m
+    design cruise altitude
+
+design-load-factor : float
+    design load factor
+
+design-landing-load factor : float
+    design lanidng load factor
+
+mission-profile : string
+    mission profile of the aircraft
+
+    * Mission profiles are save in mission.csv file located in ``cade/data/mission_input`` directory.
+
+    * The mission analysis uses mission profile described in the corresponding excel tab.
+
+    * How to create a mission profile is described in the 'Database' page.
+
+-------------
+
+CONFIGURATION
+mission-profile : string
+    mission profile of the aircraft
+
+    * Mission profiles are save in mission.csv file located in ``cade/data/mission_input`` directory.
+
+    * The mission analysis uses mission profile described in the corresponding excel tab.
+
+    * How to create a mission profile is described in the 'Database' page.
+
+-------------
+
+CONFIGURATION
+-------------
+
+``CONFIGURATION`` section provides detailed information on the aircraft configuration and geometries.
+This section is divided into three subsections: ``WING``, ``BODY``, and ``LANDING GEAR``.
+
+WING
+``CONFIGURATION`` section provides detailed information on the aircraft configuration and geometries.
+This section is divided into three subsections: ``WING``, ``BODY``, and ``LANDING GEAR``.
+
+WING
+^^^^
+
+**From here, configuration input parameters for whole aircraft's wing type are required.**
+Based on the theoretical background of the configuration analysis inside CADE-MDA,
+the wing input data is provided in the format to support the 'Multi-Segment Wing Analysis'.
+**From here, configuration input parameters for whole aircraft's wing type are required.**
+Based on the theoretical background of the configuration analysis inside CADE-MDA,
+the wing input data is provided in the format to support the 'Multi-Segment Wing Analysis'.
+
+wing-configuration : string
+    type of overall wing layout. This could be conventional, tandem, 
+    type of overall wing layout. This could be conventional, tandem, 
+    canard, box-wing or else
+
+    * Depending on the ``wing-configuration``, calculation of the reference area, span, and MAC can be different.
+
+    .. image:: static/fig/available_wing_configuration.png
+        :width: 400px
+        :align: center
+        :alt: Available Wing Configurations
+
+
+    * Depending on the ``wing-configuration``, calculation of the reference area, span, and MAC can be different.
+
+    .. image:: static/fig/available_wing_configuration.png
+        :width: 400px
+        :align: center
+        :alt: Available Wing Configurations
+
+
+surface-number : integer
+    the number of lifting-surfaces. Any types of wing(main wing, canard, winglet or
+    the number of lifting-surfaces. Any types of wing(main wing, canard, winglet or
+    tail wings) all counts.
+
+    * For example, if the 'BOXWING' configuration as above figure, 
+      the ``surface-number`` is 4 : WING[0] MAINWING, WING[1] WINGLET, WING[2] REARWING, WING[3] V-TAIL.
+    
+    * The ``surface-number`` considers only the half wing.
+
+    .. image:: static/fig/box_wing_surface_number.png
+        :width: 350px
+        :align: center
+        :alt: Number of Wing Surfaces
+
+
+**From here, configuration input parameters for 'defined' wing are required.**
+The value of ``surface-number`` and the number of ``wing-type`` in this input file should be the same.
+    * For example, if the 'BOXWING' configuration as above figure, 
+      the ``surface-number`` is 4 : WING[0] MAINWING, WING[1] WINGLET, WING[2] REARWING, WING[3] V-TAIL.
+    
+    * The ``surface-number`` considers only the half wing.
+
+    .. image:: static/fig/box_wing_surface_number.png
+        :width: 350px
+        :align: center
+        :alt: Number of Wing Surfaces
+
+
+**From here, configuration input parameters for 'defined' wing are required.**
+The value of ``surface-number`` and the number of ``wing-type`` in this input file should be the same.
+
+wing-type : string
+    type or the name of the wing. From this line to ``wing-cs-chord`` 
+    defines for same wing surface.
+
+    * ``wing-type`` available for MAINWING, FRONTWING, REARWING, CANARD, and for tail wings, HORIZONTAL, VERTICAL, V-TAIL, H-TAIL is available.
+
+    * Below table shows the example combination of ``wing-type`` to make ``wing-configuration``.
+
+    +------------------------+-------------------------------------+
+    | wing-configuration     | wing-type                           |
+    +========================+=====================================+
+    | CONVENTIONAL + T-TAIL  | MAINWING, HORIZONTAL, VERTICAL      |
+    +------------------------+-------------------------------------+
+    | CANARD + VERTICAL TAIL | CANARD, MAINWING, VERTICAL          |
+    +------------------------+-------------------------------------+
+    | TANDEM + H-TAIL        | FRONTWING, REARWING, H-TAIL         |
+    +------------------------+-------------------------------------+
+    | BOXWING + V-TAIL       | MAINWING, WINGLET, REARWING, V-TAIL |
+    +------------------------+-------------------------------------+
+
+    * Below figure shows the example of ``MAINWING``.
+
+    .. image:: static/fig/mainwing_example.png
+        :width: 600px
+        :align: center
+        :alt: Example of Main Wing
+    defines for same wing surface.
+
+    * ``wing-type`` available for MAINWING, FRONTWING, REARWING, CANARD, and for tail wings, HORIZONTAL, VERTICAL, V-TAIL, H-TAIL is available.
+
+    * Below table shows the example combination of ``wing-type`` to make ``wing-configuration``.
+
+    +------------------------+-------------------------------------+
+    | wing-configuration     | wing-type                           |
+    +========================+=====================================+
+    | CONVENTIONAL + T-TAIL  | MAINWING, HORIZONTAL, VERTICAL      |
+    +------------------------+-------------------------------------+
+    | CANARD + VERTICAL TAIL | CANARD, MAINWING, VERTICAL          |
+    +------------------------+-------------------------------------+
+    | TANDEM + H-TAIL        | FRONTWING, REARWING, H-TAIL         |
+    +------------------------+-------------------------------------+
+    | BOXWING + V-TAIL       | MAINWING, WINGLET, REARWING, V-TAIL |
+    +------------------------+-------------------------------------+
+
+    * Below figure shows the example of ``MAINWING``.
+
+    .. image:: static/fig/mainwing_example.png
+        :width: 600px
+        :align: center
+        :alt: Example of Main Wing
+
+wing-half-span : float, m
+    length of defined wing's half span.
+
+    .. image:: static/fig/wing_half_span_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Half Span
+
+    .. image:: static/fig/wing_half_span_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Half Span
+
+wing-root-chord : float, m
+    length of defined wing's root chord.
+
+    .. image:: static/fig/wing_root_chord_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Root Chord
+
+    .. image:: static/fig/wing_root_chord_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Root Chord
+
+wing-location : float array, m
+    location of defined wing's root chord's leading edge start. 
+    3 columns are for x, y, z coordinate from aircraft's reference point.
+
+wing-incidence : float, deg
+    angle of defined wing's incidence. Incidence angle is an angle between
+    fuselage and wing attachment part.
+
+    .. image:: static/fig/wing_location_incidence_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Location and Incidence Angle
+
+**From here, configuration parameters for each segment or section of defined wing are required.**
+*Each column is for each segment or section. 
+    .. image:: static/fig/wing_location_incidence_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Location and Incidence Angle
+
+**From here, configuration parameters for each segment or section of defined wing are required.**
+*Each column is for each segment or section. 
+
+wing-seg-span-location : float array, %
+    location of each segment's (span) tip in percentages. 
+    100 means tip chord of defined wing.
+    location of each segment's (span) tip in percentages. 
+    100 means tip chord of defined wing.
+
+    * Example figure has 3 segments : Seg[0], Seg[1], and Seg[2].
+    
+    * The first segment's tip is at 50% of defined wing's half span, 
+      the second segment's tip is at 90% of the wing's half span, 
+      and the third segment's tip is at 100% of the wing's half span.
+
+    .. image:: static/fig/wing_seg_span_location_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Segment's Span Location
+
+wing-seg-taper : float array
+    ratio between each segment's root chord length and tip chord length. 
+    1 means the segment is rectangular shape.
+
+    .. code::
+
+        wing-seg-taper[0] = Seg[0] Tip Chord / wing-root-chord
+
+        wing-seg-taper[1] = Seg[1] Tip Chord / Seg[0] Tip Chord
+
+    .. image:: static/fig/wing_seg_taper_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Segment's Taper Ratio
+    * Example figure has 3 segments : Seg[0], Seg[1], and Seg[2].
+    
+    * The first segment's tip is at 50% of defined wing's half span, 
+      the second segment's tip is at 90% of the wing's half span, 
+      and the third segment's tip is at 100% of the wing's half span.
+
+    .. image:: static/fig/wing_seg_span_location_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Segment's Span Location
+
+wing-seg-taper : float array
+    ratio between each segment's root chord length and tip chord length. 
+    1 means the segment is rectangular shape.
+
+    .. code::
+
+        wing-seg-taper[0] = Seg[0] Tip Chord / wing-root-chord
+
+        wing-seg-taper[1] = Seg[1] Tip Chord / Seg[0] Tip Chord
+
+    .. image:: static/fig/wing_seg_taper_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Segment's Taper Ratio
+
+wing-seg-sweep : float array, deg
+    angle of each segment's sweep. Sweep angle is an angle between root chord's apex 
+    and tip chord's apex in longitudinal direction. If +, it is sweep back, if -, it is sweep forward.
+
+wing-seg-dihedral : float array, deg
+    angle of each segment's dihedral. Dihedral angle is an angle between root chord's apex
+    and tip chord's apex in vertical direction. If +, it is dihedral, if -, it is anhedral.
+
+    * Example figure has 'zero' dihedral angle, so it looks like a straight line in the front view.
+
+    .. image:: static/fig/wing_seg_sweep_dihedral_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Segment's Sweep and Dihedral Angle
+
+    * Example figure has 'zero' dihedral angle, so it looks like a straight line in the front view.
+
+    .. image:: static/fig/wing_seg_sweep_dihedral_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Segment's Sweep and Dihedral Angle
+
+wing-sec-airfoil : string array
+    name of airfoil used in each wing section. 
+
+    * Name of Airfoil : it will bring coordinate data from Airfoil Database.
+    For detailed information about airfoil DB, please refer to the 'Database' page.
+
+    * Airfoil coordinate dataset is saved in ``cade/data/airfoil`` directory.
+
+    * Name of Airfoil : it will bring coordinate data from Airfoil Database.
+    For detailed information about airfoil DB, please refer to the 'Database' page.
+
+    * Airfoil coordinate dataset is saved in ``cade/data/airfoil`` directory.
+
+wing-sec-twist : float array, deg
+    angle of each section's twist. Twist angle is an angle between root chordline and tip chordline.
+
+    .. image:: static/fig/wing_sec_airfoil_twist_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Section's Airfoil and Twist Angle
+
+**From here, configuration parameters for defined wing's control surface are required.**
+    .. image:: static/fig/wing_sec_airfoil_twist_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing Section's Airfoil and Twist Angle
+
+**From here, configuration parameters for defined wing's control surface are required.**
+
+wing-cs-type : string
+    type of defined wing's control surface. If there is no control surface input 'NONE'.
+
+wing-cs-chord : float array, ratio
+    ratio of each wing section's chord length and control surface's chord length. 
+    If 0, it means there is no control surface in that wing section.
+
+    .. code::
+
+        wing-cs-chord[x] = Control Surface Chord Length at Sec[x] / Sec[x] Chord Length
+
+    .. image:: static/fig/wing_cs_type_chord_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing's Control Surface Type and Chord Ratio
+
+
+BODY
+^^^^
+
+**From here, configuration parameters for whole aircraft's body type are required.**
+    ratio of each wing section's chord length and control surface's chord length. 
+    If 0, it means there is no control surface in that wing section.
+
+    .. code::
+
+        wing-cs-chord[x] = Control Surface Chord Length at Sec[x] / Sec[x] Chord Length
+
+    .. image:: static/fig/wing_cs_type_chord_example.png
+        :width: 600px
+        :align: center
+        :alt: Wing's Control Surface Type and Chord Ratio
+
+
+BODY
+^^^^
+
+**From here, configuration parameters for whole aircraft's body type are required.**
+
+body-number : integer
+    the number of body surfaces. Any types of body(fuselage, motor boom, or
+    nacelle) all counts.
+
+    * For example, if the aircraft has fuselage and motor boom,
+      the ``body-number`` is 2 : BODY[0] FUSELAGE, BODY[1] MOTORBOOM. 
+    
+**From here, configuration input parameters for defined body are required.**
+* The value of 'body-number' and the number of 'body-type' in this csv should be the same.
+    * For example, if the aircraft has fuselage and motor boom,
+      the ``body-number`` is 2 : BODY[0] FUSELAGE, BODY[1] MOTORBOOM. 
+    
+**From here, configuration input parameters for defined body are required.**
+* The value of 'body-number' and the number of 'body-type' in this csv should be the same.
+
+body-type : string
+    type or the name of the body. From this line to 'body-location' defines
+    for same body part.
+
+body-length : float, m
+    length of defined body(longitudinal direction).
+
+body-height : float, m
+    length of defined body(vertical direction)
+
+body-width : float, m
+    length of defined body(lateral direction)
+
+body-profile : string
+    file name of defined body's profile coordinate file.
+
+    * Name of Body Profile : it will bring coordinate data from Body Profile Database.
+    For detailed information about body profile DB, please refer to the 'Database' page.
+
+    * Body profile coordinate dataset is saved in ``cade/data/bodyProfile`` directory.
+
+    * Name of Body Profile : it will bring coordinate data from Body Profile Database.
+    For detailed information about body profile DB, please refer to the 'Database' page.
+
+    * Body profile coordinate dataset is saved in ``cade/data/bodyProfile`` directory.
+
+body-location : float array, m
+    location of defined body's nose starting point. 3 columns
+    are for x, y, z coordinate from aircraft's reference point.
+
+.. image:: static/fig/body_params_example.png
+    :width: 600px
+    :align: center
+    :alt: Body Type's Input Parameters
+
+
+LANDING GEAR
+.. image:: static/fig/body_params_example.png
+    :width: 600px
+    :align: center
+    :alt: Body Type's Input Parameters
+
+
+LANDING GEAR
+^^^^^^^^^^^^
+
+**From here, configuration parameters for whole aircraft's landing gear are required.**
+**From here, configuration parameters for whole aircraft's landing gear are required.**
+
+lg-type : string
+    type of landing gear. The input should be ``WHEEL`` or ``SKID`` or ``NONE``.
+    If the input is ``NONE``, the landing gear parameters and analyses are ignored.
+    type of landing gear. The input should be ``WHEEL`` or ``SKID`` or ``NONE``.
+    If the input is ``NONE``, the landing gear parameters and analyses are ignored.
+
+lg-gear-retraction : string
+    input for landing gear retraction. The input should be 'Fixed' or 'Retractable'
+
+Case of Wheel-Type Landing Gear
+^^^^^^^^^^^^
+
+Case of Wheel-Type Landing Gear
+^^^^^^^^^^^^
+
+| From here, same column is for same wheel position
+
+lg-position : string array
+    position of each landing gear's wheel.
+
+lg-tire-width : float array, m
+    width length of defined landing gear's wheel.
+
+lg-tire-diameter : float array, m
+    diameter length of defined landing gear's wheel.
+
+lg-strut-angle : float array, deg
+    angle between defined landing gear's strut and the ground.
+
+lg-strut-length : float array, m
+    length of defined landing gear wheel attached strut.
+
+lg-strut-diameter : float array, m
+    diameter length of defined landing gear wheel attached struts' tube.
+
+lg-ground-contact-X : float array, m
+    X(longitudinal)-direction coordinate point of defined landing gear wheel from the aircraft reference point.
+
+lg-ground-contact-Y : float array, m
+    Y(lateral)-direction coordinate point of defined landing gear wheel from the aircraft reference point .
+
+lg-ground-contact-Z : float array, m
+    Z(vertical)-direction coordinate point of defined landing gear wheel from the aircraft reference point.
+
+
+-------------
+
+PROPULSION
+-------------
+
+name_propulsion : string
+    Name of Propulsion System Set : it will bring specifications data from db
+
+
+-------------
+
+WEIGHT AND BALANCE
+-------------
+-------------
+
+PROPULSION
+-------------
+
+name_propulsion : string
+    Name of Propulsion System Set : it will bring specifications data from db
+
+
+-------------
+
+WEIGHT AND BALANCE
+-------------
+
+MASS COMPONENTS : string
+    Components' name with fixed weight
+
+GROUP : string
+    Based on the weight breakdown, the groups of empty, energy, and payload are divided
+    
+MIN MASS : float, kg
+    Weight measured when having the lowest weight
+
+MAX MASS : float, kg
+    Weight measured when having the highest weight
+
+CG-X : float, m
+    Center of gravity x-coordinates
+
+CG-Y : float, m
+    Center of gravity y-coordinates
+
+CG-Z : float, m
+    Center of gravity z-coordinates
+
+LX : float, m
+    Length of component to x-axis
+
+LY : float, m
+    Length of component to y-axis
+
+LZ : float, m
+    Length of component to z-axis
+
+SYMMETRY : string
+    Determine symmetry based on the y-axis
+
+SHAPE : string
+    The basic shape of a component
+
+ORIENTATION : string
+    Unlike mass of a body, the moment of inertia is not a fixed quantity 
+    but depends on orientation and position of the axis of rotation.
+
+Below are explanations for the LX, LY, LZ, and SHAPE columns; all other fields (for example, MASS COMPONENTS and MIN MASS) have been defined previously.
+
+``LX`` (meters)
+    Primary dimension along the X‐axis.  
+    - For ``hollow_cylinder`` and ``solid_cylinder``, this is the cylinder length.  
+    - For ``rectangular``, this is the length in the X direction.
+
+``LY`` (meters)
+    Primary dimension along the Y‐axis.  
+    - Only used for ``rectangular`` shapes (the Y‐axis length).
+
+``LZ`` (meters)
+    Primary dimension along the Z‐axis.  
+    - Only used for ``rectangular`` shapes (the Z‐axis length).
+
+``SHAPE`` (string)
+    Geometric shape used to compute the mass moment of inertia. Supported values:  
+    ``hollow_cylinder``, ``solid_cylinder``, ``solid_sphere``,  
+    ``hollow_sphere``, ``rectangular``, and ``Point``.
+
+Required Parameters by Shape
+----------------------------
+
+- **hollow_cylinder**  
+  Requires three numeric inputs (outer diameter `D1`, inner diameter `D2`, and cylinder length `LX`).  
+  In the input file only `LX` appears in its own column; the diameters are passed via the parameter list order.  
+  Unused slots must be marked `x`.  
+  Example:  
+LX=0.016, LY=x, LZ=x, SHAPE=hollow_cylinder
+
+- **solid_cylinder**  
+Requires two numeric inputs: cylinder length (`LX`) and diameter (`LY`).  
+Example:  
+LX=0.029, LY=0.03, LZ=x, SHAPE=solid_cylinder
+
+- **solid_sphere** / **hollow_sphere**  
+Require a single numeric input: radius (`LX`).  
+Example:  
+LX=0.0236, LY=x, LZ=x, SHAPE=solid_sphere
+
+- **rectangular**  
+Requires three numeric inputs: lengths along X, Y, and Z (`LX`, `LY`, `LZ`).  
+Example:  
+LX=0.053, LY=0.0107, LZ=0.026, SHAPE=rectangular
+
+- **Point**  
+No numeric inputs are required (the component is treated as a point mass).  
+Example:  
+LX=x, LY=x, LZ=x, SHAPE=Point
+
+Note
+- All **required** dimensions (`LX`, `LY`, `LZ`) must be entered as numeric values.  
+- Unused dimension slots must be filled with `x`.  
+- Units must be in meters [m] to ensure correct moment‐of‐inertia calculations.

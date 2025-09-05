@@ -7,18 +7,18 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Configuration Theory Manual &mdash; CADE 1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=e59714d7" />
 
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="static/jquery.js?v=5d32c60e"></script>
+      <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="static/documentation_options.js?v=f2a433a1"></script>
+      <script src="static/doctools.js?v=9bcbadda"></script>
+      <script src="static/sphinx_highlight.js?v=dc90522c"></script>
       <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
       <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../_static/js/theme.js"></script>
+    <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -75,7 +75,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active"><strong>Configuration Theory Manual</strong></li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/configuration_theory_rev.md.txt" rel="nofollow"> View page source</a>
+            <a href="sources/configuration_theory_rev.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -158,7 +158,7 @@ It is written by referring to the books:</p>
 <section id="airfoil-geometry">
 <h2><strong>Airfoil Geometry</strong><a class="headerlink" href="#airfoil-geometry" title="Link to this heading"></a></h2>
 <p>The airfoil is often considered the heart of the aircraft, as it influences various aspects such as cruise speed, take-off and landing distances, stall speed, and the overall aerodynamic efficiency of the wing configuration throughout all flight phases. The wing configuration analysis evaluates each section of the entire wing, where each section corresponds to an individual airfoil.</p>
-<p><img alt="Airfoil geometry" src="../_images/airfoil_geometry.jpg" /></p>
+<p><img alt="Airfoil geometry" src="images/airfoil_geometry.jpg" /></p>
 <section id="airfoil-thickness">
 <h3>Airfoil Thickness<a class="headerlink" href="#airfoil-thickness" title="Link to this heading"></a></h3>
 <p>Airfoil thickness is the maximum distance between upper and lower profiles of airfoil coordinates.
@@ -212,7 +212,7 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 <section id="airfoil-leading-edge-parameter-i-e-le-parameter">
 <h3>Airfoil Leading Edge Parameter (i.e. <em>LE Parameter</em>)<a class="headerlink" href="#airfoil-leading-edge-parameter-i-e-le-parameter" title="Link to this heading"></a></h3>
 <p>Airfoil leading edge parameter is the thickness factor of airfoil’s leading edge like <span class="math notranslate nohighlight">\(\varDelta y\)</span>(%C) in below figure.</p>
-<p><img alt="Airfoil leading edge parameter" src="../_images/airfoil_LE_parameter.jpg" /></p>
+<p><img alt="Airfoil leading edge parameter" src="images/airfoil_LE_parameter.jpg" /></p>
 <div class="math notranslate nohighlight">
 \[ LE\:Parameter=(y_2-y_1)t\times100 \]</div>
 <p><em>Where,</em></p>
@@ -232,8 +232,8 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 <h3>Multi-Segment Wing Calculation<a class="headerlink" href="#multi-segment-wing-calculation" title="Link to this heading"></a></h3>
 <p>When analyzing an aircraft’s wing-type geometry, the wing planform shape is commonly assumed to be trapezoidal. However, most aircraft do not have a perfect trapezoidal wing planform shape; in reality, they are often more complex than just a simple “trapezoidal” shape. Therefore, to analyze the wing geometry accurately, the wing should be broken down into multiple segments, each approximating a trapezoidal shape. This methodology is called <strong>‘multi-segment wing calculation’</strong>. While representing a wing with too many segments can complicate the analysis, this approach allows for the representation of various wing configurations, which is the primary goal of this configuration module in CADE-MDA.</p>
 <p>A wing represented by a multi-segment approach is divided into <span class="math notranslate nohighlight">\(N\)</span> sections, resulting in <span class="math notranslate nohighlight">\(N-1\)</span> trapezoidal-shaped segments. The two images below illustrate the geometry of multi-segment wing.</p>
-<p><img alt="Multi-segment wing breakdown" src="../_images/wing_segment_section.jpg" /></p>
-<p><img alt="Multi-segment wing geometry" src="../_images/multi_segment_wing_geometry.jpg" /></p>
+<p><img alt="Multi-segment wing breakdown" src="images/wing_segment_section.jpg" /></p>
+<p><img alt="Multi-segment wing geometry" src="images/multi_segment_wing_geometry.jpg" /></p>
 <p>The wing configuration parameters of a multi-segment wing are calculated using the following equations:</p>
 <ul>
 <li><p>For the <span style="color:rgb(24, 80, 145);">1st segment (<span class="math notranslate nohighlight">\(i=0\)</span>)</span>,</p>

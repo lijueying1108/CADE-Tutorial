@@ -7,18 +7,18 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Electric Propulsion Theory Manual &mdash; CADE 1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=e59714d7" />
 
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="static/jquery.js?v=5d32c60e"></script>
+      <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="static/documentation_options.js?v=f2a433a1"></script>
+      <script src="static/doctools.js?v=9bcbadda"></script>
+      <script src="static/sphinx_highlight.js?v=dc90522c"></script>
       <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
       <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../_static/js/theme.js"></script>
+    <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -76,7 +76,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active"><strong>Electric Propulsion Theory Manual</strong></li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/electric_propulsion_theory.md.txt" rel="nofollow"> View page source</a>
+            <a href="sources/electric_propulsion_theory.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -143,7 +143,7 @@
 <p><span style="color:rgb(24, 80, 145);"> <strong>UAV Propulsion</strong></span></p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/eps.png" alt="UAV Electric Propulsion in CADE" width="500">
+    <img src="static/fig/eps.png" alt="UAV Electric Propulsion in CADE" width="500">
     <figcaption>UAV Electric Propulsion Architecture</figcaption>
   </figure>
 </div>
@@ -152,7 +152,7 @@
 <p>UAV adopts energy sources such as battery or hydrogen fuel cell system. Battery is the one of the electric proupsion unit that can generate electrical power, and here, the format of the electric power is represented as <span class="math notranslate nohighlight">\(V_{bat},I_{bat}\)</span>. For the controller, ESC (Electric Speed Control) can control the motor, which rotates the propeller, so from the battery, the ESC passes the electric power to run the motor as figure above. Electric motor used in UAV is mostly BLDC (Brushless DC) type and it can make the torque and RPM to rotate propeller. From the rotating propeller, thrust is generated.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/system_analysis_flow.jpg" alt="System Analysis Flow" width="500">
+    <img src="static/fig/system_analysis_flow.jpg" alt="System Analysis Flow" width="500">
     <figcaption>System Analysis Flowchart</figcaption>
   </figure>
 </div>
@@ -222,7 +222,7 @@
 <p><span style="color:rgb(24, 80, 145);"> <strong>UAM Propulsion</strong></span></p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/prop-uam.png" alt="UAV Electric Propulsion Architecture" width="500">
+    <img src="static/fig/prop-uam.png" alt="UAV Electric Propulsion Architecture" width="500">
     <figcaption>UAV Electric Propulsion Architecture</figcaption>
   </figure>
 </div>
@@ -306,13 +306,13 @@
 <p>The battery serves as the core energy source for the propulsion system, converting chemical energy into electrical energy. One important characteristic to consider is the voltage drop that occurs in each battery cell as the State of Charge (SOC) decreases. In other words, as the battery is discharged, the output voltage of each cell tends to decrease. The figure below illustrates the voltage drop behavior of a Li-Po (Lithium Polymer) battery. To analyze this, the process involves two main steps: (1) Calculate the drain current, (2) Calculate the SOC.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/battery_Vsoc_drop.jpg" alt="Li-Po Battery Voltage Drop" width="400">
+    <img src="static/fig/battery_Vsoc_drop.jpg" alt="Li-Po Battery Voltage Drop" width="400">
     <figcaption>Li-Po Battery Voltage Drop</figcaption>
   </figure>
 </div>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/Battery_scheme.jpg" alt="Battery Analysis Process" width="400">
+    <img src="static/fig/Battery_scheme.jpg" alt="Battery Analysis Process" width="400">
     <figcaption>Battery Analysis Process</figcaption>
   </figure>
 </div>
@@ -338,7 +338,7 @@
 <p>Eqivalent Circuit Model (ECM)-based approaches offer an optimal balance between modeling complexity and accuracy, making them a preferred choice for real-world applications. While models such as Thevenin and other higher-order ECMs can provide greater accuracy—typically within <span class="math notranslate nohighlight">\(\pm\)</span> 1%— this framework adopts a modified version of the ECM to achieve better computational efficiency, reasonable accuracy and robustness. It simplifies the parameterization process using inputs derived from discharge characteristics or manufacturer data and is adaptable to a variety of battery chemistries and configurations. Furthermore, the modular structure of this framework enables easy integration of alternative models, offering the flexibility needed to address diverse analysis scenarios.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/battery.png" alt="Battery Model Equivalent Circuit Diagram" width="400">
+    <img src="static/fig/battery.png" alt="Battery Model Equivalent Circuit Diagram" width="400">
     <figcaption>Battery Model Equivalent Circuit Diagram</figcaption>
   </figure>
 </div>
@@ -346,7 +346,7 @@
 <p>Below graph presents the typical discharge curve of a Li-ion battery, capturing three distinct regions. The first is the <em>exponential region</em>, characterized by a rapid voltage drop. Next is the <em>nominal region</em>, whre the voltage remains relatively stable, providing consistent power output. Finally, the curve enters to <em>cut-off point</em>, where the voltage drops sharply to the minimum operating limit, indicating the end of usable capacity to prevent battery damage.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/battery_discharge_curve.png" alt="Li-Ion Battery Typical Discharge Curve" width="400">
+    <img src="static/fig/battery_discharge_curve.png" alt="Li-Ion Battery Typical Discharge Curve" width="400">
     <figcaption>Li-Ion Battery Typical Discharge Curve</figcaption>
   </figure>
 </div>
@@ -455,13 +455,13 @@
 <h3>1RC Thevenin Equivalent Circuit Model<a class="headerlink" href="#rc-thevenin-equivalent-circuit-model" title="Link to this heading"></a></h3>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/overall_sequence_of_battery_model.png" alt="Overall Sequence of Battery Model" width="600">
+    <img src="static/fig/overall_sequence_of_battery_model.png" alt="Overall Sequence of Battery Model" width="600">
     <figcaption>Overall Sequence of Battery Model</figcaption>
   </figure>
 </div>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/1RC_equivalent_circuit_model.png" alt="1RC Equivalent Circuit Model" width="400">
+    <img src="static/fig/1RC_equivalent_circuit_model.png" alt="1RC Equivalent Circuit Model" width="400">
     <figcaption>1RC Equivalent Circuit Model</figcaption>
   </figure>
 </div>
@@ -530,7 +530,7 @@ The thermal model predicts the battery’s temperature evolution by balancing in
 <p>For air cooling system, it is essential to establish the battery cell arrangement. For a staggered cell arrangement, there is column and row and also this arrangement is honeycomb type. Honeycomb type is more efficient for cooling battery module and better energy density of the module than grid type.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/cell arrangment.jpg" alt="Battery Cell Arrangement" width="400">
+    <img src="static/fig/cell arrangment.jpg" alt="Battery Cell Arrangement" width="400">
     <figcaption>Battery Cell Arrangement</figcaption>
   </figure>
 </div>
@@ -627,13 +627,13 @@ The thermal model predicts the battery’s temperature evolution by balancing in
 <p>PEMFC(Proton Electrolyte Membrane Fuel Cell) is the energy source of the propulsion. It provides the electrical energy to the system from the chemical energy. First, open circuit voltage(OCV) of PEMFC is calculated based on thermodynamic equation. After that, Nernst equation of PEMFC is used for calculating fuel cell’s voltage drop. Finally, voltage losses, which have a role of resistance of fuel cell calculated. To find stack voltage which satisfies <span class="math notranslate nohighlight">\(P_{FC}^{req}\)</span> from propulsion analysis:</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/hfc_analysis.jpg" alt="PEMFC Analysis Process" width="400">
+    <img src="static/fig/hfc_analysis.jpg" alt="PEMFC Analysis Process" width="400">
     <figcaption>PEMFC Analysis Process</figcaption>
   </figure>
 </div>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/voltage_power_matching.jpg" alt="PEMFC Performance Analysis" width="500">
+    <img src="static/fig/voltage_power_matching.jpg" alt="PEMFC Performance Analysis" width="500">
     <figcaption>PEMFC Performance Analysis</figcaption>
   </figure>
 </div>
@@ -815,7 +815,7 @@ The thermal model predicts the battery’s temperature evolution by balancing in
 <p>A 3-phase inverter is used to convert DC into AC for powering a Permanent Magnet Synchronous Motor (PMSM). For high power and high efficiency, SiC-MOSFET is recommended due to low on-state resistance and higher switching speed.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/three-phase_SIC_circuit.jpg" alt="3-Phase Inverter Circuit Topology" width="500">
+    <img src="static/fig/three-phase_SIC_circuit.jpg" alt="3-Phase Inverter Circuit Topology" width="500">
     <figcaption>3-Phase Inverter Circuit Topology</figcaption>
   </figure>
 </div>
@@ -834,7 +834,7 @@ The thermal model predicts the battery’s temperature evolution by balancing in
 <h4>Power Loss Model<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/three-phase_SIC_inverter_topology.jpg" alt="Leg a of the 3-Phase SIC Inverter Topology" width="400">
+    <img src="static/fig/three-phase_SIC_inverter_topology.jpg" alt="Leg a of the 3-Phase SIC Inverter Topology" width="400">
     <figcaption>Leg a of the 3-Phase SIC Inverter Topology</figcaption>
   </figure>
 </div>
@@ -898,7 +898,7 @@ The thermal model predicts the battery’s temperature evolution by balancing in
 <p><span style="color:rgb(15, 135, 204);"><strong>Clarke Transform</strong></span></p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/clarke_transform.jpg" alt="Clarke Transform" width="300">
+    <img src="static/fig/clarke_transform.jpg" alt="Clarke Transform" width="300">
     <figcaption>Clarke Transform</figcaption>
   </figure>
 </div>
@@ -912,13 +912,13 @@ The thermal model predicts the battery’s temperature evolution by balancing in
 <p><span style="color:rgb(15, 135, 204);"><strong>Park Transform</strong></span></p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/park_transform1.jpg" alt="Park Transform 1" width="300">
+    <img src="static/fig/park_transform1.jpg" alt="Park Transform 1" width="300">
     <figcaption>Park Transform (q-Axis)</figcaption>
   </figure>
 </div>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/park_transform2.jpg" alt="Park Transform 2" width="300">
+    <img src="static/fig/park_transform2.jpg" alt="Park Transform 2" width="300">
     <figcaption>Park Transform (d-Axis)</figcaption>
   </figure>
 </div>
@@ -943,13 +943,13 @@ The thermal model predicts the battery’s temperature evolution by balancing in
 <p>The purpose of the BLDC (Brushless DC) motor analysis module is to calculate the electrical and mechanical behavior of the motor, which converts electrical power into mechanical power. For the motor analysis, ECM is used. Through motor and propeller torque matching, the amount of current required to drive the motor is calculated. Since the motor and propeller are in torque and RPM equilibrium, the motor torque and RPM match the propeller’s torque and RPM. Based on the motor specifications, the required current, and the output voltage from the ESC, the motor’s RPM can be derived.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/motor_ecm.jpg" alt="Motor Equivalent Circuit Model" width="500">
+    <img src="static/fig/motor_ecm.jpg" alt="Motor Equivalent Circuit Model" width="500">
     <figcaption>Motor Equivalent Circuit Model</figcaption>
   </figure>
 </div>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/motor_propeller_torque.jpg" alt="Motor Torque Matching" width="500">
+    <img src="static/fig/motor_propeller_torque.jpg" alt="Motor Torque Matching" width="500">
     <figcaption>Motor Torque Matching</figcaption>
   </figure>
 </div>
@@ -975,7 +975,7 @@ The thermal model predicts the battery’s temperature evolution by balancing in
 <p>For PMSM analysis, a simplified ECM is used. The stator resistance and synchronous inductance are typically provided by the motor manufacturer. To analyze motor performance, phase analysis is performed within the d-q reference frame, where the rotor magnetic field defines the d-axis as the reference axis.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/motor_circuit.png" alt="Phase-wise Equivalent Circuit Model of PMSM" width="500">
+    <img src="static/fig/motor_circuit.png" alt="Phase-wise Equivalent Circuit Model of PMSM" width="500">
     <figcaption>Phase-wise Equivalent Circuit Model of PMSM</figcaption>
   </figure>
 </div>
@@ -1095,7 +1095,7 @@ The thermal model predicts the battery’s temperature evolution by balancing in
 <p>This approach involves the blade element analysis, where the propeller blade is divided into numerous sections. For each section, lift and drag forces are calculated based on their unique airfoil characteristics and the prevailing operational conditions, similar to the force dynamics on an aircraft wing. These forces are then resolved along the propeller axis to determine the propeller’s resultant thrust and torque.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/bem.png" alt="Propeller Analysis Using Blade Element Theory Model" width="400">
+    <img src="static/fig/bem.png" alt="Propeller Analysis Using Blade Element Theory Model" width="400">
     <figcaption>Propeller Analysis Using Blade Element Theory Model</figcaption>
   </figure>
 </div>
@@ -1127,7 +1127,7 @@ The thermal model predicts the battery’s temperature evolution by balancing in
 <p>Momentum theory is based on conceptualizing the propeller as an actuator disk. This idealization represents the propeller as an infinitely thin disk that induces a minor velocity increment (<span class="math notranslate nohighlight">\(u\)</span>) in the flow direction.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/disk.png" alt="Propeller Analysis Using Momentum Theory Model" width="600">
+    <img src="static/fig/disk.png" alt="Propeller Analysis Using Momentum Theory Model" width="600">
     <figcaption>Propeller Analysis Using Momentum Theory Model</figcaption>
   </figure>
 </div>

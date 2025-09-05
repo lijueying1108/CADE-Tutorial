@@ -7,18 +7,18 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Propulsion Theory Manual &mdash; ADSP 1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=e59714d7" />
 
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="static/jquery.js?v=5d32c60e"></script>
+      <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="static/documentation_options.js?v=f2a433a1"></script>
+      <script src="static/doctools.js?v=9bcbadda"></script>
+      <script src="static/sphinx_highlight.js?v=dc90522c"></script>
       <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
       <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../_static/js/theme.js"></script>
+    <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Performance and Mission Analysis Theory Manual" href="performance_theory.html" />
@@ -133,7 +133,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Propulsion Theory Manual</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/propulsion_theory.md.txt" rel="nofollow"> View page source</a>
+            <a href="sources/propulsion_theory.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -148,14 +148,14 @@
 <p>This is the theory manual for Electrical Propulsion System and Mission
 analysis.</p>
 <p>We analyze components in EPS System. You can be see can be seen in</p>
-<p><img alt="Propulsion in ADSP" src="../_images/eps.png" />
+<p><img alt="Propulsion in ADSP" src="images/eps.png" />
 Propulsion Analysis Module is calculated based on below.</p>
 <ol class="arabic simple">
 <li><p>Flight Condition</p></li>
 <li><p>User Control(Throttle)</p></li>
 <li><p>Use Wind Tunnel Data</p></li>
 </ol>
-<p><img alt="System analysis Fidelity" src="../_images/system_analysis.jpg" /></p>
+<p><img alt="System analysis Fidelity" src="images/system_analysis.jpg" /></p>
 </section>
 <section id="propeller-analysis">
 <h2>Propeller Analysis<a class="headerlink" href="#propeller-analysis" title="Link to this heading"></a></h2>
@@ -175,7 +175,7 @@ parameters which can be calculated.</p>
 </ol>
 </li>
 </ul>
-<p><img alt="BEMT_flowchart" src="../_images/bemt_analysis.jpg" /></p>
+<p><img alt="BEMT_flowchart" src="images/bemt_analysis.jpg" /></p>
 <ul class="simple">
 <li><p>Propeller Analysis Progress</p></li>
 </ul>
@@ -323,8 +323,8 @@ Calculate the amount of the current that the motor requires to rotate.
 Due to the RPM and torque equilibrium, these parameters of motor and
 propeller are the same. Derive the motor RPM based on the
 specifications, motor required current, and voltage from the ESC.</p>
-<p><img alt="Motor_Equivalent Circuit Model" src="../_images/motor_ecm.jpg" />
-<img alt="Motor_Torque Matching" src="../_images/motor_propeller_torque.jpg" /></p>
+<p><img alt="Motor_Equivalent Circuit Model" src="images/motor_ecm.jpg" />
+<img alt="Motor_Torque Matching" src="images/motor_propeller_torque.jpg" /></p>
 <ul class="simple">
 <li><p>Motor Analysis Equation</p></li>
 </ul>
@@ -343,7 +343,7 @@ specifications, motor required current, and voltage from the ESC.</p>
 <section id="battery">
 <h2>Battery<a class="headerlink" href="#battery" title="Link to this heading"></a></h2>
 <p>Battery is the energy source of the propulsion system which provides the electrical energy to the system from the chemical energy. We can cosider voltage drop of battery that each cell of the electric battery has tendency of decreasing output cell voltage according to the SOC. Below picture is for LiPo Battery Voltage Drop. First, We calculate Drain. Second, calculate SOC</p>
-<p><img alt="Li-Po Battery Voltage Drop" src="../_images/battery_Vsoc_drop.jpg" /></p>
+<p><img alt="Li-Po Battery Voltage Drop" src="images/battery_Vsoc_drop.jpg" /></p>
 <ul class="simple">
 <li><p>Battery analysis equation</p></li>
 </ul>
@@ -351,7 +351,7 @@ specifications, motor required current, and voltage from the ESC.</p>
 \[Drain = I_{batt}*\Delta t\]</div>
 <div class="math notranslate nohighlight">
 \[SOC = ({Q_{batt} - Drain})/{Q_{batt}}\]</div>
-<p><img alt="Battery Analysis Process" src="../_images/Battery_scheme.jpg" /></p>
+<p><img alt="Battery Analysis Process" src="images/Battery_scheme.jpg" /></p>
 <p>Where,</p>
 <p>SOC(%)   :    State of Charge(%)</p>
 <p><span class="math notranslate nohighlight">\(I_{batt}\)</span>  :   Current(A)</p>
@@ -365,7 +365,7 @@ specifications, motor required current, and voltage from the ESC.</p>
 <section id="hydrogen-fuel-cell-modeling">
 <h2>Hydrogen Fuel Cell Modeling<a class="headerlink" href="#hydrogen-fuel-cell-modeling" title="Link to this heading"></a></h2>
 <p>Hydrogen fuel cell is the energy source of the propulsion system.It Provides the electrical energy to the system from the chemical energy. First, we calculate Open Circuit voltage of Hydrogen Fuel Cell based on thermaldynamic equation. Second, we use Nernst equation of Hydrogen fuel cell for calculating fuel cell’s voltage drop(Resistance).Finally,To calculate Voltage Losses which have a role of  Resistance of Fuel Cell.To Find Stack Voltage which satisfies <span class="math notranslate nohighlight">\(𝑃_{FC}^{req}\)</span> from Propulsion Analysis</p>
-<p><img alt="HFC Analysis Process" src="../_images/hfc_analysis.jpg" /></p>
+<p><img alt="HFC Analysis Process" src="images/hfc_analysis.jpg" /></p>
 <ul class="simple">
 <li><p>Hydrogen Fuel Cell Modeling Equation</p></li>
 </ul>
@@ -390,8 +390,8 @@ specifications, motor required current, and voltage from the ESC.</p>
 <span class="math notranslate nohighlight">\(V_{ohmic} = i_{density}*r_{cell}\)</span></p>
 <p>Mass Transportation Loss
 <span class="math notranslate nohighlight">\(V_{mass} = -B*\ln (1-i_{density}/i_l)\)</span></p>
-<p><img alt="Polarization curve from Nernst Equation" src="../_images/Nenst_equation.jpg" /></p>
-<p><img alt="Polarization curve from Nernst Equation" src="../_images/voltage_power_matching.jpg" /></p>
+<p><img alt="Polarization curve from Nernst Equation" src="images/Nenst_equation.jpg" /></p>
+<p><img alt="Polarization curve from Nernst Equation" src="images/voltage_power_matching.jpg" /></p>
 <p>Where,</p>
 <p><span class="math notranslate nohighlight">\(P_{FC}\)</span>    :   Electrical Power(<span class="math notranslate nohighlight">\(W\)</span>)</p>
 <p><span class="math notranslate nohighlight">\(T_{operate}\)</span>    :   FC Operating Temperature(<span class="math notranslate nohighlight">\(K\)</span>)</p>
@@ -423,7 +423,7 @@ specifications, motor required current, and voltage from the ESC.</p>
 <section id="uav-propulsion-system-analysis">
 <h2>UAV Propulsion System Analysis<a class="headerlink" href="#uav-propulsion-system-analysis" title="Link to this heading"></a></h2>
 <p>In system analysis, we integrate all analysis module and calculate propulsion analysis parameters.</p>
-<p><img alt="System Analysis Flow" src="../_images/system_analysis_flow.jpg" /></p>
+<p><img alt="System Analysis Flow" src="images/system_analysis_flow.jpg" /></p>
 <ul class="simple">
 <li><p>System Analysis Equation</p></li>
 </ul>
@@ -483,9 +483,9 @@ specifications, motor required current, and voltage from the ESC.</p>
 <section id="uam-propulsion-system-introduction">
 <h2>UAM Propulsion System Introduction<a class="headerlink" href="#uam-propulsion-system-introduction" title="Link to this heading"></a></h2>
 <p>The propulsion system for a typical Urban Air Mobility(UAM) vehicle is shown below. The  system starts with a battery that supplies DC Power. A converter converts DC power to a suitable voltage level before feeding it to an inverter. The inverter’s role is to transform the DC in to AC power, which the motor requires. A controller oversees this process, adjusting the inverter’s output through a control signal to manage the duty cycle and ensure the motor operates correctly. It also receives feedback from the motor to make real-time adjustments, optimizing performance and efficiency. The Motor, driven by AC power, generates torque transmitted through a gearbox (if needed). The gearbox adjusts the motor torque and RPM to the optimal levels for the propeller. The propeller, driven by the adjusted RPM and Torque, creates the necessary thrust to lift and propel the UAM vehicle. This complex integration ensures the UAM system operates with high efficiency, precision, and reliability which are vital for the demands of Urban Air Transportation.</p>
-<p><img alt="UAM Propulsion System" src="../_images/prop-uam.png" /></p>
+<p><img alt="UAM Propulsion System" src="images/prop-uam.png" /></p>
 <p>Distributed Electric Propulsion (DEP) is the system designed for efficient and reliable operation in electric aircraft. The DEP System distributes the propulsion power across multiple units, which can improve efficiency, redundancy, and control. This design allows for more precise thrust management and can enhance the aircraft safety and performance by providing multiple propulsion sources. If one unit fails, the others can continue to operate, ensuring continued flight capabilities. This setup is especially beneficial for electric aircraft, where maximizing efficiency and reliability is crucial.</p>
-<p><img alt="Distributed Electric Propulsion" src="../_images/prop-all-electric.png" /></p>
+<p><img alt="Distributed Electric Propulsion" src="images/prop-all-electric.png" /></p>
 </section>
 <section id="propeller-model">
 <h2>Propeller Model<a class="headerlink" href="#propeller-model" title="Link to this heading"></a></h2>
@@ -530,7 +530,7 @@ specifications, motor required current, and voltage from the ESC.</p>
 <section id="mathematical-formulation-of-blade-element-theory">
 <h3>Mathematical Formulation of Blade Element Theory<a class="headerlink" href="#mathematical-formulation-of-blade-element-theory" title="Link to this heading"></a></h3>
 <p>This approach involves the blade element analysis, where the propeller blade is divided into numerous sections. For each section, lift and drag forces are calculated based on their unique airfoil characteristics and the prevailing operational conditions, similar to the force dynamics on an aircraft wing. These forces are then resolved along the propeller axis to determine the propeller’s resultant thrust and torque.</p>
-<p><img alt="Propeller Analysis using blade element model" src="../_images/bem.png" /></p>
+<p><img alt="Propeller Analysis using blade element model" src="images/bem.png" /></p>
 <p>The forces generated by an elemental blade section are mathematically represented as axial force (<span class="math notranslate nohighlight">\(dT\)</span>) and angular force (<span class="math notranslate nohighlight">\(dQ\)</span>). These forces, acting in a plane perpendicular to the blade, are derived from the differential lift (<span class="math notranslate nohighlight">\(dL\)</span>) and drag (<span class="math notranslate nohighlight">\(dD\)</span>) forces, considering the inflow angle (<span class="math notranslate nohighlight">\(\phi\)</span>)</p>
 <div class="math notranslate nohighlight">
 \[dT = dL cos\phi - dD sin\phi\]</div>
@@ -556,7 +556,7 @@ specifications, motor required current, and voltage from the ESC.</p>
 <section id="id1">
 <h4>Momentum Theory<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
 <p>Momentum theory is based on conceptualizing the propeller as an actuator disk. This idealization represents the propeller as an infinitely thin disk that induces a minor velocity increment (<span class="math notranslate nohighlight">\(u\)</span>) in the flow direction.</p>
-<p><img alt="Propeller analysis using momentum theory" src="../_images/disk.png" /></p>
+<p><img alt="Propeller analysis using momentum theory" src="images/disk.png" /></p>
 <p>The analysis assumes that energy states before and after the propeller remain conserved. Applying Bernoulli’s theorem, we can express the pressure difference across the actuator disk.</p>
 <div class="math notranslate nohighlight">
 \[\Delta p = 0.5 \rho V_{\infty}^2 4a(1+a)\]</div>
@@ -662,7 +662,7 @@ specifications, motor required current, and voltage from the ESC.</p>
 <h3>Motor Modeling<a class="headerlink" href="#motor-modeling" title="Link to this heading"></a></h3>
 <p>For eVTOL aircraft propulsion, Permanent Magnet Synchronous Motors (PMSM) is more suitable than Brushless DC Motors (BLDC) due to superior compactness, high torque density and rapid response to load changes. PMSM offer greater efficiency, lower noise and improved power density, despite their higher cost and complex control requirements. These features make PMSM the optimal choice for achieving the performance goals of eVTOL aircraft design, ensuring it meets the high standards required for efficient and effective propulsion.</p>
 <p>We use a simplified equivalent circuit model of a PMSM. The stator resistance and synchronous inductance are parameters obtained from motor manufacturers. For analyzing the motor performance, phasor analysis within the d-q reference frame is employed. The rotor magnetic field establishes the d-axis as the reference axis.</p>
-<p><img alt="Phase-Wise equivalent circuit of a PMSM" src="../_images/motor_circuit.png" /></p>
+<p><img alt="Phase-Wise equivalent circuit of a PMSM" src="images/motor_circuit.png" /></p>
 <div class="math notranslate nohighlight">
 \[E_{\phi,mot(q)} = K_{e} \cdot  \omega_{rotor} = \frac {\omega_{rotor}}{K_{v}}\]</div>
 <div class="math notranslate nohighlight">
@@ -715,7 +715,7 @@ specifications, motor required current, and voltage from the ESC.</p>
 <h3>Motor Model Validation<a class="headerlink" href="#motor-model-validation" title="Link to this heading"></a></h3>
 <p>Conduct a validation of motor model against the EMRAX 208, an axial flux motor.
 It renowned for its compact and efficient design, making it ideal for electric aircraft applications.</p>
-<p><img alt="EMRAX 208" src="../_images/emrax_208.png" /></p>
+<p><img alt="EMRAX 208" src="images/emrax_208.png" /></p>
 <p><a class="reference external" href="https://emrax.com/e-motors/emrax-208/#1510843023693-0e55cf66-6528">EMRAX 208 Datasheet</a></p>
 <table class="docutils align-default">
 <thead>
@@ -772,7 +772,7 @@ It renowned for its compact and efficient design, making it ideal for electric a
 <section id="validated-data">
 <h3>Validated data<a class="headerlink" href="#validated-data" title="Link to this heading"></a></h3>
 <p>Graph illustrates the EMRAX 208 motor’s performance, showcasing peak power and torque over varying speeds. The motor operates efficiently within its Maximum Torque per Ampere (MTPA) range and Flux-Weakening (FW) regimes for optimal power. Manufacturer data are plotted alongside our model’s performance curves. Notably, peak torque (orange) diminishes with increasing speed, while peak power (blue) rises to a plateau. Power loss (green) escalates with speed. The close alignment between the model and empirical data assures that the model is acceptable for use case.</p>
-<p><img alt="Peak power, torque, power loss validated with EMRAX 208 manufacturer data" src="../_images/motor_valid_emrax208.png" /></p>
+<p><img alt="Peak power, torque, power loss validated with EMRAX 208 manufacturer data" src="images/motor_valid_emrax208.png" /></p>
 </section>
 </section>
 <section id="inverter">
@@ -849,9 +849,9 @@ The duty cycle is instrumental in calculating the power losses in both the MOSFE
 <section id="battery-model">
 <h3>Battery Model<a class="headerlink" href="#battery-model" title="Link to this heading"></a></h3>
 <p>Equivalent Circuit Model (ECM)-based models offer an optimal balance between complexity and accuracy, making them preferred choices for real-world applications. While Thevenin and other battery models provide higher accuracy, around <span class="math notranslate nohighlight">\(\pm\)</span> 1%, then our framework utilized a modified version of the ECM. This model is selected for its speed, robustness and reasonable accuracy. It simplifies the parameterization process using inputs derived from discharge characteristics or manufacturer data and is adaptable to a variety of battery chemistries and configurations. The modular nature of our framework also allows for easy integration of alternative models, offering the flexibility needed to adapt to different scenarios.</p>
-<p><img alt="Battery Model Equivalent circuit diagram" src="../_images/battery.png" /></p>
+<p><img alt="Battery Model Equivalent circuit diagram" src="images/battery.png" /></p>
 <p>Below graph presents the typical discharge curve of a Li-ion battery, capturing three distinct regions. Rapid voltage drop, termed the exponential region, followed by the nominal region, where voltage stabilizes, offering consistent power output. Finally, the voltage sharply decreases to the cut-off point, indicating the battery’s minimum usable limit to prevent damage.</p>
-<p><img alt="Li-ion Battery Typical Discharge curve" src="../_images/battery_discharge_curve.png" /></p>
+<p><img alt="Li-ion Battery Typical Discharge curve" src="images/battery_discharge_curve.png" /></p>
 <p>In here, we use a model incorporating polarization voltage as a time-dependent state variable, accounting for variations in output voltage. The discharge voltage is estimated:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}

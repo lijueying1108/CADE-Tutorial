@@ -7,18 +7,18 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Configuration Theory Manual &mdash; CADE 1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=e59714d7" />
 
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="static/jquery.js?v=5d32c60e"></script>
+      <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="static/documentation_options.js?v=f2a433a1"></script>
+      <script src="static/doctools.js?v=9bcbadda"></script>
+      <script src="static/sphinx_highlight.js?v=dc90522c"></script>
       <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
       <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../_static/js/theme.js"></script>
+    <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -75,7 +75,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active"><strong>Configuration Theory Manual</strong></li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/configuration_theory.md.txt" rel="nofollow"> View page source</a>
+            <a href="sources/configuration_theory.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -162,7 +162,7 @@ It is written by referring to the books:</p>
 <p>The airfoil is often considered the heart of the aircraft, as it influences various aspects such as cruise speed, take-off and landing distances, stall speed, and the overall aerodynamic efficiency of the wing configuration throughout all flight phases. The wing configuration analysis evaluates each section of the entire wing, where each section corresponds to an individual airfoil.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/airfoil_geometry.jpg" alt="Airfoil Geometry" width="400">
+    <img src="static/fig/airfoil_geometry.jpg" alt="Airfoil Geometry" width="400">
     <figcaption>Airfoil Geometry</figcaption>
   </figure>
 </div>
@@ -226,7 +226,7 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 <p>Airfoil leading edge parameter is the thickness factor of airfoil’s leading edge like <span class="math notranslate nohighlight">\(\varDelta y\)</span>(%C) in below figure.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/airfoil_LE_parameter.jpg" alt="Airfoil Leading Edge Parameter">
+    <img src="static/fig/airfoil_LE_parameter.jpg" alt="Airfoil Leading Edge Parameter">
     <figcaption> Airfoil Leading Edge Parameter</figcaption>
 </div>
 <div class="math notranslate nohighlight">
@@ -251,12 +251,12 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 <p>A wing represented by a multi-segment approach is divided into <span class="math notranslate nohighlight">\(N\)</span> sections, resulting in <span class="math notranslate nohighlight">\(N-1\)</span> trapezoidal-shaped segments. The two images below illustrate the geometry of multi-segment wing.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/wing_segment_section.jpg" alt="Multi-Segment Wing Breakdown" width="400">
+    <img src="static/fig/wing_segment_section.jpg" alt="Multi-Segment Wing Breakdown" width="400">
   <figcaption> Multi-Segment Wing Breakdown </figcaption>
 </div>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/multi_segment_wing_geometry.jpg" alt="Multi-Segment Wing Geometry" width="400">
+    <img src="static/fig/multi_segment_wing_geometry.jpg" alt="Multi-Segment Wing Geometry" width="400">
   <figcaption> Multi-Segment Wing Geometry </figcaption>
 </div>
 <p>The wing configuration parameters of a multi-segment wing are calculated using the following equations:</p>
@@ -408,7 +408,7 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 <p>In summary, wing area(<span class="math notranslate nohighlight">\(S\)</span>), aspect ratio(<span class="math notranslate nohighlight">\(AR\)</span>), mean aerodynamic chord(<span class="math notranslate nohighlight">\(MAC\)</span>), and aerodynamic center(<span class="math notranslate nohighlight">\(AC\)</span>) of equivalent wing should be same as the original wing.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/equivalent_wing_geometry.jpg" alt="Equivalent Wing Geometry" width="400">
+    <img src="static/fig/equivalent_wing_geometry.jpg" alt="Equivalent Wing Geometry" width="400">
   <figcaption> Equivalent Wing Geometry </figcaption>
 </div>
 <p>Since the equivalent wing has the same Mean Aerodynamic Chord (MAC) as the original wing, its MAC value is computed and provided to other discipline modules, such as weight and balance module and aerodynamic module.</p>
@@ -560,7 +560,7 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 <p>For wing configurations with dihedral or rotation angles, such as V-Tail, the wing can be divided into two directional components: <span style="color:rgb(24, 80, 145);">Horizontal and Vertical parts.</span></p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/equivalent_h_v_wing_geometry.jpg" alt="Equivalent Horizontal/Vertical Wing Breakdown" width="500">
+    <img src="static/fig/equivalent_h_v_wing_geometry.jpg" alt="Equivalent Horizontal/Vertical Wing Breakdown" width="500">
   <figcaption> Equivalent Horizontal/Vertical Wing Breakdown </figcaption>
 </div>
 <p>This conversion method is particularly useful for wings with <span style="color:rgb(24, 80, 145);">large dihedral or anhedral angles.</span> By applying the conversion principles outlined below, the calculations remain consistent whether using the multi-segment wing approach or the equivalent wing analysis methodology.</p>
@@ -591,7 +591,7 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 <p>Control surfaces are generally attached to wing-type configurations. Therefore, in the CADE configuration module, control surface geometry analysis is included within the wing-type geometry analysis. CADE utilizes the AVL program for aerodynamic and flight stability analysis of winged aircraft. In multi-segment wing analysis, <span style="color:rgb(24, 80, 145);">any segment with an attached control surface should be treated as a single, distict segment.</span></p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/control_surface_geometry.jpg" alt="Control Surface Geometry" width="400">
+    <img src="static/fig/control_surface_geometry.jpg" alt="Control Surface Geometry" width="400">
   <figcaption> Control Surface Geometry </figcaption>
 </div>
 <p>Since the control surface is considered as a single segment in the multi-segment wing, as shown in the figure above, its index(<span class="math notranslate nohighlight">\(i\)</span>) is treated same as the index of the corresponding wing segment.</p>
@@ -625,7 +625,7 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 <p>There are many types of area used in aircraft design. Below explains about the definitions of the different area types.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/reference_area_exposed_area.jpg" alt="Comparison of Reference Area and Exposed Area" width="400">
+    <img src="static/fig/reference_area_exposed_area.jpg" alt="Comparison of Reference Area and Exposed Area" width="400">
   <figcaption> Comparison of Reference Area and Exposed Area </figcaption>
 </div>
 <ul>
@@ -644,7 +644,7 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 </ul>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/projected_area.jpg" alt="Projected Area" width="350">
+    <img src="static/fig/projected_area.jpg" alt="Projected Area" width="350">
   <figcaption> Projected Area </figcaption>
 </div>
 <br>
@@ -653,12 +653,12 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 <h4>Conventional or Canard Wing Configuration<a class="headerlink" href="#conventional-or-canard-wing-configuration" title="Link to this heading"></a></h4>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/conventional_wing_configuration.jpg" alt="Conventional Wing" width="350">
+    <img src="static/fig/conventional_wing_configuration.jpg" alt="Conventional Wing" width="350">
   <figcaption> Conventional Wing Configuration </figcaption>
 </div>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/canard_wing_configuration.jpg" alt="Canard Wing" width="350">
+    <img src="static/fig/canard_wing_configuration.jpg" alt="Canard Wing" width="350">
   <figcaption> Canard Wing Configuration </figcaption>
 </div>
 <p>These two types of configurations only considers the main wing when calculating <span class="math notranslate nohighlight">\(S_{ref}, B_{ref}, L_{ref}\)</span>.</p>
@@ -678,12 +678,12 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 <h4>Tandem or Box Wing Configuration<a class="headerlink" href="#tandem-or-box-wing-configuration" title="Link to this heading"></a></h4>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/tandem_wing_configuration.jpg" alt="Tandem Wing" width="350">
+    <img src="static/fig/tandem_wing_configuration.jpg" alt="Tandem Wing" width="350">
   <figcaption> Tandem Wing Configuration </figcaption>
 </div>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/box_wing_configuration.jpg" alt="Box Wing" width="350">
+    <img src="static/fig/box_wing_configuration.jpg" alt="Box Wing" width="350">
   <figcaption> Box Wing Configuration </figcaption>
 </div>
 <p>These two types of configurations considers both front and rear wing when calculating <span class="math notranslate nohighlight">\(S_{ref}, B_{ref}, L_{ref}\)</span>.</p>
@@ -706,7 +706,7 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 <p>In the configuration analysis, the body type geometryy module analyzes components related to the aircraft’s main body, including the fuselage, nacelles, motor booms, and etc. Typically, the body type geometries are represented by extending a <span style="color:rgb(24, 80, 145);">cross-section along the specific direction</span> (e.g. fuselage is extended along aircraft’s longitudinal direction). In this module, the <span style="color:rgb(24, 80, 145);">side-view and top-view profiles (coordinate points)</span> of the configuration are provided as input parameters, allowing an efficient calculation of all body type geometry. Especially, these body type elements have a significant effect on an aircraft’s friction drag, so accurately calculating the wetted area is crucial at this stage.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/body_type_profile_example.jpg" alt="Top/Side Profile of Body Type Configuration" width="400">
+    <img src="static/fig/body_type_profile_example.jpg" alt="Top/Side Profile of Body Type Configuration" width="400">
   <figcaption> Top/Side Profile of Body Type Configuration </figcaption>
 </div>
 <br>
@@ -761,7 +761,7 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 <br>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/ellipse.jpg" alt="Geometry of Ellipse" width="400">
+    <img src="static/fig/ellipse.jpg" alt="Geometry of Ellipse" width="400">
   <figcaption> Geometry of Ellipse </figcaption>
 </div>
 <p>With number of <span class="math notranslate nohighlight">\(n\)</span> side-view/top-view profile points,</p>
@@ -812,7 +812,7 @@ Airfoil thickness could be calculated by subtracting Y-axis coordinate of upper 
 <p>Wheel type landing gear can be either retractable or non-retractable. Whether the landing gear retracts or not is important, as it affects the aircraft’s drag. The figure below illustrates the tire geometry of wheel type landing gear.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/tire_geometry.jpg" alt="Tire Geometry" width="400">
+    <img src="static/fig/tire_geometry.jpg" alt="Tire Geometry" width="400">
   <figcaption> Tire Geometry </figcaption>
 </div>
 <p>There are various layouts for wheel type, but they primarily differ in the number of wheels and their arrangement. In this configuration module, the number of wheels and their locations are provided as input parameters.</p>

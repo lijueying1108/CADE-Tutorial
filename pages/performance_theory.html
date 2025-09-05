@@ -7,18 +7,18 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Performance and Mission Theory Manual &mdash; CADE 1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=e59714d7" />
 
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="static/jquery.js?v=5d32c60e"></script>
+      <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="static/documentation_options.js?v=f2a433a1"></script>
+      <script src="static/doctools.js?v=9bcbadda"></script>
+      <script src="static/sphinx_highlight.js?v=dc90522c"></script>
       <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
       <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../_static/js/theme.js"></script>
+    <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -76,7 +76,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active"><strong>Performance and Mission Theory Manual</strong></li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/performance_theory.md.txt" rel="nofollow"> View page source</a>
+            <a href="sources/performance_theory.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -129,7 +129,7 @@
 <p>The mission fuel calculation module analyzes the mission for a given mission profile by calling the flight segment analysis module to determine the energy required for the mission. The analysis results can generate various performance curves, maximum performance parameters, and time histories along the mission profile.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/performance_and_mission.png" alt="Performance and Mission Analysis Module" width="600">
+    <img src="static/fig/performance_and_mission.png" alt="Performance and Mission Analysis Module" width="600">
     <figcaption>Performance and Mission Analysis Module</figcaption>
   </figure>
 </div>
@@ -279,7 +279,7 @@
 <p>The above trim condition can be solved by a fixed-point iteration method, by calling the trim analysis and propulsion analysis modules. The resultant analysis data are stored in the point performance output table to be called by other modules. The analysis will be solved for the steady-level-flight trim condition, and the airspeed is optimized according to the objective function.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/STL.png" alt="Steady Level Flight Analysis Flow Chart" width="300">
+    <img src="static/fig/STL.png" alt="Steady Level Flight Analysis Flow Chart" width="300">
     <figcaption>Steady Level Flight Analysis Flow Chart</figcaption>
   </figure>
 </div>
@@ -400,7 +400,7 @@ The climb and descent analysis equilibrium conditions can be written as:</p>
 <p>The throttle setting is given as <span class="math notranslate nohighlight">\(100\%\)</span> to achieve the maximum thrust available for the climb condition and <span class="math notranslate nohighlight">\(0\%\)</span> is given for the descent condition by default. This analysis will be solved for steady climb &amp; descent trim conditions, and the airspeed is optimized according to the objective function.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/clb.drawio.png" alt="Climb and Descent Flight Analysis Flow Chart" width="300">
+    <img src="static/fig/clb.drawio.png" alt="Climb and Descent Flight Analysis Flow Chart" width="300">
     <figcaption>Climb and Descent Flight Analysis Flow Chart</figcaption>
   </figure>
 </div>
@@ -497,7 +497,7 @@ The climb and descent analysis equilibrium conditions can be written as:</p>
 <p>Ceiling performance is the analysis of the aircraft’s maximum flight altitude that can be maintained. The figure below illustrates this:</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/ceiling.jpg" alt="Ceiling Flight Analysis Flow Chart" width="600">
+    <img src="static/fig/ceiling.jpg" alt="Ceiling Flight Analysis Flow Chart" width="600">
     <figcaption>Ceiling Flight Analysis Flow Chart</figcaption>
   </figure>
 </div>
@@ -523,7 +523,7 @@ The climb and descent analysis equilibrium conditions can be written as:</p>
 <p>When the aircraft is in a steady state (unaccelerated flight), the sum of forces must be zero. For steady axial flight, weight, drag, and thrust are the three force components. The equations of motion at the steady axial condition, with no acceleration, are considered. An axial flight analysis flow chart is shown in the figure below:</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/VTOLAnalysis.png" alt="Axial Flight Analysis Flow Chart" width="400">
+    <img src="static/fig/VTOLAnalysis.png" alt="Axial Flight Analysis Flow Chart" width="400">
     <figcaption>Axial Flight Analysis Flow Chart</figcaption>
   </figure>
 </div>
@@ -575,7 +575,7 @@ The climb and descent analysis equilibrium conditions can be written as:</p>
 <p>For vertical take-off and landing aircraft, OGE (Out of Ground Effect) and IGE (In Ground Effect) ceilings are two key parameters for hovering to determine the minimum and maximum altitudes. The hovering ceiling is divided into two ceilings, OGE and IGE. These parameters are solved by the method shown in the figure below:</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/OGE_IGE_ceiling.png" alt="OGE and IGE Hover Ceiling" width="400">
+    <img src="static/fig/OGE_IGE_ceiling.png" alt="OGE and IGE Hover Ceiling" width="400">
     <figcaption>OGE and IGE Hover Ceiling</figcaption>
   </figure>
 </div>
@@ -593,7 +593,7 @@ The climb and descent analysis equilibrium conditions can be written as:</p>
 <h4>Tilt-Corridor<a class="headerlink" href="#tilt-corridor" title="Link to this heading"></a></h4>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/tilt_corridor_example.png" alt="Example of Tilt Corridor" width="400">
+    <img src="static/fig/tilt_corridor_example.png" alt="Example of Tilt Corridor" width="400">
     <figcaption>Example of Tilt Corridor</figcaption>
   </figure>
 </div>
@@ -601,7 +601,7 @@ The climb and descent analysis equilibrium conditions can be written as:</p>
 <p>The above figure is an example of the tilt corridor, where the red, black, and blue points represent the stall speed, minimum speed, and maximum speed at a given altitude and tilt angle, respectively.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/transition_FBD.png" alt="Free Body Diagram of Transition State" width="400">
+    <img src="static/fig/transition_FBD.png" alt="Free Body Diagram of Transition State" width="400">
     <figcaption>Free Body Diagram of Transition State</figcaption>
   </figure>
 </div>
@@ -625,7 +625,7 @@ The climb and descent analysis equilibrium conditions can be written as:</p>
 <p>In this calculation, the lift condition assumes <span class="math notranslate nohighlight">\(C_{L_{max}}\)</span>, and the minimum speed that satisfies Condition A is determined. If Condition A can be satisfied solely by thrust at a given speed and tilt angle, the required Stall Speed becomes zero.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/transition_TvsD.png" alt="Minimum and Maximum Speed Line" width="300">
+    <img src="static/fig/transition_TvsD.png" alt="Minimum and Maximum Speed Line" width="300">
     <figcaption>Minimum and Maximum Speed Line</figcaption>
   </figure>
 </div>
@@ -635,7 +635,7 @@ The climb and descent analysis equilibrium conditions can be written as:</p>
 <p><span style="color:rgb(7, 156, 241);"><strong>Examples</strong></span></p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/tilt_corridor_examples.png" alt="Altitude Sweep Tilt Corridor" width="600">
+    <img src="static/fig/tilt_corridor_examples.png" alt="Altitude Sweep Tilt Corridor" width="600">
     <figcaption>Altitude Sweep Tilt Corridor</figcaption>
   </figure>
 </div>
@@ -656,7 +656,7 @@ The climb and descent analysis equilibrium conditions can be written as:</p>
 <h4>Flight Envelope for Tilting Aircraft<a class="headerlink" href="#flight-envelope-for-tilting-aircraft" title="Link to this heading"></a></h4>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/transition_flight_envelope.jpg" alt="Concept of Transition Flight Envelope" width="400">
+    <img src="static/fig/transition_flight_envelope.jpg" alt="Concept of Transition Flight Envelope" width="400">
     <figcaption>Concept of Transition Flight Envelope</figcaption>
   </figure>
 </div>
@@ -669,7 +669,7 @@ However, transition-capable aircraft combine both of these flight characteristic
 <p>At each given altitude, the maximum and minimum speeds are determined by considering all possible tilt angles. These two speed limits define the aircraft’s Flight Envelope.</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/expansion_of_tilt_corridor.png" alt="Expansion of Tilt Corridor" width="400">
+    <img src="static/fig/expansion_of_tilt_corridor.png" alt="Expansion of Tilt Corridor" width="400">
     <figcaption>Expansion of Tilt Corridor</figcaption>
   </figure>
 </div>
@@ -689,7 +689,7 @@ However, transition-capable aircraft combine both of these flight characteristic
 <p>A <strong>mission profile</strong> can be imported in a *.csv format. The mission.xls mission profile is also shown in the figure below. An example mission profile can be seen in the figure:</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/mission_inputprof.png" alt="Mission Profile" width="600">
+    <img src="static/fig/mission_inputprof.png" alt="Mission Profile" width="600">
     <figcaption>Mission Profile</figcaption>
   </figure>
 </div>
@@ -697,7 +697,7 @@ However, transition-capable aircraft combine both of these flight characteristic
 <p>Mission profile analysis calculates the mission fuel required, SoC, mission range, and mission endurance at a given mission profile input. A fixed-point iteration is implemented to estimate the required fuel mass to complete the mission defined by the mission profile. It provides the output for each mission segment and for the entire mission profile. A detailed mission analysis is shown in the figure below:</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/MissionProfileAnalysis.drawio.png" alt="Mission Analysis Flow Chart" width="400">
+    <img src="static/fig/MissionProfileAnalysis.drawio.png" alt="Mission Analysis Flow Chart" width="400">
     <figcaption>Mission Analysis Flow Chart</figcaption>
   </figure>
 </div>
@@ -709,7 +709,7 @@ However, transition-capable aircraft combine both of these flight characteristic
 <p>Discrete segments are used to analyze each of the mission segments to obtain accurate data for each discipline, as well as range and endurance. Linear interpolation is used between the start and end points of the given mission input. The linear interpolation is shown in the figure below:</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/liner_segments.png" alt="Linear Interpolation" width="400">
+    <img src="static/fig/liner_segments.png" alt="Linear Interpolation" width="400">
     <figcaption>Linear Interpolation</figcaption>
   </figure>
 </div>
@@ -754,7 +754,7 @@ For descent analysis, the default input throttle setting <span class="math notra
 <p>Mission range and endurance are optimized by accounting for climb, cruise, and descent segments. An example mission profile can be seen in the figure below:</p>
 <div style="text-align: center;">
   <figure>
-    <img src="_static/fig/cruise_mission.png" alt="Example of Cruise Mission" width="400">
+    <img src="static/fig/cruise_mission.png" alt="Example of Cruise Mission" width="400">
     <figcaption>Example of Cruise Mission</figcaption>
   </figure>
 </div>
